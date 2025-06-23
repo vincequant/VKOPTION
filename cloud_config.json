@@ -1,0 +1,7 @@
+{
+  "api_url": "https://YOUR_USERNAME.pythonanywhere.com/api/portfolio",
+  "api_key": "YOUR_SECRET_API_KEY",
+  "username": "YOUR_PYTHONANYWHERE_USERNAME",
+  "retry_count": 3,
+  "timeout": 30
+}

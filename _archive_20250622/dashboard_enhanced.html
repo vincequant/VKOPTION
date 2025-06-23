@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB Portfolio Monitor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+            background-color: #0f0f0f;
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* 導航欄 */
+        .navbar {
+            background-color: #1a1a1a;
+            border-bottom: 1px solid #2a2a2a;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: #252525;
+            border-radius: 20px;
+            font-size: 0.875rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #10b981;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.disconnected {
+            background-color: #ef4444;
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .update-button {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .update-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .update-button:disabled {
+            background: #4b5563;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* 主分類標籤 */
+        .main-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background-color: #1a1a1a;
+            padding: 0.5rem;
+            border-radius: 12px;
+            border: 1px solid #2a2a2a;
+        }
+
+        .main-tab {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            border-radius: 8px;
+            color: #888;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .main-tab:hover {
+            color: #fff;
+            background-color: #252525;
+        }
+
+        .main-tab.active {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+        }
+
+        /* 分類內容 */
+        .category-content {
+            display: none;
+        }
+
+        .category-content.active {
+            display: block;
+        }
+
+        /* 統計卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background-color: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #3a3a3a;
+            transform: translateY(-2px);
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .positive {
+            color: #10b981;
+        }
+
+        .negative {
+            color: #ef4444;
+        }
+
+        /* 到期分布 */
+        .expiry-section {
+            background-color: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .expiry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .expiry-card {
+            background-color: #252525;
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .expiry-card:hover {
+            border-color: #4a4a4a;
+            transform: scale(1.02);
+        }
+
+        .expiry-date {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .expiry-days {
+            color: #888;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .expiry-value {
+            color: #10b981;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .expiry-count {
+            color: #666;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        /* 表格 */
+        .table-section {
+            background-color: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .table-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #2a2a2a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #252525;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 500;
+            color: #888;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        tr:hover {
+            background-color: #252525;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        /* 數據狀態 */
+        .data-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .data-badge.success {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .data-badge.warning {
+            background-color: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        /* 空狀態 */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        /* 警告橫幅 */
+        .warning-banner {
+            background-color: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .warning-banner.show {
+            display: flex;
+        }
+
+        .warning-text {
+            color: #f59e0b;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .close-warning {
+            background: none;
+            border: none;
+            color: #f59e0b;
+            cursor: pointer;
+            font-size: 1.25rem;
+        }
+
+        /* 響應式 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .main-tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .main-tab {
+                white-space: nowrap;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .expiry-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.875rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Loading */
+        .loading {
+            display: inline-block;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                IB Portfolio Monitor
+            </div>
+            <div class="nav-actions">
+                <div class="status-indicator">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="statusText">檢查中...</span>
+                </div>
+                <button class="update-button" id="updateBtn" onclick="updateData()">
+                    <i class="fas fa-sync-alt"></i>
+                    更新數據
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- 警告橫幅 -->
+        <div class="warning-banner" id="subscriptionWarning">
+            <div class="warning-text">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span id="subscriptionWarningText"></span>
+            </div>
+            <button class="close-warning" onclick="closeWarning()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- 主分類標籤 -->
+        <div class="main-tabs">
+            <button class="main-tab active" onclick="switchCategory('us-options')">美股期權</button>
+            <button class="main-tab" onclick="switchCategory('hk-options')">港股期權</button>
+            <button class="main-tab" onclick="switchCategory('us-stocks')">美股</button>
+            <button class="main-tab" onclick="switchCategory('hk-stocks')">港股</button>
+        </div>
+
+        <!-- 美股期權內容 -->
+        <div id="us-options" class="category-content active">
+            <!-- 統計卡片 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">持倉數量</div>
+                    <div class="stat-value" id="us-options-count">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">總市值</div>
+                    <div class="stat-value" id="us-options-value">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">未實現盈虧</div>
+                    <div class="stat-value" id="us-options-pnl">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">到期總價值</div>
+                    <div class="stat-value" id="us-options-expiry">--</div>
+                </div>
+            </div>
+
+            <!-- 到期分布 -->
+            <div class="expiry-section">
+                <h3 class="section-title">美股期權到期分布</h3>
+                <div class="expiry-grid" id="us-options-expiry-grid">
+                    <!-- 動態生成 -->
+                </div>
+            </div>
+
+            <!-- 持倉表格 -->
+            <div class="table-section">
+                <div class="table-header">
+                    <h3 class="section-title">美股期權持倉明細</h3>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>標的</th>
+                                <th>行權價</th>
+                                <th>到期日</th>
+                                <th>類型</th>
+                                <th class="text-right">數量</th>
+                                <th class="text-right">現價</th>
+                                <th class="text-right">成本</th>
+                                <th class="text-right">盈虧</th>
+                                <th class="text-right">到期價值</th>
+                                <th>數據狀態</th>
+                            </tr>
+                        </thead>
+                        <tbody id="us-options-tbody">
+                            <!-- 動態生成 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 港股期權內容 -->
+        <div id="hk-options" class="category-content">
+            <!-- 統計卡片 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">持倉數量</div>
+                    <div class="stat-value" id="hk-options-count">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">總成本</div>
+                    <div class="stat-value" id="hk-options-cost">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">到期總價值</div>
+                    <div class="stat-value" id="hk-options-expiry">--</div>
+                </div>
+            </div>
+
+            <!-- 到期分布 -->
+            <div class="expiry-section">
+                <h3 class="section-title">港股期權到期分布</h3>
+                <div class="expiry-grid" id="hk-options-expiry-grid">
+                    <!-- 動態生成 -->
+                </div>
+            </div>
+
+            <!-- 持倉表格 -->
+            <div class="table-section">
+                <div class="table-header">
+                    <h3 class="section-title">港股期權持倉明細</h3>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>標的</th>
+                                <th>行權價</th>
+                                <th>到期日</th>
+                                <th>類型</th>
+                                <th class="text-right">數量</th>
+                                <th class="text-right">成本</th>
+                                <th class="text-right">到期價值</th>
+                                <th>數據狀態</th>
+                            </tr>
+                        </thead>
+                        <tbody id="hk-options-tbody">
+                            <!-- 動態生成 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 美股內容 -->
+        <div id="us-stocks" class="category-content">
+            <!-- 統計卡片 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">持倉數量</div>
+                    <div class="stat-value" id="us-stocks-count">--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">總市值</div>
+                    <div class="stat-value" id="us-stocks-value">--</div>
+                </div>
+            </div>
+
+            <!-- 持倉表格 -->
+            <div class="table-section">
+                <div class="table-header">
+                    <h3 class="section-title">美股持倉明細</h3>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>代碼</th>
+                                <th class="text-right">數量</th>
+                                <th class="text-right">現價</th>
+                                <th class="text-right">市值</th>
+                                <th>數據狀態</th>
+                            </tr>
+                        </thead>
+                        <tbody id="us-stocks-tbody">
+                            <!-- 動態生成 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 港股內容 -->
+        <div id="hk-stocks" class="category-content">
+            <div class="empty-state">
+                <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                <p>暫無港股持倉</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全局變量
+        let portfolioData = null;
+        let currentCategory = 'us-options';
+        let underlyingPrices = {};
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+            checkStatus();
+            setInterval(checkStatus, 5000);
+        });
+
+        // 切換分類
+        function switchCategory(category) {
+            currentCategory = category;
+            
+            // 更新標籤狀態
+            document.querySelectorAll('.main-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // 更新內容
+            document.querySelectorAll('.category-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(category).classList.add('active');
+        }
+
+        // 加載數據
+        async function loadData() {
+            try {
+                const response = await fetch('/api/portfolio');
+                portfolioData = await response.json();
+                
+                if (!portfolioData.error) {
+                    updateUI();
+                    // 獲取股票價格
+                    if (portfolioData.underlying_prices) {
+                        underlyingPrices = portfolioData.underlying_prices;
+                    }
+                    fetchUnderlyingPrices();
+                }
+            } catch (error) {
+                console.error('加載數據失敗:', error);
+            }
+        }
+
+        // 更新數據
+        async function updateData() {
+            const btn = document.getElementById('updateBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner loading"></i> 更新中...';
+
+            try {
+                const response = await fetch('/api/update', { method: 'POST' });
+                const result = await response.json();
+                
+                if (result.success) {
+                    await loadData();
+                }
+            } catch (error) {
+                console.error('更新失敗:', error);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-sync-alt"></i> 更新數據';
+            }
+        }
+
+        // 檢查狀態
+        async function checkStatus() {
+            try {
+                const response = await fetch('/api/status');
+                const status = await response.json();
+                
+                const statusDot = document.getElementById('statusDot');
+                const statusText = document.getElementById('statusText');
+                
+                if (status.tws_connected) {
+                    statusDot.classList.remove('disconnected');
+                    statusText.textContent = 'TWS 已連接';
+                } else {
+                    statusDot.classList.add('disconnected');
+                    statusText.textContent = 'TWS 未連接';
+                }
+            } catch (error) {
+                console.error('狀態檢查失敗:', error);
+            }
+        }
+
+        // 獲取股票價格
+        async function fetchUnderlyingPrices() {
+            if (!portfolioData || !portfolioData.positions) return;
+            
+            const symbols = new Set();
+            portfolioData.positions.forEach(pos => {
+                if (pos.secType === 'OPT' && pos.tradingClass) {
+                    symbols.add(pos.tradingClass);
+                } else if (pos.secType === 'STK') {
+                    symbols.add(pos.symbol);
+                }
+            });
+            
+            if (symbols.size === 0) return;
+            
+            try {
+                const response = await fetch('/api/stock-prices', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ symbols: Array.from(symbols) })
+                });
+                
+                const data = await response.json();
+                if (data.success && data.prices) {
+                    underlyingPrices = { ...underlyingPrices, ...data.prices };
+                    updateUI();
+                }
+            } catch (error) {
+                console.error('獲取股票價格失敗:', error);
+            }
+        }
+
+        // 更新UI
+        function updateUI() {
+            if (!portfolioData) return;
+            
+            // 檢查訂閱錯誤
+            if (portfolioData.subscription_errors && Object.keys(portfolioData.subscription_errors).length > 0) {
+                const errorCount = Object.keys(portfolioData.subscription_errors).length;
+                document.getElementById('subscriptionWarningText').textContent = 
+                    `有 ${errorCount} 個持倉需要付費訂閱才能獲取完整市場數據`;
+                document.getElementById('subscriptionWarning').classList.add('show');
+            }
+            
+            updateUSOptions();
+            updateHKOptions();
+            updateUSStocks();
+        }
+
+        // 更新美股期權
+        function updateUSOptions() {
+            const positions = (portfolioData.positions || []).filter(p => 
+                p.secType === 'OPT' && p.currency === 'USD'
+            );
+            
+            // 統計數據
+            let count = positions.length;
+            let totalValue = 0;
+            let totalPnL = 0;
+            let totalExpiryValue = 0;
+            
+            positions.forEach(pos => {
+                // 使用 market_value（絕對值）
+                totalValue += Math.abs(pos.market_value || 0);
+                
+                // 計算盈虧
+                if (pos.pnl !== undefined && pos.pnl !== null) {
+                    totalPnL += pos.pnl;
+                }
+                
+                // 計算到期價值
+                const expiryValue = (pos.expiry_value || 0) * pos.position;
+                totalExpiryValue += expiryValue;
+            });
+            
+            // 更新統計卡片
+            document.getElementById('us-options-count').textContent = count;
+            document.getElementById('us-options-value').textContent = `$${formatNumber(totalValue)}`;
+            document.getElementById('us-options-pnl').textContent = `$${formatNumber(totalPnL)}`;
+            document.getElementById('us-options-pnl').className = `stat-value ${totalPnL >= 0 ? 'positive' : 'negative'}`;
+            document.getElementById('us-options-expiry').textContent = `$${formatNumber(Math.abs(totalExpiryValue))}`;
+            
+            // 更新到期分布
+            updateExpiryDistribution(positions, 'us-options-expiry-grid', 'USD');
+            
+            // 更新表格
+            updateUSOptionsTable(positions);
+        }
+
+        // 更新港股期權
+        function updateHKOptions() {
+            const positions = (portfolioData.positions || []).filter(p => 
+                p.secType === 'OPT' && p.currency === 'HKD'
+            );
+            
+            // 統計數據
+            let count = positions.length;
+            let totalCost = 0;
+            let totalExpiryValue = 0;
+            
+            positions.forEach(pos => {
+                // 計算總成本
+                totalCost += Math.abs(pos.position * pos.avgCost);
+                
+                // 計算到期價值
+                const expiryValue = (pos.expiry_value || 0) * pos.position;
+                totalExpiryValue += expiryValue;
+            });
+            
+            // 更新統計卡片
+            document.getElementById('hk-options-count').textContent = count;
+            document.getElementById('hk-options-cost').textContent = `HK$${formatNumber(totalCost)}`;
+            document.getElementById('hk-options-expiry').textContent = `HK$${formatNumber(Math.abs(totalExpiryValue))}`;
+            
+            // 更新到期分布
+            updateExpiryDistribution(positions, 'hk-options-expiry-grid', 'HKD');
+            
+            // 更新表格
+            updateHKOptionsTable(positions);
+        }
+
+        // 更新美股
+        function updateUSStocks() {
+            const positions = (portfolioData.positions || []).filter(p => 
+                p.secType === 'STK' && p.currency === 'USD'
+            );
+            
+            // 統計數據
+            let count = positions.length;
+            let totalValue = 0;
+            
+            positions.forEach(pos => {
+                const priceData = underlyingPrices[pos.symbol];
+                if (priceData && priceData.price) {
+                    totalValue += pos.position * priceData.price;
+                } else {
+                    // 使用 market_value 作為後備
+                    totalValue += pos.market_value || 0;
+                }
+            });
+            
+            // 更新統計卡片
+            document.getElementById('us-stocks-count').textContent = count;
+            document.getElementById('us-stocks-value').textContent = `$${formatNumber(totalValue)}`;
+            
+            // 更新表格
+            updateUSStocksTable(positions);
+        }
+
+        // 更新到期分布
+        function updateExpiryDistribution(positions, containerId, currency) {
+            const container = document.getElementById(containerId);
+            
+            // 按到期日分組
+            const expiryGroups = {};
+            positions.forEach(pos => {
+                const expiry = pos.expiry || pos.lastTradeDateOrContractMonth;
+                if (!expiry) return;
+                
+                if (!expiryGroups[expiry]) {
+                    expiryGroups[expiry] = {
+                        date: expiry,
+                        positions: [],
+                        totalValue: 0,
+                        count: 0
+                    };
+                }
+                
+                expiryGroups[expiry].positions.push(pos);
+                expiryGroups[expiry].totalValue += (pos.expiry_value || 0) * pos.position;
+                expiryGroups[expiry].count++;
+            });
+            
+            // 排序並生成HTML
+            const sortedExpiries = Object.values(expiryGroups).sort((a, b) => a.date.localeCompare(b.date));
+            
+            container.innerHTML = sortedExpiries.map(group => {
+                const expiryDate = formatExpiryDate(group.date);
+                const daysToExpiry = calculateDaysToExpiry(group.date);
+                const daysText = daysToExpiry === 0 ? '今天' : 
+                              daysToExpiry < 0 ? '已到期' : 
+                              `${daysToExpiry} 天`;
+                
+                const currencySymbol = currency === 'HKD' ? 'HK$' : '$';
+                
+                return `
+                    <div class="expiry-card">
+                        <div class="expiry-date">${expiryDate}</div>
+                        <div class="expiry-days">${daysText}</div>
+                        <div class="expiry-value">${currencySymbol}${formatNumber(Math.abs(group.totalValue))}</div>
+                        <div class="expiry-count">${group.count} 個期權</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 更新美股期權表格
+        function updateUSOptionsTable(positions) {
+            const tbody = document.getElementById('us-options-tbody');
+            
+            if (positions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="10" class="empty-state">暫無美股期權持倉</td></tr>';
+                return;
+            }
+            
+            // 排序：按到期日，然後按標的
+            positions.sort((a, b) => {
+                const dateCompare = (a.expiry || '').localeCompare(b.expiry || '');
+                if (dateCompare !== 0) return dateCompare;
+                return a.symbol.localeCompare(b.symbol);
+            });
+            
+            tbody.innerHTML = positions.map(pos => {
+                const pnl = pos.pnl || 0;
+                const expiryValue = (pos.expiry_value || 0) * pos.position;
+                const currentPrice = pos.current_price || pos.market_data?.currentPrice || '-';
+                const dataStatus = pos.has_market_data ? '有數據' : '需訂閱';
+                const statusClass = pos.has_market_data ? 'success' : 'warning';
+                
+                return `
+                    <tr>
+                        <td>${pos.symbol}</td>
+                        <td class="text-right">${pos.strike}</td>
+                        <td>${formatExpiryDate(pos.expiry || pos.lastTradeDateOrContractMonth)}</td>
+                        <td>${pos.right === 'C' ? 'Call' : 'Put'}</td>
+                        <td class="text-right">${pos.position}</td>
+                        <td class="text-right">${currentPrice}</td>
+                        <td class="text-right">${formatNumber(pos.avg_cost || pos.avgCost)}</td>
+                        <td class="text-right ${pnl >= 0 ? 'positive' : 'negative'}">${formatNumber(pnl)}</td>
+                        <td class="text-right">${formatNumber(expiryValue)}</td>
+                        <td><span class="data-badge ${statusClass}">${dataStatus}</span></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 更新港股期權表格
+        function updateHKOptionsTable(positions) {
+            const tbody = document.getElementById('hk-options-tbody');
+            
+            if (positions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" class="empty-state">暫無港股期權持倉</td></tr>';
+                return;
+            }
+            
+            // 排序
+            positions.sort((a, b) => {
+                const dateCompare = (a.expiry || '').localeCompare(b.expiry || '');
+                if (dateCompare !== 0) return dateCompare;
+                return a.symbol.localeCompare(b.symbol);
+            });
+            
+            tbody.innerHTML = positions.map(pos => {
+                const expiryValue = (pos.expiry_value || 0) * pos.position;
+                const dataStatus = pos.data_unavailable ? '數據不可用' : '需訂閱';
+                
+                return `
+                    <tr>
+                        <td>${pos.localSymbol || pos.symbol}</td>
+                        <td class="text-right">${pos.strike}</td>
+                        <td>${formatExpiryDate(pos.expiry || pos.lastTradeDateOrContractMonth)}</td>
+                        <td>${pos.right === 'C' ? 'Call' : 'Put'}</td>
+                        <td class="text-right">${pos.position}</td>
+                        <td class="text-right">${formatNumber(pos.avg_cost || pos.avgCost)}</td>
+                        <td class="text-right">${formatNumber(expiryValue)}</td>
+                        <td><span class="data-badge warning">${dataStatus}</span></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 更新美股表格
+        function updateUSStocksTable(positions) {
+            const tbody = document.getElementById('us-stocks-tbody');
+            
+            if (positions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">暫無美股持倉</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = positions.map(pos => {
+                const priceData = underlyingPrices[pos.symbol];
+                const currentPrice = priceData?.price || 0;
+                const marketValue = currentPrice > 0 ? currentPrice * pos.position : (pos.market_value || 0);
+                const dataStatus = currentPrice > 0 ? '有數據' : '無價格數據';
+                const statusClass = currentPrice > 0 ? 'success' : 'warning';
+                
+                return `
+                    <tr>
+                        <td>${pos.symbol}</td>
+                        <td class="text-right">${formatNumber(pos.position, 0)}</td>
+                        <td class="text-right">${currentPrice > 0 ? '$' + formatNumber(currentPrice) : '-'}</td>
+                        <td class="text-right">${marketValue > 0 ? '$' + formatNumber(marketValue) : '-'}</td>
+                        <td><span class="data-badge ${statusClass}">${dataStatus}</span></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 關閉警告
+        function closeWarning() {
+            document.getElementById('subscriptionWarning').classList.remove('show');
+        }
+
+        // 格式化函數
+        function formatNumber(num, decimals = 2) {
+            if (num === null || num === undefined || isNaN(num)) return '0';
+            return new Intl.NumberFormat('en-US', {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals
+            }).format(Math.abs(num));
+        }
+
+        function formatExpiryDate(dateStr) {
+            if (!dateStr) return '';
+            const year = dateStr.substring(0, 4);
+            const month = dateStr.substring(4, 6);
+            const day = dateStr.substring(6, 8);
+            return `${year}-${month}-${day}`;
+        }
+
+        function calculateDaysToExpiry(dateStr) {
+            if (!dateStr) return 0;
+            const year = parseInt(dateStr.substring(0, 4));
+            const month = parseInt(dateStr.substring(4, 6)) - 1;
+            const day = parseInt(dateStr.substring(6, 8));
+            const expiryDate = new Date(year, month, day);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const diffTime = expiryDate - today;
+            return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        }
+    </script>
+</body>
+</html>

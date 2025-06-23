@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB Portfolio Dashboard - 完整數據展示</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #0a0e27;
+            color: #e4e4e7;
+            line-height: 1.6;
+        }
+
+        /* 頂部導航 */
+        .navbar {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            text-decoration: none;
+            color: white;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background-color: #4b5563;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* 數據卡片網格 */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .grid-cols-4 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+        }
+
+        /* 數據卡片 */
+        .card {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-icon {
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .icon-blue { background-color: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .icon-green { background-color: rgba(34, 197, 94, 0.2); color: #4ade80; }
+        .icon-red { background-color: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .icon-purple { background-color: rgba(139, 92, 246, 0.2); color: #a78bfa; }
+        .icon-yellow { background-color: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .value-positive { color: #4ade80; }
+        .value-negative { color: #f87171; }
+
+        /* 表格樣式 */
+        .table-container {
+            background: #1e293b;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .table-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .table-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #0f172a;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #94a3b8;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+
+        /* 標籤樣式 */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-call {
+            background-color: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+        }
+
+        .badge-put {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        .badge-stock {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+
+        .badge-cash {
+            background-color: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+        }
+
+        /* 進度條 */
+        .progress-bar {
+            width: 100%;
+            height: 0.5rem;
+            background-color: #334155;
+            border-radius: 9999px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+
+        /* 希臘字母網格 */
+        .greeks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .greek-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+
+        .greek-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-bottom: 0.25rem;
+        }
+
+        .greek-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* 加載動畫 */
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top: 3px solid #3b82f6;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .grid-cols-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            table {
+                font-size: 0.875rem;
+            }
+            
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* 工具提示 */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #1e293b;
+            color: #e2e8f0;
+            text-align: center;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* 狀態指示器 */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-connected {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+
+        .status-disconnected {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        .pulse {
+            display: inline-block;
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(74, 222, 128, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂部導航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                IB Portfolio Dashboard
+            </div>
+            <div class="nav-actions">
+                <div class="status-indicator status-connected" id="connectionStatus">
+                    <span class="pulse" style="background-color: #4ade80;"></span>
+                    <span id="statusText">已連接</span>
+                </div>
+                <button class="btn btn-secondary" onclick="window.location.href='/'">
+                    <i class="fas fa-arrow-left"></i>
+                    返回主頁
+                </button>
+                <button class="btn btn-primary" onclick="refreshData()">
+                    <i class="fas fa-sync-alt"></i>
+                    刷新數據
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 賬戶摘要卡片 -->
+        <div class="grid grid-cols-4">
+            <!-- 淨資產 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="card-icon icon-blue">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        淨資產
+                    </div>
+                </div>
+                <div class="card-value" id="netLiquidation">--</div>
+                <div class="card-subtitle" id="netLiquidationHKD">--</div>
+            </div>
+
+            <!-- 可用資金 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="card-icon icon-green">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        可用資金
+                    </div>
+                </div>
+                <div class="card-value" id="availableFunds">--</div>
+                <div class="card-subtitle" id="availableFundsHKD">--</div>
+            </div>
+
+            <!-- 保證金 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="card-icon icon-purple">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        維持保證金
+                    </div>
+                </div>
+                <div class="card-value" id="maintMargin">--</div>
+                <div class="card-subtitle">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="marginProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 今日盈虧 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="card-icon icon-yellow">
+                            <i class="fas fa-chart-area"></i>
+                        </div>
+                        今日盈虧
+                    </div>
+                </div>
+                <div class="card-value" id="dailyPnL">--</div>
+                <div class="card-subtitle" id="dailyPnLPercent">--</div>
+            </div>
+        </div>
+
+        <!-- 持倉統計 -->
+        <div class="grid grid-cols-4" style="margin-top: 1.5rem;">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">總持倉價值</div>
+                </div>
+                <div class="card-value" id="grossPositionValue">--</div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">未實現盈虧</div>
+                </div>
+                <div class="card-value" id="unrealizedPnL">--</div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">已實現盈虧</div>
+                </div>
+                <div class="card-value" id="realizedPnL">--</div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">購買力</div>
+                </div>
+                <div class="card-value" id="buyingPower">--</div>
+            </div>
+        </div>
+
+        <!-- 持倉明細表格 -->
+        <div class="table-container" style="margin-top: 2rem;">
+            <div class="table-header">
+                <h2 class="table-title">
+                    <i class="fas fa-list"></i>
+                    持倉明細
+                </h2>
+            </div>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>標的</th>
+                            <th>類型</th>
+                            <th class="text-right">持倉</th>
+                            <th class="text-right">成本</th>
+                            <th class="text-right">現價</th>
+                            <th class="text-right">市值</th>
+                            <th class="text-right">未實現盈虧</th>
+                            <th class="text-right">日盈虧</th>
+                            <th class="text-center">數據狀態</th>
+                        </tr>
+                    </thead>
+                    <tbody id="positionsTable">
+                        <tr>
+                            <td colspan="9" class="text-center">
+                                <div class="spinner"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 期權希臘字母 -->
+        <div class="table-container" style="margin-top: 2rem;">
+            <div class="table-header">
+                <h2 class="table-title">
+                    <i class="fas fa-calculator"></i>
+                    期權希臘字母
+                </h2>
+            </div>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>期權合約</th>
+                            <th>行使價</th>
+                            <th>到期日</th>
+                            <th class="text-center">Delta</th>
+                            <th class="text-center">Gamma</th>
+                            <th class="text-center">Theta</th>
+                            <th class="text-center">Vega</th>
+                            <th class="text-center">隱含波動率</th>
+                        </tr>
+                    </thead>
+                    <tbody id="optionsTable">
+                        <tr>
+                            <td colspan="8" class="text-center">
+                                <div class="spinner"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 現金餘額 -->
+        <div class="grid grid-cols-2" style="margin-top: 2rem;">
+            <div class="table-container">
+                <div class="table-header">
+                    <h2 class="table-title">
+                        <i class="fas fa-coins"></i>
+                        現金餘額
+                    </h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>貨幣</th>
+                            <th class="text-right">餘額</th>
+                            <th class="text-right">匯率</th>
+                            <th class="text-right">港幣價值</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cashTable">
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                <div class="spinner"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 賬戶詳情 -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h2 class="table-title">
+                        <i class="fas fa-info-circle"></i>
+                        賬戶詳情
+                    </h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>項目</th>
+                            <th class="text-right">數值</th>
+                        </tr>
+                    </thead>
+                    <tbody id="accountDetailsTable">
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                <div class="spinner"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全局變量
+        let portfolioData = null;
+        const USD_TO_HKD = 7.8;
+        const JPY_TO_HKD = 0.053;
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+            setInterval(loadData, 30000); // 每30秒自動刷新
+        });
+
+        // 加載數據
+        async function loadData() {
+            try {
+                const response = await fetch('/api/portfolio');
+                portfolioData = await response.json();
+                
+                if (portfolioData.error) {
+                    console.error('數據加載失敗:', portfolioData.error);
+                    updateConnectionStatus(false);
+                } else {
+                    updateConnectionStatus(true);
+                    updateUI();
+                }
+            } catch (error) {
+                console.error('網絡錯誤:', error);
+                updateConnectionStatus(false);
+            }
+        }
+
+        // 刷新數據
+        async function refreshData() {
+            const btn = event.target.closest('button');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 更新中...';
+            
+            try {
+                const response = await fetch('/api/update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    setTimeout(() => loadData(), 1000);
+                }
+            } catch (error) {
+                console.error('更新失敗:', error);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-sync-alt"></i> 刷新數據';
+            }
+        }
+
+        // 更新連接狀態
+        function updateConnectionStatus(connected) {
+            const statusEl = document.getElementById('connectionStatus');
+            const statusText = document.getElementById('statusText');
+            
+            if (connected) {
+                statusEl.className = 'status-indicator status-connected';
+                statusText.textContent = '已連接';
+                statusEl.querySelector('.pulse').style.backgroundColor = '#4ade80';
+            } else {
+                statusEl.className = 'status-indicator status-disconnected';
+                statusText.textContent = '未連接';
+                statusEl.querySelector('.pulse').style.backgroundColor = '#f87171';
+            }
+        }
+
+        // 更新UI
+        function updateUI() {
+            if (!portfolioData) return;
+            
+            updateAccountSummary();
+            updatePositionsTable();
+            updateOptionsTable();
+            updateCashTable();
+            updateAccountDetails();
+        }
+
+        // 更新賬戶摘要
+        function updateAccountSummary() {
+            const summary = portfolioData.account_summary || {};
+            const accountPnL = portfolioData.account_pnl || {};
+            
+            // 淨資產
+            const netLiq = parseFloat(summary.NetLiquidation?.value || 0);
+            document.getElementById('netLiquidation').textContent = formatCurrency(netLiq);
+            document.getElementById('netLiquidationHKD').textContent = `HKD ${formatNumber(netLiq, 0)}`;
+            
+            // 可用資金
+            const availFunds = parseFloat(summary.AvailableFunds?.value || 0);
+            document.getElementById('availableFunds').textContent = formatCurrency(availFunds);
+            document.getElementById('availableFundsHKD').textContent = `HKD ${formatNumber(availFunds, 0)}`;
+            
+            // 維持保證金
+            const maintMargin = parseFloat(summary.MaintMarginReq?.value || 0);
+            const initMargin = parseFloat(summary.InitMarginReq?.value || 0);
+            document.getElementById('maintMargin').textContent = formatCurrency(maintMargin);
+            
+            // 保證金進度條
+            const marginUsed = netLiq > 0 ? (maintMargin / netLiq) * 100 : 0;
+            document.getElementById('marginProgress').style.width = `${Math.min(marginUsed, 100)}%`;
+            
+            // 今日盈虧
+            const dailyPnL = accountPnL.dailyPnL || 0;
+            const dailyPnLEl = document.getElementById('dailyPnL');
+            dailyPnLEl.textContent = formatCurrency(dailyPnL);
+            dailyPnLEl.className = dailyPnL >= 0 ? 'card-value value-positive' : 'card-value value-negative';
+            
+            const dailyPnLPercent = netLiq > 0 ? (dailyPnL / netLiq) * 100 : 0;
+            document.getElementById('dailyPnLPercent').textContent = `${dailyPnLPercent >= 0 ? '+' : ''}${dailyPnLPercent.toFixed(2)}%`;
+            
+            // 其他統計
+            document.getElementById('grossPositionValue').textContent = formatCurrency(summary.GrossPositionValue?.value || 0);
+            document.getElementById('unrealizedPnL').textContent = formatCurrency(accountPnL.unrealizedPnL || 0);
+            document.getElementById('realizedPnL').textContent = formatCurrency(accountPnL.realizedPnL || 0);
+            document.getElementById('buyingPower').textContent = formatCurrency(summary.BuyingPower?.value || 0);
+        }
+
+        // 更新持倉表格
+        function updatePositionsTable() {
+            const positions = portfolioData.positions || [];
+            const tbody = document.getElementById('positionsTable');
+            
+            if (positions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" class="text-center">暫無持倉</td></tr>';
+                return;
+            }
+            
+            let html = '';
+            positions.forEach(pos => {
+                const marketValue = pos.market_value || 0;
+                const pnlData = pos.pnl_data || {};
+                const unrealizedPnL = pnlData.unrealizedPnL || 0;
+                const dailyPnL = pnlData.dailyPnL || 0;
+                const marketData = pos.market_data || {};
+                const currentPrice = marketData.last || marketData.close || 0;
+                
+                // 類型標籤
+                let typeBadge = '';
+                if (pos.secType === 'OPT') {
+                    typeBadge = `<span class="badge badge-${pos.right === 'C' ? 'call' : 'put'}">${pos.right === 'C' ? 'CALL' : 'PUT'}</span>`;
+                } else if (pos.secType === 'STK') {
+                    typeBadge = '<span class="badge badge-stock">股票</span>';
+                } else if (pos.secType === 'CASH') {
+                    typeBadge = '<span class="badge badge-cash">外匯</span>';
+                }
+                
+                // 數據狀態
+                let dataStatus = '';
+                if (pos.has_market_data === false) {
+                    dataStatus += '<i class="fas fa-exclamation-circle" style="color: #f87171;" title="無市場數據"></i> ';
+                } else {
+                    dataStatus += '<i class="fas fa-check-circle" style="color: #4ade80;" title="有市場數據"></i> ';
+                }
+                
+                html += `
+                    <tr>
+                        <td>
+                            <strong>${pos.symbol}</strong>
+                            ${pos.secType === 'OPT' ? `<br><small>${pos.strike} ${pos.expiry_formatted}</small>` : ''}
+                        </td>
+                        <td>${typeBadge}</td>
+                        <td class="text-right">${formatNumber(pos.position, 0)}</td>
+                        <td class="text-right">${formatCurrency(pos.avgCost)}</td>
+                        <td class="text-right">${formatCurrency(currentPrice)}</td>
+                        <td class="text-right">${formatCurrency(Math.abs(marketValue))}</td>
+                        <td class="text-right ${unrealizedPnL >= 0 ? 'value-positive' : 'value-negative'}">
+                            ${formatCurrency(unrealizedPnL)}
+                        </td>
+                        <td class="text-right ${dailyPnL >= 0 ? 'value-positive' : 'value-negative'}">
+                            ${formatCurrency(dailyPnL)}
+                        </td>
+                        <td class="text-center">${dataStatus}</td>
+                    </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+        }
+
+        // 更新期權表格
+        function updateOptionsTable() {
+            const positions = portfolioData.positions?.filter(p => p.secType === 'OPT') || [];
+            const tbody = document.getElementById('optionsTable');
+            
+            if (positions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" class="text-center">暫無期權持倉</td></tr>';
+                return;
+            }
+            
+            let html = '';
+            positions.forEach(pos => {
+                const optData = pos.options_data || {};
+                const greeks = optData.modelGreeks || optData.lastGreeks || {};
+                
+                html += `
+                    <tr>
+                        <td>
+                            <strong>${pos.symbol}</strong>
+                            <span class="badge badge-${pos.right === 'C' ? 'call' : 'put'}">${pos.right === 'C' ? 'CALL' : 'PUT'}</span>
+                        </td>
+                        <td>${pos.strike}</td>
+                        <td>${pos.expiry_formatted} <small>(${pos.days_to_expiry}天)</small></td>
+                        <td class="text-center">${formatNumber(greeks.delta || 0, 4)}</td>
+                        <td class="text-center">${formatNumber(greeks.gamma || 0, 4)}</td>
+                        <td class="text-center">${formatNumber(greeks.theta || 0, 4)}</td>
+                        <td class="text-center">${formatNumber(greeks.vega || 0, 4)}</td>
+                        <td class="text-center">${formatNumber((greeks.impliedVolatility || 0) * 100, 2)}%</td>
+                    </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+        }
+
+        // 更新現金表格
+        function updateCashTable() {
+            const positions = portfolioData.positions?.filter(p => p.secType === 'CASH') || [];
+            const tbody = document.getElementById('cashTable');
+            
+            if (positions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center">暫無現金餘額</td></tr>';
+                return;
+            }
+            
+            let html = '';
+            positions.forEach(pos => {
+                const amount = pos.position || 0;
+                let rate = 1;
+                let hkdValue = amount;
+                
+                if (pos.symbol === 'USD') {
+                    rate = USD_TO_HKD;
+                    hkdValue = amount * rate;
+                } else if (pos.symbol === 'JPY') {
+                    rate = JPY_TO_HKD;
+                    hkdValue = amount * rate;
+                } else if (pos.symbol === 'HKD') {
+                    rate = 1 / JPY_TO_HKD; // HKD to JPY
+                    hkdValue = amount;
+                }
+                
+                html += `
+                    <tr>
+                        <td><strong>${pos.symbol}</strong></td>
+                        <td class="text-right">${formatNumber(amount, 2)}</td>
+                        <td class="text-right">${formatNumber(rate, 4)}</td>
+                        <td class="text-right">${formatNumber(hkdValue, 2)}</td>
+                    </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+        }
+
+        // 更新賬戶詳情
+        function updateAccountDetails() {
+            const summary = portfolioData.account_summary || {};
+            const tbody = document.getElementById('accountDetailsTable');
+            
+            const details = [
+                { label: '賬戶號碼', value: portfolioData.positions?.[0]?.account || '--' },
+                { label: '權益總值', value: formatCurrency(summary.EquityWithLoanValue?.value || 0) },
+                { label: '初始保證金', value: formatCurrency(summary.InitMarginReq?.value || 0) },
+                { label: '超額流動性', value: formatCurrency(summary.ExcessLiquidity?.value || 0) },
+                { label: '緩衝比率', value: `${((summary.Cushion?.value || 0) * 100).toFixed(2)}%` },
+                { label: '槓桿率', value: summary.Leverage?.value || '--' },
+                { label: '日內交易次數', value: summary.DayTradesRemaining?.value || '--' },
+                { label: '最後更新', value: portfolioData.last_update || '--' }
+            ];
+            
+            let html = '';
+            details.forEach(item => {
+                html += `
+                    <tr>
+                        <td>${item.label}</td>
+                        <td class="text-right"><strong>${item.value}</strong></td>
+                    </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+        }
+
+        // 格式化數字
+        function formatNumber(num, decimals = 2) {
+            return new Intl.NumberFormat('zh-HK', {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals
+            }).format(num);
+        }
+
+        // 格式化貨幣
+        function formatCurrency(num) {
+            const formatted = formatNumber(Math.abs(num), 0);
+            return (num < 0 ? '-' : '') + '$' + formatted;
+        }
+    </script>
+</body>
+</html>

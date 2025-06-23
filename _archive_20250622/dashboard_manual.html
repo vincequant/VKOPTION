@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB Portfolio Monitor - 倉位監控</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            line-height: 1.5;
+        }
+
+        /* 頂部導航 */
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 1rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #212529;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .update-button, .manual-button {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.2s;
+        }
+
+        .manual-button {
+            background-color: #6c757d;
+        }
+
+        .update-button:hover {
+            background-color: #0b5ed7;
+        }
+
+        .manual-button:hover {
+            background-color: #5c636a;
+        }
+
+        .update-button:active {
+            background-color: #0a58ca;
+        }
+
+        .update-button.loading {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .update-button.loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #198754;
+        }
+
+        .status-dot.disconnected {
+            background-color: #dc3545;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* 摘要卡片 */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-card {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .summary-card:hover {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .card-label {
+            font-size: 0.875rem;
+            color: #6c757d;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-change {
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+
+        .positive {
+            color: #198754;
+        }
+
+        .negative {
+            color: #dc3545;
+        }
+
+        /* 持倉表格 */
+        .table-card {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #212529;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .filter-tab {
+            padding: 0.375rem 0.75rem;
+            border: 1px solid #dee2e6;
+            background-color: #ffffff;
+            color: #6c757d;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 0.25rem;
+        }
+
+        .filter-tab:hover {
+            background-color: #f8f9fa;
+        }
+
+        .filter-tab.active {
+            background-color: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 500;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            color: #6c757d;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .symbol-cell {
+            font-weight: 500;
+            color: #212529;
+        }
+
+        .option-badge {
+            display: inline-block;
+            padding: 0.125rem 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 0.25rem;
+            margin-left: 0.5rem;
+        }
+
+        .badge-call {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .badge-put {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        /* 手動輸入模態框 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6c757d;
+        }
+
+        .close:hover {
+            color: #212529;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+        }
+
+        .position-entry {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-add {
+            background-color: #198754;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .btn-add:hover {
+            background-color: #157347;
+        }
+
+        .btn-remove {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            float: right;
+        }
+
+        .btn-remove:hover {
+            background-color: #bb2d3b;
+        }
+
+        .btn-submit {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background-color: #0b5ed7;
+        }
+
+        /* 通知提示 */
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            padding: 1rem;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            max-width: 300px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            border-left: 4px solid #198754;
+        }
+
+        .notification.error {
+            border-left: 4px solid #dc3545;
+        }
+
+        .notification.info {
+            border-left: 4px solid #0dcaf0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂部導航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                IB Portfolio Monitor
+            </div>
+            <div class="nav-actions">
+                <button class="manual-button" onclick="showManualInput()">
+                    <i class="fas fa-edit"></i>
+                    手動輸入
+                </button>
+                <button class="update-button" id="updateBtn" onclick="updateData()">
+                    <i class="fas fa-sync-alt"></i>
+                    從 TWS 更新
+                </button>
+                <div class="status-indicator">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="statusText">檢查中...</span>
+                    <span id="updateTime"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 摘要卡片 -->
+        <div class="summary-grid" id="summaryGrid">
+            <div class="summary-card">
+                <div class="card-label">總資產淨值</div>
+                <div class="card-value">--</div>
+                <div class="card-change">--</div>
+            </div>
+            <div class="summary-card">
+                <div class="card-label">持倉總數</div>
+                <div class="card-value">--</div>
+                <div class="card-change">--</div>
+            </div>
+            <div class="summary-card">
+                <div class="card-label">持倉市值</div>
+                <div class="card-value">--</div>
+                <div class="card-change">--</div>
+            </div>
+            <div class="summary-card">
+                <div class="card-label">數據來源</div>
+                <div class="card-value" id="dataSource">--</div>
+                <div class="card-change" id="lastUpdateTime">--</div>
+            </div>
+        </div>
+
+        <!-- 持倉表格 -->
+        <div class="table-card">
+            <div class="table-header">
+                <h2 class="table-title">持倉明細</h2>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterPositions('all')">全部</button>
+                    <button class="filter-tab" onclick="filterPositions('options')">期權</button>
+                    <button class="filter-tab" onclick="filterPositions('stocks')">股票</button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>標的</th>
+                            <th>類型</th>
+                            <th class="text-right">數量</th>
+                            <th class="text-right">平均成本</th>
+                            <th class="text-right">市值</th>
+                            <th class="text-right">盈虧</th>
+                            <th>到期日</th>
+                        </tr>
+                    </thead>
+                    <tbody id="positionsTable">
+                        <tr>
+                            <td colspan="7" style="text-align: center; color: #6c757d;">
+                                正在載入數據...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 手動輸入模態框 -->
+    <div id="manualModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">手動輸入持倉</h2>
+                <span class="close" onclick="closeManualInput()">&times;</span>
+            </div>
+            <div id="positionsList">
+                <!-- 動態生成持倉輸入框 -->
+            </div>
+            <button class="btn-add" onclick="addPositionEntry()">
+                <i class="fas fa-plus"></i> 新增持倉
+            </button>
+            <hr style="margin: 1.5rem 0;">
+            <button class="btn-submit" onclick="submitManualData()">
+                提交數據
+            </button>
+        </div>
+    </div>
+
+    <!-- 通知提示 -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // 全局變量
+        let portfolioData = null;
+        let currentFilter = 'all';
+        let manualPositions = [];
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+            checkStatus();
+            setInterval(checkStatus, 5000);
+        });
+
+        // 加載數據
+        async function loadData() {
+            try {
+                const response = await fetch('/api/portfolio');
+                portfolioData = await response.json();
+                
+                if (portfolioData.error && portfolioData.error !== 'No data available') {
+                    showNotification('數據加載失敗: ' + portfolioData.error, 'error');
+                } else {
+                    updateUI();
+                }
+            } catch (error) {
+                showNotification('網絡錯誤: ' + error.message, 'error');
+            }
+        }
+
+        // 從 TWS 更新數據
+        async function updateData() {
+            const btn = document.getElementById('updateBtn');
+            btn.classList.add('loading');
+            btn.innerHTML = '<i class="fas fa-spinner"></i> 更新中...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/api/update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification(result.message, 'success');
+                    setTimeout(() => loadData(), 1000);
+                } else {
+                    showNotification(result.message || '更新失敗', 'error');
+                    if (result.manual_update_available) {
+                        showNotification('您可以使用手動輸入功能', 'info');
+                    }
+                }
+            } catch (error) {
+                showNotification('更新失敗: ' + error.message, 'error');
+            } finally {
+                btn.classList.remove('loading');
+                btn.innerHTML = '<i class="fas fa-sync-alt"></i> 從 TWS 更新';
+                btn.disabled = false;
+            }
+        }
+
+        // 顯示手動輸入
+        function showManualInput() {
+            document.getElementById('manualModal').style.display = 'block';
+            if (manualPositions.length === 0) {
+                addPositionEntry();
+            }
+        }
+
+        // 關閉手動輸入
+        function closeManualInput() {
+            document.getElementById('manualModal').style.display = 'none';
+        }
+
+        // 添加持倉輸入項
+        function addPositionEntry() {
+            const id = Date.now();
+            manualPositions.push(id);
+            
+            const entry = document.createElement('div');
+            entry.className = 'position-entry';
+            entry.id = `position-${id}`;
+            entry.innerHTML = `
+                <button class="btn-remove" onclick="removePositionEntry(${id})">
+                    <i class="fas fa-times"></i> 刪除
+                </button>
+                <div class="form-group">
+                    <label class="form-label">標的代碼</label>
+                    <input type="text" class="form-control" id="symbol-${id}" placeholder="例如: NVDA">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">類型</label>
+                    <select class="form-control" id="type-${id}">
+                        <option value="STK">股票</option>
+                        <option value="OPT">期權</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">數量</label>
+                    <input type="number" class="form-control" id="quantity-${id}" placeholder="例如: 100">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">平均成本</label>
+                    <input type="number" step="0.01" class="form-control" id="avgCost-${id}" placeholder="例如: 450.50">
+                </div>
+            `;
+            
+            document.getElementById('positionsList').appendChild(entry);
+        }
+
+        // 移除持倉輸入項
+        function removePositionEntry(id) {
+            document.getElementById(`position-${id}`).remove();
+            manualPositions = manualPositions.filter(p => p !== id);
+        }
+
+        // 提交手動數據
+        async function submitManualData() {
+            const positions = [];
+            
+            for (const id of manualPositions) {
+                const symbol = document.getElementById(`symbol-${id}`).value;
+                const type = document.getElementById(`type-${id}`).value;
+                const quantity = document.getElementById(`quantity-${id}`).value;
+                const avgCost = document.getElementById(`avgCost-${id}`).value;
+                
+                if (symbol && quantity && avgCost) {
+                    positions.push({
+                        symbol: symbol,
+                        type: type,
+                        quantity: parseFloat(quantity),
+                        avgCost: parseFloat(avgCost)
+                    });
+                }
+            }
+            
+            if (positions.length === 0) {
+                showNotification('請至少輸入一個持倉', 'error');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/manual_update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ positions: positions })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification(result.message, 'success');
+                    closeManualInput();
+                    setTimeout(() => loadData(), 500);
+                } else {
+                    showNotification(result.message || '提交失敗', 'error');
+                }
+            } catch (error) {
+                showNotification('提交失敗: ' + error.message, 'error');
+            }
+        }
+
+        // 檢查狀態
+        async function checkStatus() {
+            try {
+                const response = await fetch('/api/status');
+                const status = await response.json();
+                
+                const statusDot = document.getElementById('statusDot');
+                const statusText = document.getElementById('statusText');
+                
+                if (status.tws_available) {
+                    statusDot.classList.remove('disconnected');
+                    statusText.textContent = 'TWS 可用';
+                } else {
+                    statusDot.classList.add('disconnected');
+                    statusText.textContent = 'TWS 不可用';
+                }
+            } catch (error) {
+                console.error('狀態檢查失敗:', error);
+            }
+        }
+
+        // 更新UI
+        function updateUI() {
+            if (!portfolioData) return;
+
+            updateSummaryCards();
+            updatePositionsTable();
+            updateTime();
+        }
+
+        // 更新摘要卡片
+        function updateSummaryCards() {
+            const summary = portfolioData.summary || {};
+            const cards = document.querySelectorAll('.summary-card');
+            
+            // 總資產淨值
+            if (cards[0]) {
+                cards[0].querySelector('.card-value').textContent = '$' + formatNumber(summary.net_liquidation || 0);
+                const changeElement = cards[0].querySelector('.card-change');
+                const dayChange = summary.day_change || 0;
+                const dayChangePercent = summary.day_change_percent || 0;
+                changeElement.innerHTML = `
+                    <span class="${dayChange >= 0 ? 'positive' : 'negative'}">
+                        ${dayChange >= 0 ? '+' : ''}${formatNumber(dayChange)} 
+                        (${dayChange >= 0 ? '+' : ''}${dayChangePercent.toFixed(2)}%)
+                    </span>
+                `;
+            }
+            
+            // 持倉總數
+            if (cards[1]) {
+                cards[1].querySelector('.card-value').textContent = summary.total_positions || 0;
+                cards[1].querySelector('.card-change').textContent = 
+                    `期權: ${summary.options_count || 0} | 股票: ${summary.stocks_count || 0}`;
+            }
+            
+            // 持倉市值
+            if (cards[2]) {
+                cards[2].querySelector('.card-value').textContent = '$' + formatNumber(summary.total_market_value || 0);
+                cards[2].querySelector('.card-change').textContent = '';
+            }
+            
+            // 數據來源
+            if (cards[3]) {
+                const source = portfolioData.source || 'unknown';
+                const sourceText = source === 'manual_input' ? '手動輸入' : 
+                                 source === 'ib_api' ? 'TWS API' : '未知';
+                document.getElementById('dataSource').textContent = sourceText;
+                document.getElementById('lastUpdateTime').textContent = portfolioData.last_update || '--';
+            }
+        }
+
+        // 更新持倉表格
+        function updatePositionsTable() {
+            if (!portfolioData || !portfolioData.positions) return;
+
+            let positions = portfolioData.positions;
+
+            // 應用過濾
+            if (currentFilter === 'options') {
+                positions = positions.filter(p => p.sec_type === 'OPT');
+            } else if (currentFilter === 'stocks') {
+                positions = positions.filter(p => p.sec_type === 'STK' || p.sec_type === 'CASH');
+            }
+
+            // 生成表格
+            const tbody = document.getElementById('positionsTable');
+            
+            if (positions.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align: center; color: #6c757d;">
+                            無符合條件的持倉
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            // 按標的排序
+            positions.sort((a, b) => a.symbol.localeCompare(b.symbol));
+
+            tbody.innerHTML = positions.map(pos => {
+                const pnl = pos.unrealized_pnl || 0;
+                const pnlClass = pnl >= 0 ? 'positive' : 'negative';
+                
+                let badge = '';
+                if (pos.sec_type === 'OPT') {
+                    badge = `<span class="option-badge badge-${pos.right === 'C' ? 'call' : 'put'}">
+                        ${pos.right === 'C' ? 'CALL' : 'PUT'}
+                    </span>`;
+                }
+                
+                return `
+                    <tr>
+                        <td class="symbol-cell">
+                            ${pos.symbol}${badge}
+                        </td>
+                        <td>${getTypeLabel(pos.sec_type)}</td>
+                        <td class="text-right">${formatNumber(pos.position)}</td>
+                        <td class="text-right">$${formatNumber(pos.avg_cost)}</td>
+                        <td class="text-right">$${formatNumber(Math.abs(pos.market_value || 0))}</td>
+                        <td class="text-right ${pnlClass}">
+                            ${pnl >= 0 ? '+' : ''}$${formatNumber(Math.abs(pnl))}
+                        </td>
+                        <td>
+                            ${pos.sec_type === 'OPT' ? 
+                                `${pos.expiry_formatted || ''} (${pos.days_to_expiry || 0}天)` : 
+                                '-'}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 過濾持倉
+        function filterPositions(type) {
+            currentFilter = type;
+            
+            // 更新標籤狀態
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            updatePositionsTable();
+        }
+
+        // 更新時間
+        function updateTime() {
+            if (portfolioData && portfolioData.last_update) {
+                document.getElementById('updateTime').textContent = portfolioData.last_update;
+            }
+        }
+
+        // 顯示通知
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // 格式化數字
+        function formatNumber(num) {
+            return new Intl.NumberFormat('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(num);
+        }
+
+        // 獲取類型標籤
+        function getTypeLabel(secType) {
+            const types = {
+                'OPT': '期權',
+                'STK': '股票',
+                'CASH': '現金'
+            };
+            return types[secType] || secType;
+        }
+
+        // 點擊模態框外部關閉
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('manualModal')) {
+                closeManualInput();
+            }
+        }
+    </script>
+</body>
+</html>
