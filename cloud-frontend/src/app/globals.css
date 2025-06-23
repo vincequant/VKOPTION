@@ -1,0 +1,287 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 引入 Inter 字體 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* 基礎樣式重置 */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+  
+  h1 {
+    @apply text-3xl lg:text-4xl;
+  }
+  
+  h2 {
+    @apply text-2xl lg:text-3xl;
+  }
+  
+  h3 {
+    @apply text-xl lg:text-2xl;
+  }
+  
+  /* 滾動條樣式 */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+/* 組件樣式 */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500;
+  }
+  
+  .btn-success {
+    @apply btn bg-success-600 text-white hover:bg-success-700 focus:ring-success-500;
+  }
+  
+  .btn-danger {
+    @apply btn bg-danger-600 text-white hover:bg-danger-700 focus:ring-danger-500;
+  }
+  
+  .btn-outline {
+    @apply btn border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-primary-500;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-soft border border-gray-200 overflow-hidden;
+  }
+  
+  .card-header {
+    @apply px-6 py-4 border-b border-gray-200 bg-gray-50;
+  }
+  
+  .card-body {
+    @apply px-6 py-4;
+  }
+  
+  .card-footer {
+    @apply px-6 py-4 border-t border-gray-200 bg-gray-50;
+  }
+  
+  .input {
+    @apply block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+  }
+  
+  .table {
+    @apply w-full divide-y divide-gray-200;
+  }
+  
+  .table-header {
+    @apply bg-gray-50;
+  }
+  
+  .table-header th {
+    @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+  }
+  
+  .table-body {
+    @apply bg-white divide-y divide-gray-200;
+  }
+  
+  .table-body td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
+  }
+  
+  .table-row {
+    @apply hover:bg-gray-50 transition-colors duration-150;
+  }
+  
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-success {
+    @apply badge bg-success-100 text-success-800;
+  }
+  
+  .badge-danger {
+    @apply badge bg-danger-100 text-danger-800;
+  }
+  
+  .badge-warning {
+    @apply badge bg-warning-100 text-warning-800;
+  }
+  
+  .badge-info {
+    @apply badge bg-primary-100 text-primary-800;
+  }
+  
+  .badge-gray {
+    @apply badge bg-gray-100 text-gray-800;
+  }
+  
+  /* 加載動畫 */
+  .loading-spinner {
+    @apply animate-spin inline-block w-4 h-4 border-2 border-current border-r-transparent rounded-full;
+  }
+  
+  .loading-dots::after {
+    content: '';
+    @apply inline-block w-1 h-1 bg-current rounded-full animate-pulse;
+    animation: loadingDots 1.4s infinite ease-in-out both;
+  }
+  
+  .loading-dots::before {
+    content: '';
+    @apply inline-block w-1 h-1 bg-current rounded-full mr-1;
+    animation: loadingDots 1.4s infinite ease-in-out both;
+    animation-delay: -0.32s;
+  }
+  
+  /* 響應式表格 */
+  .table-responsive {
+    @apply overflow-x-auto;
+  }
+  
+  @screen sm {
+    .table-responsive {
+      @apply overflow-x-visible;
+    }
+  }
+  
+  /* 工具提示 */
+  .tooltip {
+    @apply absolute z-50 px-2 py-1 text-xs text-white bg-gray-900 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-200;
+  }
+  
+  .tooltip.show {
+    @apply opacity-100;
+  }
+  
+  /* 價格顯示 */
+  .price-positive {
+    @apply text-success-600 font-medium;
+  }
+  
+  .price-negative {
+    @apply text-danger-600 font-medium;
+  }
+  
+  .price-neutral {
+    @apply text-gray-600;
+  }
+  
+  /* 狀態指示器 */
+  .status-indicator {
+    @apply w-2 h-2 rounded-full inline-block mr-2;
+  }
+  
+  .status-connected {
+    @apply status-indicator bg-success-500;
+  }
+  
+  .status-disconnected {
+    @apply status-indicator bg-danger-500;
+  }
+  
+  .status-loading {
+    @apply status-indicator bg-warning-500 animate-pulse-soft;
+  }
+}
+
+/* 工具類 */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* 數字字體 */
+  .font-mono-tabular {
+    @apply font-mono;
+    font-variant-numeric: tabular-nums;
+  }
+  
+  /* 漸變背景 */
+  .gradient-primary {
+    background: linear-gradient(135deg, theme('colors.primary.600') 0%, theme('colors.primary.700') 100%);
+  }
+  
+  .gradient-success {
+    background: linear-gradient(135deg, theme('colors.success.500') 0%, theme('colors.success.600') 100%);
+  }
+  
+  .gradient-danger {
+    background: linear-gradient(135deg, theme('colors.danger.500') 0%, theme('colors.danger.600') 100%);
+  }
+}
+
+/* 動畫關鍵幀 */
+@keyframes loadingDots {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* 深色模式適配 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+  }
+}
+
+/* 打印樣式 */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .card {
+    @apply shadow-none border border-gray-300;
+  }
+  
+  body {
+    @apply text-black bg-white;
+  }
+}
