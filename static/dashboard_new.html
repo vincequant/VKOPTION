@@ -1,0 +1,3699 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB Portfolio Monitor - 倉位監控</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #212529;
+            line-height: 1.5;
+        }
+
+        /* 頂部導航 */
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 1rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        /* 開關按鈕樣式 */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+        }
+        
+        input:checked + .slider {
+            background-color: #28a745;
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px #28a745;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(18px);
+        }
+        
+        .slider.round {
+            border-radius: 22px;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #212529;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        /* 雲端上傳按鈕 */
+        .cloud-upload-button {
+            background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cloud-upload-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3);
+            background: linear-gradient(135deg, #138496 0%, #117a8b 100%);
+        }
+
+        .cloud-upload-button:active {
+            transform: translateY(0);
+        }
+
+        /* 雲端配置模態框 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .close {
+            color: #6c757d;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        .close:hover {
+            color: #212529;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a67d8;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .nav-link {
+            background-color: #6c757d;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: #5c636a;
+        }
+
+        .update-button {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.2s;
+        }
+
+        .update-button:hover {
+            background-color: #0b5ed7;
+        }
+
+        .update-button:active {
+            background-color: #0a58ca;
+        }
+
+        .update-button.loading {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .update-button.loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #198754;
+        }
+
+        .status-dot.disconnected {
+            background-color: #dc3545;
+        }
+        
+        /* 貨幣切換器 */
+        .currency-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            background-color: #f8f9fa;
+            border-radius: 20px;
+            padding: 2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .currency-btn {
+            padding: 4px 12px;
+            border: none;
+            background: none;
+            color: #6c757d;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 18px;
+            transition: all 0.2s;
+        }
+        
+        .currency-btn.active {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .currency-btn:hover:not(.active) {
+            background-color: #e9ecef;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* 儀表板區塊 */
+        .dashboard-section {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-section:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-header {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 賬戶資訊區 */
+        .account-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .account-info .section-header {
+            color: white;
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .account-info .main-metric-label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .account-info .main-metric-value {
+            color: white;
+        }
+
+        .account-info .hkd-value {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* 主要摘要區 */
+        .main-summary {
+            background: linear-gradient(135deg, #f6f9fc 0%, #e9ecef 100%);
+        }
+
+        .main-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .main-metric {
+            text-align: center;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .main-metric-label {
+            font-size: 0.875rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .main-metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 0.25rem;
+        }
+
+        .main-metric-value.negative {
+            color: #dc3545;
+        }
+
+        .main-metric-value.positive {
+            color: #198754;
+        }
+
+        .main-metric-sub {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .hkd-value {
+            font-size: 0.875rem;
+            color: #6c757d;
+            font-weight: normal;
+        }
+
+        /* 到期日分組摘要 */
+        .expiry-summary {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .expiry-summary-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #212529;
+        }
+
+        .expiry-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .expiry-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .expiry-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .expiry-date {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.25rem;
+        }
+
+        .days-left {
+            font-size: 0.75rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+
+        .days-left.urgent {
+            color: #dc3545;
+            font-weight: 600;
+        }
+
+        .expiry-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .expiry-value.positive {
+            color: #198754;
+        }
+
+        .expiry-value-hkd {
+            font-size: 0.75rem;
+            color: #6c757d;
+        }
+
+        .expiry-count {
+            font-size: 0.75rem;
+            color: #6c757d;
+            margin-top: 0.25rem;
+        }
+
+        .expiry-pnl {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        .expiry-pnl.positive {
+            color: #198754;
+        }
+
+        .expiry-pnl.negative {
+            color: #dc3545;
+        }
+
+        /* 持倉統計 - 已移除 */
+        
+        /* 訂閱狀態提示 */
+        .subscription-warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .subscription-warning-title {
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subscription-warning-text {
+            color: #856404;
+            font-size: 0.875rem;
+        }
+        
+        .data-status-icon {
+            display: inline-block;
+            margin-left: 0.25rem;
+            cursor: help;
+        }
+        
+        .data-status-icon.missing {
+            color: #dc3545;
+        }
+        
+        .data-status-icon.available {
+            color: #198754;
+        }
+        
+        /* 期權類型徽章 */
+        .option-type-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+        
+        .option-type-badge.call {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .option-type-badge.call:hover {
+            background-color: #c3e6cb;
+            transform: scale(1.1);
+        }
+        
+        .option-type-badge.put {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .option-type-badge.put:hover {
+            background-color: #f5c6cb;
+            transform: scale(1.1);
+        }
+        
+        .option-type-badge.stock {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .option-type-badge.stock:hover {
+            background-color: #bee5eb;
+            transform: scale(1.1);
+        }
+
+        /* 主分類標籤樣式 */
+        .main-category-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            background-color: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-category-tab {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            border-radius: 8px;
+            color: #6c757d;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .main-category-tab:hover {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        
+        .main-category-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+        }
+
+        /* 排序樣式 */
+        .sortable {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+        }
+        
+        .sortable:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .sortable i {
+            font-size: 0.75rem;
+            color: #6c757d;
+            margin-left: 0.25rem;
+        }
+        
+        .sortable.sorted-asc i:before {
+            content: "\f0de"; /* fa-sort-up */
+            color: #0d6efd;
+        }
+        
+        .sortable.sorted-desc i:before {
+            content: "\f0dd"; /* fa-sort-down */
+            color: #0d6efd;
+        }
+        
+        /* 到期日分組切換 */
+        .group-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+        
+        /* 主分類標籤 */
+        .main-category-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background-color: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+        }
+        
+        .main-category-tab {
+            background: none;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: #6c757d;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 0.375rem;
+        }
+        
+        .main-category-tab:hover {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        
+        .main-category-tab.active {
+            background-color: #0d6efd;
+            color: white;
+        }
+        
+        /* 持倉分類標籤 */
+        .position-tabs {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0;
+        }
+        
+        .position-tab {
+            background: none;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: #6c757d;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+        
+        .position-tab:hover {
+            color: #495057;
+        }
+        
+        .position-tab.active {
+            color: #0d6efd;
+            border-bottom-color: #0d6efd;
+        }
+        
+        .position-section {
+            display: block;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: #0d6efd;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        /* 貨幣切換樣式 */
+        .currency-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            background-color: #f8f9fa;
+            border-radius: 20px;
+            padding: 2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .currency-btn {
+            padding: 4px 12px;
+            border: none;
+            background: none;
+            color: #6c757d;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 18px;
+        }
+        
+        .currency-btn:hover {
+            color: #495057;
+        }
+        
+        .currency-btn.active {
+            background-color: #0d6efd;
+            color: white;
+            box-shadow: 0 2px 4px rgba(13,110,253,0.3);
+        }
+
+        /* 持倉表格 */
+        .table-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .table-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #212529;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .filter-tab {
+            padding: 0.375rem 0.75rem;
+            border: 1px solid #dee2e6;
+            background-color: #ffffff;
+            color: #6c757d;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 0.25rem;
+        }
+
+        .filter-tab:hover {
+            background-color: #f8f9fa;
+        }
+
+        .filter-tab.active {
+            background-color: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 500;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            color: #6c757d;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .symbol-cell {
+            font-weight: 500;
+            color: #212529;
+        }
+
+        .option-badge {
+            display: inline-block;
+            padding: 0.125rem 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 0.25rem;
+            margin-left: 0.5rem;
+        }
+
+        .badge-call {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .badge-put {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+        
+        .expiry-separator {
+            background-color: #e9ecef;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #495057;
+        }
+        
+        .expiry-separator td {
+            padding: 0.5rem 1rem;
+            border: none;
+        }
+
+        .negative {
+            color: #dc3545;
+        }
+
+        .positive {
+            color: #198754;
+        }
+
+        /* 通知提示 */
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            padding: 1rem;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            max-width: 300px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            border-left: 4px solid #198754;
+        }
+
+        .notification.error {
+            border-left: 4px solid #dc3545;
+        }
+
+        .notification.info {
+            border-left: 4px solid #0dcaf0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂部導航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                IB Portfolio Monitor
+            </div>
+            <div class="nav-actions">
+                <a href="/test" class="nav-link" style="background-color: #6c757d;">
+                    <i class="fas fa-flask"></i>
+                    測試頁面
+                </a>
+                <button class="update-button" id="updateBtn" onclick="updateData()">
+                    <i class="fas fa-sync-alt"></i>
+                    更新持倉
+                </button>
+                <button class="cloud-upload-button" id="cloudUploadBtn" onclick="goToCloud()">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span id="cloudUploadText">前往雲端</span>
+                </button>
+                <div class="status-indicator">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="statusText">檢查中...</span>
+                    <span id="updateTime"></span>
+                </div>
+                <div class="auto-update-control" style="display: flex; align-items: center; gap: 10px; margin-left: 15px;">
+                    <label class="switch" style="margin: 0;">
+                        <input type="checkbox" id="autoUpdateToggle" onchange="toggleAutoUpdate()" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <span id="autoUpdateStatus" style="font-size: 0.875rem; color: #28a745;">自動更新：開啟</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 賬戶資訊 -->
+        <div class="dashboard-section account-info" style="position: relative;">
+            <!-- 貨幣切換器 -->
+            <div class="currency-toggle">
+                <button class="currency-btn active" id="hkdBtn" onclick="setCurrency('HKD')">HKD</button>
+                <button class="currency-btn" id="usdBtn" onclick="setCurrency('USD')">USD</button>
+            </div>
+            <div class="section-header">
+                <i class="fas fa-wallet"></i>
+                賬戶資訊
+            </div>
+            <div class="main-summary-grid">
+                <div class="main-metric">
+                    <div class="main-metric-label">淨清算價值</div>
+                    <div class="main-metric-value" id="netLiquidation">--</div>
+                    <div class="main-metric-sub">
+                        <span class="hkd-value" id="netLiquidationHKD">--</span>
+                    </div>
+                </div>
+                <div class="main-metric">
+                    <div class="main-metric-label">可用資金</div>
+                    <div class="main-metric-value" id="availableFunds">--</div>
+                    <div class="main-metric-sub">
+                        <span class="hkd-value" id="availableFundsHKD">--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主分類標籤 -->
+        <div class="main-category-tabs">
+            <button class="main-category-tab active" onclick="switchMainCategory('us-options')">美股期權</button>
+            <button class="main-category-tab" onclick="switchMainCategory('hk-options')">港股期權</button>
+            <button class="main-category-tab" onclick="switchMainCategory('stocks')">股票</button>
+        </div>
+
+        <!-- 持倉摘要 -->
+        <div class="dashboard-section main-summary" id="mainSummary">
+            <div class="section-header">
+                <i class="fas fa-chart-line"></i>
+                <span id="summaryTitle">持倉摘要</span>
+            </div>
+            <div class="main-summary-grid">
+                <div class="main-metric">
+                    <div class="main-metric-label">美股期權到期價值</div>
+                    <div class="main-metric-value positive" id="optionsValue">--</div>
+                    <div class="main-metric-sub">
+                        <span class="hkd-value" id="optionsValueHKD">--</span>
+                    </div>
+                </div>
+                <div class="main-metric">
+                    <div class="main-metric-label">股票市值</div>
+                    <div class="main-metric-value" id="stocksValue">--</div>
+                    <div class="main-metric-sub">
+                        <span class="hkd-value" id="stocksValueHKD">--</span>
+                    </div>
+                </div>
+                <div class="main-metric">
+                    <div class="main-metric-label">總盈虧</div>
+                    <div class="main-metric-value" id="totalPnL">--</div>
+                    <div class="main-metric-sub">
+                        <span class="hkd-value" id="totalPnLHKD">--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 到期日分組摘要 -->
+        <div class="dashboard-section expiry-summary" id="expirySummary" style="display: none;">
+            <div class="section-header">
+                <i class="fas fa-calendar-alt"></i>
+                <span id="expirySummaryTitle">期權到期分布</span>
+            </div>
+            <div class="expiry-cards" id="expiryCards">
+                <!-- 動態生成 -->
+            </div>
+        </div>
+
+        <!-- 持倉統計已移除 -->
+
+        <!-- 持倉表格 -->
+        <div class="table-card">
+            <!-- 美股期權持倉 -->
+            <div class="position-section" id="usOptionsSection">
+            <div class="table-header">
+                <h2 class="table-title">美股期權持倉</h2>
+                <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" onclick="filterPositions('all', 'us')">全部</button>
+                        <button class="filter-tab" onclick="filterPositions('expired', 'us')">已到期</button>
+                        <button class="filter-tab" onclick="filterPositions('30days', 'us')">30天內</button>
+                        <button class="filter-tab" onclick="filterPositions('90days', 'us')">90天內</button>
+                    </div>
+                    <div class="group-toggle">
+                        <label for="groupByExpiryUS" style="font-size: 0.875rem; color: #495057;">到期日分組</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="groupByExpiryUS" checked onchange="toggleGrouping('us')">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <button class="update-button" onclick="updateUnderlyingPrices()" id="updatePricesBtn">
+                        <i class="fas fa-sync-alt"></i> 更新價格
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="sortable" onclick="sortTable('symbol', 'us')">標的 <i class="fas fa-sort"></i></th>
+                            <th>類型</th>
+                            <th class="text-right sortable" onclick="sortTable('strike', 'us')">行權價 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('underlyingPrice', 'us')">標的現價 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('distance', 'us')">距離幅度 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('underlyingChange', 'us')">漲跌幅 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('position', 'us')">數量 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('avgCost', 'us')">平均成本 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('currentPrice', 'us')">現價 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('marketValue', 'us')">到期價值 <i class="fas fa-sort"></i></th>
+                            <th class="text-right">到期價值 (HKD)</th>
+                            <th class="sortable" onclick="sortTable('daysToExpiry', 'us')">到期日 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('pnl', 'us')">盈虧 <i class="fas fa-sort"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody id="usOptionsTable">
+                        <tr>
+                            <td colspan="13" style="text-align: center; color: #6c757d;">
+                                正在載入數據...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            
+            <!-- 港股期權持倉 -->
+            <div class="position-section" id="hkOptionsSection" style="display: none;">
+            <div class="table-header">
+                <h2 class="table-title">港股期權持倉</h2>
+                <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" onclick="filterPositions('all', 'hk')">全部</button>
+                        <button class="filter-tab" onclick="filterPositions('expired', 'hk')">已到期</button>
+                        <button class="filter-tab" onclick="filterPositions('30days', 'hk')">30天內</button>
+                        <button class="filter-tab" onclick="filterPositions('90days', 'hk')">90天內</button>
+                    </div>
+                    <div class="group-toggle">
+                        <label for="groupByExpiryHK" style="font-size: 0.875rem; color: #495057;">到期日分組</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="groupByExpiryHK" checked onchange="toggleGrouping('hk')">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="sortable" onclick="sortTable('symbol', 'hk')">標的 <i class="fas fa-sort"></i></th>
+                            <th>類型</th>
+                            <th class="text-right sortable" onclick="sortTable('strike', 'hk')">行權價 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('position', 'hk')">數量 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('avgCost', 'hk')">平均成本 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('marketValue', 'hk')">到期價值 (HKD) <i class="fas fa-sort"></i></th>
+                            <th class="text-right">到期價值 (USD)</th>
+                            <th class="sortable" onclick="sortTable('daysToExpiry', 'hk')">到期日 <i class="fas fa-sort"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody id="hkOptionsTable">
+                        <tr>
+                            <td colspan="8" style="text-align: center; color: #6c757d;">
+                                正在載入數據...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            
+            <!-- 股票持倉 -->
+            <div class="position-section" id="stocksSection" style="display: none;">
+            <div class="table-header">
+                <h2 class="table-title">股票持倉</h2>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="sortable" onclick="sortTable('symbol', 'stock')">標的 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('currentPrice', 'stock')">現價 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('underlyingChange', 'stock')">漲跌幅 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('position', 'stock')">數量 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('avgCost', 'stock')">平均成本 <i class="fas fa-sort"></i></th>
+                            <th class="text-right sortable" onclick="sortTable('marketValue', 'stock')">市值 <i class="fas fa-sort"></i></th>
+                            <th class="text-right">市值 (HKD)</th>
+                            <th class="text-right sortable" onclick="sortTable('pnl', 'stock')">盈虧 <i class="fas fa-sort"></i></th>
+                            <th class="text-right">盈虧 %</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stocksTable">
+                        <tr>
+                            <td colspan="9" style="text-align: center; color: #6c757d;">
+                                正在載入數據...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通知提示 -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // 全局變量
+        let portfolioData = null;
+        let currentFilter = { us: 'all', hk: 'all', stock: 'all' };
+        const USD_TO_HKD = 7.8; // 美元兌港幣匯率
+        let underlyingPrices = {}; // 底層股票價格
+        let isUpdatingPrices = false; // 防止重複更新
+        let groupByExpiry = { us: true, hk: true }; // 是否按到期日分組
+        let currentSort = { us: { column: null, direction: 'asc' }, hk: { column: null, direction: 'asc' }, stock: { column: null, direction: 'asc' } }; // 當前排序狀態
+        let currentMainCategory = 'us-options'; // 當前主分類
+        let currentCurrency = 'HKD'; // 當前貨幣，默認HKD
+        
+        // 自動更新相關變量
+        let autoUpdateInterval = null;
+        let autoUpdateEnabled = true;
+        let isAutoUpdating = false;
+        const AUTO_UPDATE_INTERVAL = 30 * 60 * 1000; // 30分鐘
+        let lastAutoUpdateTime = null;
+        
+        // 環境檢測
+        function isCloudEnvironment() {
+            return window.location.hostname.includes('vercel.app') || 
+                   (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1');
+        }
+
+        // 切換主分類
+        function switchMainCategory(category) {
+            currentMainCategory = category;
+            
+            // 更新標籤樣式
+            document.querySelectorAll('.main-category-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // 更新摘要標題
+            const summaryTitle = document.getElementById('summaryTitle');
+            switch(category) {
+                case 'us-options':
+                    summaryTitle.textContent = '美股期權摘要';
+                    break;
+                case 'hk-options':
+                    summaryTitle.textContent = '港股期權摘要';
+                    break;
+                case 'stocks':
+                    summaryTitle.textContent = '股票摘要';
+                    break;
+            }
+            
+            // 更新數據顯示
+            updateMainSummary();
+            updateExpirySummary();
+            updatePositionDisplay();
+        }
+
+        // 切換持倉標籤（已廢棄，由主分類標籤控制）
+        function switchPositionTab(tab) {
+            // 此函數已不再使用
+        }
+        
+        // 切換貨幣顯示
+        function setCurrency(currency) {
+            currentCurrency = currency;
+            
+            // 更新按鈕狀態
+            if (currency === 'HKD') {
+                document.getElementById('hkdBtn').classList.add('active');
+                document.getElementById('usdBtn').classList.remove('active');
+            } else {
+                document.getElementById('usdBtn').classList.add('active');
+                document.getElementById('hkdBtn').classList.remove('active');
+            }
+            
+            // 更新所有顯示
+            updateAccountInfo();
+            updateMainSummary();
+            updateExpirySummary();  // 添加更新到期分布
+            updateAllPositionsTables();
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 雲端環境特殊處理
+            if (isCloudEnvironment()) {
+                // 隱藏更新持倉按鈕
+                const updateBtn = document.getElementById('updateBtn');
+                if (updateBtn) {
+                    updateBtn.style.display = 'none';
+                }
+                
+                // 隱藏測試頁面鏈接
+                const testLink = document.querySelector('a[href="/test"]');
+                if (testLink) {
+                    testLink.style.display = 'none';
+                }
+                
+                // 隱藏自動更新控制
+                const autoUpdateControl = document.querySelector('.auto-update-control');
+                if (autoUpdateControl) {
+                    autoUpdateControl.style.display = 'none';
+                }
+                
+                // 修改上傳雲端按鈕為刷新按鈕
+                const cloudBtn = document.getElementById('cloudUploadBtn');
+                if (cloudBtn) {
+                    cloudBtn.innerHTML = '<i class="fas fa-sync-alt"></i> <span id="cloudUploadText">刷新頁面</span>';
+                    cloudBtn.onclick = () => {
+                        // 強制刷新，繞過緩存
+                        window.location.reload(true);
+                    };
+                }
+            }
+            
+            loadData();
+            checkStatus();
+            
+            // 雲端環境不需要定期檢查狀態
+            if (!isCloudEnvironment()) {
+                setInterval(checkStatus, 5000);
+                
+                // 從 localStorage 讀取自動更新設置
+                const savedAutoUpdate = localStorage.getItem('autoUpdateEnabled');
+                if (savedAutoUpdate !== null) {
+                    autoUpdateEnabled = savedAutoUpdate === 'true';
+                }
+                
+                // 同步開關狀態
+                const autoUpdateToggle = document.getElementById('autoUpdateToggle');
+                if (autoUpdateToggle) {
+                    autoUpdateToggle.checked = autoUpdateEnabled;
+                }
+                
+                // 啟動自動更新（如果啟用）
+                if (autoUpdateEnabled) {
+                    setTimeout(() => {
+                        startAutoUpdate();
+                    }, 3000); // 延遲3秒後開始自動更新
+                }
+                
+                // 定期更新自動更新狀態顯示
+                setInterval(updateAutoUpdateStatus, 60000); // 每分鐘更新一次
+                updateAutoUpdateStatus(); // 立即更新一次狀態
+            }
+            
+            // 延遲執行一次賬戶信息更新，確保 DOM 完全準備好
+            setTimeout(() => {
+                if (portfolioData) {
+                    console.log('Delayed updateAccountInfo call');
+                    updateAccountInfo();
+                }
+            }, 1000);
+        });
+
+        // 加載數據
+        async function loadData() {
+            try {
+                let response;
+                if (isCloudEnvironment()) {
+                    // 雲端環境：從靜態 JSON 文件載入，添加時間戳防止緩存
+                    const timestamp = new Date().getTime();
+                    response = await fetch(`/portfolio_data.json?t=${timestamp}`, {
+                        cache: 'no-cache',
+                        headers: {
+                            'Cache-Control': 'no-cache, no-store, must-revalidate',
+                            'Pragma': 'no-cache',
+                            'Expires': '0'
+                        }
+                    });
+                    if (!response.ok) {
+                        throw new Error('找不到數據文件');
+                    }
+                } else {
+                    // 本地環境：從 API 載入
+                    response = await fetch('/api/portfolio');
+                }
+                
+                portfolioData = await response.json();
+                
+                if (portfolioData.error && portfolioData.error !== 'No data available') {
+                    showNotification('數據加載失敗: ' + portfolioData.error, 'error');
+                } else {
+                    // 如果有 underlying_prices，更新全局變量
+                    if (portfolioData.underlying_prices) {
+                        underlyingPrices = portfolioData.underlying_prices;
+                    }
+                    updateUI();
+                }
+            } catch (error) {
+                if (isCloudEnvironment()) {
+                    showNotification('雲端數據載入失敗: ' + error.message, 'error');
+                } else {
+                    showNotification('網絡錯誤: ' + error.message, 'error');
+                }
+            }
+        }
+
+        // 更新數據
+        async function updateData() {
+            const btn = document.getElementById('updateBtn');
+            btn.classList.add('loading');
+            btn.innerHTML = '<i class="fas fa-spinner"></i> 更新中...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/api/update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification(result.message, 'success');
+                    setTimeout(() => {
+                        loadData();
+                        // 更新成功後自動上傳雲端
+                        setTimeout(() => {
+                            showNotification('正在自動上傳雲端...', 'info');
+                            uploadToCloud();
+                        }, 2000);
+                    }, 1000);
+                } else {
+                    showNotification(result.message || '更新失敗', 'error');
+                }
+            } catch (error) {
+                showNotification('更新失敗: ' + error.message, 'error');
+            } finally {
+                btn.classList.remove('loading');
+                btn.innerHTML = '<i class="fas fa-sync-alt"></i> 更新持倉';
+                btn.disabled = false;
+            }
+        }
+
+        // 檢查狀態
+        async function checkStatus() {
+            const statusDot = document.getElementById('statusDot');
+            const statusText = document.getElementById('statusText');
+            
+            if (isCloudEnvironment()) {
+                // 雲端環境：顯示靜態數據狀態
+                statusDot.classList.remove('disconnected');
+                statusDot.style.backgroundColor = '#17a2b8'; // 藍色表示雲端數據
+                statusText.textContent = '雲端數據';
+                
+                // 如果有數據，顯示最後更新時間
+                // 在雲端環境優先使用 last_cloud_update，否則使用 last_update
+                const updateTimestamp = portfolioData && (portfolioData.last_cloud_update || portfolioData.last_update);
+                if (updateTimestamp) {
+                    // 在雲端環境顯示完整的日期和時間
+                    const date = new Date(updateTimestamp);
+                    const year = date.getFullYear();
+                    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                    const day = date.getDate().toString().padStart(2, '0');
+                    const hours = date.getHours().toString().padStart(2, '0');
+                    const minutes = date.getMinutes().toString().padStart(2, '0');
+                    const seconds = date.getSeconds().toString().padStart(2, '0');
+                    statusText.textContent = `雲端數據 ${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                }
+            } else {
+                // 本地環境：檢查 TWS 連接狀態
+                try {
+                    const response = await fetch('/api/status');
+                    const status = await response.json();
+                    
+                    if (status.tws_connected) {
+                        statusDot.classList.remove('disconnected');
+                        statusText.textContent = 'TWS 已連接';
+                    } else {
+                        statusDot.classList.add('disconnected');
+                        statusText.textContent = 'TWS 未連接';
+                    }
+                } catch (error) {
+                    console.error('狀態檢查失敗:', error);
+                    statusDot.classList.add('disconnected');
+                    statusText.textContent = 'API 離線';
+                }
+            }
+        }
+
+        // 更新UI
+        function updateUI() {
+            if (!portfolioData) return;
+
+            console.log('UpdateUI called, underlying_prices available:', 
+                portfolioData.underlying_prices ? Object.keys(portfolioData.underlying_prices).length : 0);
+
+            updateMainSummary();
+            updateExpirySummary();
+            // updatePositionStats(); // 已移除
+            updateAllPositionsTables();
+            updateTime();
+            updateAccountInfo();
+            
+            // 檢查是否有訂閱錯誤
+            if (portfolioData.subscription_errors && Object.keys(portfolioData.subscription_errors).length > 0) {
+                const errorCount = Object.keys(portfolioData.subscription_errors).length;
+                console.log(`有 ${errorCount} 個持倉需要付費訂閱才能獲取完整市場數據`);
+                // TODO: 顯示訂閱警告UI
+            }
+            
+            // 獲取底層股票價格（函數內部會檢查是否已有數據）
+            fetchUnderlyingPrices();
+        }
+
+        // 更新主要摘要
+        function updateMainSummary() {
+            if (!portfolioData.positions) return;
+            
+            // 根據當前選擇的分類更新摘要
+            if (currentMainCategory === 'us-options') {
+                updateUSOptionsSummary();
+            } else if (currentMainCategory === 'hk-options') {
+                updateHKOptionsSummary();
+            } else if (currentMainCategory === 'stocks') {
+                updateStocksSummary();
+            }
+        }
+        
+        // 更新美股期權摘要
+        function updateUSOptionsSummary() {
+            // 顯示持倉摘要區的所有指標
+            const mainSummary = document.getElementById('mainSummary');
+            mainSummary.querySelectorAll('.main-metric').forEach(metric => {
+                metric.style.display = 'block';
+            });
+            
+            // 修改標籤
+            const labels = mainSummary.querySelectorAll('.main-metric-label');
+            labels[0].textContent = '到期總價值';
+            labels[1].textContent = '最大資金需求';
+            labels[2].textContent = '資金回報率';
+            
+            // 計算美股期權數據
+            const usOptions = portfolioData.positions.filter(p => p.secType === 'OPT' && p.currency === 'USD');
+            
+            // 計算實際到期總價值（考慮標的價格）
+            let totalRealExpiryValue = 0;
+            let maxCapitalRequired = 0;
+            let shortPutCount = 0;
+            
+            usOptions.forEach(p => {
+                const underlyingSymbol = p.tradingClass || p.symbol;
+                const underlyingPriceData = underlyingPrices[underlyingSymbol];
+                const underlyingPrice = underlyingPriceData?.price || 0;
+                const strike = p.strike || 0;
+                
+                if (p.right === 'P' && p.position < 0) {
+                    // Short Put 的實際到期價值計算
+                    const avgCost = p.avg_cost || p.avgCost || 0;
+                    let realExpiryValue = 0;
+                    
+                    if (underlyingPrice > 0) {
+                        if (underlyingPrice >= strike) {
+                            // 標的價格高於行權價，不會被行權，收取全部權利金
+                            realExpiryValue = avgCost * Math.abs(p.position) * 100;
+                        } else {
+                            // 標的價格低於行權價，會被行權
+                            const loss = (strike - underlyingPrice - avgCost) * Math.abs(p.position) * 100;
+                            realExpiryValue = -loss;
+                        }
+                    } else {
+                        // 沒有底層價格，使用保守估計（假設會被行權）
+                        realExpiryValue = avgCost * Math.abs(p.position) * 100;
+                    }
+                    
+                    totalRealExpiryValue += realExpiryValue;
+                    
+                    // 計算接貨資金需求
+                    const capitalNeeded = (strike - avgCost) * Math.abs(p.position) * 100;
+                    maxCapitalRequired += capitalNeeded;
+                    shortPutCount++;
+                    console.log(`Short Put: ${p.symbol}, Strike: ${strike}, Underlying: ${underlyingPrice}, Avg Cost: ${avgCost}, Position: ${p.position}, Real Expiry Value: ${realExpiryValue}, Capital: ${capitalNeeded}`);
+                } else {
+                    // 其他期權類型使用原市值
+                    totalRealExpiryValue += Math.abs(p.market_value || 0);
+                }
+            });
+            
+            console.log(`Total Short Puts: ${shortPutCount}, Total Real Expiry Value: ${totalRealExpiryValue}, Total Capital Required: ${maxCapitalRequired}`);
+            
+            // 獲取淨清算價值
+            let netLiquidation = 0;
+            if (portfolioData.account_summary && portfolioData.account_summary.NetLiquidation) {
+                const netLiqValue = parseFloat(portfolioData.account_summary.NetLiquidation.value);
+                // 檢查淨清算價值的貨幣，如果已經是 USD 就不需要轉換
+                if (portfolioData.account_summary.NetLiquidation.currency === 'USD') {
+                    netLiquidation = netLiqValue;
+                } else {
+                    netLiquidation = netLiqValue / USD_TO_HKD;
+                }
+            }
+            
+            // 計算回報率（使用實際到期價值）
+            const maxReturnRate = maxCapitalRequired > 0 ? (totalRealExpiryValue / maxCapitalRequired * 100) : 0;
+            const currentReturnRate = netLiquidation > 0 ? (totalRealExpiryValue / netLiquidation * 100) : 0;
+            
+            console.log('Debug - Real Expiry Value:', totalRealExpiryValue);
+            console.log('Debug - Max Capital Required:', maxCapitalRequired);
+            console.log('Debug - Net Liquidation:', netLiquidation);
+            console.log('Debug - Max Return Rate:', maxReturnRate);
+            console.log('Debug - Current Return Rate:', currentReturnRate);
+            
+            // 更新顯示（根據實際到期價值決定顏色和貨幣設置）
+            const optionsValueElement = document.getElementById('optionsValue');
+            const optionsValueHKDElement = document.getElementById('optionsValueHKD');
+            
+            if (currentCurrency === 'HKD') {
+                // HKD 為主，USD 在括號內
+                optionsValueElement.textContent = 'HK$' + formatNumber(Math.abs(totalRealExpiryValue * USD_TO_HKD), 0);
+                optionsValueHKDElement.textContent = `(USD ${formatNumber(Math.abs(totalRealExpiryValue), 0)})`;
+            } else {
+                // USD 為主，HKD 在括號內
+                optionsValueElement.textContent = '$' + formatNumber(Math.abs(totalRealExpiryValue), 0);
+                optionsValueHKDElement.textContent = `(HKD ${formatNumber(Math.abs(totalRealExpiryValue * USD_TO_HKD), 0)})`;
+            }
+            optionsValueElement.className = totalRealExpiryValue >= 0 ? 'main-metric-value positive' : 'main-metric-value negative';
+            
+            const stocksValueElement = document.getElementById('stocksValue');
+            const stocksValueHKDElement = document.getElementById('stocksValueHKD');
+            
+            if (currentCurrency === 'HKD') {
+                // HKD 為主，USD 在括號內
+                stocksValueElement.textContent = 'HK$' + formatNumber(maxCapitalRequired * USD_TO_HKD, 0);
+                stocksValueHKDElement.textContent = `(USD ${formatNumber(maxCapitalRequired, 0)})`;
+            } else {
+                // USD 為主，HKD 在括號內
+                stocksValueElement.textContent = '$' + formatNumber(maxCapitalRequired, 0);
+                stocksValueHKDElement.textContent = `(HKD ${formatNumber(maxCapitalRequired * USD_TO_HKD, 0)})`;
+            }
+            stocksValueElement.className = 'main-metric-value';
+            
+            // 顯示兩個回報率（優化樣式）
+            const totalPnLElement = document.getElementById('totalPnL');
+            totalPnLElement.innerHTML = `
+                最大: ${formatNumber(Math.abs(maxReturnRate), 1)}% / 當前: ${formatNumber(Math.abs(currentReturnRate), 1)}%
+            `;
+            totalPnLElement.className = 'main-metric-value';
+            totalPnLElement.style.color = '#198754';
+            totalPnLElement.style.fontSize = '2rem';
+            totalPnLElement.style.fontWeight = '700';
+            document.getElementById('totalPnLHKD').textContent = '';
+        }
+        
+        // 更新港股期權摘要
+        function updateHKOptionsSummary() {
+            if (!portfolioData || !portfolioData.positions) {
+                console.log('No portfolio data available');
+                return;
+            }
+            
+            const mainSummary = document.getElementById('mainSummary');
+            const metrics = mainSummary.querySelectorAll('.main-metric');
+            
+            // 顯示所有指標先重置
+            metrics.forEach(metric => metric.style.display = 'block');
+            
+            // 隱藏第一個和第三個指標
+            metrics[0].style.display = 'none';
+            metrics[2].style.display = 'none';
+            
+            // 只顯示到期總價值（在中間位置）
+            metrics[1].style.display = 'block';
+            const labels = mainSummary.querySelectorAll('.main-metric-label');
+            labels[1].textContent = '到期總價值';
+            
+            // 計算港股期權數據
+            const hkOptions = portfolioData.positions.filter(p => p.secType === 'OPT' && p.currency === 'HKD');
+            
+            console.log('HK Options found:', hkOptions);
+            
+            // 計算到期總價值（使用當前市值）
+            let expiryValue = 0;
+            hkOptions.forEach(option => {
+                const marketValue = Math.abs(option.market_value || 0);
+                expiryValue += marketValue;
+                console.log(`HK Option: ${option.symbol}, Market Value: ${marketValue}`);
+            });
+            
+            // 更新顯示（使用綠色字體，根據貨幣設置）
+            const stocksValueElement = document.getElementById('stocksValue');
+            const stocksValueHKDElement = document.getElementById('stocksValueHKD');
+            const expiryValueUSD = expiryValue / USD_TO_HKD;
+            
+            if (currentCurrency === 'HKD') {
+                // HKD 為主，USD 在括號內
+                stocksValueElement.textContent = 'HK$' + formatNumber(expiryValue, 0);
+                stocksValueHKDElement.textContent = `(USD ${formatNumber(expiryValueUSD, 0)})`;
+            } else {
+                // USD 為主，HKD 在括號內
+                stocksValueElement.textContent = '$' + formatNumber(expiryValueUSD, 0);
+                stocksValueHKDElement.textContent = `(HKD ${formatNumber(expiryValue, 0)})`;
+            }
+            stocksValueElement.className = 'main-metric-value positive';
+            
+            console.log('HK Options Count:', hkOptions.length);
+            console.log('HK Options Expiry Value:', expiryValue);
+        }
+        
+        // 更新股票摘要
+        function updateStocksSummary() {
+            const mainSummary = document.getElementById('mainSummary');
+            const metrics = mainSummary.querySelectorAll('.main-metric');
+            
+            // 隱藏第二個和第三個指標
+            metrics[1].style.display = 'none';
+            metrics[2].style.display = 'none';
+            
+            // 只顯示總市值
+            metrics[0].style.display = 'block';
+            const labels = mainSummary.querySelectorAll('.main-metric-label');
+            labels[0].textContent = '股票市值';
+            
+            // 計算股票數據
+            const stocks = portfolioData.positions.filter(p => p.secType === 'STK');
+            const stocksValue = stocks.reduce((sum, p) => {
+                const priceData = underlyingPrices[p.symbol];
+                if (priceData && priceData.price && p.position) {
+                    return sum + (p.position * priceData.price);
+                }
+                return sum + (p.market_value || 0);
+            }, 0);
+            
+            // 更新顯示（使用綠色字體，根據貨幣設置）
+            const optionsValueElement = document.getElementById('optionsValue');
+            const optionsValueHKDElement = document.getElementById('optionsValueHKD');
+            
+            if (currentCurrency === 'HKD') {
+                // HKD 為主，USD 在括號內
+                optionsValueElement.textContent = 'HK$' + formatNumber(stocksValue * USD_TO_HKD, 0);
+                optionsValueHKDElement.textContent = `(USD ${formatNumber(stocksValue, 0)})`;
+            } else {
+                // USD 為主，HKD 在括號內
+                optionsValueElement.textContent = '$' + formatNumber(stocksValue, 0);
+                optionsValueHKDElement.textContent = `(HKD ${formatNumber(stocksValue * USD_TO_HKD, 0)})`;
+            }
+            optionsValueElement.className = 'main-metric-value positive';
+        }
+
+        // 更新到期日分組摘要
+        function updateExpirySummary() {
+            if (!portfolioData.options_by_expiry || portfolioData.options_by_expiry.length === 0) {
+                document.getElementById('expirySummary').style.display = 'none';
+                return;
+            }
+
+            // 根據當前分類過濾
+            let filteredExpiries = [];
+            if (currentMainCategory === 'us-options') {
+                // 顯示美股期權到期分布
+                filteredExpiries = portfolioData.options_by_expiry.filter(expiry => {
+                    // 檢查是否包含美股期權
+                    if (expiry.positions) {
+                        return expiry.positions.some(symbol => {
+                            const pos = portfolioData.positions.find(p => p.symbol === symbol && p.expiry === expiry.expiry);
+                            return pos && pos.currency === 'USD';
+                        });
+                    }
+                    return false;
+                });
+            } else if (currentMainCategory === 'hk-options') {
+                // 顯示港股期權到期分布
+                filteredExpiries = portfolioData.options_by_expiry.filter(expiry => {
+                    // 檢查是否包含港股期權
+                    if (expiry.positions) {
+                        return expiry.positions.some(symbol => {
+                            const pos = portfolioData.positions.find(p => p.symbol === symbol && p.expiry === expiry.expiry);
+                            return pos && pos.currency === 'HKD';
+                        });
+                    }
+                    return false;
+                });
+            }
+
+            if (filteredExpiries.length === 0 || currentMainCategory === 'stocks') {
+                document.getElementById('expirySummary').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('expirySummary').style.display = 'block';
+            
+            // 更新標題
+            const expirySummaryTitle = document.getElementById('expirySummaryTitle');
+            if (currentMainCategory === 'us-options') {
+                expirySummaryTitle.textContent = '美股期權到期分布';
+            } else if (currentMainCategory === 'hk-options') {
+                expirySummaryTitle.textContent = '港股期權到期分布';
+            }
+            
+            const container = document.getElementById('expiryCards');
+            
+            // 排序：近期在前
+            const sortedExpiries = filteredExpiries.sort((a, b) => 
+                a.expiry.localeCompare(b.expiry)
+            );
+
+            container.innerHTML = sortedExpiries.map(expiry => {
+                const daysLeft = expiry.days_to_expiry || 0;
+                let daysClass = '';
+                let daysText = '';
+                
+                if (daysLeft <= 0) {
+                    daysClass = 'urgent';
+                    daysText = '已到期';
+                } else if (daysLeft <= 7) {
+                    daysClass = 'urgent';
+                    daysText = `剩餘 ${daysLeft} 天`;
+                } else {
+                    daysText = `${daysLeft} 天`;
+                }
+                
+                // 根據當前分類計算到期價值和盈虧
+                let totalValue = 0;
+                let totalPnL = 0;
+                let currency = 'USD';
+                let count = 0;
+                let capitalRequired = 0;
+                
+                if (expiry.positions) {
+                    expiry.positions.forEach(symbol => {
+                        const pos = portfolioData.positions.find(p => p.symbol === symbol && p.expiry === expiry.expiry);
+                        if (pos) {
+                            // 根據當前分類過濾
+                            if (currentMainCategory === 'us-options') {
+                                if (pos.currency === 'USD') {
+                                    totalValue += Math.abs(pos.market_value || 0);
+                                    if (pos.pnl !== null && pos.pnl !== undefined) {
+                                        totalPnL += pos.pnl;
+                                    }
+                                    // 計算 Short Put 接貨資金
+                                    if (pos.right === 'P' && pos.position < 0) {
+                                        const avgCost = pos.avg_cost || pos.avgCost || 0;
+                                        capitalRequired += (pos.strike - avgCost) * Math.abs(pos.position) * 100;
+                                    }
+                                    count++;
+                                }
+                            } else if (currentMainCategory === 'hk-options') {
+                                if (pos.currency === 'HKD') {
+                                    currency = 'HKD';
+                                    totalValue += Math.abs(pos.market_value || 0);
+                                    // 港股期權暫無盈虧數據
+                                    count++;
+                                }
+                            }
+                        }
+                    });
+                }
+
+                const pnlClass = totalPnL >= 0 ? 'positive' : 'negative';
+                const pnlSign = totalPnL >= 0 ? '+' : '';
+                
+                // 根據當前貨幣設置和期權類型決定顯示
+                let mainValueHtml = '';
+                let subValueHtml = '';
+                
+                if (currency === 'USD') {
+                    // 美股期權
+                    const valueUSD = totalValue;
+                    const valueHKD = totalValue * USD_TO_HKD;
+                    
+                    if (currentCurrency === 'HKD') {
+                        // HKD 為主，USD 在下方小字
+                        mainValueHtml = `<div class="expiry-value positive">HK$${formatNumber(valueHKD, 0)}</div>`;
+                        subValueHtml = `<div class="expiry-value-hkd">USD ${formatNumber(valueUSD, 0)}</div>`;
+                    } else {
+                        // USD 為主，HKD 在下方小字
+                        mainValueHtml = `<div class="expiry-value positive">$${formatNumber(valueUSD, 0)}</div>`;
+                        subValueHtml = `<div class="expiry-value-hkd">HKD ${formatNumber(valueHKD, 0)}</div>`;
+                    }
+                } else {
+                    // 港股期權（只有 HKD）
+                    mainValueHtml = `<div class="expiry-value positive">HK$${formatNumber(totalValue, 0)}</div>`;
+                    subValueHtml = '';
+                }
+                
+                // 接貨資金也需要根據貨幣設置調整
+                let capitalHtml = '';
+                if (currency === 'USD' && capitalRequired > 0) {
+                    const capitalUSD = capitalRequired;
+                    const capitalHKD = capitalRequired * USD_TO_HKD;
+                    
+                    if (currentCurrency === 'HKD') {
+                        capitalHtml = `<div class="expiry-capital" style="color: #dc3545; font-size: 0.9rem; font-weight: 500; margin-top: 0.25rem;">接貨資金: HK$${formatNumber(capitalHKD, 0)}</div>`;
+                    } else {
+                        capitalHtml = `<div class="expiry-capital" style="color: #dc3545; font-size: 0.9rem; font-weight: 500; margin-top: 0.25rem;">接貨資金: $${formatNumber(capitalUSD, 0)}</div>`;
+                    }
+                }
+                
+                // 盈虧也需要根據貨幣設置調整
+                let pnlHtml = '';
+                if (currency === 'USD') {
+                    const pnlUSD = Math.abs(totalPnL);
+                    const pnlHKD = pnlUSD * USD_TO_HKD;
+                    
+                    if (currentCurrency === 'HKD') {
+                        pnlHtml = `<div class="expiry-pnl ${pnlClass}">${pnlSign}HK$${formatNumber(pnlHKD, 0)}</div>`;
+                    } else {
+                        pnlHtml = `<div class="expiry-pnl ${pnlClass}">${pnlSign}$${formatNumber(pnlUSD, 0)}</div>`;
+                    }
+                }
+
+                return `
+                    <div class="expiry-card">
+                        <div class="expiry-date">${expiry.expiry_formatted}</div>
+                        <div class="days-left ${daysClass}">${daysText}</div>
+                        ${mainValueHtml}
+                        ${subValueHtml}
+                        ${capitalHtml}
+                        ${pnlHtml}
+                        <div class="expiry-count">${count} 個期權</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 更新持倉顯示
+        function updatePositionDisplay() {
+            // 根據當前分類決定顯示哪些表格
+            const usOptionsSection = document.getElementById('usOptionsSection');
+            const hkOptionsSection = document.getElementById('hkOptionsSection');
+            const stocksSection = document.getElementById('stocksSection');
+            
+            // 根據當前分類顯示相應的持倉表格
+            switch(currentMainCategory) {
+                case 'us-options':
+                    // 自動切換到美股期權標籤
+                    document.querySelectorAll('.position-tab').forEach((btn, index) => {
+                        btn.classList.toggle('active', index === 0);
+                    });
+                    usOptionsSection.style.display = 'block';
+                    hkOptionsSection.style.display = 'none';
+                    stocksSection.style.display = 'none';
+                    break;
+                case 'hk-options':
+                    // 自動切換到港股期權標籤
+                    document.querySelectorAll('.position-tab').forEach((btn, index) => {
+                        btn.classList.toggle('active', index === 1);
+                    });
+                    usOptionsSection.style.display = 'none';
+                    hkOptionsSection.style.display = 'block';
+                    stocksSection.style.display = 'none';
+                    break;
+                case 'stocks':
+                    // 自動切換到股票標籤
+                    document.querySelectorAll('.position-tab').forEach((btn, index) => {
+                        btn.classList.toggle('active', index === 2);
+                    });
+                    usOptionsSection.style.display = 'none';
+                    hkOptionsSection.style.display = 'none';
+                    stocksSection.style.display = 'block';
+                    break;
+            }
+        }
+
+        // 更新持倉統計 - 已移除
+        // function updatePositionStats() {
+        //     const positions = portfolioData.positions || [];
+        //     
+        //     // 根據當前分類計算持倉總數
+        //     let totalPositions = 0;
+        //     
+        //     if (currentMainCategory === 'us-options') {
+        //         totalPositions = positions.filter(p => p.secType === 'OPT' && p.currency === 'USD').length;
+        //     } else if (currentMainCategory === 'hk-options') {
+        //         totalPositions = positions.filter(p => p.secType === 'OPT' && p.currency === 'HKD').length;
+        //     } else if (currentMainCategory === 'stocks') {
+        //         totalPositions = positions.filter(p => p.secType === 'STK').length;
+        //     }
+        //     
+        //     document.getElementById('totalPositions').textContent = totalPositions;
+        //     
+        //     if (portfolioData.last_update) {
+        //         const updateTime = new Date(portfolioData.last_update);
+        //         const hours = updateTime.getHours().toString().padStart(2, '0');
+        //         const minutes = updateTime.getMinutes().toString().padStart(2, '0');
+        //         document.getElementById('lastUpdate').textContent = `${hours}:${minutes}`;
+        //     }
+        // }
+
+        // 更新所有持倉表格
+        function updateAllPositionsTables() {
+            updateUSOptionsTable();
+            updateHKOptionsTable();
+            updateStocksTable();
+        }
+        
+        // 更新美股期權表格
+        function updateUSOptionsTable() {
+            if (!portfolioData || !portfolioData.positions) return;
+
+            // 只顯示美股期權
+            let positions = portfolioData.positions.filter(p => p.secType === 'OPT' && p.currency === 'USD');
+
+            // 應用過濾
+            const filter = currentFilter.us;
+            if (filter === 'expired') {
+                positions = positions.filter(p => p.days_to_expiry <= 0);
+            } else if (filter === '30days') {
+                positions = positions.filter(p => p.days_to_expiry > 0 && p.days_to_expiry <= 30);
+            } else if (filter === '90days') {
+                positions = positions.filter(p => p.days_to_expiry > 0 && p.days_to_expiry <= 90);
+            }
+
+            // 生成表格
+            const tbody = document.getElementById('usOptionsTable');
+            
+            if (positions.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="13" style="text-align: center; color: #6c757d;">
+                            無符合條件的美股期權
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            // 按到期日和標的排序
+            positions.sort((a, b) => {
+                // 先按到期日排序（近期在前）
+                if (a.secType === 'OPT' && b.secType === 'OPT') {
+                    const aExpiry = a.expiry || '99999999';
+                    const bExpiry = b.expiry || '99999999';
+                    if (aExpiry !== bExpiry) {
+                        return aExpiry.localeCompare(bExpiry);
+                    }
+                }
+                // 如果一個是期權一個不是，期權在前
+                if (a.secType === 'OPT' && b.secType !== 'OPT') return -1;
+                if (a.secType !== 'OPT' && b.secType === 'OPT') return 1;
+                // 然後按標的排序
+                return a.symbol.localeCompare(b.symbol);
+            });
+
+            // 按到期日分組顯示
+            let html = '';
+            let lastExpiry = '';
+            
+            positions.forEach(pos => {
+                // 如果是期權且到期日變了，插入分隔行
+                if (groupByExpiry.us && pos.expiry !== lastExpiry) {
+                    lastExpiry = pos.expiry;
+                    const expiryData = portfolioData.options_by_expiry?.find(e => e.expiry === lastExpiry);
+                    let expiryLabel = `📅 到期日: ${pos.expiry_formatted}`;
+                    
+                    const daysLeft = pos.days_to_expiry || 0;
+                    if (daysLeft <= 0) {
+                        expiryLabel += ' (已到期)';
+                    } else {
+                        expiryLabel += ` (${daysLeft} 天)`;
+                    }
+                    
+                    if (expiryData) {
+                        // 計算該到期日的美元價值
+                        let totalValueUSD = 0;
+                        positions.forEach(p => {
+                            if (p.expiry === lastExpiry) {
+                                if (p.currency === 'HKD') {
+                                    totalValueUSD += Math.abs(p.market_value || 0) / USD_TO_HKD;
+                                } else {
+                                    totalValueUSD += Math.abs(p.market_value || 0);
+                                }
+                            }
+                        });
+                        expiryLabel += ` - 到期價值: $${formatNumber(totalValueUSD, 0)}`;
+                    }
+                    
+                    html += `
+                        <tr class="expiry-separator">
+                            <td colspan="13">${expiryLabel}</td>
+                        </tr>
+                    `;
+                }
+                
+                // 類型圖標
+                let typeIcon = '';
+                if (pos.secType === 'OPT') {
+                    if (pos.right === 'C') {
+                        typeIcon = '<span class="option-type-badge call" title="Call Option">C</span>';
+                    } else {
+                        typeIcon = '<span class="option-type-badge put" title="Put Option">P</span>';
+                    }
+                } else if (pos.secType === 'STK') {
+                    typeIcon = '<span class="option-type-badge stock" title="Stock">S</span>';
+                }
+                
+                // 取得標的股票價格
+                const underlyingSymbol = pos.tradingClass || pos.symbol;
+                const underlyingPriceData = underlyingPrices[underlyingSymbol];
+                const underlyingPrice = underlyingPriceData?.price || 0;
+                const strike = pos.strike || 0;
+                
+                // 計算距離幅度
+                let distance = 0;
+                let distanceDisplay = '-';
+                let distanceClass = '';
+                if (underlyingPrice > 0 && strike > 0) {
+                    // 對於 CALL，距離計算相反（行權價高於標的價格時為正值）
+                    // 對於 PUT，保持原樣（標的價格高於行權價時為正值）
+                    if (pos.right === 'C') {
+                        distance = ((strike - underlyingPrice) / strike) * 100;
+                    } else {
+                        distance = ((underlyingPrice - strike) / strike) * 100;
+                    }
+                    distanceClass = distance >= 0 ? 'positive' : 'negative';
+                    distanceDisplay = (distance >= 0 ? '+' : '') + formatNumber(distance, 1) + '%';
+                }
+                
+                // 計算實際到期價值（考慮標的價格）
+                let realExpiryValue = 0;
+                let realExpiryValueHKD = 0;
+                if (pos.right === 'P' && pos.position < 0) {
+                    // Short Put 的實際到期價值計算
+                    const avgCost = pos.avg_cost || pos.avgCost || 0;
+                    if (underlyingPrice >= strike) {
+                        // 標的價格高於行權價，不會被行權，收取全部權利金
+                        realExpiryValue = avgCost * Math.abs(pos.position) * 100;
+                    } else {
+                        // 標的價格低於行權價，會被行權
+                        const loss = (strike - underlyingPrice - avgCost) * Math.abs(pos.position) * 100;
+                        realExpiryValue = -loss;
+                    }
+                } else {
+                    // 其他情況使用原市值
+                    realExpiryValue = Math.abs(pos.market_value || 0);
+                }
+                realExpiryValueHKD = realExpiryValue * USD_TO_HKD;
+                
+                // 處理現價和盈虧顯示
+                let currentPrice = pos.current_price || pos.market_data?.currentPrice || pos.market_data?.last || pos.market_data?.close || 0;
+                let currentPriceDisplay = '-';
+                
+                // 檢查是否有有效的價格數據
+                if (currentPrice > 0) {
+                    currentPriceDisplay = '$' + formatNumber(currentPrice, 2);
+                } else if (pos.market_data?.close > 0) {
+                    // 如果沒有實時價格但有收盤價，顯示收盤價並標記
+                    currentPriceDisplay = '$' + formatNumber(pos.market_data.close, 2) + ' (收)';
+                }
+                
+                let pnl = pos.pnl;
+                let pnlClass = '';
+                let pnlDisplay = '-';
+                
+                // 如果數據不可用，使用"-"顯示
+                if (pos.data_unavailable === true) {
+                    currentPriceDisplay = '-';
+                    pnlDisplay = '-';
+                } else if (pos.secType === 'OPT' && pos.position < 0) {
+                    if (pnl === null || pnl === undefined) {
+                        pnlDisplay = '-';
+                    } else if (pnl !== 0) {
+                        pnlClass = pnl >= 0 ? 'positive' : 'negative';
+                        pnlDisplay = '$' + formatNumber(pnl, 0);
+                    }
+                }
+                
+                // 到期價值的顯示類別
+                const expiryValueClass = realExpiryValue >= 0 ? 'positive' : 'negative';
+                
+                html += `
+                    <tr>
+                        <td class="symbol-cell">
+                            ${pos.symbol}
+                        </td>
+                        <td style="text-align: center;">${typeIcon}</td>
+                        <td class="text-right">${pos.secType === 'OPT' ? '$' + formatNumber(strike, 0) : '-'}</td>
+                        <td class="text-right underlying-price" data-symbol="${pos.tradingClass || pos.symbol}">
+                            ${pos.secType === 'OPT' ? '<span class="loading-price">-</span>' : '-'}
+                        </td>
+                        <td class="text-right distance-cell" data-symbol="${pos.tradingClass || pos.symbol}" data-strike="${strike}" data-right="${pos.right || ''}">-</td>
+                        <td class="text-right underlying-change" data-symbol="${pos.tradingClass || pos.symbol}">
+                            ${pos.secType === 'OPT' ? '-' : '-'}
+                        </td>
+                        <td class="text-right">${formatNumber(pos.position, 0)}</td>
+                        <td class="text-right">${pos.currency === 'HKD' ? 'HK$' : '$'}${formatNumber(pos.avg_cost)}</td>
+                        <td class="text-right">${currentPriceDisplay}</td>
+                        <td class="text-right ${expiryValueClass}">
+                            $${formatNumber(Math.abs(realExpiryValue), 0)}
+                        </td>
+                        <td class="text-right ${expiryValueClass}">
+                            ${formatNumber(Math.abs(realExpiryValueHKD), 0)}
+                        </td>
+                        <td>
+                            ${pos.secType === 'OPT' ? 
+                                `${pos.expiry_formatted || ''} (${pos.days_to_expiry || 0}天)` : 
+                                '-'}
+                        </td>
+                        <td class="text-right ${pnlClass}">
+                            ${pnlDisplay}
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+            
+            // 延遲更新底層股票價格，確保 DOM 元素已經渲染
+            setTimeout(() => {
+                displayUnderlyingPrices();
+            }, 100);
+        }
+        
+        // 更新港股期權表格
+        function updateHKOptionsTable() {
+            if (!portfolioData || !portfolioData.positions) return;
+
+            // 只顯示港股期權
+            let positions = portfolioData.positions.filter(p => p.secType === 'OPT' && p.currency === 'HKD');
+
+            // 應用過濾
+            const filter = currentFilter.hk;
+            if (filter === 'expired') {
+                positions = positions.filter(p => p.days_to_expiry <= 0);
+            } else if (filter === '30days') {
+                positions = positions.filter(p => p.days_to_expiry > 0 && p.days_to_expiry <= 30);
+            } else if (filter === '90days') {
+                positions = positions.filter(p => p.days_to_expiry > 0 && p.days_to_expiry <= 90);
+            }
+
+            // 生成表格
+            const tbody = document.getElementById('hkOptionsTable');
+            
+            if (positions.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" style="text-align: center; color: #6c757d;">
+                            無符合條件的港股期權
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            // 按到期日和標的排序
+            positions.sort((a, b) => {
+                const aExpiry = a.expiry || '99999999';
+                const bExpiry = b.expiry || '99999999';
+                if (aExpiry !== bExpiry) {
+                    return aExpiry.localeCompare(bExpiry);
+                }
+                return a.symbol.localeCompare(b.symbol);
+            });
+
+            // 按到期日分組顯示
+            let html = '';
+            let lastExpiry = '';
+            
+            positions.forEach(pos => {
+                // 如果到期日變了，插入分隔行
+                if (groupByExpiry.hk && pos.expiry !== lastExpiry) {
+                    lastExpiry = pos.expiry;
+                    let expiryLabel = `📅 到期日: ${pos.expiry_formatted}`;
+                    
+                    const daysLeft = pos.days_to_expiry || 0;
+                    if (daysLeft <= 0) {
+                        expiryLabel += ' (已到期)';
+                    } else {
+                        expiryLabel += ` (${daysLeft} 天)`;
+                    }
+                    
+                    // 計算該到期日的總價值
+                    let totalValueHKD = 0;
+                    positions.forEach(p => {
+                        if (p.expiry === lastExpiry) {
+                            totalValueHKD += Math.abs(p.market_value || 0);
+                        }
+                    });
+                    expiryLabel += ` - 到期價值: HK$${formatNumber(totalValueHKD, 0)}`;
+                    
+                    html += `
+                        <tr class="expiry-separator">
+                            <td colspan="8">${expiryLabel}</td>
+                        </tr>
+                    `;
+                }
+                
+                // 類型圖標
+                let typeIcon = '';
+                if (pos.right === 'C') {
+                    typeIcon = '<span class="option-type-badge call" title="Call Option">C</span>';
+                } else {
+                    typeIcon = '<span class="option-type-badge put" title="Put Option">P</span>';
+                }
+                
+                // 到期價值計算
+                const marketValueHKD = Math.abs(pos.market_value || 0);
+                const marketValueUSD = marketValueHKD / USD_TO_HKD;
+                const strike = pos.strike || 0;
+                
+                html += `
+                    <tr>
+                        <td class="symbol-cell">${pos.symbol}</td>
+                        <td style="text-align: center;">${typeIcon}</td>
+                        <td class="text-right">HK$${formatNumber(strike, 0)}</td>
+                        <td class="text-right">${formatNumber(pos.position, 0)}</td>
+                        <td class="text-right">HK$${formatNumber(pos.avg_cost)}</td>
+                        <td class="text-right positive">HK$${formatNumber(marketValueHKD, 0)}</td>
+                        <td class="text-right positive">$${formatNumber(marketValueUSD, 0)}</td>
+                        <td>${pos.expiry_formatted || ''} (${pos.days_to_expiry || 0}天)</td>
+                    </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+        }
+        
+        // 更新股票表格
+        function updateStocksTable() {
+            if (!portfolioData || !portfolioData.positions) return;
+
+            // 只顯示股票
+            let positions = portfolioData.positions.filter(p => p.secType === 'STK');
+
+            // 生成表格
+            const tbody = document.getElementById('stocksTable');
+            
+            if (positions.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" style="text-align: center; color: #6c757d;">
+                            無股票持倉
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            // 按標的排序
+            positions.sort((a, b) => a.symbol.localeCompare(b.symbol));
+
+            let html = '';
+            
+            positions.forEach(pos => {
+                const priceData = underlyingPrices[pos.symbol];
+                let currentPrice = 0;
+                let priceChange = 0;
+                let priceChangeClass = '';
+                
+                if (priceData) {
+                    currentPrice = priceData.price || 0;
+                    priceChange = priceData.changesPercentage || 0;
+                    priceChangeClass = priceChange >= 0 ? 'positive' : 'negative';
+                }
+                
+                // 計算市值和盈虧
+                let marketValue = 0;
+                let marketValueHKD = 0;
+                let pnl = 0;
+                let pnlPercent = 0;
+                let pnlClass = '';
+                let showPriceColumns = false;
+                
+                if (currentPrice > 0) {
+                    marketValue = pos.position * currentPrice;
+                    marketValueHKD = marketValue * USD_TO_HKD;
+                    const cost = pos.position * pos.avg_cost;
+                    pnl = marketValue - cost;
+                    pnlPercent = cost > 0 ? (pnl / cost) * 100 : 0;
+                    pnlClass = pnl >= 0 ? 'positive' : 'negative';
+                    showPriceColumns = true;
+                }
+                
+                if (showPriceColumns) {
+                    // 檢查是否需要標記為收盤價
+                    let priceDisplay = '$' + formatNumber(currentPrice, 2);
+                    if (pos.market_data && pos.market_data.bid === -1 && pos.market_data.ask === -1 && pos.market_data.close > 0) {
+                        priceDisplay = '$' + formatNumber(pos.market_data.close, 2) + ' (收)';
+                    }
+                    
+                    html += `
+                        <tr>
+                            <td class="symbol-cell">${pos.symbol}</td>
+                            <td class="text-right">${priceDisplay}</td>
+                            <td class="text-right ${priceChangeClass}">
+                                ${priceChange >= 0 ? '+' : ''}${formatNumber(priceChange, 2)}%
+                            </td>
+                            <td class="text-right">${formatNumber(pos.position, 0)}</td>
+                            <td class="text-right">$${formatNumber(pos.avg_cost, 2)}</td>
+                            <td class="text-right positive">$${formatNumber(marketValue, 0)}</td>
+                            <td class="text-right positive">${formatNumber(marketValueHKD, 0)}</td>
+                            ${pos.symbol === 'VXX' ? 
+                                '<td class="text-right">-</td><td class="text-right">-</td>' :
+                                `<td class="text-right ${pnlClass}">$${formatNumber(Math.abs(pnl), 0)}</td>
+                                <td class="text-right ${pnlClass}">${pnlPercent >= 0 ? '+' : ''}${formatNumber(pnlPercent, 2)}%</td>`
+                            }
+                        </tr>
+                    `;
+                } else {
+                    // 沒有價格數據時，只顯示基本信息
+                    html += `
+                        <tr>
+                            <td class="symbol-cell">${pos.symbol}</td>
+                            <td class="text-right" colspan="2">無價格數據</td>
+                            <td class="text-right">${formatNumber(pos.position, 0)}</td>
+                            <td class="text-right">$${formatNumber(pos.avg_cost, 2)}</td>
+                            <td class="text-right" colspan="4">-</td>
+                        </tr>
+                    `;
+                }
+            });
+            
+            tbody.innerHTML = html;
+        }
+
+        // 過濾持倉
+        function filterPositions(type, section) {
+            currentFilter[section] = type;
+            
+            // 更新標籤狀態
+            const parent = event.target.parentElement;
+            parent.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            if (section === 'us') {
+                updateUSOptionsTable();
+            } else if (section === 'hk') {
+                updateHKOptionsTable();
+            } else if (section === 'stock') {
+                updateStocksTable();
+            }
+        }
+
+        // 更新時間
+        function updateTime() {
+            if (portfolioData && portfolioData.last_update) {
+                document.getElementById('updateTime').textContent = portfolioData.last_update;
+            }
+        }
+
+        // 顯示通知
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // 格式化數字
+        function formatNumber(num, decimals = 2) {
+            return new Intl.NumberFormat('en-US', {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals
+            }).format(num);
+        }
+
+        // 格式化貨幣
+        function formatCurrency(num) {
+            const formatted = formatNumber(Math.abs(num), 0);
+            return (num < 0 ? '-' : '') + '$' + formatted;
+        }
+
+        // 獲取類型標籤
+        function getTypeLabel(secType) {
+            const types = {
+                'OPT': '期權',
+                'STK': '股票',
+                'CASH': '現金'
+            };
+            return types[secType] || secType;
+        }
+        
+        // 獲取底層股票價格
+        async function fetchUnderlyingPrices() {
+            if (!portfolioData || !portfolioData.positions) return;
+            
+            // 如果數據中已有底層股票價格，直接使用（避免網絡請求）
+            if (portfolioData.underlying_prices && Object.keys(portfolioData.underlying_prices).length > 0) {
+                console.log('Using underlying prices from portfolio data');
+                underlyingPrices = portfolioData.underlying_prices;
+                displayUnderlyingPrices();
+                return;
+            }
+            
+            // 收集所有期權的底層股票符號和股票持倉符號
+            const underlyingSymbols = new Set();
+            portfolioData.positions.forEach(pos => {
+                if (pos.secType === 'OPT' && pos.tradingClass) {
+                    underlyingSymbols.add(pos.tradingClass);
+                } else if (pos.secType === 'STK') {
+                    // 添加股票持倉符號
+                    underlyingSymbols.add(pos.symbol);
+                }
+            });
+            
+            if (underlyingSymbols.size === 0) return;
+            
+            try {
+                const response = await fetch('/api/stock-prices', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        symbols: Array.from(underlyingSymbols)
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success && data.prices) {
+                    underlyingPrices = data.prices;
+                    displayUnderlyingPrices();
+                }
+            } catch (error) {
+                console.error('Error fetching underlying prices:', error);
+                // 如果網絡請求失敗，嘗試使用數據中的價格
+                if (portfolioData.underlying_prices) {
+                    underlyingPrices = portfolioData.underlying_prices;
+                    displayUnderlyingPrices();
+                }
+            }
+        }
+        
+        // 顯示底層股票價格
+        function displayUnderlyingPrices() {
+            // 更新價格欄位
+            document.querySelectorAll('.underlying-price').forEach(cell => {
+                const symbol = cell.getAttribute('data-symbol');
+                if (symbol && underlyingPrices[symbol]) {
+                    const priceData = underlyingPrices[symbol];
+                    const price = priceData.price;
+                    
+                    if (price) {
+                        cell.innerHTML = `$${formatNumber(price, 2)}`;
+                    }
+                }
+            });
+            
+            // 更新漲跌幅欄位
+            document.querySelectorAll('.underlying-change').forEach(cell => {
+                const symbol = cell.getAttribute('data-symbol');
+                if (symbol && underlyingPrices[symbol]) {
+                    const priceData = underlyingPrices[symbol];
+                    const change = priceData.changesPercentage;
+                    
+                    if (change !== undefined) {
+                        const changeClass = change >= 0 ? 'positive' : 'negative';
+                        const changeSign = change >= 0 ? '+' : '';
+                        cell.innerHTML = `<span class="${changeClass}">${changeSign}${formatNumber(change, 2)}%</span>`;
+                    }
+                }
+            });
+            
+            // 更新距離幅度欄位
+            document.querySelectorAll('.distance-cell').forEach(cell => {
+                const symbol = cell.getAttribute('data-symbol');
+                const strike = parseFloat(cell.getAttribute('data-strike'));
+                const right = cell.getAttribute('data-right'); // 獲取期權類型 (C/P)
+                
+                if (symbol && underlyingPrices[symbol] && strike > 0) {
+                    const priceData = underlyingPrices[symbol];
+                    const underlyingPrice = priceData.price;
+                    
+                    if (underlyingPrice > 0) {
+                        let distance;
+                        // 對於 CALL，距離計算相反（行權價高於標的價格時為正值）
+                        // 對於 PUT，保持原樣（標的價格高於行權價時為正值）
+                        if (right === 'C') {
+                            distance = ((strike - underlyingPrice) / strike) * 100;
+                        } else {
+                            distance = ((underlyingPrice - strike) / strike) * 100;
+                        }
+                        const distanceClass = distance >= 0 ? 'positive' : 'negative';
+                        const distanceSign = distance >= 0 ? '+' : '';
+                        cell.innerHTML = `<span class="${distanceClass}">${distanceSign}${formatNumber(distance, 1)}%</span>`;
+                        cell.className = `text-right distance-cell ${distanceClass}`;
+                    }
+                }
+            });
+            
+            // 更新股票表格以顯示新價格
+            updateStocksTable();
+            
+            // 更新股票表格後再更新期權表格（避免重複渲染）
+            // updateUSOptionsTable();  // 暫時註釋，避免循環調用
+            
+            // 同時更新摘要數據
+            updateMainSummary();
+        }
+        
+        // 手動更新底層股票價格
+        async function updateUnderlyingPrices() {
+            if (isUpdatingPrices) return;
+            
+            const btn = document.getElementById('updatePricesBtn');
+            const originalHTML = btn.innerHTML;
+            
+            try {
+                isUpdatingPrices = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 更新中...';
+                btn.disabled = true;
+                
+                await fetchUnderlyingPrices();
+                showNotification('股票價格更新成功', 'success');
+            } catch (error) {
+                showNotification('價格更新失敗', 'error');
+            } finally {
+                isUpdatingPrices = false;
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+            }
+        }
+        
+        // 自動更新功能
+        async function performAutoUpdate() {
+            if (isAutoUpdating || isCloudEnvironment()) return;
+            
+            isAutoUpdating = true;
+            lastAutoUpdateTime = new Date();
+            
+            try {
+                showNotification('開始自動更新持倉...', 'info');
+                await updateData();
+                updateAutoUpdateStatus();
+            } catch (error) {
+                console.error('自動更新失敗:', error);
+                showNotification('自動更新失敗', 'error');
+            } finally {
+                isAutoUpdating = false;
+            }
+        }
+        
+        // 啟動自動更新
+        function startAutoUpdate() {
+            if (!autoUpdateEnabled || isCloudEnvironment()) return;
+            
+            // 清除現有的定時器
+            if (autoUpdateInterval) {
+                clearInterval(autoUpdateInterval);
+            }
+            
+            // 設置新的定時器
+            autoUpdateInterval = setInterval(performAutoUpdate, AUTO_UPDATE_INTERVAL);
+            
+            // 立即執行一次更新
+            performAutoUpdate();
+        }
+        
+        // 停止自動更新
+        function stopAutoUpdate() {
+            if (autoUpdateInterval) {
+                clearInterval(autoUpdateInterval);
+                autoUpdateInterval = null;
+            }
+            updateAutoUpdateStatus();
+        }
+        
+        // 切換自動更新
+        function toggleAutoUpdate() {
+            autoUpdateEnabled = !autoUpdateEnabled;
+            
+            if (autoUpdateEnabled) {
+                startAutoUpdate();
+                showNotification('已啟用自動更新（每30分鐘）', 'success');
+            } else {
+                stopAutoUpdate();
+                showNotification('已停用自動更新', 'info');
+            }
+            
+            // 保存設置到 localStorage
+            localStorage.setItem('autoUpdateEnabled', autoUpdateEnabled);
+            updateAutoUpdateStatus();
+        }
+        
+        // 更新自動更新狀態顯示
+        function updateAutoUpdateStatus() {
+            const statusElement = document.getElementById('autoUpdateStatus');
+            if (!statusElement) return;
+            
+            if (autoUpdateEnabled && !isCloudEnvironment()) {
+                let statusText = '自動更新：開啟';
+                if (lastAutoUpdateTime) {
+                    const now = new Date();
+                    const timeSinceLastUpdate = Math.floor((now - lastAutoUpdateTime) / 60000); // 分鐘
+                    const nextUpdateIn = Math.max(0, 30 - timeSinceLastUpdate);
+                    statusText += ` (下次更新：${nextUpdateIn}分鐘後)`;
+                }
+                statusElement.textContent = statusText;
+                statusElement.style.color = '#28a745';
+            } else {
+                statusElement.textContent = '自動更新：關閉';
+                statusElement.style.color = '#6c757d';
+            }
+        }
+        
+        // 前往雲端網站
+        function goToCloud() {
+            window.open('https://ib-portfolio-frontend.vercel.app/dashboard_new.html', '_blank');
+        }
+        
+        // 切換分組顯示
+        function toggleGrouping(section) {
+            if (section === 'us') {
+                groupByExpiry.us = document.getElementById('groupByExpiryUS').checked;
+                updateUSOptionsTable();
+            } else if (section === 'hk') {
+                groupByExpiry.hk = document.getElementById('groupByExpiryHK').checked;
+                updateHKOptionsTable();
+            }
+        }
+        
+        // 表格排序功能
+        function sortTable(column, section) {
+            if (!portfolioData || !portfolioData.positions) return;
+            
+            const sortState = currentSort[section];
+            
+            // 更新排序狀態
+            if (sortState.column === column) {
+                sortState.direction = sortState.direction === 'asc' ? 'desc' : 'asc';
+            } else {
+                sortState.column = column;
+                sortState.direction = 'asc';
+            }
+            
+            // 更新排序圖標
+            const tableId = section === 'us' ? 'usOptionsTable' : section === 'hk' ? 'hkOptionsTable' : 'stocksTable';
+            const table = document.getElementById(tableId).closest('.table-responsive').previousElementSibling;
+            
+            table.querySelectorAll('.sortable i').forEach(icon => {
+                icon.className = 'fas fa-sort';
+            });
+            
+            const currentHeader = table.querySelector(`.sortable[onclick="sortTable('${column}', '${section}')"] i`);
+            if (currentHeader) {
+                currentHeader.className = sortState.direction === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down';
+            }
+            
+            // 重新渲染表格
+            if (section === 'us') {
+                updateUSOptionsTableWithSort();
+            } else if (section === 'hk') {
+                updateHKOptionsTableWithSort();
+            } else if (section === 'stock') {
+                updateStocksTableWithSort();
+            }
+        }
+        
+        // 添加帶排序的更新函數
+        function updateUSOptionsTableWithSort() {
+            if (!portfolioData || !portfolioData.positions) return;
+
+            // 只顯示美股期權
+            let positions = portfolioData.positions.filter(p => p.secType === 'OPT' && p.currency === 'USD');
+
+            // 應用過濾
+            const filter = currentFilter.us;
+            if (filter === 'expired') {
+                positions = positions.filter(p => p.days_to_expiry <= 0);
+            } else if (filter === '30days') {
+                positions = positions.filter(p => p.days_to_expiry > 0 && p.days_to_expiry <= 30);
+            } else if (filter === '90days') {
+                positions = positions.filter(p => p.days_to_expiry > 0 && p.days_to_expiry <= 90);
+            }
+            
+            // 應用排序
+            const sortState = currentSort.us;
+            if (sortState.column) {
+                positions.sort((a, b) => {
+                    let aVal, bVal;
+                    
+                    switch(sortState.column) {
+                        case 'symbol':
+                            aVal = a.symbol;
+                            bVal = b.symbol;
+                            break;
+                        case 'strike':
+                            aVal = a.strike || 0;
+                            bVal = b.strike || 0;
+                            break;
+                        case 'underlyingPrice':
+                            aVal = underlyingPrices[a.tradingClass || a.symbol]?.price || 0;
+                            bVal = underlyingPrices[b.tradingClass || b.symbol]?.price || 0;
+                            break;
+                        case 'underlyingChange':
+                            aVal = underlyingPrices[a.tradingClass || a.symbol]?.changesPercentage || 0;
+                            bVal = underlyingPrices[b.tradingClass || b.symbol]?.changesPercentage || 0;
+                            break;
+                        case 'distance':
+                            const aUndPrice = underlyingPrices[a.tradingClass || a.symbol]?.price || 0;
+                            const bUndPrice = underlyingPrices[b.tradingClass || b.symbol]?.price || 0;
+                            aVal = aUndPrice > 0 && a.strike > 0 ? ((aUndPrice - a.strike) / a.strike) * 100 : 0;
+                            bVal = bUndPrice > 0 && b.strike > 0 ? ((bUndPrice - b.strike) / b.strike) * 100 : 0;
+                            break;
+                        case 'position':
+                            aVal = a.position || 0;
+                            bVal = b.position || 0;
+                            break;
+                        case 'avgCost':
+                            aVal = a.avg_cost || 0;
+                            bVal = b.avg_cost || 0;
+                            break;
+                        case 'currentPrice':
+                            aVal = a.current_price || 0;
+                            bVal = b.current_price || 0;
+                            break;
+                        case 'marketValue':
+                            aVal = Math.abs(a.market_value || 0);
+                            bVal = Math.abs(b.market_value || 0);
+                            break;
+                        case 'daysToExpiry':
+                            aVal = a.days_to_expiry !== undefined ? a.days_to_expiry : 999999;
+                            bVal = b.days_to_expiry !== undefined ? b.days_to_expiry : 999999;
+                            break;
+                        case 'pnl':
+                            aVal = a.pnl || 0;
+                            bVal = b.pnl || 0;
+                            break;
+                        default:
+                            aVal = 0;
+                            bVal = 0;
+                    }
+                    
+                    if (typeof aVal === 'string') {
+                        return sortState.direction === 'asc' ? 
+                            aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+                    } else {
+                        return sortState.direction === 'asc' ? 
+                            aVal - bVal : bVal - aVal;
+                    }
+                });
+            } else if (groupByExpiry.us) {
+                // 如果沒有指定排序但啟用了分組，按到期日和標的排序
+                positions.sort((a, b) => {
+                    const aExpiry = a.expiry || '99999999';
+                    const bExpiry = b.expiry || '99999999';
+                    if (aExpiry !== bExpiry) {
+                        return aExpiry.localeCompare(bExpiry);
+                    }
+                    return a.symbol.localeCompare(b.symbol);
+                });
+            }
+            
+            // 重新渲染表格
+            const tbody = document.getElementById('usOptionsTable');
+            let html = '';
+            let lastExpiry = '';
+            
+            if (positions.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="13" style="text-align: center; color: #6c757d;">
+                            無符合條件的美股期權
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            positions.forEach(pos => {
+                // 如果啟用分組且到期日變了，插入分隔行
+                if (groupByExpiry.us && pos.expiry !== lastExpiry) {
+                    lastExpiry = pos.expiry;
+                    let expiryLabel = `📅 到期日: ${pos.expiry_formatted}`;
+                    
+                    const daysLeft = pos.days_to_expiry || 0;
+                    if (daysLeft <= 0) {
+                        expiryLabel += ' (已到期)';
+                    } else {
+                        expiryLabel += ` (${daysLeft} 天)`;
+                    }
+                    
+                    // 計算該到期日的美元價值和接貨資金
+                    let totalValueUSD = 0;
+                    let expiryCapitalRequired = 0;
+                    positions.forEach(p => {
+                        if (p.expiry === lastExpiry) {
+                            totalValueUSD += Math.abs(p.market_value || 0);
+                            // 計算該到期日的 Short Put 接貨資金
+                            if (p.right === 'P' && p.position < 0) {
+                                const avgCost = p.avg_cost || p.avgCost || 0;
+                                const capital = (p.strike - avgCost) * Math.abs(p.position) * 100;
+                                expiryCapitalRequired += capital;
+                            }
+                        }
+                    });
+                    expiryLabel += ` - 到期價值: $${formatNumber(totalValueUSD, 0)}`;
+                    if (expiryCapitalRequired > 0) {
+                        expiryLabel += ` <span style="color: #dc3545; font-weight: 600;">| 接貨資金: $${formatNumber(expiryCapitalRequired, 0)}</span>`;
+                    }
+                    
+                    html += `
+                        <tr class="expiry-separator">
+                            <td colspan="13">${expiryLabel}</td>
+                        </tr>
+                    `;
+                }
+                
+                // 類型圖標
+                let typeIcon = '';
+                if (pos.right === 'C') {
+                    typeIcon = '<span class="option-type-badge call" title="Call Option">C</span>';
+                } else {
+                    typeIcon = '<span class="option-type-badge put" title="Put Option">P</span>';
+                }
+                
+                // 取得標的股票價格
+                const underlyingSymbol = pos.tradingClass || pos.symbol;
+                const underlyingPriceData = underlyingPrices[underlyingSymbol];
+                const underlyingPrice = underlyingPriceData?.price || 0;
+                const strike = pos.strike || 0;
+                
+                // 計算距離幅度
+                let distance = 0;
+                let distanceDisplay = '-';
+                let distanceClass = '';
+                if (underlyingPrice > 0 && strike > 0) {
+                    // 對於 CALL，距離計算相反（行權價高於標的價格時為正值）
+                    // 對於 PUT，保持原樣（標的價格高於行權價時為正值）
+                    if (pos.right === 'C') {
+                        distance = ((strike - underlyingPrice) / strike) * 100;
+                    } else {
+                        distance = ((underlyingPrice - strike) / strike) * 100;
+                    }
+                    distanceClass = distance >= 0 ? 'positive' : 'negative';
+                    distanceDisplay = (distance >= 0 ? '+' : '') + formatNumber(distance, 1) + '%';
+                }
+                
+                // 計算實際到期價值（考慮標的價格）
+                let realExpiryValue = 0;
+                let realExpiryValueHKD = 0;
+                if (pos.right === 'P' && pos.position < 0) {
+                    // Short Put 的實際到期價值計算
+                    const avgCost = pos.avg_cost || pos.avgCost || 0;
+                    if (underlyingPrice >= strike) {
+                        // 標的價格高於行權價，不會被行權，收取全部權利金
+                        realExpiryValue = avgCost * Math.abs(pos.position) * 100;
+                    } else {
+                        // 標的價格低於行權價，會被行權
+                        const loss = (strike - underlyingPrice - avgCost) * Math.abs(pos.position) * 100;
+                        realExpiryValue = -loss;
+                    }
+                } else {
+                    // 其他情況使用原市值
+                    realExpiryValue = Math.abs(pos.market_value || 0);
+                }
+                realExpiryValueHKD = realExpiryValue * USD_TO_HKD;
+                
+                // 處理現價和盈虧顯示
+                let currentPrice = pos.current_price || pos.market_data?.currentPrice || pos.market_data?.last || pos.market_data?.close || 0;
+                let currentPriceDisplay = '$' + formatNumber(currentPrice, 2);
+                let pnl = pos.pnl;
+                let pnlClass = '';
+                let pnlDisplay = '-';
+                
+                if (pos.data_unavailable === true) {
+                    currentPriceDisplay = '-';
+                    pnlDisplay = '-';
+                } else if (pnl !== null && pnl !== undefined) {
+                    pnlClass = pnl >= 0 ? 'positive' : 'negative';
+                    pnlDisplay = (pnl >= 0 ? '+' : '') + '$' + formatNumber(pnl, 0);
+                }
+                
+                // 到期價值的顯示類別
+                const expiryValueClass = realExpiryValue >= 0 ? 'positive' : 'negative';
+                
+                html += `
+                    <tr>
+                        <td class="symbol-cell">${pos.symbol}</td>
+                        <td style="text-align: center;">${typeIcon}</td>
+                        <td class="text-right">$${formatNumber(strike, 0)}</td>
+                        <td class="text-right underlying-price" data-symbol="${pos.tradingClass || pos.symbol}">
+                            <span class="loading-price">-</span>
+                        </td>
+                        <td class="text-right distance-cell" data-symbol="${pos.tradingClass || pos.symbol}" data-strike="${strike}" data-right="${pos.right || ''}">-</td>
+                        <td class="text-right underlying-change" data-symbol="${pos.tradingClass || pos.symbol}">-</td>
+                        <td class="text-right">${formatNumber(pos.position, 0)}</td>
+                        <td class="text-right">$${formatNumber(pos.avg_cost)}</td>
+                        <td class="text-right">${currentPriceDisplay}</td>
+                        <td class="text-right ${expiryValueClass}">$${formatNumber(Math.abs(realExpiryValue), 0)}</td>
+                        <td class="text-right ${expiryValueClass}">${formatNumber(Math.abs(realExpiryValueHKD), 0)}</td>
+                        <td>${pos.expiry_formatted || ''} (${pos.days_to_expiry || 0}天)</td>
+                        <td class="text-right ${pnlClass}">${pnlDisplay}</td>
+                    </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+            
+            // 延遲顯示價格，確保 DOM 元素已經渲染
+            setTimeout(() => {
+                displayUnderlyingPrices();
+            }, 100);
+        }
+        
+        function updateHKOptionsTableWithSort() {
+            // 與 updateHKOptionsTable 相同的邏輯，但加入排序
+            updateHKOptionsTable();
+        }
+        
+        function updateStocksTableWithSort() {
+            // 與 updateStocksTable 相同的邏輯，但加入排序
+            updateStocksTable();
+        }
+        
+        // 更新賬戶信息
+        function updateAccountInfo() {
+            if (!portfolioData) {
+                console.log('No portfolio data available');
+                return;
+            }
+            
+            console.log('Account Summary:', portfolioData.account_summary);
+            
+            // 獲取主賬戶號（從持倉數據中獲取）
+            let mainAccount = 'U6129142'; // 默認主賬戶
+            if (portfolioData.positions && portfolioData.positions.length > 0) {
+                // 使用第一個持倉的賬戶號作為主賬戶
+                mainAccount = portfolioData.positions[0].account || mainAccount;
+            }
+            console.log('Using main account:', mainAccount);
+            
+            // 更新淨清算價值
+            let netLiqData = null;
+            
+            // 首先檢查 account_summary
+            if (portfolioData.account_summary && portfolioData.account_summary.NetLiquidation) {
+                netLiqData = portfolioData.account_summary.NetLiquidation;
+            }
+            // 如果 account_summary 沒有數據，檢查 account_values
+            else if (portfolioData.account_values && portfolioData.account_values.NetLiquidation) {
+                netLiqData = portfolioData.account_values.NetLiquidation;
+            }
+            
+            if (netLiqData && netLiqData.value) {
+                console.log('NetLiquidation data:', netLiqData);
+                const netLiqValue = parseFloat(netLiqData.value) || 0;
+                let netLiqUSD, netLiqHKD;
+                
+                // 根據貨幣類型進行轉換
+                if (netLiqData.currency === 'USD') {
+                    netLiqUSD = netLiqValue;
+                    netLiqHKD = netLiqValue * USD_TO_HKD;
+                } else {
+                    // 假設是 HKD
+                    netLiqHKD = netLiqValue;
+                    netLiqUSD = netLiqValue / USD_TO_HKD;
+                }
+                
+                console.log('NetLiq - USD:', netLiqUSD, 'HKD:', netLiqHKD);
+                
+                // 根據當前貨幣設置更新 DOM
+                const netLiqElement = document.getElementById('netLiquidation');
+                const netLiqHKDElement = document.getElementById('netLiquidationHKD');
+                
+                if (currentCurrency === 'HKD') {
+                    // HKD 為主，USD 在括號內
+                    if (netLiqElement) {
+                        netLiqElement.textContent = 'HK$' + formatNumber(netLiqHKD, 0);
+                    }
+                    if (netLiqHKDElement) {
+                        netLiqHKDElement.textContent = `(USD ${formatNumber(netLiqUSD, 0)})`;
+                    }
+                } else {
+                    // USD 為主，HKD 在括號內
+                    if (netLiqElement) {
+                        netLiqElement.textContent = '$' + formatNumber(netLiqUSD, 0);
+                    }
+                    if (netLiqHKDElement) {
+                        netLiqHKDElement.textContent = `(HKD ${formatNumber(netLiqHKD, 0)})`;
+                    }
+                }
+            } else {
+                console.log('No NetLiquidation data found in both account_summary and account_values');
+            }
+            
+            // 更新可用資金
+            let availFundsData = null;
+            
+            // 首先檢查 account_summary
+            if (portfolioData.account_summary && portfolioData.account_summary.AvailableFunds) {
+                availFundsData = portfolioData.account_summary.AvailableFunds;
+            }
+            // 如果 account_summary 沒有數據，檢查 account_values
+            else if (portfolioData.account_values && portfolioData.account_values.AvailableFunds) {
+                availFundsData = portfolioData.account_values.AvailableFunds;
+            }
+            
+            if (availFundsData && availFundsData.value) {
+                console.log('AvailableFunds data:', availFundsData);
+                const availFundsValue = parseFloat(availFundsData.value) || 0;
+                let availFundsUSD, availFundsHKD;
+                
+                // 根據貨幣類型進行轉換
+                if (availFundsData.currency === 'USD') {
+                    availFundsUSD = availFundsValue;
+                    availFundsHKD = availFundsValue * USD_TO_HKD;
+                } else {
+                    // 假設是 HKD
+                    availFundsHKD = availFundsValue;
+                    availFundsUSD = availFundsValue / USD_TO_HKD;
+                }
+                
+                console.log('AvailableFunds - USD:', availFundsUSD, 'HKD:', availFundsHKD);
+                
+                // 根據當前貨幣設置更新 DOM
+                const availFundsElement = document.getElementById('availableFunds');
+                const availFundsHKDElement = document.getElementById('availableFundsHKD');
+                
+                if (currentCurrency === 'HKD') {
+                    // HKD 為主，USD 在括號內
+                    if (availFundsElement) {
+                        availFundsElement.textContent = 'HK$' + formatNumber(availFundsHKD, 0);
+                    }
+                    if (availFundsHKDElement) {
+                        availFundsHKDElement.textContent = `(USD ${formatNumber(availFundsUSD, 0)})`;
+                    }
+                } else {
+                    // USD 為主，HKD 在括號內
+                    if (availFundsElement) {
+                        availFundsElement.textContent = '$' + formatNumber(availFundsUSD, 0);
+                    }
+                    if (availFundsHKDElement) {
+                        availFundsHKDElement.textContent = `(HKD ${formatNumber(availFundsHKD, 0)})`;
+                    }
+                }
+            } else {
+                console.log('No AvailableFunds data found in both account_summary and account_values');
+            }
+        }
+        
+    </script>
+
+    <!-- 雲端配置模態框 -->
+    <div id="cloudConfigModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">雲端配置設置</h2>
+                <button class="close" onclick="closeCloudConfigModal()">&times;</button>
+            </div>
+            <form id="cloudConfigForm">
+                <div class="form-group">
+                    <label class="form-label" for="apiUrl">API URL:</label>
+                    <input type="text" id="apiUrl" class="form-input" 
+                           placeholder="https://your-railway-app.railway.app/api/portfolio/upload">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="apiKey">API Key:</label>
+                    <input type="password" id="apiKey" class="form-input" 
+                           placeholder="輸入您的API密鑰">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="accountNumber">賬戶號碼:</label>
+                    <input type="text" id="accountNumber" class="form-input" 
+                           placeholder="輸入IB賬戶號碼">
+                </div>
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="enableCloud">
+                        <label class="form-label" for="enableCloud">啟用雲端上傳</label>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeCloudConfigModal()">取消</button>
+                    <button type="button" class="btn btn-success" onclick="testCloudConnection()">測試連接</button>
+                    <button type="button" class="btn btn-primary" onclick="saveCloudConfig()">保存配置</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // 雲端上傳相關功能
+        let cloudConfig = {};
+
+        // 載入雲端配置
+        async function loadCloudConfig() {
+            try {
+                const response = await fetch('/api/cloud-config');
+                const result = await response.json();
+                if (result.success) {
+                    cloudConfig = result.config;
+                    updateCloudUploadButton();
+                }
+            } catch (error) {
+                console.error('載入雲端配置失敗:', error);
+            }
+        }
+
+        // 更新雲端上傳按鈕狀態
+        function updateCloudUploadButton() {
+            const btn = document.getElementById('cloudUploadBtn');
+            const text = document.getElementById('cloudUploadText');
+            
+            if (cloudConfig.enabled) {
+                btn.classList.remove('error');
+                btn.classList.add('success');
+                text.textContent = '上傳雲端';
+            } else {
+                btn.classList.remove('success');
+                btn.classList.add('error');
+                text.textContent = '配置雲端';
+            }
+        }
+
+        // 顯示雲端上傳選項
+        function showCloudUploadOptions() {
+            if (cloudConfig.enabled) {
+                // 直接上傳
+                uploadToCloud();
+            } else {
+                // 顯示配置對話框
+                showCloudConfigModal();
+            }
+        }
+
+        // 顯示雲端配置模態框
+        function showCloudConfigModal() {
+            const modal = document.getElementById('cloudConfigModal');
+            
+            // 填充當前配置
+            document.getElementById('apiUrl').value = cloudConfig.api_url || '';
+            document.getElementById('apiKey').value = cloudConfig.api_key ? '********' : '';
+            document.getElementById('accountNumber').value = cloudConfig.account_number || '';
+            document.getElementById('enableCloud').checked = cloudConfig.enabled || false;
+            
+            modal.style.display = 'block';
+        }
+
+        // 關閉雲端配置模態框
+        function closeCloudConfigModal() {
+            document.getElementById('cloudConfigModal').style.display = 'none';
+        }
+
+        // 測試雲端連接
+        async function testCloudConnection() {
+            const btn = event.target;
+            const originalText = btn.textContent;
+            
+            btn.textContent = '測試中...';
+            btn.disabled = true;
+            
+            try {
+                const response = await fetch('/api/test-cloud-connection', {
+                    method: 'POST'
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('✅ 雲端連接測試成功！');
+                } else {
+                    alert('❌ 雲端連接測試失敗：' + result.error);
+                }
+            } catch (error) {
+                alert('❌ 測試連接時發生錯誤：' + error.message);
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // 保存雲端配置
+        async function saveCloudConfig() {
+            const btn = event.target;
+            const originalText = btn.textContent;
+            
+            btn.textContent = '保存中...';
+            btn.disabled = true;
+            
+            const config = {
+                api_url: document.getElementById('apiUrl').value.trim(),
+                account_number: document.getElementById('accountNumber').value.trim(),
+                enabled: document.getElementById('enableCloud').checked
+            };
+            
+            // 只有在API Key不是佔位符時才更新
+            const apiKeyInput = document.getElementById('apiKey').value;
+            if (apiKeyInput && apiKeyInput !== '********') {
+                config.api_key = apiKeyInput;
+            }
+            
+            try {
+                const response = await fetch('/api/cloud-config', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(config)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('✅ 雲端配置保存成功！');
+                    closeCloudConfigModal();
+                    loadCloudConfig(); // 重新載入配置
+                } else {
+                    alert('❌ 保存配置失敗：' + result.error);
+                }
+            } catch (error) {
+                alert('❌ 保存配置時發生錯誤：' + error.message);
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // 收集所有計算數據的函數
+        function collectAllCalculations() {
+            const calculations = {
+                us_options: [],
+                hk_options: [],
+                stocks: [],
+                expiry_groups: []
+            };
+            
+            if (!portfolioData || !portfolioData.positions) return calculations;
+            
+            // 收集美股期權計算
+            const usOptions = portfolioData.positions.filter(p => p.secType === 'OPT' && p.currency === 'USD');
+            usOptions.forEach(pos => {
+                const underlyingPrice = underlyingPrices[pos.symbol]?.price || pos.underlying_price || 0;
+                const strike = pos.strike || 0;
+                const avgCost = pos.avg_cost || pos.avgCost || 0;
+                const position = pos.position || 0;
+                
+                let distancePercent = null;
+                if (underlyingPrice > 0 && strike > 0) {
+                    distancePercent = ((underlyingPrice - strike) / strike) * 100;
+                }
+                
+                let actualExpiryValue = 0;
+                let capitalRequired = 0;
+                
+                if (pos.right === 'P' && position < 0) {
+                    // Short Put 計算
+                    if (underlyingPrice > 0) {
+                        if (underlyingPrice >= strike) {
+                            actualExpiryValue = avgCost * Math.abs(position) * 100;
+                        } else {
+                            const loss = (strike - underlyingPrice - avgCost) * Math.abs(position) * 100;
+                            actualExpiryValue = -loss;
+                        }
+                    } else {
+                        actualExpiryValue = avgCost * Math.abs(position) * 100;
+                    }
+                    capitalRequired = (strike - avgCost) * Math.abs(position) * 100;
+                } else {
+                    actualExpiryValue = Math.abs(pos.market_value || 0);
+                }
+                
+                calculations.us_options.push({
+                    symbol: pos.symbol,
+                    strike: strike,
+                    right: pos.right,
+                    position: position,
+                    avg_cost: avgCost,
+                    underlying_price: underlyingPrice,
+                    distance_percent: distancePercent,
+                    actual_expiry_value: actualExpiryValue,
+                    capital_required: capitalRequired,
+                    market_value: pos.market_value || 0,
+                    pnl: pos.pnl || 0,
+                    days_to_expiry: pos.days_to_expiry || 0,
+                    expiry: pos.expiry
+                });
+            });
+            
+            // 收集港股期權計算
+            const hkOptions = portfolioData.positions.filter(p => p.secType === 'OPT' && p.currency === 'HKD');
+            hkOptions.forEach(pos => {
+                calculations.hk_options.push({
+                    symbol: pos.symbol,
+                    strike: pos.strike || 0,
+                    right: pos.right,
+                    position: pos.position || 0,
+                    avg_cost: pos.avg_cost || pos.avgCost || 0,
+                    market_value: Math.abs(pos.market_value || 0),
+                    days_to_expiry: pos.days_to_expiry || 0,
+                    expiry: pos.expiry
+                });
+            });
+            
+            // 收集股票計算
+            const stocks = portfolioData.positions.filter(p => p.secType === 'STK');
+            stocks.forEach(pos => {
+                const currentPrice = underlyingPrices[pos.symbol]?.price || 0;
+                let calculatedMarketValue = 0;
+                let calculatedPnl = 0;
+                let pnlPercent = 0;
+                
+                if (currentPrice > 0) {
+                    calculatedMarketValue = pos.position * currentPrice;
+                    const cost = pos.position * pos.avg_cost;
+                    calculatedPnl = calculatedMarketValue - cost;
+                    pnlPercent = cost > 0 ? (calculatedPnl / cost) * 100 : 0;
+                }
+                
+                calculations.stocks.push({
+                    symbol: pos.symbol,
+                    position: pos.position || 0,
+                    avg_cost: pos.avg_cost || 0,
+                    current_price: currentPrice,
+                    calculated_market_value: calculatedMarketValue,
+                    calculated_pnl: calculatedPnl,
+                    pnl_percent: pnlPercent,
+                    original_market_value: pos.market_value || 0
+                });
+            });
+            
+            // 收集到期日分組計算
+            if (portfolioData.options_by_expiry) {
+                portfolioData.options_by_expiry.forEach(expiry => {
+                    const groupData = {
+                        expiry: expiry.expiry,
+                        expiry_formatted: expiry.expiry_formatted,
+                        days_to_expiry: expiry.days_to_expiry || 0,
+                        us_options: {
+                            count: 0,
+                            total_value: 0,
+                            total_pnl: 0,
+                            capital_required: 0
+                        },
+                        hk_options: {
+                            count: 0,
+                            total_value: 0
+                        }
+                    };
+                    
+                    if (expiry.positions) {
+                        expiry.positions.forEach(symbol => {
+                            const pos = portfolioData.positions.find(p => p.symbol === symbol && p.expiry === expiry.expiry);
+                            if (pos) {
+                                if (pos.currency === 'USD') {
+                                    groupData.us_options.count++;
+                                    groupData.us_options.total_value += Math.abs(pos.market_value || 0);
+                                    groupData.us_options.total_pnl += pos.pnl || 0;
+                                    if (pos.right === 'P' && pos.position < 0) {
+                                        const avgCost = pos.avg_cost || pos.avgCost || 0;
+                                        const capital = (pos.strike - avgCost) * Math.abs(pos.position) * 100;
+                                        groupData.us_options.capital_required += capital;
+                                    }
+                                } else if (pos.currency === 'HKD') {
+                                    groupData.hk_options.count++;
+                                    groupData.hk_options.total_value += Math.abs(pos.market_value || 0);
+                                }
+                            }
+                        });
+                    }
+                    
+                    calculations.expiry_groups.push(groupData);
+                });
+            }
+            
+            return calculations;
+        }
+
+        // 上傳到雲端
+        async function uploadToCloud() {
+            const btn = document.getElementById('cloudUploadBtn');
+            const text = document.getElementById('cloudUploadText');
+            const icon = btn.querySelector('i');
+            
+            // 更新按鈕狀態
+            btn.classList.add('uploading');
+            text.textContent = '上傳中...';
+            btn.disabled = true;
+            
+            try {
+                // 收集所有本地計算的詳細數據
+                // 獲取當前摘要數據（根據當前標籤頁）
+                const getCurrentSummaryData = () => {
+                    const optionsValueEl = document.getElementById('optionsValue');
+                    const optionsValueHKDEl = document.getElementById('optionsValueHKD');
+                    const stocksValueEl = document.getElementById('stocksValue');
+                    const stocksValueHKDEl = document.getElementById('stocksValueHKD');
+                    
+                    return {
+                        optionsValue: optionsValueEl ? parseFloat(optionsValueEl.textContent.replace(/[$,]/g, '')) : 0,
+                        optionsValueHKD: optionsValueHKDEl ? parseFloat(optionsValueHKDEl.textContent.replace(/[HKD$(),]/g, '')) : 0,
+                        stocksValue: stocksValueEl ? parseFloat(stocksValueEl.textContent.replace(/[$,]/g, '')) : 0,
+                        stocksValueHKD: stocksValueHKDEl ? parseFloat(stocksValueHKDEl.textContent.replace(/[HKD$(),]/g, '')) : 0
+                    };
+                };
+                
+                const currentSummary = getCurrentSummaryData();
+                
+                const calculatedSummary = {
+                    // 美股期權計算數據
+                    us_options: {
+                        total_expiry_value: currentMainCategory === 'us-options' ? currentSummary.optionsValue : 0,
+                        total_expiry_value_hkd: currentMainCategory === 'us-options' ? currentSummary.optionsValueHKD : 0,
+                        max_capital_required: currentMainCategory === 'us-options' ? currentSummary.stocksValue : 0,
+                        max_capital_required_hkd: currentMainCategory === 'us-options' ? currentSummary.stocksValueHKD : 0,
+                        // 收集每個期權的計算結果
+                        positions_details: []
+                    },
+                    // 港股期權計算數據
+                    hk_options: {
+                        total_expiry_value: currentMainCategory === 'hk-options' ? currentSummary.optionsValue : 0,
+                        total_expiry_value_hkd: currentMainCategory === 'hk-options' ? currentSummary.optionsValueHKD : 0,
+                        max_capital_required: currentMainCategory === 'hk-options' ? currentSummary.stocksValue : 0,
+                        max_capital_required_hkd: currentMainCategory === 'hk-options' ? currentSummary.stocksValueHKD : 0,
+                        positions_details: []
+                    },
+                    // 股票計算數據
+                    stocks: {
+                        total_market_value: currentMainCategory === 'stocks' ? currentSummary.optionsValue : 0,
+                        total_market_value_hkd: currentMainCategory === 'stocks' ? currentSummary.optionsValueHKD : 0,
+                        positions_details: []
+                    },
+                    // 風險回報率
+                    risk_ratios: {
+                        max_return_rate: (() => {
+                            const totalPnLEl = document.getElementById('totalPnL');
+                            if (!totalPnLEl) return 0;
+                            const match = totalPnLEl.textContent.match(/最大:\s*([\d.]+)%/);
+                            return match ? parseFloat(match[1]) : 0;
+                        })(),
+                        current_return_rate: (() => {
+                            const totalPnLEl = document.getElementById('totalPnL');
+                            if (!totalPnLEl) return 0;
+                            const match = totalPnLEl.textContent.match(/當前:\s*([\d.]+)%/);
+                            return match ? parseFloat(match[1]) : 0;
+                        })()
+                    },
+                    // 計算公式（供雲端參考）
+                    calculation_formulas: {
+                        distance_percent: '((underlying_price - strike) / strike) * 100',
+                        short_put_actual_expiry_value: {
+                            description: 'Short Put實際到期價值計算',
+                            not_exercised: 'avg_cost * abs(position) * 100',
+                            exercised: '-((strike - underlying_price - avg_cost) * abs(position) * 100)'
+                        },
+                        capital_required: '(strike - avg_cost) * abs(position) * 100',
+                        stock_pnl: '(position * current_price) - (position * avg_cost)',
+                        max_return_rate: '(actual_expiry_value / max_capital_required) * 100',
+                        current_return_rate: '(actual_expiry_value / net_liquidation) * 100'
+                    },
+                    // 收集每個持倉的計算細節
+                    all_calculations: collectAllCalculations(),
+                    last_calculation_time: new Date().toISOString(),
+                    usd_to_hkd_rate: USD_TO_HKD
+                };
+
+                const response = await fetch('/api/upload-to-cloud', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        calculated_summary: calculatedSummary
+                    })
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    // 成功狀態
+                    btn.classList.remove('uploading');
+                    btn.classList.add('success');
+                    
+                    // 根據是否包含計算邏輯顯示不同訊息
+                    if (result.calculations_included) {
+                        text.textContent = `✅ 成功上傳 ${result.positions_count} 個持倉及完整計算邏輯`;
+                    } else {
+                        text.textContent = `✅ 成功上傳 ${result.positions_count} 個持倉`;
+                    }
+                    
+                    // 5秒後恢復原狀（給用戶更多時間看到完整訊息）
+                    setTimeout(() => {
+                        btn.classList.remove('success');
+                        text.textContent = '上傳雲端';
+                        btn.disabled = false;
+                    }, 5000);
+                } else {
+                    // 失敗狀態
+                    btn.classList.remove('uploading');
+                    btn.classList.add('error');
+                    text.textContent = '❌ 上傳失敗';
+                    
+                    alert('上傳失敗：' + (result.message || result.error || '未知錯誤'));
+                    
+                    // 3秒後恢復原狀
+                    setTimeout(() => {
+                        btn.classList.remove('error');
+                        text.textContent = '上傳雲端';
+                        btn.disabled = false;
+                    }, 3000);
+                }
+            } catch (error) {
+                btn.classList.remove('uploading');
+                btn.classList.add('error');
+                text.textContent = '❌ 網絡錯誤';
+                
+                alert('上傳時發生錯誤：' + error.message);
+                
+                // 3秒後恢復原狀
+                setTimeout(() => {
+                    btn.classList.remove('error');
+                    text.textContent = '上傳雲端';
+                    btn.disabled = false;
+                }, 3000);
+            }
+        }
+
+        // 點擊模態框外部關閉
+        window.onclick = function(event) {
+            const modal = document.getElementById('cloudConfigModal');
+            if (event.target === modal) {
+                closeCloudConfigModal();
+            }
+        }
+
+        // 頁面載入時初始化雲端配置
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCloudConfig();
+        });
+    </script>
+</body>
+</html>

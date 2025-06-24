@@ -5,7 +5,7 @@ IB 倉位監控系統 - 增強版（獲取所有可用數據）
 """
 
 
-from flask import Flask, jsonify, send_file, render_template_string, request
+from flask import Flask, jsonify, send_file, render_template_string, request, send_from_directory
 import json
 import os
 import threading
@@ -21,6 +21,10 @@ import queue
 import atexit
 import requests
 import webbrowser
+from dotenv import load_dotenv
+
+# 加載環境變量
+load_dotenv()
 
 # 配置日誌
 logging.basicConfig(
@@ -35,15 +39,16 @@ app.config['JSON_AS_ASCII'] = False
 
 # 應用配置
 CONFIG = {
-    'TWS_HOST': '127.0.0.1',
-    'TWS_PORT': 7496,
-    'CLIENT_ID': 8888,  # 使用不同的ID避免衝突
-    'SERVER_PORT': 8080,
+    'TWS_HOST': os.environ.get('TWS_HOST', '127.0.0.1'),
+    'TWS_PORT': int(os.environ.get('TWS_PORT', '7496')),
+    'CLIENT_ID': int(os.environ.get('CLIENT_ID', '8888')),
+    'SERVER_PORT': int(os.environ.get('PORT', '8080')),  # Railway uses PORT env var
     'DATA_FILE': 'portfolio_data_enhanced.json',
     'DASHBOARD_FILE': 'dashboard_new.html',
-    'AUTO_UPDATE_INTERVAL': 300,  # 自動更新間隔（秒）
-    'FMP_API_KEY': 'sFc5p2fbvwbYgbNo9IZDdqK8fMtn34zm',  # Financial Modeling Prep API key
-    'CLOUD_CONFIG_FILE': 'cloud_upload_config.json'  # 雲端上傳配置文件
+    'AUTO_UPDATE_INTERVAL': int(os.environ.get('AUTO_UPDATE_INTERVAL', '300')),
+    'FMP_API_KEY': os.environ.get('FMP_API_KEY', 'sFc5p2fbvwbYgbNo9IZDdqK8fMtn34zm'),
+    'CLOUD_CONFIG_FILE': 'cloud_upload_config.json',
+    'ENVIRONMENT': os.environ.get('ENVIRONMENT', 'development')
 }
 
 # 全局變量
@@ -1166,20 +1171,30 @@ def after_request(response):
 @app.route('/')
 def index():
     """主頁 - 返回儀表板"""
-    dashboard_path = Path(CONFIG['DASHBOARD_FILE'])
-    if dashboard_path.exists():
-        return send_file(dashboard_path)
+    if CONFIG['ENVIRONMENT'] == 'production':
+        # Railway 環境使用 static 目錄
+        return send_from_directory('static', 'dashboard_new.html')
     else:
-        return "Dashboard file not found", 404
+        # 本地開發環境
+        dashboard_path = Path(CONFIG['DASHBOARD_FILE'])
+        if dashboard_path.exists():
+            return send_file(dashboard_path)
+        else:
+            return "Dashboard file not found", 404
 
 @app.route('/test')
 def test_page():
     """測試頁面 - 顯示所有可用數據"""
-    test_path = Path('test_api_data.html')
-    if test_path.exists():
-        return send_file(test_path)
+    if CONFIG['ENVIRONMENT'] == 'production':
+        # Railway 環境使用 static 目錄
+        return send_from_directory('static', 'test_api_data.html')
     else:
-        return "Test page not found", 404
+        # 本地開發環境
+        test_path = Path('test_api_data.html')
+        if test_path.exists():
+            return send_file(test_path)
+        else:
+            return "Test page not found", 404
 
 # 以下路由已被移除，統一使用主頁面
 # @app.route('/dashboard')  - 完整儀表板
@@ -1213,6 +1228,14 @@ def get_portfolio():
 def update_portfolio():
     """API: 更新持倉數據"""
     global ib_client
+    
+    # Railway 生產環境不支持 TWS 連接
+    if CONFIG['ENVIRONMENT'] == 'production':
+        return jsonify({
+            "success": False,
+            "error": "Not available in production",
+            "message": "Railway 環境無法連接到 TWS。請在本地環境更新數據後上傳。"
+        }), 503
     
     with update_lock:
         try:
@@ -1639,6 +1662,17 @@ def initialize_ib_connection():
     """初始化 IB 連接並獲取初始數據"""
     global ib_client, auto_update_thread
     
+    # Railway 生產環境跳過 TWS 連接
+    if CONFIG['ENVIRONMENT'] == 'production':
+        print("🌐 Railway 生產環境 - 跳過 TWS 連接")
+        print("📊 使用已保存的數據文件")
+        
+        # 更新底層股票價格
+        if Path(CONFIG['DATA_FILE']).exists():
+            update_underlying_prices()
+        
+        return False
+    
     print("🔄 正在連接到 IB TWS...")
     
     try:
@@ -1690,9 +1724,13 @@ def main():
     print("=" * 60)
     print("IB Portfolio Monitor - Enhanced Version")
     print("=" * 60)
+    print(f"🌍 Environment: {CONFIG['ENVIRONMENT']}")
     print(f"📁 Working Directory: {os.getcwd()}")
     print(f"📊 Data File: {CONFIG['DATA_FILE']}")
-    print(f"🔌 TWS Connection: {CONFIG['TWS_HOST']}:{CONFIG['TWS_PORT']}")
+    
+    if CONFIG['ENVIRONMENT'] != 'production':
+        print(f"🔌 TWS Connection: {CONFIG['TWS_HOST']}:{CONFIG['TWS_PORT']}")
+    
     print("=" * 60)
     
     # 嘗試初始化 IB 連接
@@ -1705,55 +1743,66 @@ def main():
     
     print("=" * 60)
     print(f"🚀 Starting server on port {CONFIG['SERVER_PORT']}...")
-    print(f"🌐 Dashboard URL: http://localhost:{CONFIG['SERVER_PORT']}")
-    print(f"🧪 Test page URL: http://localhost:{CONFIG['SERVER_PORT']}/test")
-    print("=" * 60)
-    print("💡 Press Ctrl+C to stop the server")
     
-    # 啟動服務器線程
-    def run_server():
-        app.run(
-            host='0.0.0.0',
-            port=CONFIG['SERVER_PORT'],
-            debug=False,
-            use_reloader=False
-        )
+    if CONFIG['ENVIRONMENT'] == 'production':
+        print(f"🌐 Railway URL will be assigned after deployment")
+    else:
+        print(f"🌐 Dashboard URL: http://localhost:{CONFIG['SERVER_PORT']}")
+        print(f"🧪 Test page URL: http://localhost:{CONFIG['SERVER_PORT']}/test")
     
-    server_thread = threading.Thread(target=run_server, daemon=True)
-    server_thread.start()
-    
-    # 等待服務器啟動
-    time.sleep(2)
-    
-    # 自動打開瀏覽器
-    dashboard_url = f"http://localhost:{CONFIG['SERVER_PORT']}"
-    print(f"🌐 正在打開瀏覽器: {dashboard_url}")
-    try:
-        webbrowser.open(dashboard_url)
-        print("✅ 瀏覽器已打開IB倉位監控頁面")
-    except Exception as e:
-        print(f"⚠️ 無法自動打開瀏覽器: {e}")
-        print(f"請手動訪問: {dashboard_url}")
-    
-    print("\n" + "=" * 60)
-    print("🎯 使用說明:")
-    print("   1. 確保TWS已連接並啟用API")
-    print("   2. 點擊「更新持倉」獲取最新數據")
-    print("   3. 點擊「上傳雲端」配置雲端同步")
-    print("   4. 配置完成後可一鍵同步到雲端")
     print("=" * 60)
     
-    try:
-        # 保持主線程運行
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        print("\n🛑 Server stopped by user")
-        cleanup()
-    except Exception as e:
-        logger.error(f"Server error: {e}")
-        print(f"\n❌ Server error: {e}")
-        cleanup()
+    # 在生產環境使用 gunicorn，否則使用 Flask 內建服務器
+    if CONFIG['ENVIRONMENT'] == 'production':
+        # Railway 會使用 gunicorn 啟動，這裡只需要提供 app
+        print("🚀 Running in production mode with gunicorn")
+    else:
+        print("💡 Press Ctrl+C to stop the server")
+        
+        # 啟動服務器線程
+        def run_server():
+            app.run(
+                host='0.0.0.0',
+                port=CONFIG['SERVER_PORT'],
+                debug=False,
+                use_reloader=False
+            )
+        
+        server_thread = threading.Thread(target=run_server, daemon=True)
+        server_thread.start()
+        
+        # 等待服務器啟動
+        time.sleep(2)
+        
+        # 自動打開瀏覽器（僅在開發環境）
+        dashboard_url = f"http://localhost:{CONFIG['SERVER_PORT']}"
+        print(f"🌐 正在打開瀏覽器: {dashboard_url}")
+        try:
+            webbrowser.open(dashboard_url)
+            print("✅ 瀏覽器已打開IB倉位監控頁面")
+        except Exception as e:
+            print(f"⚠️ 無法自動打開瀏覽器: {e}")
+            print(f"請手動訪問: {dashboard_url}")
+        
+        print("\n" + "=" * 60)
+        print("🎯 使用說明:")
+        print("   1. 確保TWS已連接並啟用API")
+        print("   2. 點擊「更新持倉」獲取最新數據")
+        print("   3. 點擊「上傳雲端」配置雲端同步")
+        print("   4. 配置完成後可一鍵同步到雲端")
+        print("=" * 60)
+        
+        try:
+            # 保持主線程運行
+            while True:
+                time.sleep(1)
+        except KeyboardInterrupt:
+            print("\n🛑 Server stopped by user")
+            cleanup()
+        except Exception as e:
+            logger.error(f"Server error: {e}")
+            print(f"\n❌ Server error: {e}")
+            cleanup()
 
 def cleanup():
     """清理資源"""
