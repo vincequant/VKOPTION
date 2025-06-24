@@ -48,7 +48,8 @@ CONFIG = {
     'AUTO_UPDATE_INTERVAL': int(os.environ.get('AUTO_UPDATE_INTERVAL', '300')),
     'FMP_API_KEY': os.environ.get('FMP_API_KEY', ''),  # API key should be set via environment variable
     'CLOUD_CONFIG_FILE': 'cloud_upload_config.json',
-    'ENVIRONMENT': os.environ.get('ENVIRONMENT', 'development')
+    'ENVIRONMENT': os.environ.get('ENVIRONMENT', 'development'),
+    'TARGET_ACCOUNT': os.environ.get('TARGET_ACCOUNT', '')  # 目標賬戶，從環境變量讀取
 }
 
 # 全局變量
@@ -523,18 +524,24 @@ class EnhancedIBClient(EWrapper, EClient):
         """接收管理的賬戶列表"""
         super().managedAccounts(accountsList)
         accounts = accountsList.split(",")
-        # 只使用 U6129142 賬戶
-        if "U6129142" in accounts:
-            self.account = "U6129142"
-            logger.info(f"Managed accounts: {accountsList}")
-            logger.info(f"Using account: U6129142 (main account only)")
+        # 使用指定的目標賬戶（如果有）
+        target_account = CONFIG['TARGET_ACCOUNT']
+        if target_account and target_account in accounts:
+            self.account = target_account
+            logger.info(f"Managed accounts: {len(accounts)} available")
+            logger.info(f"Using target account: {target_account[:2]}******")
+        elif accounts and accounts[0]:
+            # 如果沒有指定目標賬戶，使用第一個可用賬戶
+            self.account = accounts[0]
+            logger.info(f"Managed accounts: {len(accounts)} available")
+            logger.info(f"Using first available account: {self.account[:2]}******")
         else:
-            logger.warning(f"U6129142 not found in accounts: {accountsList}")
+            logger.warning(f"No valid accounts found in: {accountsList}")
         
     def position(self, account: str, contract: Contract, position: float, avgCost: float):
         """接收持倉數據"""
-        # 只處理 U6129142 賬戶的持倉
-        if account != "U6129142":
+        # 只處理目標賬戶的持倉
+        if self.account and account != self.account:
             return
             
         if position != 0:
@@ -603,21 +610,21 @@ class EnhancedIBClient(EWrapper, EClient):
         self.total_realized_pnl = 0
         self.total_daily_pnl = 0
         
-        # 1. 請求賬戶摘要 - 只請求 U6129142
-        if self.account == "U6129142":
-            self.reqAccountSummary(9001, "U6129142", 
+        # 1. 請求賬戶摘要 - 只請求目標賬戶
+        if self.account:
+            self.reqAccountSummary(9001, self.account, 
                 "NetLiquidation,TotalCashValue,SettledCash,AccruedCash,BuyingPower,"
                 "EquityWithLoanValue,PreviousEquityWithLoanValue,GrossPositionValue,"
                 "InitMarginReq,MaintMarginReq,AvailableFunds,ExcessLiquidity,Cushion,"
                 "DayTradesRemaining,Leverage,Currency")
         else:
-            logger.warning("Account U6129142 not available for account summary request")
+            logger.warning("No target account available for account summary request")
         
-        # 2. 請求賬戶更新 - 只請求 U6129142
-        if self.account == "U6129142":
-            self.reqAccountUpdates(True, "U6129142")
+        # 2. 請求賬戶更新 - 只請求目標賬戶
+        if self.account:
+            self.reqAccountUpdates(True, self.account)
         else:
-            logger.warning("Not requesting account updates - only U6129142 is supported")
+            logger.warning("Not requesting account updates - no target account available")
         
         # 3. 為每個持倉請求市場數據
         for symbol, pos_data in self.positions.items():
@@ -681,8 +688,8 @@ class EnhancedIBClient(EWrapper, EClient):
     
     def accountSummary(self, reqId: int, account: str, tag: str, value: str, currency: str):
         """接收賬戶摘要"""
-        # 只處理 U6129142 賬戶的數據
-        if account == "U6129142":
+        # 只處理目標賬戶的數據
+        if self.account and account == self.account:
             self.account_summary[tag] = {
                 'value': value,
                 'currency': currency,
@@ -697,8 +704,8 @@ class EnhancedIBClient(EWrapper, EClient):
     
     def updateAccountValue(self, key: str, val: str, currency: str, accountName: str):
         """更新賬戶價值"""
-        # 只處理 U6129142 賬戶的數據
-        if accountName == "U6129142":
+        # 只處理目標賬戶的數據
+        if self.account and accountName == self.account:
             self.account_values[key] = {
                 'value': val,
                 'currency': currency,
@@ -709,8 +716,8 @@ class EnhancedIBClient(EWrapper, EClient):
                        marketValue: float, averageCost: float, unrealizedPNL: float, 
                        realizedPNL: float, accountName: str):
         """更新持倉組合（來自reqAccountUpdates）"""
-        # 只處理 U6129142 賬戶的數據
-        if accountName != "U6129142":
+        # 只處理目標賬戶的數據
+        if self.account and accountName != self.account:
             return
             
         symbol = contract.symbol
@@ -905,6 +912,16 @@ class EnhancedIBClient(EWrapper, EClient):
         
         for symbol, pos in self.positions.items():
             position_data = pos.copy()
+            
+            # 隱藏真實賬戶號碼（用於公開版本）
+            if 'account' in position_data:
+                # 將賬戶號碼替換為匿名版本
+                account = position_data['account']
+                if account.startswith('U'):
+                    # 保留首字母U，其餘用星號替換
+                    position_data['account'] = 'U' + '*' * (len(account) - 1)
+                else:
+                    position_data['account'] = 'DEMO'
             
             # 添加市場數據
             if symbol in self.market_data:
