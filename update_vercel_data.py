@@ -17,7 +17,7 @@ def update_vercel_data():
     # 文件路徑
     source_file = Path(__file__).parent / "portfolio_data_enhanced.json"
     target_dir = Path(__file__).parent / "ib-frontend-clean"
-    target_file = target_dir / "public" / "portfolio_data_enhanced.json"
+    target_file = target_dir / "public" / "portfolio_data.json"  # 改為 portfolio_data.json
     
     # 檢查源文件是否存在
     if not source_file.exists():
@@ -48,7 +48,7 @@ def update_vercel_data():
         
         # Git 操作
         commands = [
-            ["git", "add", "public/portfolio_data_enhanced.json"],
+            ["git", "add", "public/portfolio_data.json"],
             ["git", "commit", "-m", f"Update portfolio data - {datetime.now().strftime('%Y-%m-%d %H:%M')}"],
             ["git", "push", "origin", "main"]
         ]

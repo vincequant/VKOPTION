@@ -1244,6 +1244,12 @@
         let currentSort = { us: { column: null, direction: 'asc' }, hk: { column: null, direction: 'asc' }, stock: { column: null, direction: 'asc' } }; // 當前排序狀態
         let currentMainCategory = 'us-options'; // 當前主分類
         let currentCurrency = 'HKD'; // 當前貨幣，默認HKD
+        
+        // 環境檢測
+        function isCloudEnvironment() {
+            return window.location.hostname.includes('vercel.app') || 
+                   (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1');
+        }
 
         // 切換主分類
         function switchMainCategory(category) {
@@ -1301,9 +1307,35 @@
 
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
+            // 雲端環境特殊處理
+            if (isCloudEnvironment()) {
+                // 隱藏更新持倉按鈕
+                const updateBtn = document.getElementById('updateBtn');
+                if (updateBtn) {
+                    updateBtn.style.display = 'none';
+                }
+                
+                // 隱藏測試頁面鏈接
+                const testLink = document.querySelector('a[href="/test"]');
+                if (testLink) {
+                    testLink.style.display = 'none';
+                }
+                
+                // 修改上傳雲端按鈕為刷新按鈕
+                const cloudBtn = document.getElementById('cloudUploadBtn');
+                if (cloudBtn) {
+                    cloudBtn.innerHTML = '<i class="fas fa-sync-alt"></i> <span id="cloudUploadText">刷新頁面</span>';
+                    cloudBtn.onclick = () => window.location.reload();
+                }
+            }
+            
             loadData();
             checkStatus();
-            setInterval(checkStatus, 5000);
+            
+            // 雲端環境不需要定期檢查狀態
+            if (!isCloudEnvironment()) {
+                setInterval(checkStatus, 5000);
+            }
             
             // 延遲執行一次賬戶信息更新，確保 DOM 完全準備好
             setTimeout(() => {
@@ -1317,16 +1349,35 @@
         // 加載數據
         async function loadData() {
             try {
-                const response = await fetch('/api/portfolio');
+                let response;
+                if (isCloudEnvironment()) {
+                    // 雲端環境：從靜態 JSON 文件載入
+                    response = await fetch('/portfolio_data.json');
+                    if (!response.ok) {
+                        throw new Error('找不到數據文件');
+                    }
+                } else {
+                    // 本地環境：從 API 載入
+                    response = await fetch('/api/portfolio');
+                }
+                
                 portfolioData = await response.json();
                 
                 if (portfolioData.error && portfolioData.error !== 'No data available') {
                     showNotification('數據加載失敗: ' + portfolioData.error, 'error');
                 } else {
+                    // 如果有 underlying_prices，更新全局變量
+                    if (portfolioData.underlying_prices) {
+                        underlyingPrices = portfolioData.underlying_prices;
+                    }
                     updateUI();
                 }
             } catch (error) {
-                showNotification('網絡錯誤: ' + error.message, 'error');
+                if (isCloudEnvironment()) {
+                    showNotification('雲端數據載入失敗: ' + error.message, 'error');
+                } else {
+                    showNotification('網絡錯誤: ' + error.message, 'error');
+                }
             }
         }
 
@@ -1364,22 +1415,43 @@
 
         // 檢查狀態
         async function checkStatus() {
-            try {
-                const response = await fetch('/api/status');
-                const status = await response.json();
+            const statusDot = document.getElementById('statusDot');
+            const statusText = document.getElementById('statusText');
+            
+            if (isCloudEnvironment()) {
+                // 雲端環境：顯示靜態數據狀態
+                statusDot.classList.remove('disconnected');
+                statusDot.style.backgroundColor = '#17a2b8'; // 藍色表示雲端數據
+                statusText.textContent = '雲端數據';
                 
-                const statusDot = document.getElementById('statusDot');
-                const statusText = document.getElementById('statusText');
-                
-                if (status.tws_connected) {
-                    statusDot.classList.remove('disconnected');
-                    statusText.textContent = 'TWS 已連接';
-                } else {
-                    statusDot.classList.add('disconnected');
-                    statusText.textContent = 'TWS 未連接';
+                // 如果有數據，顯示最後更新時間
+                if (portfolioData && portfolioData.last_update) {
+                    const updateTime = document.getElementById('updateTime');
+                    if (updateTime) {
+                        const date = new Date(portfolioData.last_update);
+                        const hours = date.getHours().toString().padStart(2, '0');
+                        const minutes = date.getMinutes().toString().padStart(2, '0');
+                        updateTime.textContent = `最後更新: ${hours}:${minutes}`;
+                    }
                 }
-            } catch (error) {
-                console.error('狀態檢查失敗:', error);
+            } else {
+                // 本地環境：檢查 TWS 連接狀態
+                try {
+                    const response = await fetch('/api/status');
+                    const status = await response.json();
+                    
+                    if (status.tws_connected) {
+                        statusDot.classList.remove('disconnected');
+                        statusText.textContent = 'TWS 已連接';
+                    } else {
+                        statusDot.classList.add('disconnected');
+                        statusText.textContent = 'TWS 未連接';
+                    }
+                } catch (error) {
+                    console.error('狀態檢查失敗:', error);
+                    statusDot.classList.add('disconnected');
+                    statusText.textContent = 'API 離線';
+                }
             }
         }
 
