@@ -111,7 +111,7 @@
         
         /* 雲端上傳按鈕 */
         .cloud-upload-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
             color: white;
             border: none;
             padding: 0.5rem 1rem;
@@ -129,28 +129,12 @@
 
         .cloud-upload-button:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3);
+            background: linear-gradient(135deg, #138496 0%, #117a8b 100%);
         }
 
         .cloud-upload-button:active {
             transform: translateY(0);
-        }
-
-        .cloud-upload-button.uploading {
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-
-        .cloud-upload-button.uploading i {
-            animation: spin 1s linear infinite;
-        }
-        
-        .cloud-upload-button.success {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-        }
-        
-        .cloud-upload-button.error {
-            background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
         }
 
         /* 雲端配置模態框 */
@@ -1058,9 +1042,9 @@
                     <i class="fas fa-sync-alt"></i>
                     更新持倉
                 </button>
-                <button class="cloud-upload-button" id="cloudUploadBtn" onclick="showCloudUploadOptions()">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <span id="cloudUploadText">上傳雲端</span>
+                <button class="cloud-upload-button" id="cloudUploadBtn" onclick="goToCloud()">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span id="cloudUploadText">前往雲端</span>
                 </button>
                 <div class="status-indicator">
                     <div class="status-dot" id="statusDot"></div>
@@ -2771,6 +2755,11 @@
                 statusElement.textContent = '自動更新：關閉';
                 statusElement.style.color = '#6c757d';
             }
+        }
+        
+        // 前往雲端網站
+        function goToCloud() {
+            window.open('https://ib-portfolio-frontend.vercel.app/dashboard_new.html', '_blank');
         }
         
         // 切換分組顯示
