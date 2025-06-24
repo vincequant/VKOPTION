@@ -2614,67 +2614,103 @@
             console.log('Using main account:', mainAccount);
             
             // 更新淨清算價值
+            let netLiqData = null;
+            
+            // 首先檢查 account_summary
             if (portfolioData.account_summary && portfolioData.account_summary.NetLiquidation) {
-                const netLiqData = portfolioData.account_summary.NetLiquidation;
+                netLiqData = portfolioData.account_summary.NetLiquidation;
+            }
+            // 如果 account_summary 沒有數據，檢查 account_values
+            else if (portfolioData.account_values && portfolioData.account_values.NetLiquidation) {
+                netLiqData = portfolioData.account_values.NetLiquidation;
+            }
+            
+            if (netLiqData && netLiqData.value) {
                 console.log('NetLiquidation data:', netLiqData);
+                const netLiqValue = parseFloat(netLiqData.value) || 0;
+                let netLiqUSD, netLiqHKD;
                 
-                if (netLiqData && netLiqData.value) {
-                    const netLiqHKD = parseFloat(netLiqData.value) || 0;
-                    const netLiqUSD = netLiqHKD / USD_TO_HKD;
-                    console.log('NetLiq - USD:', netLiqUSD, 'HKD:', netLiqHKD);
-                    
-                    // 直接更新 DOM
-                    const netLiqElement = document.getElementById('netLiquidation');
-                    const netLiqHKDElement = document.getElementById('netLiquidationHKD');
-                    
-                    if (netLiqElement) {
-                        netLiqElement.textContent = '$' + formatNumber(netLiqUSD, 0);
-                        console.log('Updated netLiquidation element');
-                    } else {
-                        console.error('netLiquidation element not found!');
-                    }
-                    
-                    if (netLiqHKDElement) {
-                        netLiqHKDElement.textContent = `(HKD ${formatNumber(netLiqHKD, 0)})`;
-                        console.log('Updated netLiquidationHKD element');
-                    } else {
-                        console.error('netLiquidationHKD element not found!');
-                    }
+                // 根據貨幣類型進行轉換
+                if (netLiqData.currency === 'USD') {
+                    netLiqUSD = netLiqValue;
+                    netLiqHKD = netLiqValue * USD_TO_HKD;
+                } else {
+                    // 假設是 HKD
+                    netLiqHKD = netLiqValue;
+                    netLiqUSD = netLiqValue / USD_TO_HKD;
+                }
+                
+                console.log('NetLiq - USD:', netLiqUSD, 'HKD:', netLiqHKD);
+                
+                // 直接更新 DOM
+                const netLiqElement = document.getElementById('netLiquidation');
+                const netLiqHKDElement = document.getElementById('netLiquidationHKD');
+                
+                if (netLiqElement) {
+                    netLiqElement.textContent = '$' + formatNumber(netLiqUSD, 0);
+                    console.log('Updated netLiquidation element');
+                } else {
+                    console.error('netLiquidation element not found!');
+                }
+                
+                if (netLiqHKDElement) {
+                    netLiqHKDElement.textContent = `(HKD ${formatNumber(netLiqHKD, 0)})`;
+                    console.log('Updated netLiquidationHKD element');
+                } else {
+                    console.error('netLiquidationHKD element not found!');
                 }
             } else {
-                console.log('No NetLiquidation data found');
+                console.log('No NetLiquidation data found in both account_summary and account_values');
             }
             
             // 更新可用資金
+            let availFundsData = null;
+            
+            // 首先檢查 account_summary
             if (portfolioData.account_summary && portfolioData.account_summary.AvailableFunds) {
-                const availFundsData = portfolioData.account_summary.AvailableFunds;
+                availFundsData = portfolioData.account_summary.AvailableFunds;
+            }
+            // 如果 account_summary 沒有數據，檢查 account_values
+            else if (portfolioData.account_values && portfolioData.account_values.AvailableFunds) {
+                availFundsData = portfolioData.account_values.AvailableFunds;
+            }
+            
+            if (availFundsData && availFundsData.value) {
                 console.log('AvailableFunds data:', availFundsData);
+                const availFundsValue = parseFloat(availFundsData.value) || 0;
+                let availFundsUSD, availFundsHKD;
                 
-                if (availFundsData && availFundsData.value) {
-                    const availFundsHKD = parseFloat(availFundsData.value) || 0;
-                    const availFundsUSD = availFundsHKD / USD_TO_HKD;
-                    console.log('AvailableFunds - USD:', availFundsUSD, 'HKD:', availFundsHKD);
-                    
-                    // 直接更新 DOM
-                    const availFundsElement = document.getElementById('availableFunds');
-                    const availFundsHKDElement = document.getElementById('availableFundsHKD');
-                    
-                    if (availFundsElement) {
-                        availFundsElement.textContent = '$' + formatNumber(availFundsUSD, 0);
-                        console.log('Updated availableFunds element');
-                    } else {
-                        console.error('availableFunds element not found!');
-                    }
-                    
-                    if (availFundsHKDElement) {
-                        availFundsHKDElement.textContent = `(HKD ${formatNumber(availFundsHKD, 0)})`;
-                        console.log('Updated availableFundsHKD element');
-                    } else {
-                        console.error('availableFundsHKD element not found!');
-                    }
+                // 根據貨幣類型進行轉換
+                if (availFundsData.currency === 'USD') {
+                    availFundsUSD = availFundsValue;
+                    availFundsHKD = availFundsValue * USD_TO_HKD;
+                } else {
+                    // 假設是 HKD
+                    availFundsHKD = availFundsValue;
+                    availFundsUSD = availFundsValue / USD_TO_HKD;
+                }
+                
+                console.log('AvailableFunds - USD:', availFundsUSD, 'HKD:', availFundsHKD);
+                
+                // 直接更新 DOM
+                const availFundsElement = document.getElementById('availableFunds');
+                const availFundsHKDElement = document.getElementById('availableFundsHKD');
+                
+                if (availFundsElement) {
+                    availFundsElement.textContent = '$' + formatNumber(availFundsUSD, 0);
+                    console.log('Updated availableFunds element');
+                } else {
+                    console.error('availableFunds element not found!');
+                }
+                
+                if (availFundsHKDElement) {
+                    availFundsHKDElement.textContent = `(HKD ${formatNumber(availFundsHKD, 0)})`;
+                    console.log('Updated availableFundsHKD element');
+                } else {
+                    console.error('availableFundsHKD element not found!');
                 }
             } else {
-                console.log('No AvailableFunds data found');
+                console.log('No AvailableFunds data found in both account_summary and account_values');
             }
         }
         
@@ -3017,34 +3053,61 @@
             
             try {
                 // 收集所有本地計算的詳細數據
+                // 獲取當前摘要數據（根據當前標籤頁）
+                const getCurrentSummaryData = () => {
+                    const optionsValueEl = document.getElementById('optionsValue');
+                    const optionsValueHKDEl = document.getElementById('optionsValueHKD');
+                    const stocksValueEl = document.getElementById('stocksValue');
+                    const stocksValueHKDEl = document.getElementById('stocksValueHKD');
+                    
+                    return {
+                        optionsValue: optionsValueEl ? parseFloat(optionsValueEl.textContent.replace(/[$,]/g, '')) : 0,
+                        optionsValueHKD: optionsValueHKDEl ? parseFloat(optionsValueHKDEl.textContent.replace(/[HKD$(),]/g, '')) : 0,
+                        stocksValue: stocksValueEl ? parseFloat(stocksValueEl.textContent.replace(/[$,]/g, '')) : 0,
+                        stocksValueHKD: stocksValueHKDEl ? parseFloat(stocksValueHKDEl.textContent.replace(/[HKD$(),]/g, '')) : 0
+                    };
+                };
+                
+                const currentSummary = getCurrentSummaryData();
+                
                 const calculatedSummary = {
                     // 美股期權計算數據
                     us_options: {
-                        total_expiry_value: parseFloat(document.getElementById('usOptionsValue').textContent.replace(/[$,]/g, '')),
-                        total_expiry_value_hkd: parseFloat(document.getElementById('usOptionsValueHKD').textContent.replace(/[HKD$(),]/g, '')),
-                        max_capital_required: parseFloat(document.getElementById('usOptionsCapital').textContent.replace(/[$,]/g, '')),
-                        max_capital_required_hkd: parseFloat(document.getElementById('usOptionsCapitalHKD').textContent.replace(/[HKD$(),]/g, '')),
+                        total_expiry_value: currentMainCategory === 'us-options' ? currentSummary.optionsValue : 0,
+                        total_expiry_value_hkd: currentMainCategory === 'us-options' ? currentSummary.optionsValueHKD : 0,
+                        max_capital_required: currentMainCategory === 'us-options' ? currentSummary.stocksValue : 0,
+                        max_capital_required_hkd: currentMainCategory === 'us-options' ? currentSummary.stocksValueHKD : 0,
                         // 收集每個期權的計算結果
                         positions_details: []
                     },
                     // 港股期權計算數據
                     hk_options: {
-                        total_expiry_value: parseFloat(document.getElementById('hkOptionsValue').textContent.replace(/[HK$,]/g, '')),
-                        total_expiry_value_hkd: parseFloat(document.getElementById('hkOptionsValueHKD').textContent.replace(/[HKD$(),]/g, '')),
-                        max_capital_required: parseFloat(document.getElementById('hkOptionsCapital').textContent.replace(/[HK$,]/g, '')),
-                        max_capital_required_hkd: parseFloat(document.getElementById('hkOptionsCapitalHKD').textContent.replace(/[HKD$(),]/g, '')),
+                        total_expiry_value: currentMainCategory === 'hk-options' ? currentSummary.optionsValue : 0,
+                        total_expiry_value_hkd: currentMainCategory === 'hk-options' ? currentSummary.optionsValueHKD : 0,
+                        max_capital_required: currentMainCategory === 'hk-options' ? currentSummary.stocksValue : 0,
+                        max_capital_required_hkd: currentMainCategory === 'hk-options' ? currentSummary.stocksValueHKD : 0,
                         positions_details: []
                     },
                     // 股票計算數據
                     stocks: {
-                        total_market_value: parseFloat(document.getElementById('stocksValue').textContent.replace(/[$,]/g, '')),
-                        total_market_value_hkd: parseFloat(document.getElementById('stocksValueHKD').textContent.replace(/[HKD$(),]/g, '')),
+                        total_market_value: currentMainCategory === 'stocks' ? currentSummary.optionsValue : 0,
+                        total_market_value_hkd: currentMainCategory === 'stocks' ? currentSummary.optionsValueHKD : 0,
                         positions_details: []
                     },
                     // 風險回報率
                     risk_ratios: {
-                        max_return_rate: parseFloat(document.getElementById('totalPnL').textContent.match(/最大:\s*([\d.]+)%/)?.[1] || 0),
-                        current_return_rate: parseFloat(document.getElementById('totalPnL').textContent.match(/當前:\s*([\d.]+)%/)?.[1] || 0)
+                        max_return_rate: (() => {
+                            const totalPnLEl = document.getElementById('totalPnL');
+                            if (!totalPnLEl) return 0;
+                            const match = totalPnLEl.textContent.match(/最大:\s*([\d.]+)%/);
+                            return match ? parseFloat(match[1]) : 0;
+                        })(),
+                        current_return_rate: (() => {
+                            const totalPnLEl = document.getElementById('totalPnL');
+                            if (!totalPnLEl) return 0;
+                            const match = totalPnLEl.textContent.match(/當前:\s*([\d.]+)%/);
+                            return match ? parseFloat(match[1]) : 0;
+                        })()
                     },
                     // 計算公式（供雲端參考）
                     calculation_formulas: {

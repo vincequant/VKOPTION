@@ -37,7 +37,7 @@ app.config['JSON_AS_ASCII'] = False
 CONFIG = {
     'TWS_HOST': '127.0.0.1',
     'TWS_PORT': 7496,
-    'CLIENT_ID': 9999,  # 使用更大的ID避免衝突
+    'CLIENT_ID': 8888,  # 使用不同的ID避免衝突
     'SERVER_PORT': 8080,
     'DATA_FILE': 'portfolio_data_enhanced.json',
     'DASHBOARD_FILE': 'dashboard_new.html',
@@ -518,13 +518,20 @@ class EnhancedIBClient(EWrapper, EClient):
         """接收管理的賬戶列表"""
         super().managedAccounts(accountsList)
         accounts = accountsList.split(",")
-        if accounts:
-            self.account = accounts[0]  # 使用第一個賬戶
+        # 只使用 U6129142 賬戶
+        if "U6129142" in accounts:
+            self.account = "U6129142"
             logger.info(f"Managed accounts: {accountsList}")
-            logger.info(f"Using account: {self.account}")
+            logger.info(f"Using account: U6129142 (main account only)")
+        else:
+            logger.warning(f"U6129142 not found in accounts: {accountsList}")
         
     def position(self, account: str, contract: Contract, position: float, avgCost: float):
         """接收持倉數據"""
+        # 只處理 U6129142 賬戶的持倉
+        if account != "U6129142":
+            return
+            
         if position != 0:
             symbol = contract.symbol
             
@@ -591,21 +598,21 @@ class EnhancedIBClient(EWrapper, EClient):
         self.total_realized_pnl = 0
         self.total_daily_pnl = 0
         
-        # 1. 請求賬戶摘要
-        if self.account:
-            self.reqAccountSummary(9001, "All", 
+        # 1. 請求賬戶摘要 - 只請求 U6129142
+        if self.account == "U6129142":
+            self.reqAccountSummary(9001, "U6129142", 
                 "NetLiquidation,TotalCashValue,SettledCash,AccruedCash,BuyingPower,"
                 "EquityWithLoanValue,PreviousEquityWithLoanValue,GrossPositionValue,"
                 "InitMarginReq,MaintMarginReq,AvailableFunds,ExcessLiquidity,Cushion,"
                 "DayTradesRemaining,Leverage,Currency")
         else:
-            logger.warning("No account available for account summary request")
+            logger.warning("Account U6129142 not available for account summary request")
         
-        # 2. 請求賬戶更新
-        if self.account:
-            self.reqAccountUpdates(True, self.account)
+        # 2. 請求賬戶更新 - 只請求 U6129142
+        if self.account == "U6129142":
+            self.reqAccountUpdates(True, "U6129142")
         else:
-            self.reqAccountUpdates(True, "")
+            logger.warning("Not requesting account updates - only U6129142 is supported")
         
         # 3. 為每個持倉請求市場數據
         for symbol, pos_data in self.positions.items():
@@ -659,14 +666,14 @@ class EnhancedIBClient(EWrapper, EClient):
     
     def accountSummary(self, reqId: int, account: str, tag: str, value: str, currency: str):
         """接收賬戶摘要"""
-        # 只保存U6129142賬戶的數據，或者如果沒有該賬戶的數據則保存任何賬戶的數據
-        if account == "U6129142" or tag not in self.account_summary:
+        # 只處理 U6129142 賬戶的數據
+        if account == "U6129142":
             self.account_summary[tag] = {
                 'value': value,
                 'currency': currency,
                 'account': account
             }
-            logger.info(f"Account Summary - {tag}: {value} {currency}")
+            logger.info(f"Account Summary - {account} {tag}: {value} {currency}")
     
     def accountSummaryEnd(self, reqId: int):
         """賬戶摘要結束"""
@@ -675,16 +682,22 @@ class EnhancedIBClient(EWrapper, EClient):
     
     def updateAccountValue(self, key: str, val: str, currency: str, accountName: str):
         """更新賬戶價值"""
-        self.account_values[key] = {
-            'value': val,
-            'currency': currency,
-            'account': accountName
-        }
+        # 只處理 U6129142 賬戶的數據
+        if accountName == "U6129142":
+            self.account_values[key] = {
+                'value': val,
+                'currency': currency,
+                'account': accountName
+            }
         
     def updatePortfolio(self, contract: Contract, position: float, marketPrice: float, 
                        marketValue: float, averageCost: float, unrealizedPNL: float, 
                        realizedPNL: float, accountName: str):
         """更新持倉組合（來自reqAccountUpdates）"""
+        # 只處理 U6129142 賬戶的數據
+        if accountName != "U6129142":
+            return
+            
         symbol = contract.symbol
         if symbol in self.positions:
             self.positions[symbol].update({
@@ -1085,9 +1098,11 @@ class EnhancedIBClient(EWrapper, EClient):
                     response = requests.get(url, timeout=10)
                     if response.status_code == 200:
                         quotes = response.json()
+                        logger.info(f"FMP API 返回 {len(quotes)} 個報價")
                         for quote in quotes:
                             symbol = quote.get('symbol')
                             if symbol:
+                                logger.info(f"獲取到 {symbol} 的價格: ${quote.get('price', 0)}")
                                 prices[symbol] = {
                                     'price': quote.get('price', 0),
                                     'changesPercentage': quote.get('changesPercentage', 0),
@@ -1186,14 +1201,23 @@ def update_portfolio():
             ib_client.update_complete.clear()
             
             logger.info(f"Connecting to TWS at {CONFIG['TWS_HOST']}:{CONFIG['TWS_PORT']}")
-            ib_client.connect(CONFIG['TWS_HOST'], CONFIG['TWS_PORT'], clientId=CONFIG['CLIENT_ID'])
             
-            if not ib_client.connection_ready.wait(timeout=5):
+            try:
+                ib_client.connect(CONFIG['TWS_HOST'], CONFIG['TWS_PORT'], clientId=CONFIG['CLIENT_ID'])
+            except Exception as e:
+                logger.error(f"Connection failed: {e}")
+                return jsonify({
+                    "success": False,
+                    "error": "Connection failed",
+                    "message": f"無法連接到 TWS：{str(e)}。請檢查：\n1. TWS 是否正在運行\n2. API 設置是否啟用（端口 7496）\n3. 防火牆是否阻擋連接"
+                }), 503
+            
+            if not ib_client.connection_ready.wait(timeout=10):
                 logger.error("Connection timeout - did not receive nextValidId")
                 return jsonify({
                     "success": False,
                     "error": "Connection timeout",
-                    "message": "無法連接到 TWS，請確保 TWS 正在運行並已啟用 API"
+                    "message": "連接超時。請確保：\n1. TWS 已登錄\n2. API 設置中啟用了 'Enable ActiveX and Socket Clients'\n3. 端口設置為 7496"
                 }), 503
             
             # 清空舊數據
@@ -1327,20 +1351,42 @@ def update_cloud_config():
 
 @app.route('/api/upload-to-cloud', methods=['POST'])
 def api_upload_to_cloud():
-    """API: 上傳數據到雲端"""
+    """API: 上傳數據到雲端（使用 GitHub 更新）"""
     try:
-        # 接收前端發送的計算汇總數據
-        request_data = request.get_json() or {}
-        calculated_summary = request_data.get('calculated_summary', {})
+        # 執行更新腳本
+        import subprocess
+        script_path = Path(__file__).parent / "update_vercel_data.py"
         
-        result = upload_to_cloud(calculated_summary)
+        if not script_path.exists():
+            # 如果沒有更新腳本，使用原來的方法
+            request_data = request.get_json() or {}
+            calculated_summary = request_data.get('calculated_summary', {})
+            result = upload_to_cloud(calculated_summary)
+        else:
+            # 執行更新腳本
+            process = subprocess.run(
+                ["python3", str(script_path)],
+                capture_output=True,
+                text=True
+            )
+            
+            if process.returncode == 0:
+                result = {
+                    'success': True,
+                    'message': '數據已更新到 Vercel',
+                    'positions_count': len(ib_client.positions) if ib_client else 0
+                }
+            else:
+                result = {
+                    'success': False,
+                    'message': f'更新失敗: {process.stderr}'
+                }
         
         if result['success']:
             return jsonify({
                 "success": True,
                 "message": result['message'],
                 "positions_count": result.get('positions_count', 0),
-                "calculated_values_uploaded": bool(calculated_summary),
                 "timestamp": datetime.now().isoformat()
             })
         else:

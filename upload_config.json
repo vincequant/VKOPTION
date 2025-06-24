@@ -1,0 +1,5 @@
+{
+  "vercel_upload_url": "https://ib-portfolio-frontend.vercel.app/api/update-portfolio",
+  "api_key": "your-secure-api-key-here",
+  "enabled": true
+}
