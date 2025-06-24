@@ -1023,6 +1023,312 @@
         .notification.info {
             border-left: 4px solid #0dcaf0;
         }
+
+        /* ===== 手機響應式設計 ===== */
+        @media (max-width: 768px) {
+            /* 基礎樣式調整 */
+            body {
+                font-size: 14px;
+            }
+
+            /* 導航欄調整 */
+            .nav-container {
+                padding: 0 1rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+                flex: 1;
+            }
+
+            .nav-buttons {
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+
+            .btn {
+                padding: 0.375rem 0.75rem;
+                font-size: 0.813rem;
+            }
+
+            .btn i {
+                margin-right: 0.25rem;
+            }
+
+            /* 隱藏按鈕文字，只顯示圖標 */
+            .btn span {
+                display: none;
+            }
+
+            /* 主容器調整 */
+            .container {
+                padding: 0 0.5rem;
+                max-width: 100%;
+            }
+
+            /* 訂閱警告調整 */
+            .subscription-warning {
+                margin: 0.5rem;
+                padding: 0.75rem;
+                font-size: 0.813rem;
+            }
+
+            /* 摘要卡片網格調整 */
+            .summary-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .summary-card {
+                padding: 1rem;
+            }
+
+            .summary-label {
+                font-size: 0.75rem;
+            }
+
+            .summary-value {
+                font-size: 1.25rem;
+            }
+
+            /* 持倉統計調整 */
+            .stats-bar {
+                padding: 0.75rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .stats-item {
+                font-size: 0.813rem;
+            }
+
+            /* 主分類標籤調整 - 滑動設計 */
+            .main-category-tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                margin: 0 -0.5rem;
+                padding: 0 0.5rem;
+            }
+
+            .main-category-tabs::-webkit-scrollbar {
+                display: none;
+            }
+
+            .main-category-tab {
+                white-space: nowrap;
+                flex-shrink: 0;
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            /* 表格卡片調整 */
+            .table-card {
+                border-radius: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .table-header {
+                padding: 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .table-title {
+                font-size: 1rem;
+            }
+
+            /* 表格響應式設計 - 卡片式 */
+            .table-responsive {
+                padding: 0;
+            }
+
+            /* 隱藏傳統表格 */
+            .table-responsive table {
+                display: none;
+            }
+
+            /* 手機版卡片式列表 */
+            .mobile-position-list {
+                display: block;
+                padding: 0.5rem;
+            }
+
+            .mobile-position-card {
+                background: #f8f9fa;
+                border-radius: 0.5rem;
+                padding: 1rem;
+                margin-bottom: 0.75rem;
+                position: relative;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            }
+
+            .mobile-position-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 0.5rem;
+            }
+
+            .mobile-symbol {
+                font-size: 1rem;
+                font-weight: 600;
+                color: #212529;
+            }
+
+            .mobile-type-badge {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.75rem;
+                border-radius: 0.25rem;
+                font-weight: 500;
+            }
+
+            .mobile-position-details {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+                font-size: 0.813rem;
+            }
+
+            .mobile-detail-item {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .mobile-detail-label {
+                color: #6c757d;
+                font-size: 0.75rem;
+            }
+
+            .mobile-detail-value {
+                font-weight: 500;
+                color: #212529;
+            }
+
+            .mobile-position-footer {
+                margin-top: 0.75rem;
+                padding-top: 0.75rem;
+                border-top: 1px solid #dee2e6;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .mobile-pnl {
+                font-size: 1rem;
+                font-weight: 600;
+            }
+
+            /* 貨幣切換按鈕調整 */
+            .currency-toggle {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                top: auto;
+                z-index: 100;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            }
+
+            /* 自動更新控制調整 */
+            .auto-update-control {
+                position: relative;
+                margin-top: 1rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* 通知調整 */
+            .notification {
+                right: 10px;
+                left: 10px;
+                max-width: none;
+                transform: translateY(-100px);
+            }
+
+            .notification.show {
+                transform: translateY(0);
+            }
+
+            /* 滾動條美化 */
+            ::-webkit-scrollbar {
+                width: 4px;
+                height: 4px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 2px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+
+            /* 到期分布表格調整 */
+            #expiryDistribution .table-responsive table {
+                display: table;
+                font-size: 0.813rem;
+            }
+
+            #expiryDistribution th,
+            #expiryDistribution td {
+                padding: 0.5rem;
+                font-size: 0.813rem;
+            }
+
+            /* 摘要部分標題調整 */
+            #summaryTitle {
+                font-size: 1rem;
+            }
+
+            /* 隱藏桌面版表格，顯示手機版卡片 */
+            @media (max-width: 768px) {
+                .desktop-table {
+                    display: none !important;
+                }
+                
+                .mobile-position-list {
+                    display: block !important;
+                }
+            }
+        }
+
+        /* 平板響應式設計 */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .main-category-tabs {
+                justify-content: center;
+            }
+        }
+
+        /* 桌面版保持原樣 */
+        @media (min-width: 769px) {
+            .mobile-position-list {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1169,7 +1475,7 @@
                     </button>
                 </div>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive desktop-table">
                 <table>
                     <thead>
                         <tr>
@@ -1197,6 +1503,8 @@
                     </tbody>
                 </table>
             </div>
+            <!-- 手機版卡片列表 -->
+            <div id="usOptionsMobileList" class="mobile-position-list"></div>
             </div>
             
             <!-- 港股期權持倉 -->
@@ -1219,7 +1527,7 @@
                     </div>
                 </div>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive desktop-table">
                 <table>
                     <thead>
                         <tr>
@@ -1242,6 +1550,8 @@
                     </tbody>
                 </table>
             </div>
+            <!-- 手機版卡片列表 -->
+            <div id="hkOptionsMobileList" class="mobile-position-list"></div>
             </div>
             
             <!-- 股票持倉 -->
@@ -1249,7 +1559,7 @@
             <div class="table-header">
                 <h2 class="table-title">股票持倉</h2>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive desktop-table">
                 <table>
                     <thead>
                         <tr>
@@ -1273,6 +1583,8 @@
                     </tbody>
                 </table>
             </div>
+            <!-- 手機版卡片列表 -->
+            <div id="stocksMobileList" class="mobile-position-list"></div>
             </div>
         </div>
     </div>
@@ -1662,11 +1974,19 @@
             
             console.log(`Total Short Puts: ${shortPutCount}, Total Real Expiry Value: ${totalRealExpiryValue}, Total Capital Required: ${maxCapitalRequired}`);
             
-            // 獲取淨清算價值
+            // 獲取淨清算價值 - 修復數據路徑
             let netLiquidation = 0;
-            if (portfolioData.account_summary && portfolioData.account_summary.NetLiquidation) {
-                const netLiqValue = parseFloat(portfolioData.account_summary.NetLiquidation.value);
+            if (portfolioData.NetLiquidation) {
+                const netLiqValue = parseFloat(portfolioData.NetLiquidation.value);
                 // 檢查淨清算價值的貨幣，如果已經是 USD 就不需要轉換
+                if (portfolioData.NetLiquidation.currency === 'USD') {
+                    netLiquidation = netLiqValue;
+                } else {
+                    netLiquidation = netLiqValue / USD_TO_HKD;
+                }
+            } else if (portfolioData.account_summary && portfolioData.account_summary.NetLiquidation) {
+                // 備用路徑
+                const netLiqValue = parseFloat(portfolioData.account_summary.NetLiquidation.value);
                 if (portfolioData.account_summary.NetLiquidation.currency === 'USD') {
                     netLiquidation = netLiqValue;
                 } else {
@@ -1675,14 +1995,27 @@
             }
             
             // 計算回報率（使用實際到期價值）
-            const maxReturnRate = maxCapitalRequired > 0 ? (totalRealExpiryValue / maxCapitalRequired * 100) : 0;
-            const currentReturnRate = netLiquidation > 0 ? (totalRealExpiryValue / netLiquidation * 100) : 0;
+            let maxReturnRate = 0;
+            let currentReturnRate = 0;
             
-            console.log('Debug - Real Expiry Value:', totalRealExpiryValue);
-            console.log('Debug - Max Capital Required:', maxCapitalRequired);
-            console.log('Debug - Net Liquidation:', netLiquidation);
-            console.log('Debug - Max Return Rate:', maxReturnRate);
-            console.log('Debug - Current Return Rate:', currentReturnRate);
+            // 改進的回報率計算邏輯
+            if (maxCapitalRequired > 0 && totalRealExpiryValue !== 0) {
+                maxReturnRate = (totalRealExpiryValue / maxCapitalRequired) * 100;
+            }
+            
+            if (netLiquidation > 0 && totalRealExpiryValue !== 0) {
+                currentReturnRate = (totalRealExpiryValue / netLiquidation) * 100;
+            }
+            
+            // 詳細調試信息
+            console.log('=== 收益率計算調試 ===');
+            console.log('實際到期價值 (totalRealExpiryValue):', totalRealExpiryValue);
+            console.log('最大資金需求 (maxCapitalRequired):', maxCapitalRequired);
+            console.log('淨清算價值 (netLiquidation):', netLiquidation);
+            console.log('最大回報率 (maxReturnRate):', maxReturnRate.toFixed(2) + '%');
+            console.log('當前回報率 (currentReturnRate):', currentReturnRate.toFixed(2) + '%');
+            console.log('美股期權持倉數量:', usOptions.length);
+            console.log('========================');
             
             // 更新顯示（根據實際到期價值決定顏色和貨幣設置）
             const optionsValueElement = document.getElementById('optionsValue');
@@ -1711,7 +2044,7 @@
                 stocksValueElement.textContent = '$' + formatNumber(maxCapitalRequired, 0);
                 stocksValueHKDElement.textContent = `(HKD ${formatNumber(maxCapitalRequired * USD_TO_HKD, 0)})`;
             }
-            stocksValueElement.className = 'main-metric-value';
+            stocksValueElement.className = 'main-metric-value positive';
             
             // 顯示兩個回報率（優化樣式）
             const totalPnLElement = document.getElementById('totalPnL');
@@ -2278,6 +2611,9 @@
             
             tbody.innerHTML = html;
             
+            // 生成手機版卡片列表
+            generateMobilePositionCards('usOptionsMobileList', positions, 'USD');
+            
             // 延遲更新底層股票價格，確保 DOM 元素已經渲染
             setTimeout(() => {
                 displayUnderlyingPrices();
@@ -2386,6 +2722,9 @@
             });
             
             tbody.innerHTML = html;
+            
+            // 生成手機版卡片列表
+            generateMobilePositionCards('hkOptionsMobileList', positions, 'HKD');
         }
         
         // 更新股票表格
@@ -2484,6 +2823,152 @@
             });
             
             tbody.innerHTML = html;
+            
+            // 生成手機版卡片列表
+            generateMobilePositionCards('stocksMobileList', positions, 'USD');
+        }
+
+        // 生成手機版卡片列表
+        function generateMobilePositionCards(containerId, positions, defaultCurrency) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            if (positions.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; color: #6c757d; padding: 2rem;">
+                        無符合條件的持倉
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            positions.forEach(pos => {
+                // 類型標記
+                let typeBadge = '';
+                let typeClass = '';
+                if (pos.secType === 'OPT') {
+                    typeBadge = pos.right === 'C' ? 'CALL' : 'PUT';
+                    typeClass = pos.right === 'C' ? 'badge-call' : 'badge-put';
+                } else if (pos.secType === 'STK') {
+                    typeBadge = 'STOCK';
+                    typeClass = 'badge-stock';
+                }
+                
+                // 價格和盈虧計算
+                let currentPrice = 0;
+                let priceChange = 0;
+                let marketValue = 0;
+                let pnl = 0;
+                let pnlPercent = 0;
+                let pnlClass = '';
+                
+                // 獲取標的價格（對於期權）或股票價格
+                const symbol = pos.tradingClass || pos.symbol;
+                const priceData = underlyingPrices[symbol];
+                
+                if (priceData) {
+                    if (pos.secType === 'STK') {
+                        currentPrice = priceData.price || 0;
+                        priceChange = priceData.changesPercentage || 0;
+                        marketValue = pos.position * currentPrice;
+                        const cost = pos.position * pos.avg_cost;
+                        pnl = marketValue - cost;
+                        pnlPercent = cost > 0 ? (pnl / cost) * 100 : 0;
+                    } else {
+                        // 期權使用 market_data
+                        currentPrice = pos.current_price || 0;
+                        priceChange = priceData.changesPercentage || 0;
+                        marketValue = Math.abs(pos.market_value || 0);
+                        pnl = pos.pnl || 0;
+                        pnlPercent = pos.avg_cost > 0 ? (pnl / (Math.abs(pos.position) * pos.avg_cost * 100)) * 100 : 0;
+                    }
+                }
+                
+                pnlClass = pnl >= 0 ? 'positive' : 'negative';
+                
+                // 貨幣轉換
+                let displayValue = marketValue;
+                let displayPnl = Math.abs(pnl);
+                let currencySymbol = '$';
+                
+                if (currentCurrency === 'HKD') {
+                    if (pos.currency === 'USD' || defaultCurrency === 'USD') {
+                        displayValue = marketValue * USD_TO_HKD;
+                        displayPnl = Math.abs(pnl) * USD_TO_HKD;
+                        currencySymbol = 'HK$';
+                    } else {
+                        currencySymbol = 'HK$';
+                    }
+                } else {
+                    if (pos.currency === 'HKD' || defaultCurrency === 'HKD') {
+                        displayValue = marketValue / USD_TO_HKD;
+                        displayPnl = Math.abs(pnl) / USD_TO_HKD;
+                    }
+                }
+                
+                html += `
+                    <div class="mobile-position-card">
+                        <div class="mobile-position-header">
+                            <span class="mobile-symbol">${pos.symbol}</span>
+                            <span class="mobile-type-badge ${typeClass}">${typeBadge}</span>
+                        </div>
+                        
+                        <div class="mobile-position-details">
+                            ${pos.secType === 'OPT' ? `
+                                <div class="mobile-detail-item">
+                                    <span class="mobile-detail-label">行權價</span>
+                                    <span class="mobile-detail-value">${pos.currency === 'HKD' ? 'HK$' : '$'}${formatNumber(pos.strike || 0, 0)}</span>
+                                </div>
+                                <div class="mobile-detail-item">
+                                    <span class="mobile-detail-label">到期日</span>
+                                    <span class="mobile-detail-value">${pos.expiry_formatted} (${pos.days_to_expiry}天)</span>
+                                </div>
+                            ` : ''}
+                            
+                            <div class="mobile-detail-item">
+                                <span class="mobile-detail-label">手數</span>
+                                <span class="mobile-detail-value">${formatNumber(pos.position, 0)}</span>
+                            </div>
+                            
+                            <div class="mobile-detail-item">
+                                <span class="mobile-detail-label">成本</span>
+                                <span class="mobile-detail-value">${pos.currency === 'HKD' ? 'HK$' : '$'}${formatNumber(pos.avg_cost, 2)}</span>
+                            </div>
+                            
+                            ${currentPrice > 0 || pos.current_price > 0 ? `
+                                <div class="mobile-detail-item">
+                                    <span class="mobile-detail-label">現價</span>
+                                    <span class="mobile-detail-value">${pos.currency === 'HKD' ? 'HK$' : '$'}${formatNumber(pos.current_price || currentPrice, 2)}</span>
+                                </div>
+                                
+                                <div class="mobile-detail-item">
+                                    <span class="mobile-detail-label">漲跌</span>
+                                    <span class="mobile-detail-value ${priceChange >= 0 ? 'positive' : 'negative'}">
+                                        ${priceChange >= 0 ? '+' : ''}${formatNumber(priceChange, 2)}%
+                                    </span>
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        <div class="mobile-position-footer">
+                            <div>
+                                <div class="mobile-detail-label">市值</div>
+                                <div class="mobile-detail-value">${currencySymbol}${formatNumber(displayValue, 0)}</div>
+                            </div>
+                            <div class="mobile-pnl ${pnlClass}">
+                                ${currencySymbol}${formatNumber(displayPnl, 0)}
+                                <br>
+                                <span style="font-size: 0.875rem; font-weight: normal;">
+                                    ${pnlPercent >= 0 ? '+' : ''}${formatNumber(pnlPercent, 2)}%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
         }
 
         // 過濾持倉

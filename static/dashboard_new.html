@@ -1664,7 +1664,15 @@
             
             // 獲取淨清算價值
             let netLiquidation = 0;
-            if (portfolioData.account_summary && portfolioData.account_summary.NetLiquidation) {
+            if (portfolioData.NetLiquidation) {
+                const netLiqValue = parseFloat(portfolioData.NetLiquidation.value);
+                // 檢查淨清算價值的貨幣，如果已經是 USD 就不需要轉換
+                if (portfolioData.NetLiquidation.currency === 'USD') {
+                    netLiquidation = netLiqValue;
+                } else {
+                    netLiquidation = netLiqValue / USD_TO_HKD;
+                }
+            } else if (portfolioData.account_summary && portfolioData.account_summary.NetLiquidation) {
                 const netLiqValue = parseFloat(portfolioData.account_summary.NetLiquidation.value);
                 // 檢查淨清算價值的貨幣，如果已經是 USD 就不需要轉換
                 if (portfolioData.account_summary.NetLiquidation.currency === 'USD') {
@@ -1690,12 +1698,12 @@
             
             if (currentCurrency === 'HKD') {
                 // HKD 為主，USD 在括號內
-                optionsValueElement.textContent = 'HK$' + formatNumber(Math.abs(totalRealExpiryValue * USD_TO_HKD), 0);
-                optionsValueHKDElement.textContent = `(USD ${formatNumber(Math.abs(totalRealExpiryValue), 0)})`;
+                optionsValueElement.textContent = 'HK$' + formatNumber(totalRealExpiryValue * USD_TO_HKD, 0);
+                optionsValueHKDElement.textContent = `(USD ${formatNumber(totalRealExpiryValue, 0)})`;
             } else {
                 // USD 為主，HKD 在括號內
-                optionsValueElement.textContent = '$' + formatNumber(Math.abs(totalRealExpiryValue), 0);
-                optionsValueHKDElement.textContent = `(HKD ${formatNumber(Math.abs(totalRealExpiryValue * USD_TO_HKD), 0)})`;
+                optionsValueElement.textContent = '$' + formatNumber(totalRealExpiryValue, 0);
+                optionsValueHKDElement.textContent = `(HKD ${formatNumber(totalRealExpiryValue * USD_TO_HKD, 0)})`;
             }
             optionsValueElement.className = totalRealExpiryValue >= 0 ? 'main-metric-value positive' : 'main-metric-value negative';
             
@@ -1711,12 +1719,12 @@
                 stocksValueElement.textContent = '$' + formatNumber(maxCapitalRequired, 0);
                 stocksValueHKDElement.textContent = `(HKD ${formatNumber(maxCapitalRequired * USD_TO_HKD, 0)})`;
             }
-            stocksValueElement.className = 'main-metric-value';
+            stocksValueElement.className = 'main-metric-value positive';
             
             // 顯示兩個回報率（優化樣式）
             const totalPnLElement = document.getElementById('totalPnL');
             totalPnLElement.innerHTML = `
-                最大: ${formatNumber(Math.abs(maxReturnRate), 1)}% / 當前: ${formatNumber(Math.abs(currentReturnRate), 1)}%
+                最大: ${formatNumber(maxReturnRate, 1)}% / 當前: ${formatNumber(currentReturnRate, 1)}%
             `;
             totalPnLElement.className = 'main-metric-value';
             totalPnLElement.style.color = '#198754';
@@ -3102,8 +3110,12 @@
             // 更新淨清算價值
             let netLiqData = null;
             
-            // 首先檢查 account_summary
-            if (portfolioData.account_summary && portfolioData.account_summary.NetLiquidation) {
+            // 首先檢查直接的 NetLiquidation 屬性
+            if (portfolioData.NetLiquidation) {
+                netLiqData = portfolioData.NetLiquidation;
+            }
+            // 如果沒有直接屬性，檢查 account_summary
+            else if (portfolioData.account_summary && portfolioData.account_summary.NetLiquidation) {
                 netLiqData = portfolioData.account_summary.NetLiquidation;
             }
             // 如果 account_summary 沒有數據，檢查 account_values

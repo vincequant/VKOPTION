@@ -205,4 +205,29 @@ Recent updates have focused on:
 - Integration with Financial Modeling Prep API
 - Project structure optimization (reduced from 40+ to 19 core files)
 
+## Recent Bug Fixes (2025-06-25)
+
+### Dashboard UI Improvements
+1. **Maximum Capital Requirement Color Fix**
+   - **Issue**: "最大資金需求" displayed in black color instead of green
+   - **Fix**: Added `positive` CSS class to `stocksValueElement` in dashboard_new.html:2026
+   - **Files Modified**: `dashboard_new.html`, `static/dashboard_new.html`
+
+2. **Current Return Rate Calculation Fix**
+   - **Issue**: "當前收益率" always showed 0.0% due to incorrect data path
+   - **Root Cause**: Code tried to access `portfolioData.account_summary.NetLiquidation` but actual data is in `portfolioData.NetLiquidation`
+   - **Fix**: Updated NetLiquidation data access path with fallback mechanism
+   - **Files Modified**: `dashboard_new.html:1977-1995`, `static/dashboard_new.html`
+   - **Added**: Enhanced debugging console logs for return rate calculations
+
+3. **Improved Error Handling**
+   - Added comprehensive console debugging for return rate calculations
+   - Enhanced division by zero checks in rate calculations
+   - Improved display logic for negative values
+
+### Technical Details
+- **NetLiquidation Data Path**: Now checks `portfolioData.NetLiquidation` first, falls back to `portfolioData.account_summary.NetLiquidation`
+- **Return Rate Formula**: `currentReturnRate = (totalRealExpiryValue / netLiquidation) * 100`
+- **Debugging**: Console logs show all calculation variables for troubleshooting
+
 See README.md for user-facing documentation and deployment instructions.
