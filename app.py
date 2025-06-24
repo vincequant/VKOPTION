@@ -652,10 +652,19 @@ class EnhancedIBClient(EWrapper, EClient):
                 # 股票的標準tick類型
                 self.reqMktData(req_id, contract, "233", False, False, [])
             
-            # 請求歷史數據（股票和期貨請求，期權跳過）
-            if contract.secType not in ['OPT']:  # 期權沒有EOD數據
-                hist_req_id = self.nextReqId()
-                self.req_id_map[hist_req_id] = symbol
+            # 請求歷史數據
+            # 期權嘗試請求 TRADES 數據來獲取收盤價
+            hist_req_id = self.nextReqId()
+            self.req_id_map[hist_req_id] = symbol
+            
+            if contract.secType == 'OPT':
+                # 期權使用 TRADES 數據類型
+                self.reqHistoricalData(
+                    hist_req_id, contract, "", "1 D", "1 day", 
+                    "TRADES", 1, 1, False, []
+                )
+            else:
+                # 股票和其他使用 MIDPOINT
                 self.reqHistoricalData(
                     hist_req_id, contract, "", "5 D", "1 day", 
                     "MIDPOINT", 1, 1, False, []
@@ -858,6 +867,16 @@ class EnhancedIBClient(EWrapper, EClient):
         if reqId in self.req_id_map:
             symbol = self.req_id_map[reqId]
             logger.info(f"Historical data completed for {symbol}")
+            
+            # 將最新的收盤價添加到 market_data
+            if symbol in self.historical_data and self.historical_data[symbol]:
+                latest_bar = self.historical_data[symbol][-1]  # 獲取最新的數據
+                if symbol not in self.market_data:
+                    self.market_data[symbol] = {}
+                
+                # 保存收盤價
+                self.market_data[symbol]['close'] = latest_bar['close']
+                logger.info(f"Set close price for {symbol}: {latest_bar['close']}")
     
     def dataCollectionComplete(self):
         """數據收集完成"""
