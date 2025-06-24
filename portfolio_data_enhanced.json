@@ -1,6 +1,6 @@
 {
-  "timestamp": "2025-06-24T15:24:42.893561",
-  "last_update": "2025-06-24 15:24:42",
+  "timestamp": "2025-06-24T15:29:48.978036",
+  "last_update": "2025-06-24 15:29:48",
   "positions": [
     {
       "account": "U6129142",
@@ -80,16 +80,16 @@
       "conId": 15016090,
       "localSymbol": "HKD.JPY",
       "tradingClass": "HKD.JPY",
-      "marketPrice": 18.4754143,
-      "marketValue": -132280271.13,
-      "unrealizedPNL": 1283493.94,
+      "marketPrice": 18.48225975,
+      "marketValue": -132329283.36,
+      "unrealizedPNL": 1234481.71,
       "realizedPNL": 0.0,
       "accountName": "U6129142",
       "market_data": {
         "bid": 18.476,
-        "bidSize": 1250000,
-        "ask": 18.477,
-        "askSize": 37090000
+        "bidSize": 34930000,
+        "ask": 18.478,
+        "askSize": 9090000
       },
       "has_market_data": true,
       "has_pnl_data": false,
@@ -140,8 +140,8 @@
           "date": "20250624",
           "open": 18.6175,
           "high": 18.6235,
-          "low": 18.473,
-          "close": 18.476,
+          "low": 18.4705,
+          "close": 18.48,
           "volume": -1,
           "average": -1.0,
           "barCount": -1
@@ -170,7 +170,8 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0
       },
       "has_market_data": true,
       "has_pnl_data": false,
@@ -599,53 +600,12 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "modelGreeks": {
-          "impliedVolatility": 0.3777334607723129,
-          "delta": -0.1458245156271834,
-          "optionPrice": 3.0499999467293457,
-          "pvDividend": 0.0,
-          "gamma": 0.006181041343415334,
-          "vega": 0.2282168628918808,
-          "theta": -0.04542442716802686,
-          "underlyingPrice": 201.2636260986328
-        },
-        "bidGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": null,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 201.2636260986328
-        },
-        "askGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": null,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 201.2636260986328
-        },
-        "lastGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": null,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 201.2636260986328
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 3.6452911665,
       "current_price": 0,
@@ -674,7 +634,8 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0
       },
       "has_market_data": true,
       "has_pnl_data": false,
@@ -753,49 +714,7 @@
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "modelGreeks": {
-          "impliedVolatility": 0.45505782748763973,
-          "delta": -0.26983157010502795,
-          "optionPrice": 2.424654427900846,
-          "pvDividend": 0.0,
-          "gamma": 0.025600703834826804,
-          "vega": 0.09362098602643654,
-          "theta": -0.022092239648940915,
-          "underlyingPrice": 58.64650344848633
-        },
-        "bidGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": null,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 58.64650344848633
-        },
-        "askGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": null,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 58.64650344848633
-        },
-        "lastGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": null,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 58.64650344848633
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 2.272745237,
       "current_price": 0,
@@ -1007,51 +926,51 @@
       "hk_trading_class": "HSI",
       "market_data": {
         "bid": 69.0,
-        "bidSize": 1,
+        "bidSize": 20,
         "ask": 72.0,
-        "askSize": 19
+        "askSize": 20
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
         "modelGreeks": {
-          "impliedVolatility": 0.2272008713184065,
-          "delta": -0.08461613522301592,
-          "optionPrice": 69.03682509304781,
+          "impliedVolatility": 0.22764880333595283,
+          "delta": -0.08590457618024461,
+          "optionPrice": 70.40561656090676,
           "pvDividend": 0.0,
-          "gamma": 8.964390209266284e-05,
-          "vega": 12.25418666651376,
-          "theta": -3.747097848911153,
+          "gamma": 9.052888042347802e-05,
+          "vega": 12.381062826427296,
+          "theta": -3.7957328061427233,
           "underlyingPrice": null
         },
         "bidGreeks": {
-          "impliedVolatility": 0.22716965443431172,
-          "delta": -0.08349078514593644,
+          "impliedVolatility": 0.22646480060204272,
+          "delta": -0.08513851835177488,
           "optionPrice": 69.0,
           "pvDividend": 0.0,
-          "gamma": 8.889282364862676e-05,
-          "vega": 11.672713019731985,
-          "theta": -3.63648430075916,
+          "gamma": 9.058658081722835e-05,
+          "vega": 11.832137906319215,
+          "theta": -3.674714046556035,
           "underlyingPrice": null
         },
         "askGreeks": {
-          "impliedVolatility": 0.2296882117781011,
-          "delta": -0.08571845278566181,
+          "impliedVolatility": 0.22897877965336047,
+          "delta": -0.08738364483164807,
           "optionPrice": 72.0,
           "pvDividend": 0.0,
-          "gamma": 8.967182727743373e-05,
-          "vega": 11.905551431277809,
-          "theta": -3.7503191170870966,
+          "gamma": 9.135322756241168e-05,
+          "vega": 12.064734754563803,
+          "theta": -3.788727631194343,
           "underlyingPrice": null
         },
         "lastGreeks": {
           "impliedVolatility": 0.22749516063573194,
-          "delta": -0.08377905403089603,
+          "delta": -0.08605956063031017,
           "optionPrice": 71.0,
           "pvDividend": 0.0,
-          "gamma": 8.899580456315977e-05,
-          "vega": 11.702980610858454,
-          "theta": -3.6511601601326533,
+          "gamma": 9.090577498151524e-05,
+          "vega": 11.927853109982486,
+          "theta": -3.721367689369233,
           "underlyingPrice": null
         }
       },
@@ -1212,7 +1131,8 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0
       },
       "has_market_data": true,
       "has_pnl_data": false,
@@ -1390,49 +1310,7 @@
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "modelGreeks": {
-          "impliedVolatility": 1.0872019693663009,
-          "delta": 0.2291710710964566,
-          "optionPrice": 2.9150180808670116,
-          "pvDividend": 0.0,
-          "gamma": 0.011001266051871909,
-          "vega": 0.07234786174486807,
-          "theta": -0.04510720487861386,
-          "underlyingPrice": 52.64897918701172
-        },
-        "bidGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": null,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 52.64897918701172
-        },
-        "askGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": null,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 52.64897918701172
-        },
-        "lastGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": null,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 52.64897918701172
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 2.411893,
       "current_price": 0,
@@ -1494,7 +1372,8 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0
       },
       "has_market_data": true,
       "has_pnl_data": false,
@@ -1560,7 +1439,8 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0
       },
       "has_market_data": true,
       "has_pnl_data": false,
@@ -1704,16 +1584,16 @@
       "conId": 15016059,
       "localSymbol": "USD.JPY",
       "tradingClass": "USD.JPY",
-      "marketPrice": 145.02568055,
-      "marketValue": 237822247.57,
-      "unrealizedPNL": 1784838.64,
+      "marketPrice": 145.0864105,
+      "marketValue": 237921836.42,
+      "unrealizedPNL": 1884427.49,
       "realizedPNL": 0.0,
       "accountName": "U6129142",
       "market_data": {
-        "bid": 145.037,
-        "bidSize": 1000000,
-        "ask": 145.038,
-        "askSize": 1000000
+        "bid": 145.042,
+        "bidSize": 3000000,
+        "ask": 145.045,
+        "askSize": 600000
       },
       "has_market_data": true,
       "has_pnl_data": false,
@@ -1764,8 +1644,8 @@
           "date": "20250624",
           "open": 146.111,
           "high": 146.1925,
-          "low": 145.014,
-          "close": 145.037,
+          "low": 144.9955,
+          "close": 145.068,
           "volume": -1,
           "average": -1.0,
           "barCount": -1
@@ -1860,7 +1740,8 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0
       },
       "has_market_data": true,
       "has_pnl_data": false,
@@ -1936,7 +1817,7 @@
       "account": "U6129142"
     },
     "Cushion": {
-      "value": "0.143888",
+      "value": "0.144084",
       "currency": "",
       "account": "U6129142"
     },
@@ -1961,12 +1842,12 @@
       "account": "U6129142"
     },
     "SettledCashByDate": {
-      "value": "20250624:-113499.49;20250625:-49499.49000002",
+      "value": "20250624:-113499.49;20250625:-48776.09369875",
       "currency": "",
       "account": "U6129142"
     },
     "SettledCashByDate-S": {
-      "value": "20250624:-113499.49;20250625:-49499.49000002",
+      "value": "20250624:-113499.49;20250625:-48776.09369875",
       "currency": "",
       "account": "U6129142"
     },
@@ -1981,7 +1862,7 @@
       "account": "U6129142"
     },
     "AccruedCash-S": {
-      "value": "33868.65",
+      "value": "33868.89",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -1996,12 +1877,12 @@
       "account": "U6129142"
     },
     "AvailableFunds": {
-      "value": "423563.30",
+      "value": "426648.08",
       "currency": "HKD",
       "account": "U6129142"
     },
     "AvailableFunds-S": {
-      "value": "423563.30",
+      "value": "426648.08",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -2016,77 +1897,77 @@
       "account": "U6129142"
     },
     "BuyingPower": {
-      "value": "2823755.36",
+      "value": "2844320.53",
       "currency": "HKD",
       "account": "U6129142"
     },
     "EquityWithLoanValue": {
-      "value": "14349905.54",
+      "value": "14350358.01",
       "currency": "HKD",
       "account": "U6129142"
     },
     "EquityWithLoanValue-S": {
-      "value": "14349905.54",
+      "value": "14350358.01",
       "currency": "HKD",
       "account": "U6129142"
     },
     "ExcessLiquidity": {
-      "value": "2064473.82",
+      "value": "2067352.63",
       "currency": "HKD",
       "account": "U6129142"
     },
     "ExcessLiquidity-S": {
-      "value": "2064473.82",
+      "value": "2067352.63",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullAvailableFunds": {
-      "value": "423563.30",
+      "value": "426648.08",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullAvailableFunds-S": {
-      "value": "423563.30",
+      "value": "426648.08",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullExcessLiquidity": {
-      "value": "2064473.82",
+      "value": "2067352.63",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullExcessLiquidity-S": {
-      "value": "2064473.82",
+      "value": "2067352.63",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullInitMarginReq": {
-      "value": "13926342.23",
+      "value": "13923709.93",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullInitMarginReq-S": {
-      "value": "13926342.23",
+      "value": "13923709.93",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullMaintMarginReq": {
-      "value": "12285431.72",
+      "value": "12283005.38",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullMaintMarginReq-S": {
-      "value": "12285431.72",
+      "value": "12283005.38",
       "currency": "HKD",
       "account": "U6129142"
     },
     "GrossPositionValue": {
-      "value": "18425849.19",
+      "value": "18425621.60",
       "currency": "HKD",
       "account": "U6129142"
     },
     "GrossPositionValue-S": {
-      "value": "18425849.19",
+      "value": "18425621.60",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -2121,72 +2002,72 @@
       "account": "U6129142"
     },
     "InitMarginReq": {
-      "value": "13926342.23",
+      "value": "13923709.93",
       "currency": "HKD",
       "account": "U6129142"
     },
     "InitMarginReq-S": {
-      "value": "13926342.23",
+      "value": "13923709.93",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadAvailableFunds": {
-      "value": "423563.30",
+      "value": "426648.08",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadAvailableFunds-S": {
-      "value": "423563.30",
+      "value": "426648.08",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadExcessLiquidity": {
-      "value": "2064473.82",
+      "value": "2067352.63",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadExcessLiquidity-S": {
-      "value": "2064473.82",
+      "value": "2067352.63",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadInitMarginReq": {
-      "value": "13926342.23",
+      "value": "13923709.93",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadInitMarginReq-S": {
-      "value": "13926342.23",
+      "value": "13923709.93",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadMaintMarginReq": {
-      "value": "12285431.72",
+      "value": "12283005.38",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadMaintMarginReq-S": {
-      "value": "12285431.72",
+      "value": "12283005.38",
       "currency": "HKD",
       "account": "U6129142"
     },
     "MaintMarginReq": {
-      "value": "12285431.72",
+      "value": "12283005.38",
       "currency": "HKD",
       "account": "U6129142"
     },
     "MaintMarginReq-S": {
-      "value": "12285431.72",
+      "value": "12283005.38",
       "currency": "HKD",
       "account": "U6129142"
     },
     "NetLiquidation": {
-      "value": "14347787.13",
+      "value": "14348239.59",
       "currency": "HKD",
       "account": "U6129142"
     },
     "NetLiquidation-S": {
-      "value": "14347787.13",
+      "value": "14348239.59",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -2236,12 +2117,12 @@
       "account": "U6129142"
     },
     "TotalCashValue": {
-      "value": "854669.20",
+      "value": "855398.87",
       "currency": "HKD",
       "account": "U6129142"
     },
     "TotalCashValue-S": {
-      "value": "854669.20",
+      "value": "855398.87",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -2759,23 +2640,15 @@
       "reqId": 9001,
       "errorCode": 321,
       "errorString": "確認請求時出錯。:-'b2' :導致- Unified group name is invalid",
-      "timestamp": "2025-06-24T15:24:31.570358",
+      "timestamp": "2025-06-24T15:29:37.620351",
       "symbol": "Unknown",
       "level": "warning"
-    },
-    {
-      "reqId": 1040,
-      "errorCode": 10168,
-      "errorString": "請求的市場數據沒有訂閱。延時市場數據未啟用。",
-      "timestamp": "2025-06-24T15:24:31.580257",
-      "symbol": "BOXX",
-      "level": "error"
     },
     {
       "reqId": 1024,
       "errorCode": 10090,
       "errorString": "Part of requested market data is not subscribed. Subscription-independent ticks are still active.延遲市場數據可用。:HSI Hang Seng Stock Index/TOP/ALL",
-      "timestamp": "2025-06-24T15:24:31.789652",
+      "timestamp": "2025-06-24T15:29:37.837197",
       "symbol": "HSI_20250730_P_22000.0",
       "level": "warning"
     },
@@ -2783,7 +2656,7 @@
       "reqId": 1027,
       "errorCode": 200,
       "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T15:24:32.068903",
+      "timestamp": "2025-06-24T15:29:37.926996",
       "symbol": "1024_20250929_P_52.5",
       "level": "warning"
     },
@@ -2791,7 +2664,7 @@
       "reqId": 1042,
       "errorCode": 200,
       "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T15:24:32.122897",
+      "timestamp": "2025-06-24T15:29:37.932864",
       "symbol": "700_20250929_P_470.0",
       "level": "warning"
     },
@@ -2799,7 +2672,23 @@
       "reqId": 1041,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No market data permissions for BATS STK",
-      "timestamp": "2025-06-24T15:24:32.242638",
+      "timestamp": "2025-06-24T15:29:38.100324",
+      "symbol": "BOXX",
+      "level": "warning"
+    },
+    {
+      "reqId": 1040,
+      "errorCode": 10090,
+      "errorString": "Part of requested market data is not subscribed. Subscription-independent ticks are still active.BOXX BATS/TOP/BID_ASK",
+      "timestamp": "2025-06-24T15:29:38.726790",
+      "symbol": "BOXX",
+      "level": "warning"
+    },
+    {
+      "reqId": 1040,
+      "errorCode": 354,
+      "errorString": "Requested market data is not subscribed.延遲市場數據可用。:Error&BATS/STK/Top",
+      "timestamp": "2025-06-24T15:29:38.729124",
       "symbol": "BOXX",
       "level": "warning"
     }
@@ -2809,6 +2698,11 @@
       "error_code": 10090,
       "message": "需要付費訂閱市場數據",
       "error_string": "Part of requested market data is not subscribed. Subscription-independent ticks are still active.延遲市場數據可用。:HSI Hang Seng Stock Index/TOP/ALL"
+    },
+    "BOXX": {
+      "error_code": 354,
+      "message": "需要付費訂閱市場數據",
+      "error_string": "Requested market data is not subscribed.延遲市場數據可用。:Error&BATS/STK/Top"
     }
   }
 }
