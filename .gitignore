@@ -40,14 +40,20 @@ env/
 .DS_Store
 Thumbs.db
 
-# Project specific
+# Project specific - SENSITIVE DATA
 portfolio_data_enhanced.json
+portfolio_data.json
 cloud_upload_config.json
 *.log
 .env
+.env.local
 
 # Archive directory
 _archive_20250622/
+
+# Any data files
+*_data.json
+data/
 
 # Frontend build
 ib-frontend-clean/.next/

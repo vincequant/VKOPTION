@@ -46,7 +46,7 @@ CONFIG = {
     'DATA_FILE': 'portfolio_data_enhanced.json',
     'DASHBOARD_FILE': 'dashboard_new.html',
     'AUTO_UPDATE_INTERVAL': int(os.environ.get('AUTO_UPDATE_INTERVAL', '300')),
-    'FMP_API_KEY': os.environ.get('FMP_API_KEY', 'sFc5p2fbvwbYgbNo9IZDdqK8fMtn34zm'),
+    'FMP_API_KEY': os.environ.get('FMP_API_KEY', ''),  # API key should be set via environment variable
     'CLOUD_CONFIG_FILE': 'cloud_upload_config.json',
     'ENVIRONMENT': os.environ.get('ENVIRONMENT', 'development')
 }
