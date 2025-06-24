@@ -2219,27 +2219,6 @@
                 } else if (pos.market_data?.close > 0) {
                     // 如果沒有實時價格但有收盤價，顯示收盤價並標記
                     currentPriceDisplay = '$' + formatNumber(pos.market_data.close, 2) + ' (收)';
-                } else if ((pos.avg_cost > 0 || pos.avgCost > 0) && pos.secType === 'OPT') {
-                    // 如果完全沒有市場數據，為期權計算一個估計的收盤價
-                    const avgCost = pos.avg_cost || (pos.avgCost / 100); // avgCost 需要除以 100
-                    
-                    // 對於 Short Put，根據標的價格和行權價的關係估算
-                    if (pos.right === 'P' && pos.position < 0 && underlyingPrice > 0 && strike > 0) {
-                        // 計算內在價值
-                        const intrinsicValue = Math.max(0, strike - underlyingPrice);
-                        // 如果深度價外，使用較低的估值
-                        if (underlyingPrice >= strike) {
-                            // OTM，使用成本的一定比例作為估值
-                            const otmRatio = Math.min(0.8, Math.max(0.1, (strike - underlyingPrice) / strike + 1));
-                            currentPriceDisplay = '$' + formatNumber(avgCost * otmRatio, 2) + ' (估)';
-                        } else {
-                            // ITM，加上內在價值
-                            currentPriceDisplay = '$' + formatNumber(intrinsicValue + avgCost * 0.3, 2) + ' (估)';
-                        }
-                    } else {
-                        // 其他情況顯示成本
-                        currentPriceDisplay = '$' + formatNumber(avgCost, 2) + ' (成本)';
-                    }
                 }
                 
                 let pnl = pos.pnl;
