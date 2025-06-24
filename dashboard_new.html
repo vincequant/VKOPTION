@@ -297,6 +297,39 @@
         .status-dot.disconnected {
             background-color: #dc3545;
         }
+        
+        /* 貨幣切換器 */
+        .currency-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            background-color: #f8f9fa;
+            border-radius: 20px;
+            padding: 2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .currency-btn {
+            padding: 4px 12px;
+            border: none;
+            background: none;
+            color: #6c757d;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 18px;
+            transition: all 0.2s;
+        }
+        
+        .currency-btn.active {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .currency-btn:hover:not(.active) {
+            background-color: #e9ecef;
+        }
 
         /* 主容器 */
         .container {
@@ -760,6 +793,40 @@
         input:checked + .toggle-slider:before {
             transform: translateX(26px);
         }
+        
+        /* 貨幣切換樣式 */
+        .currency-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            background-color: #f8f9fa;
+            border-radius: 20px;
+            padding: 2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .currency-btn {
+            padding: 4px 12px;
+            border: none;
+            background: none;
+            color: #6c757d;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 18px;
+        }
+        
+        .currency-btn:hover {
+            color: #495057;
+        }
+        
+        .currency-btn.active {
+            background-color: #0d6efd;
+            color: white;
+            box-shadow: 0 2px 4px rgba(13,110,253,0.3);
+        }
 
         /* 持倉表格 */
         .table-card {
@@ -951,7 +1018,12 @@
     <!-- 主容器 -->
     <div class="container">
         <!-- 賬戶資訊 -->
-        <div class="dashboard-section account-info">
+        <div class="dashboard-section account-info" style="position: relative;">
+            <!-- 貨幣切換器 -->
+            <div class="currency-toggle">
+                <button class="currency-btn active" id="hkdBtn" onclick="setCurrency('HKD')">HKD</button>
+                <button class="currency-btn" id="usdBtn" onclick="setCurrency('USD')">USD</button>
+            </div>
             <div class="section-header">
                 <i class="fas fa-wallet"></i>
                 賬戶資訊
@@ -1171,6 +1243,7 @@
         let groupByExpiry = { us: true, hk: true }; // 是否按到期日分組
         let currentSort = { us: { column: null, direction: 'asc' }, hk: { column: null, direction: 'asc' }, stock: { column: null, direction: 'asc' } }; // 當前排序狀態
         let currentMainCategory = 'us-options'; // 當前主分類
+        let currentCurrency = 'HKD'; // 當前貨幣，默認HKD
 
         // 切換主分類
         function switchMainCategory(category) {
@@ -1205,6 +1278,25 @@
         // 切換持倉標籤（已廢棄，由主分類標籤控制）
         function switchPositionTab(tab) {
             // 此函數已不再使用
+        }
+        
+        // 切換貨幣顯示
+        function setCurrency(currency) {
+            currentCurrency = currency;
+            
+            // 更新按鈕狀態
+            if (currency === 'HKD') {
+                document.getElementById('hkdBtn').classList.add('active');
+                document.getElementById('usdBtn').classList.remove('active');
+            } else {
+                document.getElementById('usdBtn').classList.add('active');
+                document.getElementById('hkdBtn').classList.remove('active');
+            }
+            
+            // 更新所有顯示
+            updateAccountInfo();
+            updateMainSummary();
+            updateAllPositionsTables();
         }
 
         // 初始化
@@ -1414,16 +1506,34 @@
             console.log('Debug - Max Return Rate:', maxReturnRate);
             console.log('Debug - Current Return Rate:', currentReturnRate);
             
-            // 更新顯示（根據實際到期價值決定顏色）
+            // 更新顯示（根據實際到期價值決定顏色和貨幣設置）
             const optionsValueElement = document.getElementById('optionsValue');
-            optionsValueElement.textContent = '$' + formatNumber(Math.abs(totalRealExpiryValue), 0);
+            const optionsValueHKDElement = document.getElementById('optionsValueHKD');
+            
+            if (currentCurrency === 'HKD') {
+                // HKD 為主，USD 在括號內
+                optionsValueElement.textContent = 'HK$' + formatNumber(Math.abs(totalRealExpiryValue * USD_TO_HKD), 0);
+                optionsValueHKDElement.textContent = `(USD ${formatNumber(Math.abs(totalRealExpiryValue), 0)})`;
+            } else {
+                // USD 為主，HKD 在括號內
+                optionsValueElement.textContent = '$' + formatNumber(Math.abs(totalRealExpiryValue), 0);
+                optionsValueHKDElement.textContent = `(HKD ${formatNumber(Math.abs(totalRealExpiryValue * USD_TO_HKD), 0)})`;
+            }
             optionsValueElement.className = totalRealExpiryValue >= 0 ? 'main-metric-value positive' : 'main-metric-value negative';
-            document.getElementById('optionsValueHKD').textContent = `(HKD ${formatNumber(Math.abs(totalRealExpiryValue * USD_TO_HKD), 0)})`;
             
             const stocksValueElement = document.getElementById('stocksValue');
-            stocksValueElement.textContent = '$' + formatNumber(maxCapitalRequired, 0);
+            const stocksValueHKDElement = document.getElementById('stocksValueHKD');
+            
+            if (currentCurrency === 'HKD') {
+                // HKD 為主，USD 在括號內
+                stocksValueElement.textContent = 'HK$' + formatNumber(maxCapitalRequired * USD_TO_HKD, 0);
+                stocksValueHKDElement.textContent = `(USD ${formatNumber(maxCapitalRequired, 0)})`;
+            } else {
+                // USD 為主，HKD 在括號內
+                stocksValueElement.textContent = '$' + formatNumber(maxCapitalRequired, 0);
+                stocksValueHKDElement.textContent = `(HKD ${formatNumber(maxCapitalRequired * USD_TO_HKD, 0)})`;
+            }
             stocksValueElement.className = 'main-metric-value';
-            document.getElementById('stocksValueHKD').textContent = `(HKD ${formatNumber(maxCapitalRequired * USD_TO_HKD, 0)})`;
             
             // 顯示兩個回報率（優化樣式）
             const totalPnLElement = document.getElementById('totalPnL');
@@ -1472,12 +1582,21 @@
                 console.log(`HK Option: ${option.symbol}, Market Value: ${marketValue}`);
             });
             
-            // 更新顯示（使用綠色字體）
+            // 更新顯示（使用綠色字體，根據貨幣設置）
             const stocksValueElement = document.getElementById('stocksValue');
-            stocksValueElement.textContent = 'HK$' + formatNumber(expiryValue, 0);
-            stocksValueElement.className = 'main-metric-value positive';
+            const stocksValueHKDElement = document.getElementById('stocksValueHKD');
             const expiryValueUSD = expiryValue / USD_TO_HKD;
-            document.getElementById('stocksValueHKD').textContent = `($${formatNumber(expiryValueUSD, 0)})`;
+            
+            if (currentCurrency === 'HKD') {
+                // HKD 為主，USD 在括號內
+                stocksValueElement.textContent = 'HK$' + formatNumber(expiryValue, 0);
+                stocksValueHKDElement.textContent = `(USD ${formatNumber(expiryValueUSD, 0)})`;
+            } else {
+                // USD 為主，HKD 在括號內
+                stocksValueElement.textContent = '$' + formatNumber(expiryValueUSD, 0);
+                stocksValueHKDElement.textContent = `(HKD ${formatNumber(expiryValue, 0)})`;
+            }
+            stocksValueElement.className = 'main-metric-value positive';
             
             console.log('HK Options Count:', hkOptions.length);
             console.log('HK Options Expiry Value:', expiryValue);
@@ -1507,11 +1626,20 @@
                 return sum + (p.market_value || 0);
             }, 0);
             
-            // 更新顯示（使用綠色字體）
+            // 更新顯示（使用綠色字體，根據貨幣設置）
             const optionsValueElement = document.getElementById('optionsValue');
-            optionsValueElement.textContent = '$' + formatNumber(stocksValue, 0);
+            const optionsValueHKDElement = document.getElementById('optionsValueHKD');
+            
+            if (currentCurrency === 'HKD') {
+                // HKD 為主，USD 在括號內
+                optionsValueElement.textContent = 'HK$' + formatNumber(stocksValue * USD_TO_HKD, 0);
+                optionsValueHKDElement.textContent = `(USD ${formatNumber(stocksValue, 0)})`;
+            } else {
+                // USD 為主，HKD 在括號內
+                optionsValueElement.textContent = '$' + formatNumber(stocksValue, 0);
+                optionsValueHKDElement.textContent = `(HKD ${formatNumber(stocksValue * USD_TO_HKD, 0)})`;
+            }
             optionsValueElement.className = 'main-metric-value positive';
-            document.getElementById('optionsValueHKD').textContent = `(HKD ${formatNumber(stocksValue * USD_TO_HKD, 0)})`;
         }
 
         // 更新到期日分組摘要
@@ -2642,22 +2770,26 @@
                 
                 console.log('NetLiq - USD:', netLiqUSD, 'HKD:', netLiqHKD);
                 
-                // 直接更新 DOM
+                // 根據當前貨幣設置更新 DOM
                 const netLiqElement = document.getElementById('netLiquidation');
                 const netLiqHKDElement = document.getElementById('netLiquidationHKD');
                 
-                if (netLiqElement) {
-                    netLiqElement.textContent = '$' + formatNumber(netLiqUSD, 0);
-                    console.log('Updated netLiquidation element');
+                if (currentCurrency === 'HKD') {
+                    // HKD 為主，USD 在括號內
+                    if (netLiqElement) {
+                        netLiqElement.textContent = 'HK$' + formatNumber(netLiqHKD, 0);
+                    }
+                    if (netLiqHKDElement) {
+                        netLiqHKDElement.textContent = `(USD ${formatNumber(netLiqUSD, 0)})`;
+                    }
                 } else {
-                    console.error('netLiquidation element not found!');
-                }
-                
-                if (netLiqHKDElement) {
-                    netLiqHKDElement.textContent = `(HKD ${formatNumber(netLiqHKD, 0)})`;
-                    console.log('Updated netLiquidationHKD element');
-                } else {
-                    console.error('netLiquidationHKD element not found!');
+                    // USD 為主，HKD 在括號內
+                    if (netLiqElement) {
+                        netLiqElement.textContent = '$' + formatNumber(netLiqUSD, 0);
+                    }
+                    if (netLiqHKDElement) {
+                        netLiqHKDElement.textContent = `(HKD ${formatNumber(netLiqHKD, 0)})`;
+                    }
                 }
             } else {
                 console.log('No NetLiquidation data found in both account_summary and account_values');
@@ -2692,22 +2824,26 @@
                 
                 console.log('AvailableFunds - USD:', availFundsUSD, 'HKD:', availFundsHKD);
                 
-                // 直接更新 DOM
+                // 根據當前貨幣設置更新 DOM
                 const availFundsElement = document.getElementById('availableFunds');
                 const availFundsHKDElement = document.getElementById('availableFundsHKD');
                 
-                if (availFundsElement) {
-                    availFundsElement.textContent = '$' + formatNumber(availFundsUSD, 0);
-                    console.log('Updated availableFunds element');
+                if (currentCurrency === 'HKD') {
+                    // HKD 為主，USD 在括號內
+                    if (availFundsElement) {
+                        availFundsElement.textContent = 'HK$' + formatNumber(availFundsHKD, 0);
+                    }
+                    if (availFundsHKDElement) {
+                        availFundsHKDElement.textContent = `(USD ${formatNumber(availFundsUSD, 0)})`;
+                    }
                 } else {
-                    console.error('availableFunds element not found!');
-                }
-                
-                if (availFundsHKDElement) {
-                    availFundsHKDElement.textContent = `(HKD ${formatNumber(availFundsHKD, 0)})`;
-                    console.log('Updated availableFundsHKD element');
-                } else {
-                    console.error('availableFundsHKD element not found!');
+                    // USD 為主，HKD 在括號內
+                    if (availFundsElement) {
+                        availFundsElement.textContent = '$' + formatNumber(availFundsUSD, 0);
+                    }
+                    if (availFundsHKDElement) {
+                        availFundsHKDElement.textContent = `(HKD ${formatNumber(availFundsHKD, 0)})`;
+                    }
                 }
             } else {
                 console.log('No AvailableFunds data found in both account_summary and account_values');
