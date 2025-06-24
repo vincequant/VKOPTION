@@ -1,6 +1,6 @@
 {
-  "timestamp": "2025-06-24T17:26:31.005276",
-  "last_update": "2025-06-24 17:26:31",
+  "timestamp": "2025-06-24T17:42:06.121466",
+  "last_update": "2025-06-24 17:42:06",
   "positions": [
     {
       "account": "U6129142",
@@ -96,12 +96,12 @@
         "bid": 18.481,
         "bidSize": 44930000,
         "ask": 18.483,
-        "askSize": 46930000,
+        "askSize": 37090000,
         "lastSize": 0,
         "volume": 0,
         "high": 18.625,
         "low": 18.46,
-        "close": 18.4815,
+        "close": 18.4835,
         "currentPrice": 18.62,
         "halted": 0.0
       },
@@ -155,7 +155,7 @@
           "open": 18.6175,
           "high": 18.6235,
           "low": 18.4645,
-          "close": 18.4815,
+          "close": 18.4835,
           "volume": -1,
           "average": -1.0,
           "barCount": -1
@@ -924,10 +924,10 @@
       "underlying_symbol": "HSI",
       "hk_trading_class": "HSI",
       "market_data": {
-        "bid": 61.0,
-        "bidSize": 4,
-        "ask": 87.0,
-        "askSize": 5,
+        "bid": 72.0,
+        "bidSize": 6,
+        "ask": 75.0,
+        "askSize": 6,
         "last": 76.0,
         "currentPrice": 74.0,
         "lastSize": 1,
@@ -935,49 +935,49 @@
         "close": 76.0,
         "open": 111.0,
         "halted": 0.0,
-        "markPrice": 74.3395462
+        "markPrice": 72.72955322
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
         "bidGreeks": {
-          "impliedVolatility": 0.22242894396542962,
-          "delta": -0.08115343720806367,
-          "optionPrice": 61.0,
+          "impliedVolatility": 0.22855053439344925,
+          "delta": -0.08659593579181957,
+          "optionPrice": 72.0,
           "pvDividend": 0.0,
-          "gamma": 8.90571834054985e-05,
-          "vega": 11.401335794103217,
-          "theta": -3.4867450137241582,
+          "gamma": 9.101606449181527e-05,
+          "vega": 11.969099670580023,
+          "theta": -3.762717075372053,
           "underlyingPrice": null
         },
         "askGreeks": {
-          "impliedVolatility": 0.24400132892782458,
-          "delta": -0.10022273610249444,
-          "optionPrice": 87.0,
+          "impliedVolatility": 0.2310158296369729,
+          "delta": -0.08878842334414305,
+          "optionPrice": 75.0,
           "pvDividend": 0.0,
-          "gamma": 9.495947612039564e-05,
-          "vega": 13.336012161517138,
-          "theta": -4.475703378141464,
+          "gamma": 9.174025486709428e-05,
+          "vega": 12.194468368798228,
+          "theta": -3.875092069000186,
           "underlyingPrice": null
         },
         "lastGreeks": {
           "impliedVolatility": 0.22803783101297126,
-          "delta": -0.08616998586302671,
+          "delta": -0.08613905355366835,
           "optionPrice": 76.0,
           "pvDividend": 0.0,
-          "gamma": 9.087092200110115e-05,
-          "vega": 11.926892840615153,
-          "theta": -3.739834586066865,
+          "gamma": 9.086056631868534e-05,
+          "vega": 11.92184663092367,
+          "theta": -3.739419485252388,
           "underlyingPrice": null
         },
         "modelGreeks": {
-          "impliedVolatility": 0.23401155119394135,
-          "delta": -0.08794216955284892,
-          "optionPrice": 74.43902532911852,
+          "impliedVolatility": 0.22918663797240038,
+          "delta": -0.08787682423930776,
+          "optionPrice": 72.76875376084672,
           "pvDividend": 0.0,
-          "gamma": 8.969372252673249e-05,
-          "vega": 12.574270162735047,
-          "theta": -3.9212076553840234,
+          "gamma": 9.155411839777041e-05,
+          "vega": 12.563914478505922,
+          "theta": -3.9213375231170176,
           "underlyingPrice": null
         }
       },
@@ -1638,15 +1638,15 @@
       "localSymbol": "USD.JPY",
       "tradingClass": "USD.JPY",
       "market_data": {
-        "bid": 145.08,
-        "bidSize": 2600000,
-        "ask": 145.082,
-        "askSize": 1000000,
+        "bid": 145.082,
+        "bidSize": 1000000,
+        "ask": 145.084,
+        "askSize": 2000000,
         "lastSize": 0,
         "volume": 0,
         "high": 146.195,
         "low": 144.945,
-        "close": 145.081,
+        "close": 145.093,
         "currentPrice": 146.15,
         "halted": 0.0
       },
@@ -1700,7 +1700,7 @@
           "open": 146.111,
           "high": 146.1925,
           "low": 144.944,
-          "close": 145.081,
+          "close": 145.093,
           "volume": -1,
           "average": -1.0,
           "barCount": -1
@@ -1895,7 +1895,7 @@
       "account": "U6129142"
     },
     "Cushion": {
-      "value": "0.146725",
+      "value": "0.147196",
       "currency": "",
       "account": "U6129142"
     },
@@ -1920,12 +1920,12 @@
       "account": "U6129142"
     },
     "SettledCashByDate": {
-      "value": "20250624:-113499.49;20250625:-52406.34272218;20250626:-52785.93561768",
+      "value": "20250624:-113499.49;20250625:-52406.34272218;20250626:-51733.71241211",
       "currency": "",
       "account": "U6129142"
     },
     "SettledCashByDate-S": {
-      "value": "20250624:-113499.49;20250625:-52406.34272218;20250626:-52785.93561768",
+      "value": "20250624:-113499.49;20250625:-52406.34272218;20250626:-51733.71241211",
       "currency": "",
       "account": "U6129142"
     },
@@ -1955,12 +1955,12 @@
       "account": "U6129142"
     },
     "AvailableFunds": {
-      "value": "469486.05",
+      "value": "477778.47",
       "currency": "HKD",
       "account": "U6129142"
     },
     "AvailableFunds-S": {
-      "value": "469486.05",
+      "value": "477778.47",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -1975,77 +1975,77 @@
       "account": "U6129142"
     },
     "BuyingPower": {
-      "value": "3129906.99",
+      "value": "3185189.81",
       "currency": "HKD",
       "account": "U6129142"
     },
     "EquityWithLoanValue": {
-      "value": "14358035.34",
+      "value": "14365374.89",
       "currency": "HKD",
       "account": "U6129142"
     },
     "EquityWithLoanValue-S": {
-      "value": "14358035.34",
+      "value": "14365374.89",
       "currency": "HKD",
       "account": "U6129142"
     },
     "ExcessLiquidity": {
-      "value": "2106385.51",
+      "value": "2114240.38",
       "currency": "HKD",
       "account": "U6129142"
     },
     "ExcessLiquidity-S": {
-      "value": "2106385.51",
+      "value": "2114240.38",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullAvailableFunds": {
-      "value": "469486.05",
+      "value": "477778.47",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullAvailableFunds-S": {
-      "value": "469486.05",
+      "value": "477778.47",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullExcessLiquidity": {
-      "value": "2106385.51",
+      "value": "2114240.38",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullExcessLiquidity-S": {
-      "value": "2106385.51",
+      "value": "2114240.38",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullInitMarginReq": {
-      "value": "13888549.29",
+      "value": "13887596.42",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullInitMarginReq-S": {
-      "value": "13888549.29",
+      "value": "13887596.42",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullMaintMarginReq": {
-      "value": "12251649.83",
+      "value": "12251134.51",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullMaintMarginReq-S": {
-      "value": "12251649.83",
+      "value": "12251134.51",
       "currency": "HKD",
       "account": "U6129142"
     },
     "GrossPositionValue": {
-      "value": "18421215.76",
+      "value": "18413869.66",
       "currency": "HKD",
       "account": "U6129142"
     },
     "GrossPositionValue-S": {
-      "value": "18421215.76",
+      "value": "18413869.66",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -2080,72 +2080,72 @@
       "account": "U6129142"
     },
     "InitMarginReq": {
-      "value": "13888549.29",
+      "value": "13887596.42",
       "currency": "HKD",
       "account": "U6129142"
     },
     "InitMarginReq-S": {
-      "value": "13888549.29",
+      "value": "13887596.42",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadAvailableFunds": {
-      "value": "469486.05",
+      "value": "477778.47",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadAvailableFunds-S": {
-      "value": "469486.05",
+      "value": "477778.47",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadExcessLiquidity": {
-      "value": "2106385.51",
+      "value": "2114240.38",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadExcessLiquidity-S": {
-      "value": "2106385.51",
+      "value": "2114240.38",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadInitMarginReq": {
-      "value": "13888549.29",
+      "value": "13887596.42",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadInitMarginReq-S": {
-      "value": "13888549.29",
+      "value": "13887596.42",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadMaintMarginReq": {
-      "value": "12251649.83",
+      "value": "12251134.51",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadMaintMarginReq-S": {
-      "value": "12251649.83",
+      "value": "12251134.51",
       "currency": "HKD",
       "account": "U6129142"
     },
     "MaintMarginReq": {
-      "value": "12251649.83",
+      "value": "12251134.51",
       "currency": "HKD",
       "account": "U6129142"
     },
     "MaintMarginReq-S": {
-      "value": "12251649.83",
+      "value": "12251134.51",
       "currency": "HKD",
       "account": "U6129142"
     },
     "NetLiquidation": {
-      "value": "14356052.50",
+      "value": "14363398.58",
       "currency": "HKD",
       "account": "U6129142"
     },
     "NetLiquidation-S": {
-      "value": "14356052.50",
+      "value": "14363398.58",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -2195,12 +2195,12 @@
       "account": "U6129142"
     },
     "TotalCashValue": {
-      "value": "851381.63",
+      "value": "852433.83",
       "currency": "HKD",
       "account": "U6129142"
     },
     "TotalCashValue-S": {
-      "value": "851381.63",
+      "value": "852433.83",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -2220,12 +2220,12 @@
       "account": "U6129142"
     },
     "CashBalance": {
-      "value": "851381.6287",
+      "value": "852433.8273",
       "currency": "BASE",
       "account": "U6129142"
     },
     "TotalCashBalance": {
-      "value": "851381.6287",
+      "value": "852433.8273",
       "currency": "BASE",
       "account": "U6129142"
     },
@@ -2235,7 +2235,7 @@
       "account": "U6129142"
     },
     "OptionMarketValue": {
-      "value": "-2438063.53",
+      "value": "-2431769.65",
       "currency": "BASE",
       "account": "U6129142"
     },
@@ -2245,17 +2245,17 @@
       "account": "U6129142"
     },
     "FuturesPNL": {
-      "value": "60713.55",
+      "value": "61765.78",
       "currency": "BASE",
       "account": "U6129142"
     },
     "NetLiquidationByCurrency": {
-      "value": "14356052.4966",
+      "value": "14363398.5802",
       "currency": "BASE",
       "account": "U6129142"
     },
     "UnrealizedPnL": {
-      "value": "968748.46",
+      "value": "976094.57",
       "currency": "BASE",
       "account": "U6129142"
     },
@@ -2718,7 +2718,7 @@
       "reqId": 1146,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.661173",
+      "timestamp": "2025-06-24T17:41:54.743995",
       "symbol": "V_20250919_P_340.0",
       "level": "warning"
     },
@@ -2726,7 +2726,7 @@
       "reqId": 1148,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.663059",
+      "timestamp": "2025-06-24T17:41:54.744431",
       "symbol": "AMZN_20250919_P_200.0",
       "level": "warning"
     },
@@ -2734,7 +2734,7 @@
       "reqId": 1150,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.814825",
+      "timestamp": "2025-06-24T17:41:54.744857",
       "symbol": "NVDA_20250919_P_126.0",
       "level": "warning"
     },
@@ -2742,7 +2742,7 @@
       "reqId": 1152,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.817284",
+      "timestamp": "2025-06-24T17:41:54.745566",
       "symbol": "QBTS_20260116_P_8.0",
       "level": "warning"
     },
@@ -2750,7 +2750,7 @@
       "reqId": 1154,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.819527",
+      "timestamp": "2025-06-24T17:41:54.754820",
       "symbol": "VXX_20250919_C_90.0",
       "level": "warning"
     },
@@ -2758,7 +2758,7 @@
       "reqId": 1156,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.820726",
+      "timestamp": "2025-06-24T17:41:54.755758",
       "symbol": "IWM_20250919_P_205.0",
       "level": "warning"
     },
@@ -2766,7 +2766,7 @@
       "reqId": 1158,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.822546",
+      "timestamp": "2025-06-24T17:41:54.771311",
       "symbol": "AVGO_20250919_P_210.0",
       "level": "warning"
     },
@@ -2774,7 +2774,7 @@
       "reqId": 1160,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.823823",
+      "timestamp": "2025-06-24T17:41:54.772467",
       "symbol": "PLTR_20250919_P_100.0",
       "level": "warning"
     },
@@ -2782,7 +2782,7 @@
       "reqId": 1162,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.824781",
+      "timestamp": "2025-06-24T17:41:54.773180",
       "symbol": "APP_20250919_P_290.0",
       "level": "warning"
     },
@@ -2790,7 +2790,7 @@
       "reqId": 1164,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.826069",
+      "timestamp": "2025-06-24T17:41:54.773910",
       "symbol": "GLD_20250919_P_280.0",
       "level": "warning"
     },
@@ -2798,7 +2798,7 @@
       "reqId": 1166,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.826905",
+      "timestamp": "2025-06-24T17:41:54.774401",
       "symbol": "PLTR_20250919_P_85.0",
       "level": "warning"
     },
@@ -2806,7 +2806,7 @@
       "reqId": 1174,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.832881",
+      "timestamp": "2025-06-24T17:41:54.780311",
       "symbol": "JPM_20250919_P_245.0",
       "level": "warning"
     },
@@ -2814,7 +2814,7 @@
       "reqId": 1176,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.833407",
+      "timestamp": "2025-06-24T17:41:54.780708",
       "symbol": "CRCL_20251017_P_100.0",
       "level": "warning"
     },
@@ -2822,7 +2822,7 @@
       "reqId": 1178,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.833931",
+      "timestamp": "2025-06-24T17:41:54.796577",
       "symbol": "HIMS_20250919_P_40.0",
       "level": "warning"
     },
@@ -2830,7 +2830,7 @@
       "reqId": 1180,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T17:26:19.834684",
+      "timestamp": "2025-06-24T17:41:54.797775",
       "symbol": "ORCL_20250919_P_160.0",
       "level": "warning"
     },
@@ -2838,7 +2838,7 @@
       "reqId": 1141,
       "errorCode": 200,
       "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T17:26:19.834845",
+      "timestamp": "2025-06-24T17:41:54.904721",
       "symbol": "1024_20250929_P_52.5",
       "level": "warning"
     },
@@ -2846,7 +2846,7 @@
       "reqId": 1142,
       "errorCode": 200,
       "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T17:26:19.834969",
+      "timestamp": "2025-06-24T17:41:54.936342",
       "symbol": "1024_20250929_P_52.5",
       "level": "warning"
     },
@@ -2854,7 +2854,7 @@
       "reqId": 1169,
       "errorCode": 200,
       "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T17:26:20.020096",
+      "timestamp": "2025-06-24T17:41:54.940932",
       "symbol": "700_20250929_P_470.0",
       "level": "warning"
     },
@@ -2862,7 +2862,7 @@
       "reqId": 1170,
       "errorCode": 200,
       "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T17:26:20.158840",
+      "timestamp": "2025-06-24T17:41:55.043890",
       "symbol": "700_20250929_P_470.0",
       "level": "warning"
     },
@@ -2870,7 +2870,7 @@
       "reqId": 1168,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No market data permissions for BATS STK",
-      "timestamp": "2025-06-24T17:26:20.190512",
+      "timestamp": "2025-06-24T17:41:55.078326",
       "symbol": "BOXX",
       "level": "warning"
     }
