@@ -2211,7 +2211,16 @@
                 
                 // 處理現價和盈虧顯示
                 let currentPrice = pos.current_price || pos.market_data?.currentPrice || pos.market_data?.last || pos.market_data?.close || 0;
-                let currentPriceDisplay = '$' + formatNumber(currentPrice, 2);
+                let currentPriceDisplay = '-';
+                
+                // 檢查是否有有效的價格數據
+                if (currentPrice > 0) {
+                    currentPriceDisplay = '$' + formatNumber(currentPrice, 2);
+                } else if (pos.market_data?.close > 0) {
+                    // 如果沒有實時價格但有收盤價，顯示收盤價並標記
+                    currentPriceDisplay = '$' + formatNumber(pos.market_data.close, 2) + ' (收)';
+                }
+                
                 let pnl = pos.pnl;
                 let pnlClass = '';
                 let pnlDisplay = '-';
@@ -2436,10 +2445,16 @@
                 }
                 
                 if (showPriceColumns) {
+                    // 檢查是否需要標記為收盤價
+                    let priceDisplay = '$' + formatNumber(currentPrice, 2);
+                    if (pos.market_data && pos.market_data.bid === -1 && pos.market_data.ask === -1 && pos.market_data.close > 0) {
+                        priceDisplay = '$' + formatNumber(pos.market_data.close, 2) + ' (收)';
+                    }
+                    
                     html += `
                         <tr>
                             <td class="symbol-cell">${pos.symbol}</td>
-                            <td class="text-right">$${formatNumber(currentPrice, 2)}</td>
+                            <td class="text-right">${priceDisplay}</td>
                             <td class="text-right ${priceChangeClass}">
                                 ${priceChange >= 0 ? '+' : ''}${formatNumber(priceChange, 2)}%
                             </td>
