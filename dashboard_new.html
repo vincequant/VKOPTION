@@ -1088,7 +1088,7 @@
         <div class="dashboard-section expiry-summary" id="expirySummary" style="display: none;">
             <div class="section-header">
                 <i class="fas fa-calendar-alt"></i>
-                期權到期分布
+                <span id="expirySummaryTitle">期權到期分布</span>
             </div>
             <div class="expiry-cards" id="expiryCards">
                 <!-- 動態生成 -->
@@ -1755,6 +1755,15 @@
             }
 
             document.getElementById('expirySummary').style.display = 'block';
+            
+            // 更新標題
+            const expirySummaryTitle = document.getElementById('expirySummaryTitle');
+            if (currentMainCategory === 'us-options') {
+                expirySummaryTitle.textContent = '美股期權到期分布';
+            } else if (currentMainCategory === 'hk-options') {
+                expirySummaryTitle.textContent = '港股期權到期分布';
+            }
+            
             const container = document.getElementById('expiryCards');
             
             // 排序：近期在前
@@ -1816,16 +1825,65 @@
 
                 const pnlClass = totalPnL >= 0 ? 'positive' : 'negative';
                 const pnlSign = totalPnL >= 0 ? '+' : '';
-                const currencySymbol = currency === 'HKD' ? 'HK$' : '$';
+                
+                // 根據當前貨幣設置和期權類型決定顯示
+                let mainValueHtml = '';
+                let subValueHtml = '';
+                
+                if (currency === 'USD') {
+                    // 美股期權
+                    const valueUSD = totalValue;
+                    const valueHKD = totalValue * USD_TO_HKD;
+                    
+                    if (currentCurrency === 'HKD') {
+                        // HKD 為主，USD 在下方小字
+                        mainValueHtml = `<div class="expiry-value positive">HK$${formatNumber(valueHKD, 0)}</div>`;
+                        subValueHtml = `<div class="expiry-value-hkd">USD ${formatNumber(valueUSD, 0)}</div>`;
+                    } else {
+                        // USD 為主，HKD 在下方小字
+                        mainValueHtml = `<div class="expiry-value positive">$${formatNumber(valueUSD, 0)}</div>`;
+                        subValueHtml = `<div class="expiry-value-hkd">HKD ${formatNumber(valueHKD, 0)}</div>`;
+                    }
+                } else {
+                    // 港股期權（只有 HKD）
+                    mainValueHtml = `<div class="expiry-value positive">HK$${formatNumber(totalValue, 0)}</div>`;
+                    subValueHtml = '';
+                }
+                
+                // 接貨資金也需要根據貨幣設置調整
+                let capitalHtml = '';
+                if (currency === 'USD' && capitalRequired > 0) {
+                    const capitalUSD = capitalRequired;
+                    const capitalHKD = capitalRequired * USD_TO_HKD;
+                    
+                    if (currentCurrency === 'HKD') {
+                        capitalHtml = `<div class="expiry-capital" style="color: #dc3545; font-size: 0.9rem; font-weight: 500; margin-top: 0.25rem;">接貨資金: HK$${formatNumber(capitalHKD, 0)}</div>`;
+                    } else {
+                        capitalHtml = `<div class="expiry-capital" style="color: #dc3545; font-size: 0.9rem; font-weight: 500; margin-top: 0.25rem;">接貨資金: $${formatNumber(capitalUSD, 0)}</div>`;
+                    }
+                }
+                
+                // 盈虧也需要根據貨幣設置調整
+                let pnlHtml = '';
+                if (currency === 'USD') {
+                    const pnlUSD = Math.abs(totalPnL);
+                    const pnlHKD = pnlUSD * USD_TO_HKD;
+                    
+                    if (currentCurrency === 'HKD') {
+                        pnlHtml = `<div class="expiry-pnl ${pnlClass}">${pnlSign}HK$${formatNumber(pnlHKD, 0)}</div>`;
+                    } else {
+                        pnlHtml = `<div class="expiry-pnl ${pnlClass}">${pnlSign}$${formatNumber(pnlUSD, 0)}</div>`;
+                    }
+                }
 
                 return `
                     <div class="expiry-card">
                         <div class="expiry-date">${expiry.expiry_formatted}</div>
                         <div class="days-left ${daysClass}">${daysText}</div>
-                        <div class="expiry-value positive">${currencySymbol}${formatNumber(totalValue, 0)}</div>
-                        ${currency === 'USD' ? `<div class="expiry-value-hkd">HKD ${formatNumber(totalValue * USD_TO_HKD, 0)}</div>` : ''}
-                        ${currency === 'USD' && capitalRequired > 0 ? `<div class="expiry-capital" style="color: #dc3545; font-size: 0.9rem; font-weight: 500; margin-top: 0.25rem;">接貨資金: $${formatNumber(capitalRequired, 0)}</div>` : ''}
-                        ${currency === 'USD' ? `<div class="expiry-pnl ${pnlClass}">${pnlSign}$${formatNumber(Math.abs(totalPnL), 0)}</div>` : ''}
+                        ${mainValueHtml}
+                        ${subValueHtml}
+                        ${capitalHtml}
+                        ${pnlHtml}
                         <div class="expiry-count">${count} 個期權</div>
                     </div>
                 `;
