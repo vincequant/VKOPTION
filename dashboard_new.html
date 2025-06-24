@@ -1326,7 +1326,10 @@
                 const cloudBtn = document.getElementById('cloudUploadBtn');
                 if (cloudBtn) {
                     cloudBtn.innerHTML = '<i class="fas fa-sync-alt"></i> <span id="cloudUploadText">刷新頁面</span>';
-                    cloudBtn.onclick = () => window.location.reload();
+                    cloudBtn.onclick = () => {
+                        // 強制刷新，繞過緩存
+                        window.location.reload(true);
+                    };
                 }
             }
             
@@ -1352,8 +1355,16 @@
             try {
                 let response;
                 if (isCloudEnvironment()) {
-                    // 雲端環境：從靜態 JSON 文件載入
-                    response = await fetch('/portfolio_data.json');
+                    // 雲端環境：從靜態 JSON 文件載入，添加時間戳防止緩存
+                    const timestamp = new Date().getTime();
+                    response = await fetch(`/portfolio_data.json?t=${timestamp}`, {
+                        cache: 'no-cache',
+                        headers: {
+                            'Cache-Control': 'no-cache, no-store, must-revalidate',
+                            'Pragma': 'no-cache',
+                            'Expires': '0'
+                        }
+                    });
                     if (!response.ok) {
                         throw new Error('找不到數據文件');
                     }
@@ -2073,7 +2084,13 @@
                 let distanceDisplay = '-';
                 let distanceClass = '';
                 if (underlyingPrice > 0 && strike > 0) {
-                    distance = ((underlyingPrice - strike) / strike) * 100;
+                    // 對於 CALL，距離計算相反（行權價高於標的價格時為正值）
+                    // 對於 PUT，保持原樣（標的價格高於行權價時為正值）
+                    if (pos.right === 'C') {
+                        distance = ((strike - underlyingPrice) / strike) * 100;
+                    } else {
+                        distance = ((underlyingPrice - strike) / strike) * 100;
+                    }
                     distanceClass = distance >= 0 ? 'positive' : 'negative';
                     distanceDisplay = (distance >= 0 ? '+' : '') + formatNumber(distance, 1) + '%';
                 }
@@ -2773,7 +2790,13 @@
                 let distanceDisplay = '-';
                 let distanceClass = '';
                 if (underlyingPrice > 0 && strike > 0) {
-                    distance = ((underlyingPrice - strike) / strike) * 100;
+                    // 對於 CALL，距離計算相反（行權價高於標的價格時為正值）
+                    // 對於 PUT，保持原樣（標的價格高於行權價時為正值）
+                    if (pos.right === 'C') {
+                        distance = ((strike - underlyingPrice) / strike) * 100;
+                    } else {
+                        distance = ((underlyingPrice - strike) / strike) * 100;
+                    }
                     distanceClass = distance >= 0 ? 'positive' : 'negative';
                     distanceDisplay = (distance >= 0 ? '+' : '') + formatNumber(distance, 1) + '%';
                 }
