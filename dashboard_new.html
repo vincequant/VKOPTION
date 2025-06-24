@@ -2219,6 +2219,10 @@
                 } else if (pos.market_data?.close > 0) {
                     // 如果沒有實時價格但有收盤價，顯示收盤價並標記
                     currentPriceDisplay = '$' + formatNumber(pos.market_data.close, 2) + ' (收)';
+                } else if ((pos.avg_cost > 0 || pos.avgCost > 0) && pos.secType === 'OPT') {
+                    // 如果完全沒有市場數據，顯示平均成本作為參考
+                    const avgCost = pos.avg_cost || (pos.avgCost / 100); // avgCost 需要除以 100
+                    currentPriceDisplay = '$' + formatNumber(avgCost, 2) + ' (成本)';
                 }
                 
                 let pnl = pos.pnl;
