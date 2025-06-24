@@ -2148,7 +2148,7 @@
                         <td class="text-right underlying-price" data-symbol="${pos.tradingClass || pos.symbol}">
                             ${pos.secType === 'OPT' ? '<span class="loading-price">-</span>' : '-'}
                         </td>
-                        <td class="text-right distance-cell" data-symbol="${pos.tradingClass || pos.symbol}" data-strike="${strike}">-</td>
+                        <td class="text-right distance-cell" data-symbol="${pos.tradingClass || pos.symbol}" data-strike="${strike}" data-right="${pos.right || ''}">-</td>
                         <td class="text-right underlying-change" data-symbol="${pos.tradingClass || pos.symbol}">
                             ${pos.secType === 'OPT' ? '-' : '-'}
                         </td>
@@ -2525,13 +2525,21 @@
             document.querySelectorAll('.distance-cell').forEach(cell => {
                 const symbol = cell.getAttribute('data-symbol');
                 const strike = parseFloat(cell.getAttribute('data-strike'));
+                const right = cell.getAttribute('data-right'); // 獲取期權類型 (C/P)
                 
                 if (symbol && underlyingPrices[symbol] && strike > 0) {
                     const priceData = underlyingPrices[symbol];
                     const underlyingPrice = priceData.price;
                     
                     if (underlyingPrice > 0) {
-                        const distance = ((underlyingPrice - strike) / strike) * 100;
+                        let distance;
+                        // 對於 CALL，距離計算相反（行權價高於標的價格時為正值）
+                        // 對於 PUT，保持原樣（標的價格高於行權價時為正值）
+                        if (right === 'C') {
+                            distance = ((strike - underlyingPrice) / strike) * 100;
+                        } else {
+                            distance = ((underlyingPrice - strike) / strike) * 100;
+                        }
                         const distanceClass = distance >= 0 ? 'positive' : 'negative';
                         const distanceSign = distance >= 0 ? '+' : '';
                         cell.innerHTML = `<span class="${distanceClass}">${distanceSign}${formatNumber(distance, 1)}%</span>`;
@@ -2847,7 +2855,7 @@
                         <td class="text-right underlying-price" data-symbol="${pos.tradingClass || pos.symbol}">
                             <span class="loading-price">-</span>
                         </td>
-                        <td class="text-right distance-cell" data-symbol="${pos.tradingClass || pos.symbol}" data-strike="${strike}">-</td>
+                        <td class="text-right distance-cell" data-symbol="${pos.tradingClass || pos.symbol}" data-strike="${strike}" data-right="${pos.right || ''}">-</td>
                         <td class="text-right underlying-change" data-symbol="${pos.tradingClass || pos.symbol}">-</td>
                         <td class="text-right">${formatNumber(pos.position, 0)}</td>
                         <td class="text-right">$${formatNumber(pos.avg_cost)}</td>
