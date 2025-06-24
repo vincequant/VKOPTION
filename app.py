@@ -639,14 +639,15 @@ class EnhancedIBClient(EWrapper, EClient):
                     
                     # 使用原合約請求數據
                     self.reqMktData(req_id, contract, 
-                        "233",  # 使用 233 獲取所有通用tick數據
+                        "232",  # 使用 232 包括收盤價
                         False, False, [])
                     logger.info(f"Requesting market data for HK option: {symbol} (conId: {contract.conId})")
                 else:
                     # 非香港期權使用原合約
                     # 對於期權，優先嘗試使用延遲數據（免費）
+                    # 使用 "232" 來獲取包括收盤價在內的快照數據
                     self.reqMktData(req_id, contract, 
-                        "233",  # 使用 233 獲取所有通用tick數據
+                        "232",  # 232 包括收盤價
                         False, False, [])  # 不使用監管快照
             else:
                 # 股票的標準tick類型
@@ -746,6 +747,15 @@ class EnhancedIBClient(EWrapper, EClient):
                 # 如果獲得了last或close價格，也設置為當前價格
                 if tickType in [4, 9]:  # last or close
                     self.market_data[symbol]['currentPrice'] = price
+                    
+                # 對於期權，如果沒有收盤價但有平均成本，使用平均成本作為參考
+                if tickType == 1 and price == -1:  # bid 為 -1 表示市場關閉
+                    if symbol in self.positions and self.positions[symbol].get('secType') == 'OPT':
+                        avg_cost = self.positions[symbol].get('avg_cost', 0)
+                        if avg_cost > 0 and 'close' not in self.market_data[symbol]:
+                            # 使用平均成本作為參考收盤價
+                            self.market_data[symbol]['close'] = avg_cost
+                            logger.info(f"Using avg cost as close price for {symbol}: {avg_cost}")
     
     def tickSize(self, reqId, tickType, size):
         """接收數量數據"""

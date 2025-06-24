@@ -1,6 +1,6 @@
 {
-  "timestamp": "2025-06-24T16:08:46.777366",
-  "last_update": "2025-06-24 16:08:46",
+  "timestamp": "2025-06-24T16:15:55.312001",
+  "last_update": "2025-06-24 16:15:55",
   "positions": [
     {
       "account": "U6129142",
@@ -27,6 +27,16 @@
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
+        "modelGreeks": {
+          "impliedVolatility": 0.6046210616913581,
+          "delta": -0.25866106650981824,
+          "optionPrice": 19.94872302104683,
+          "pvDividend": 0.0,
+          "gamma": 0.0029907814840538253,
+          "vega": 0.57658848919273,
+          "theta": -0.18647227175919667,
+          "underlyingPrice": 367.8800048828125
+        },
         "bidGreeks": {
           "impliedVolatility": null,
           "delta": null,
@@ -35,7 +45,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 375.16
+          "underlyingPrice": 367.8800048828125
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -45,7 +55,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 375.16
+          "underlyingPrice": 367.8800048828125
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -55,16 +65,6 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 375.16
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.6046210616913581,
-          "delta": -0.25866106650981824,
-          "optionPrice": 19.94872302104683,
-          "pvDividend": 0.0,
-          "gamma": 0.0029907814840538253,
-          "vega": 0.57658848919273,
-          "theta": -0.18647227175919667,
           "underlyingPrice": 367.8800048828125
         }
       },
@@ -102,6 +102,16 @@
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
+        "modelGreeks": {
+          "impliedVolatility": 0.2542475217090914,
+          "delta": -0.2143606261278036,
+          "optionPrice": 8.554224061334937,
+          "pvDividend": 0.0,
+          "gamma": 0.004476516749122598,
+          "vega": 0.7420417287844732,
+          "theta": -0.09363813929899756,
+          "underlyingPrice": 531.739990234375
+        },
         "bidGreeks": {
           "impliedVolatility": null,
           "delta": null,
@@ -110,7 +120,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 537.13
+          "underlyingPrice": 531.739990234375
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -120,7 +130,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 537.13
+          "underlyingPrice": 531.739990234375
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -130,16 +140,6 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 537.13
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.2542475217090914,
-          "delta": -0.2143606261278036,
-          "optionPrice": 8.554224061334937,
-          "pvDividend": 0.0,
-          "gamma": 0.004476516749122598,
-          "vega": 0.7420417287844732,
-          "theta": -0.09363813929899756,
           "underlyingPrice": 531.739990234375
         }
       },
@@ -164,16 +164,17 @@
       "conId": 15016090,
       "localSymbol": "HKD.JPY",
       "tradingClass": "HKD.JPY",
-      "marketPrice": 18.49780085,
-      "marketValue": -132440554.36,
-      "unrealizedPNL": 1123210.71,
+      "marketPrice": 18.4824009,
+      "marketValue": -132330293.92,
+      "unrealizedPNL": 1233471.15,
       "realizedPNL": 0.0,
       "accountName": "U6129142",
       "market_data": {
-        "bid": 18.492,
-        "bidSize": 59930000,
-        "ask": 18.494,
-        "askSize": 44930000
+        "bid": 18.482,
+        "bidSize": 17090000,
+        "ask": 18.484,
+        "askSize": 47930000,
+        "close": 18.481
       },
       "has_market_data": true,
       "has_pnl_data": false,
@@ -225,14 +226,14 @@
           "open": 18.6175,
           "high": 18.6235,
           "low": 18.4705,
-          "close": 18.4935,
+          "close": 18.481,
           "volume": -1,
           "average": -1.0,
           "barCount": -1
         }
       ],
-      "current_price": 0,
-      "market_value": -133563764.97636
+      "current_price": 18.481,
+      "market_value": -132320263.80000001
     },
     {
       "account": "U6129142",
@@ -278,7 +279,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 1002.1800000000001
+          "underlyingPrice": 1004.6080322265625
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -288,7 +289,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 1002.1800000000001
+          "underlyingPrice": 1004.6080322265625
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -298,7 +299,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 1002.1800000000001
+          "underlyingPrice": 1004.6080322265625
         }
       },
       "has_options_data": true,
@@ -353,7 +354,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 256.33
+          "underlyingPrice": 253.63999938964844
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -363,7 +364,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 256.33
+          "underlyingPrice": 253.63999938964844
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -373,7 +374,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 256.33
+          "underlyingPrice": 253.63999938964844
         }
       },
       "has_options_data": true,
@@ -428,7 +429,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 86.54
+          "underlyingPrice": 85.22000122070312
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -438,7 +439,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 86.54
+          "underlyingPrice": 85.22000122070312
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -448,7 +449,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 86.54
+          "underlyingPrice": 85.22000122070312
         }
       },
       "has_options_data": true,
@@ -503,7 +504,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 1260.0
+          "underlyingPrice": 1254.1239013671875
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -513,7 +514,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 1260.0
+          "underlyingPrice": 1254.1239013671875
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -523,7 +524,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 1260.0
+          "underlyingPrice": 1254.1239013671875
         }
       },
       "has_options_data": true,
@@ -578,7 +579,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 1260.0
+          "underlyingPrice": 1254.1239013671875
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -588,7 +589,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 1260.0
+          "underlyingPrice": 1254.1239013671875
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -598,7 +599,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 1260.0
+          "underlyingPrice": 1254.1239013671875
         }
       },
       "has_options_data": true,
@@ -653,7 +654,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 490.3999938964844
+          "underlyingPrice": 486.3067932128906
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -663,7 +664,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 490.3999938964844
+          "underlyingPrice": 486.3067932128906
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -673,7 +674,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 490.3999938964844
+          "underlyingPrice": 486.3067932128906
         }
       },
       "has_options_data": true,
@@ -728,7 +729,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 499.90000000000003
+          "underlyingPrice": 491.9875793457031
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -738,7 +739,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 499.90000000000003
+          "underlyingPrice": 491.9875793457031
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -748,7 +749,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 499.90000000000003
+          "underlyingPrice": 491.9875793457031
         }
       },
       "has_options_data": true,
@@ -803,7 +804,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 132.75
+          "underlyingPrice": 129.77000427246094
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -813,7 +814,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 132.75
+          "underlyingPrice": 129.77000427246094
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -823,7 +824,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 132.75
+          "underlyingPrice": 129.77000427246094
         }
       },
       "has_options_data": true,
@@ -878,7 +879,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 132.75
+          "underlyingPrice": 129.77000427246094
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -888,7 +889,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 132.75
+          "underlyingPrice": 129.77000427246094
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -898,7 +899,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 132.75
+          "underlyingPrice": 129.77000427246094
         }
       },
       "has_options_data": true,
@@ -953,7 +954,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 537.13
+          "underlyingPrice": 531.739990234375
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -963,7 +964,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 537.13
+          "underlyingPrice": 531.739990234375
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -973,7 +974,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 537.13
+          "underlyingPrice": 531.739990234375
         }
       },
       "has_options_data": true,
@@ -1028,7 +1029,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 15.41
+          "underlyingPrice": 14.949999809265137
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -1038,7 +1039,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 15.41
+          "underlyingPrice": 14.949999809265137
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -1048,7 +1049,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 15.41
+          "underlyingPrice": 14.949999809265137
         }
       },
       "has_options_data": true,
@@ -1103,7 +1104,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 78.79
+          "underlyingPrice": 76.3587646484375
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -1113,7 +1114,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 78.79
+          "underlyingPrice": 76.3587646484375
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -1123,7 +1124,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 78.79
+          "underlyingPrice": 76.3587646484375
         }
       },
       "has_options_data": true,
@@ -1178,7 +1179,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 346.11
+          "underlyingPrice": 335.7974548339844
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -1188,7 +1189,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 346.11
+          "underlyingPrice": 335.7974548339844
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -1198,7 +1199,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 346.11
+          "underlyingPrice": 335.7974548339844
         }
       },
       "has_options_data": true,
@@ -1254,7 +1255,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 201.96
+          "underlyingPrice": 201.2636260986328
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -1264,7 +1265,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 201.96
+          "underlyingPrice": 201.2636260986328
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -1274,7 +1275,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 201.96
+          "underlyingPrice": 201.2636260986328
         }
       },
       "has_options_data": true,
@@ -1330,7 +1331,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 177.97
+          "underlyingPrice": 173.4334259033203
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -1340,7 +1341,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 177.97
+          "underlyingPrice": 173.4334259033203
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -1350,7 +1351,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 177.97
+          "underlyingPrice": 173.4334259033203
         }
       },
       "has_options_data": true,
@@ -1405,7 +1406,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 59.61
+          "underlyingPrice": 58.64650344848633
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -1415,7 +1416,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 59.61
+          "underlyingPrice": 58.64650344848633
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -1425,7 +1426,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 59.61
+          "underlyingPrice": 58.64650344848633
         }
       },
       "has_options_data": true,
@@ -1480,7 +1481,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 316.36
+          "underlyingPrice": 307.6653137207031
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -1490,7 +1491,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 316.36
+          "underlyingPrice": 307.6653137207031
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -1500,7 +1501,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 316.36
+          "underlyingPrice": 307.6653137207031
         }
       },
       "has_options_data": true,
@@ -1555,7 +1556,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 604.5900268554688
+          "underlyingPrice": 600.089599609375
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -1565,7 +1566,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 604.5900268554688
+          "underlyingPrice": 600.089599609375
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -1575,7 +1576,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 604.5900268554688
+          "underlyingPrice": 600.089599609375
         }
       },
       "has_options_data": true,
@@ -1630,7 +1631,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 145.80999755859375
+          "underlyingPrice": 144.35000610351562
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -1640,7 +1641,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 145.80999755859375
+          "underlyingPrice": 144.35000610351562
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -1650,7 +1651,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 145.80999755859375
+          "underlyingPrice": 144.35000610351562
         }
       },
       "has_options_data": true,
@@ -1681,62 +1682,75 @@
       "underlying_symbol": "HSI",
       "hk_trading_class": "HSI",
       "market_data": {
-        "bid": 76.0,
-        "bidSize": 2,
+        "volume": 179,
+        "bid": 75.0,
+        "bidSize": 19,
         "ask": 78.0,
-        "askSize": 20,
-        "volume": 175
+        "askSize": 19,
+        "close": 76.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
-        "modelGreeks": {
-          "impliedVolatility": 0.22767096939023304,
-          "delta": -0.09168781287713186,
-          "optionPrice": 75.99999997297164,
-          "pvDividend": 0.0,
-          "gamma": 9.518164647557915e-05,
-          "vega": 12.940498136884344,
-          "theta": -4.043555404610743,
-          "underlyingPrice": null
-        },
         "bidGreeks": {
-          "impliedVolatility": 0.22767096939023304,
-          "delta": -0.08736587702758292,
-          "optionPrice": 76.0,
+          "impliedVolatility": 0.22701777151190194,
+          "delta": -0.08528446638232667,
+          "optionPrice": 75.0,
           "pvDividend": 0.0,
-          "gamma": 9.194751135215965e-05,
-          "vega": 12.05195292345632,
-          "theta": -3.7670288923377977,
+          "gamma": 9.05093958512106e-05,
+          "vega": 11.843743087731038,
+          "theta": -3.691980840825271,
           "underlyingPrice": null
         },
         "askGreeks": {
-          "impliedVolatility": 0.22926284282394202,
-          "delta": -0.08879213069324032,
+          "impliedVolatility": 0.2294135789005002,
+          "delta": -0.08741995687459725,
           "optionPrice": 78.0,
           "pvDividend": 0.0,
-          "gamma": 9.241813728408609e-05,
-          "vega": 12.198338338321102,
-          "theta": -3.839556397361384,
+          "gamma": 9.123601085595534e-05,
+          "vega": 12.064820483438218,
+          "theta": -3.8007535062701563,
           "underlyingPrice": null
         },
         "lastGreeks": {
-          "impliedVolatility": 0.2276744261633961,
-          "delta": -0.08736897759677453,
-          "optionPrice": 73.0,
+          "impliedVolatility": 0.22803783101297126,
+          "delta": -0.08619449413473945,
+          "optionPrice": 76.0,
           "pvDividend": 0.0,
-          "gamma": 9.194855115505292e-05,
-          "vega": 12.052272204105384,
-          "theta": -3.7671861278365735,
+          "gamma": 9.082331092086648e-05,
+          "vega": 11.938223010715463,
+          "theta": -3.7382242058881094,
+          "underlyingPrice": null
+        },
+        "modelGreeks": {
+          "impliedVolatility": 0.22730234535943555,
+          "delta": -0.09119846116353336,
+          "optionPrice": 75.35358903864471,
+          "pvDividend": 0.0,
+          "gamma": 9.500254053872661e-05,
+          "vega": 12.888842944549197,
+          "theta": -3.998295362364388,
           "underlyingPrice": null
         }
       },
       "has_options_data": true,
       "data_unavailable": true,
+      "historical_data": [
+        {
+          "date": "20250624",
+          "open": 111.0,
+          "high": 111.0,
+          "low": 70.0,
+          "close": 76.0,
+          "volume": 178,
+          "average": 76.9,
+          "barCount": 66
+        }
+      ],
       "avg_cost": 169.3,
-      "current_price": 0,
+      "current_price": 76.0,
       "pnl": null,
-      "market_value": -169300.0,
+      "market_value": -76000.0,
       "expiry_formatted": "2025-07-30",
       "days_to_expiry": 36
     },
@@ -1783,7 +1797,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 43.6
+          "underlyingPrice": 42.04228210449219
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -1793,7 +1807,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 43.6
+          "underlyingPrice": 42.04228210449219
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -1803,7 +1817,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 43.6
+          "underlyingPrice": 42.04228210449219
         }
       },
       "has_options_data": true,
@@ -1858,7 +1872,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 703.760009765625
+          "underlyingPrice": 698.4067993164062
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -1868,7 +1882,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 703.760009765625
+          "underlyingPrice": 698.4067993164062
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -1878,7 +1892,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 703.760009765625
+          "underlyingPrice": 698.4067993164062
         }
       },
       "has_options_data": true,
@@ -1962,7 +1976,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 358.0799865722656
+          "underlyingPrice": 348.69000244140625
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -1972,7 +1986,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 358.0799865722656
+          "underlyingPrice": 348.69000244140625
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -1982,7 +1996,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 358.0799865722656
+          "underlyingPrice": 348.69000244140625
         }
       },
       "has_options_data": true,
@@ -2038,7 +2052,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 347.25
+          "underlyingPrice": 344.1453857421875
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -2048,7 +2062,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 347.25
+          "underlyingPrice": 344.1453857421875
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -2058,7 +2072,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 347.25
+          "underlyingPrice": 344.1453857421875
         }
       },
       "has_options_data": true,
@@ -2113,7 +2127,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 212.10000610351562
+          "underlyingPrice": 208.49002075195312
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -2123,7 +2137,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 212.10000610351562
+          "underlyingPrice": 208.49002075195312
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -2133,7 +2147,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 212.10000610351562
+          "underlyingPrice": 208.49002075195312
         }
       },
       "has_options_data": true,
@@ -2188,7 +2202,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 145.80999755859375
+          "underlyingPrice": 144.35000610351562
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -2198,7 +2212,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 145.80999755859375
+          "underlyingPrice": 144.35000610351562
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -2208,7 +2222,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 145.80999755859375
+          "underlyingPrice": 144.35000610351562
         }
       },
       "has_options_data": true,
@@ -2263,7 +2277,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 15.41
+          "underlyingPrice": 14.949999809265137
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -2273,7 +2287,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 15.41
+          "underlyingPrice": 14.949999809265137
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -2283,7 +2297,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 15.41
+          "underlyingPrice": 14.949999809265137
         }
       },
       "has_options_data": true,
@@ -2338,7 +2352,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 50.5
+          "underlyingPrice": 52.64897918701172
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -2348,7 +2362,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 50.5
+          "underlyingPrice": 52.64897918701172
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -2358,7 +2372,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 50.5
+          "underlyingPrice": 52.64897918701172
         }
       },
       "has_options_data": true,
@@ -2413,7 +2427,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 213.89000000000001
+          "underlyingPrice": 211.460205078125
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -2423,7 +2437,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 213.89000000000001
+          "underlyingPrice": 211.460205078125
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -2433,7 +2447,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 213.89000000000001
+          "underlyingPrice": 211.460205078125
         }
       },
       "has_options_data": true,
@@ -2489,7 +2503,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 256.33
+          "underlyingPrice": 253.63999938964844
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -2499,7 +2513,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 256.33
+          "underlyingPrice": 253.63999938964844
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -2509,7 +2523,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 256.33
+          "underlyingPrice": 253.63999938964844
         }
       },
       "has_options_data": true,
@@ -2564,7 +2578,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 141.09
+          "underlyingPrice": 139.91876220703125
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -2574,7 +2588,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 141.09
+          "underlyingPrice": 139.91876220703125
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -2584,7 +2598,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 141.09
+          "underlyingPrice": 139.91876220703125
         }
       },
       "has_options_data": true,
@@ -2640,7 +2654,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 346.11
+          "underlyingPrice": 335.7974548339844
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -2650,7 +2664,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 346.11
+          "underlyingPrice": 335.7974548339844
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -2660,7 +2674,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 346.11
+          "underlyingPrice": 335.7974548339844
         }
       },
       "has_options_data": true,
@@ -2715,7 +2729,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 306.52
+          "underlyingPrice": 310.94000244140625
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -2725,7 +2739,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 306.52
+          "underlyingPrice": 310.94000244140625
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -2735,7 +2749,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 306.52
+          "underlyingPrice": 310.94000244140625
         }
       },
       "has_options_data": true,
@@ -2790,7 +2804,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 141.09
+          "underlyingPrice": 139.91876220703125
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -2800,7 +2814,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 141.09
+          "underlyingPrice": 139.91876220703125
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -2810,7 +2824,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 141.09
+          "underlyingPrice": 139.91876220703125
         }
       },
       "has_options_data": true,
@@ -2834,9 +2848,9 @@
       "conId": 604408720,
       "localSymbol": "BOXX",
       "tradingClass": "BOXX",
-      "marketPrice": 112.58000185,
-      "marketValue": 2026440.03,
-      "unrealizedPNL": -201.91,
+      "marketPrice": 112.58999635,
+      "marketValue": 2026619.93,
+      "unrealizedPNL": -22.01,
       "realizedPNL": 0.0,
       "accountName": "U6129142",
       "has_market_data": false,
@@ -2887,16 +2901,17 @@
       "conId": 15016059,
       "localSymbol": "USD.JPY",
       "tradingClass": "USD.JPY",
-      "marketPrice": 145.20539855,
-      "marketValue": 238116960.5,
-      "unrealizedPNL": 2079551.57,
+      "marketPrice": 145.08084105,
+      "marketValue": 237912703.27,
+      "unrealizedPNL": 1875294.34,
       "realizedPNL": 0.0,
       "accountName": "U6129142",
       "market_data": {
-        "bid": 145.168,
-        "bidSize": 2000000,
-        "ask": 145.172,
-        "askSize": 1000000
+        "close": 145.0765,
+        "bid": 145.087,
+        "bidSize": 3000000,
+        "ask": 145.09,
+        "askSize": 600000
       },
       "has_market_data": true,
       "has_pnl_data": false,
@@ -2948,14 +2963,14 @@
           "open": 146.111,
           "high": 146.1925,
           "low": 144.9955,
-          "close": 145.1725,
+          "close": 145.0765,
           "volume": -1,
           "average": -1.0,
           "barCount": -1
         }
       ],
-      "current_price": 0,
-      "market_value": 236037408.88755104
+      "current_price": 145.0765,
+      "market_value": 237905584.51950002
     },
     {
       "account": "U6129142",
@@ -3000,7 +3015,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 279.25
+          "underlyingPrice": 278.4651794433594
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -3010,7 +3025,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 279.25
+          "underlyingPrice": 278.4651794433594
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -3020,7 +3035,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 279.25
+          "underlyingPrice": 278.4651794433594
         }
       },
       "has_options_data": true,
@@ -3075,7 +3090,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 275.55
+          "underlyingPrice": 263.7200012207031
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -3085,7 +3100,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 275.55
+          "underlyingPrice": 263.7200012207031
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -3095,7 +3110,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 275.55
+          "underlyingPrice": 263.7200012207031
         }
       },
       "has_options_data": true,
@@ -3151,7 +3166,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 43.6
+          "underlyingPrice": 42.04228210449219
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -3161,7 +3176,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 43.6
+          "underlyingPrice": 42.04228210449219
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -3171,7 +3186,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 43.6
+          "underlyingPrice": 42.04228210449219
         }
       },
       "has_options_data": true,
@@ -3226,7 +3241,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 210.77
+          "underlyingPrice": 207.1699981689453
         },
         "askGreeks": {
           "impliedVolatility": null,
@@ -3236,7 +3251,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 210.77
+          "underlyingPrice": 207.1699981689453
         },
         "lastGreeks": {
           "impliedVolatility": null,
@@ -3246,7 +3261,7 @@
           "gamma": null,
           "vega": null,
           "theta": null,
-          "underlyingPrice": 210.77
+          "underlyingPrice": 207.1699981689453
         }
       },
       "has_options_data": true,
@@ -3263,7 +3278,7 @@
     "total_positions": 45,
     "options_count": 42,
     "stocks_count": 1,
-    "total_market_value": 103803701.74378985
+    "total_market_value": 107008678.55209881
   },
   "account_summary": {},
   "account_values": {
@@ -3288,7 +3303,7 @@
       "account": "U6129142"
     },
     "Cushion": {
-      "value": "0.147959",
+      "value": "0.148864",
       "currency": "",
       "account": "U6129142"
     },
@@ -3313,12 +3328,12 @@
       "account": "U6129142"
     },
     "SettledCashByDate": {
-      "value": "20250624:-113499.49;20250625:-52610.43665528",
+      "value": "20250624:-113499.49;20250625:-53823.4417212",
       "currency": "",
       "account": "U6129142"
     },
     "SettledCashByDate-S": {
-      "value": "20250624:-113499.49;20250625:-52610.43665528",
+      "value": "20250624:-113499.49;20250625:-53823.4417212",
       "currency": "",
       "account": "U6129142"
     },
@@ -3333,7 +3348,7 @@
       "account": "U6129142"
     },
     "AccruedCash-S": {
-      "value": "33868.74",
+      "value": "33868.61",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -3348,12 +3363,12 @@
       "account": "U6129142"
     },
     "AvailableFunds": {
-      "value": "493016.76",
+      "value": "507850.84",
       "currency": "HKD",
       "account": "U6129142"
     },
     "AvailableFunds-S": {
-      "value": "493016.76",
+      "value": "507850.84",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -3368,77 +3383,77 @@
       "account": "U6129142"
     },
     "BuyingPower": {
-      "value": "3286778.43",
+      "value": "3385672.30",
       "currency": "HKD",
       "account": "U6129142"
     },
     "EquityWithLoanValue": {
-      "value": "14372176.75",
+      "value": "14376425.28",
       "currency": "HKD",
       "account": "U6129142"
     },
     "EquityWithLoanValue-S": {
-      "value": "14372176.75",
+      "value": "14376425.28",
       "currency": "HKD",
       "account": "U6129142"
     },
     "ExcessLiquidity": {
-      "value": "2126197.89",
+      "value": "2139902.94",
       "currency": "HKD",
       "account": "U6129142"
     },
     "ExcessLiquidity-S": {
-      "value": "2126197.89",
+      "value": "2139902.94",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullAvailableFunds": {
-      "value": "493016.76",
+      "value": "507850.84",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullAvailableFunds-S": {
-      "value": "493016.76",
+      "value": "507850.84",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullExcessLiquidity": {
-      "value": "2126197.89",
+      "value": "2139902.94",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullExcessLiquidity-S": {
-      "value": "2126197.89",
+      "value": "2139902.94",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullInitMarginReq": {
-      "value": "13879159.99",
+      "value": "13868574.43",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullInitMarginReq-S": {
-      "value": "13879159.99",
+      "value": "13868574.43",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullMaintMarginReq": {
-      "value": "12245978.86",
+      "value": "12237000.46",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullMaintMarginReq-S": {
-      "value": "12245978.86",
+      "value": "12237000.46",
       "currency": "HKD",
       "account": "U6129142"
     },
     "GrossPositionValue": {
-      "value": "18404423.69",
+      "value": "18402400.10",
       "currency": "HKD",
       "account": "U6129142"
     },
     "GrossPositionValue-S": {
-      "value": "18404423.69",
+      "value": "18402400.10",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -3473,72 +3488,72 @@
       "account": "U6129142"
     },
     "InitMarginReq": {
-      "value": "13879159.99",
+      "value": "13868574.43",
       "currency": "HKD",
       "account": "U6129142"
     },
     "InitMarginReq-S": {
-      "value": "13879159.99",
+      "value": "13868574.43",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadAvailableFunds": {
-      "value": "493016.76",
+      "value": "507850.84",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadAvailableFunds-S": {
-      "value": "493016.76",
+      "value": "507850.84",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadExcessLiquidity": {
-      "value": "2126197.89",
+      "value": "2139902.94",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadExcessLiquidity-S": {
-      "value": "2126197.89",
+      "value": "2139902.94",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadInitMarginReq": {
-      "value": "13879159.99",
+      "value": "13868574.43",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadInitMarginReq-S": {
-      "value": "13879159.99",
+      "value": "13868574.43",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadMaintMarginReq": {
-      "value": "12245978.86",
+      "value": "12237000.46",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadMaintMarginReq-S": {
-      "value": "12245978.86",
+      "value": "12237000.46",
       "currency": "HKD",
       "account": "U6129142"
     },
     "MaintMarginReq": {
-      "value": "12245978.86",
+      "value": "12237000.46",
       "currency": "HKD",
       "account": "U6129142"
     },
     "MaintMarginReq-S": {
-      "value": "12245978.86",
+      "value": "12237000.46",
       "currency": "HKD",
       "account": "U6129142"
     },
     "NetLiquidation": {
-      "value": "14370141.64",
+      "value": "14374868.29",
       "currency": "HKD",
       "account": "U6129142"
     },
     "NetLiquidation-S": {
-      "value": "14370141.64",
+      "value": "14374868.29",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -3588,12 +3603,12 @@
       "account": "U6129142"
     },
     "TotalCashValue": {
-      "value": "851560.61",
+      "value": "850344.25",
       "currency": "HKD",
       "account": "U6129142"
     },
     "TotalCashValue-S": {
-      "value": "851560.61",
+      "value": "850344.25",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -3623,12 +3638,12 @@
       "account": "U6129142"
     },
     "StockMarketValue": {
-      "value": "2026440.03",
+      "value": "2026619.93",
       "currency": "USD",
       "account": "U6129142"
     },
     "OptionMarketValue": {
-      "value": "-293501.64",
+      "value": "-292911.79",
       "currency": "USD",
       "account": "U6129142"
     },
@@ -3643,12 +3658,12 @@
       "account": "U6129142"
     },
     "NetLiquidationByCurrency": {
-      "value": "1852450.1449",
+      "value": "1853219.8984",
       "currency": "USD",
       "account": "U6129142"
     },
     "UnrealizedPnL": {
-      "value": "112812.96",
+      "value": "113582.72",
       "currency": "USD",
       "account": "U6129142"
     },
@@ -3658,7 +3673,7 @@
       "account": "U6129142"
     },
     "ExchangeRate": {
-      "value": "7.8499794",
+      "value": "7.8499503",
       "currency": "USD",
       "account": "U6129142"
     },
@@ -3816,7 +3831,7 @@
       "expiry": "20250730",
       "expiry_formatted": "2025-07-30",
       "days_to_expiry": 36,
-      "total_value": -169300.0,
+      "total_value": -76000.0,
       "count": 1,
       "positions": [
         "HSI"
@@ -3855,12 +3870,20 @@
     }
   ],
   "underlying_prices": {
-    "META": {
-      "price": 698.53,
-      "changesPercentage": 2.37122,
-      "dayHigh": 699.006,
-      "dayLow": 678.75,
-      "previousClose": 682.35,
+    "UBER": {
+      "price": 85.24,
+      "changesPercentage": 1.74266,
+      "dayHigh": 85.245,
+      "dayLow": 82.475,
+      "previousClose": 83.78,
+      "timestamp": 1750708802
+    },
+    "MSFT": {
+      "price": 486,
+      "changesPercentage": 1.80142,
+      "dayHigh": 487.75,
+      "dayLow": 472.51,
+      "previousClose": 477.4,
       "timestamp": 1750708801
     },
     "QQQ": {
@@ -3870,6 +3893,102 @@
       "dayLow": 523.65,
       "previousClose": 526.83,
       "timestamp": 1750708800
+    },
+    "GLD": {
+      "price": 311.08,
+      "changesPercentage": 0.30632,
+      "dayHigh": 313.02,
+      "dayLow": 310.31,
+      "previousClose": 310.13,
+      "timestamp": 1750708800
+    },
+    "ORCL": {
+      "price": 207.04,
+      "changesPercentage": 0.91144,
+      "dayHigh": 207.27,
+      "dayLow": 202.54,
+      "previousClose": 205.17,
+      "timestamp": 1750708802
+    },
+    "NFLX": {
+      "price": 1253.54,
+      "changesPercentage": 1.79713,
+      "dayHigh": 1254.77,
+      "dayLow": 1215.01,
+      "previousClose": 1231.41,
+      "timestamp": 1750708800
+    },
+    "BA": {
+      "price": 201.31,
+      "changesPercentage": 1.28805,
+      "dayHigh": 202.2,
+      "dayLow": 197.48,
+      "previousClose": 198.75,
+      "timestamp": 1750708802
+    },
+    "AMZN": {
+      "price": 208.47,
+      "changesPercentage": -0.58181,
+      "dayHigh": 210.39,
+      "dayLow": 207.3101,
+      "previousClose": 209.69,
+      "timestamp": 1750708801
+    },
+    "V": {
+      "price": 343.75,
+      "changesPercentage": 1.52996,
+      "dayHigh": 344.21,
+      "dayLow": 335.63,
+      "previousClose": 338.57,
+      "timestamp": 1750708802
+    },
+    "IBIT": {
+      "price": 58.67,
+      "changesPercentage": 0,
+      "dayHigh": 58.76,
+      "dayLow": 56.625,
+      "previousClose": 58.67,
+      "timestamp": 1750708801
+    },
+    "MSTR": {
+      "price": 367.18,
+      "changesPercentage": -0.68163,
+      "dayHigh": 370.28,
+      "dayLow": 358.8,
+      "previousClose": 369.7,
+      "timestamp": 1750708802
+    },
+    "CRWV": {
+      "price": 173.68,
+      "changesPercentage": -5.39274,
+      "dayHigh": 183.53,
+      "dayLow": 159.03,
+      "previousClose": 183.58,
+      "timestamp": 1750708801
+    },
+    "NVDA": {
+      "price": 144.17,
+      "changesPercentage": 0.22245,
+      "dayHigh": 144.74,
+      "dayLow": 142.03,
+      "previousClose": 143.85,
+      "timestamp": 1750708800
+    },
+    "HIMS": {
+      "price": 41.98,
+      "changesPercentage": -34.63096,
+      "dayHigh": 48.35,
+      "dayLow": 41.975,
+      "previousClose": 64.22,
+      "timestamp": 1750708802
+    },
+    "CRWD": {
+      "price": 491.81,
+      "changesPercentage": 3.25635,
+      "dayHigh": 494.3,
+      "dayLow": 461.86,
+      "previousClose": 476.3,
+      "timestamp": 1750708801
     },
     "HOOD": {
       "price": 76.35,
@@ -3887,36 +4006,12 @@
       "previousClose": 128.24,
       "timestamp": 1750708802
     },
-    "V": {
-      "price": 343.75,
-      "changesPercentage": 1.52996,
-      "dayHigh": 344.21,
-      "dayLow": 335.63,
-      "previousClose": 338.57,
-      "timestamp": 1750708802
-    },
-    "PLTR": {
-      "price": 139.92,
-      "changesPercentage": 1.90823,
-      "dayHigh": 142.15,
-      "dayLow": 135.96,
-      "previousClose": 137.3,
-      "timestamp": 1750708801
-    },
-    "HIMS": {
-      "price": 41.98,
-      "changesPercentage": -34.63096,
-      "dayHigh": 48.35,
-      "dayLow": 41.975,
-      "previousClose": 64.22,
-      "timestamp": 1750708802
-    },
-    "BOXX": {
-      "price": 112.58,
-      "changesPercentage": 0.02665482,
-      "dayHigh": 112.59,
-      "dayLow": 112.55,
-      "previousClose": 112.55,
+    "IWM": {
+      "price": 211.77,
+      "changesPercentage": 1.22365,
+      "dayHigh": 211.77,
+      "dayLow": 206.81,
+      "previousClose": 209.21,
       "timestamp": 1750708800
     },
     "COST": {
@@ -3927,20 +4022,76 @@
       "previousClose": 980.29,
       "timestamp": 1750708801
     },
-    "NFLX": {
-      "price": 1253.54,
-      "changesPercentage": 1.79713,
-      "dayHigh": 1254.77,
-      "dayLow": 1215.01,
-      "previousClose": 1231.41,
+    "COIN": {
+      "price": 307.59,
+      "changesPercentage": -0.25618,
+      "dayHigh": 314.25,
+      "dayLow": 294.5601,
+      "previousClose": 308.38,
+      "timestamp": 1750708801
+    },
+    "PLTR": {
+      "price": 139.92,
+      "changesPercentage": 1.90823,
+      "dayHigh": 142.15,
+      "dayLow": 135.96,
+      "previousClose": 137.3,
+      "timestamp": 1750708801
+    },
+    "TSLA": {
+      "price": 348.68,
+      "changesPercentage": 8.23193,
+      "dayHigh": 357.47,
+      "dayLow": 327.5,
+      "previousClose": 322.16,
       "timestamp": 1750708800
     },
-    "GLD": {
-      "price": 311.08,
-      "changesPercentage": 0.30632,
-      "dayHigh": 313.02,
-      "dayLow": 310.31,
-      "previousClose": 310.13,
+    "META": {
+      "price": 698.53,
+      "changesPercentage": 2.37122,
+      "dayHigh": 699.006,
+      "dayLow": 678.75,
+      "previousClose": 682.35,
+      "timestamp": 1750708801
+    },
+    "CRCL": {
+      "price": 263.45,
+      "changesPercentage": 9.64292,
+      "dayHigh": 298.98,
+      "dayLow": 232.48,
+      "previousClose": 240.28,
+      "timestamp": 1750708802
+    },
+    "SPY": {
+      "price": 600.15,
+      "changesPercentage": 0.98775,
+      "dayHigh": 600.52,
+      "dayLow": 591.89,
+      "previousClose": 594.28,
+      "timestamp": 1750708800
+    },
+    "AVGO": {
+      "price": 253.77,
+      "changesPercentage": 1.51206,
+      "dayHigh": 254.21,
+      "dayLow": 246.46,
+      "previousClose": 249.99,
+      "timestamp": 1750708802
+    },
+    "APP": {
+      "price": 335.4,
+      "changesPercentage": 3.29535,
+      "dayHigh": 336.03,
+      "dayLow": 320,
+      "previousClose": 324.7,
+      "timestamp": 1750708802
+    },
+    "BOXX": {
+      "price": 112.58,
+      "changesPercentage": 0.02665482,
+      "dayHigh": 112.59,
+      "dayLow": 112.55,
+      "previousClose": 112.55,
       "timestamp": 1750708800
     },
     "VXX": {
@@ -3959,54 +4110,6 @@
       "previousClose": 15.65,
       "timestamp": 1750708818
     },
-    "APP": {
-      "price": 335.4,
-      "changesPercentage": 3.29535,
-      "dayHigh": 336.03,
-      "dayLow": 320,
-      "previousClose": 324.7,
-      "timestamp": 1750708802
-    },
-    "BA": {
-      "price": 201.31,
-      "changesPercentage": 1.28805,
-      "dayHigh": 202.2,
-      "dayLow": 197.48,
-      "previousClose": 198.75,
-      "timestamp": 1750708802
-    },
-    "CRCL": {
-      "price": 263.45,
-      "changesPercentage": 9.64292,
-      "dayHigh": 298.98,
-      "dayLow": 232.48,
-      "previousClose": 240.28,
-      "timestamp": 1750708802
-    },
-    "ORCL": {
-      "price": 207.04,
-      "changesPercentage": 0.91144,
-      "dayHigh": 207.27,
-      "dayLow": 202.54,
-      "previousClose": 205.17,
-      "timestamp": 1750708802
-    },
-    "NVDA": {
-      "price": 144.17,
-      "changesPercentage": 0.22245,
-      "dayHigh": 144.74,
-      "dayLow": 142.03,
-      "previousClose": 143.85,
-      "timestamp": 1750708800
-    },
-    "AMZN": {
-      "price": 208.47,
-      "changesPercentage": -0.58181,
-      "dayHigh": 210.39,
-      "dayLow": 207.3101,
-      "previousClose": 209.69,
-      "timestamp": 1750708801
-    },
     "JPM": {
       "price": 278.27,
       "changesPercentage": 1.18909,
@@ -4014,144 +4117,168 @@
       "dayLow": 272.113,
       "previousClose": 275,
       "timestamp": 1750708802
-    },
-    "IBIT": {
-      "price": 58.67,
-      "changesPercentage": 0,
-      "dayHigh": 58.76,
-      "dayLow": 56.625,
-      "previousClose": 58.67,
-      "timestamp": 1750708801
-    },
-    "TSLA": {
-      "price": 348.68,
-      "changesPercentage": 8.23193,
-      "dayHigh": 357.47,
-      "dayLow": 327.5,
-      "previousClose": 322.16,
-      "timestamp": 1750708800
-    },
-    "CRWD": {
-      "price": 491.81,
-      "changesPercentage": 3.25635,
-      "dayHigh": 494.3,
-      "dayLow": 461.86,
-      "previousClose": 476.3,
-      "timestamp": 1750708801
-    },
-    "SPY": {
-      "price": 600.15,
-      "changesPercentage": 0.98775,
-      "dayHigh": 600.52,
-      "dayLow": 591.89,
-      "previousClose": 594.28,
-      "timestamp": 1750708800
-    },
-    "IWM": {
-      "price": 211.77,
-      "changesPercentage": 1.22365,
-      "dayHigh": 211.77,
-      "dayLow": 206.81,
-      "previousClose": 209.21,
-      "timestamp": 1750708800
-    },
-    "AVGO": {
-      "price": 253.77,
-      "changesPercentage": 1.51206,
-      "dayHigh": 254.21,
-      "dayLow": 246.46,
-      "previousClose": 249.99,
-      "timestamp": 1750708802
-    },
-    "MSTR": {
-      "price": 367.18,
-      "changesPercentage": -0.68163,
-      "dayHigh": 370.28,
-      "dayLow": 358.8,
-      "previousClose": 369.7,
-      "timestamp": 1750708802
-    },
-    "UBER": {
-      "price": 85.24,
-      "changesPercentage": 1.74266,
-      "dayHigh": 85.245,
-      "dayLow": 82.475,
-      "previousClose": 83.78,
-      "timestamp": 1750708802
-    },
-    "COIN": {
-      "price": 307.59,
-      "changesPercentage": -0.25618,
-      "dayHigh": 314.25,
-      "dayLow": 294.5601,
-      "previousClose": 308.38,
-      "timestamp": 1750708801
-    },
-    "MSFT": {
-      "price": 486,
-      "changesPercentage": 1.80142,
-      "dayHigh": 487.75,
-      "dayLow": 472.51,
-      "previousClose": 477.4,
-      "timestamp": 1750708801
-    },
-    "CRWV": {
-      "price": 173.68,
-      "changesPercentage": -5.39274,
-      "dayHigh": 183.53,
-      "dayLow": 159.03,
-      "previousClose": 183.58,
-      "timestamp": 1750708801
     }
   },
   "source": "ib_api_enhanced",
   "status": "updated",
   "errors": [
     {
-      "reqId": 9001,
-      "errorCode": 321,
-      "errorString": "確認請求時出錯。:-'b2' :導致- Unified group name is invalid",
-      "timestamp": "2025-06-24T16:08:35.294465",
-      "symbol": "Unknown",
+      "reqId": 1056,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.024869",
+      "symbol": "V_20250919_P_340.0",
       "level": "warning"
     },
     {
-      "reqId": 1040,
-      "errorCode": 10168,
-      "errorString": "請求的市場數據沒有訂閱。延時市場數據未啟用。",
-      "timestamp": "2025-06-24T16:08:35.305936",
-      "symbol": "BOXX",
-      "level": "error"
-    },
-    {
-      "reqId": 1024,
-      "errorCode": 10090,
-      "errorString": "Part of requested market data is not subscribed. Subscription-independent ticks are still active.延遲市場數據可用。:HSI Hang Seng Stock Index/TOP/ALL",
-      "timestamp": "2025-06-24T16:08:35.600880",
-      "symbol": "HSI_20250730_P_22000.0",
+      "reqId": 1058,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.025495",
+      "symbol": "AMZN_20250919_P_200.0",
       "level": "warning"
     },
     {
-      "reqId": 1027,
+      "reqId": 1060,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.026240",
+      "symbol": "NVDA_20250919_P_126.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1062,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.026787",
+      "symbol": "QBTS_20260116_P_8.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1064,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.027304",
+      "symbol": "VXX_20250919_C_90.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1066,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.027768",
+      "symbol": "IWM_20250919_P_205.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1068,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.028489",
+      "symbol": "AVGO_20250919_P_210.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1070,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.029042",
+      "symbol": "PLTR_20250919_P_100.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1072,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.029530",
+      "symbol": "APP_20250919_P_290.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1074,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.030227",
+      "symbol": "GLD_20250919_P_280.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1076,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.030745",
+      "symbol": "PLTR_20250919_P_85.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1084,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.032948",
+      "symbol": "JPM_20250919_P_245.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1086,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.033347",
+      "symbol": "CRCL_20251017_P_100.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1088,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.033747",
+      "symbol": "HIMS_20250919_P_40.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1090,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-24T16:15:44.034440",
+      "symbol": "ORCL_20250919_P_160.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1051,
       "errorCode": 200,
       "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T16:08:35.636218",
+      "timestamp": "2025-06-24T16:15:44.184505",
       "symbol": "1024_20250929_P_52.5",
       "level": "warning"
     },
     {
-      "reqId": 1042,
+      "reqId": 1052,
       "errorCode": 200,
       "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T16:08:35.692786",
+      "timestamp": "2025-06-24T16:15:44.184883",
+      "symbol": "1024_20250929_P_52.5",
+      "level": "warning"
+    },
+    {
+      "reqId": 1079,
+      "errorCode": 200,
+      "errorString": "未找到此請求的證券定義",
+      "timestamp": "2025-06-24T16:15:44.185020",
       "symbol": "700_20250929_P_470.0",
       "level": "warning"
     },
     {
-      "reqId": 1041,
+      "reqId": 1080,
+      "errorCode": 200,
+      "errorString": "未找到此請求的證券定義",
+      "timestamp": "2025-06-24T16:15:44.185074",
+      "symbol": "700_20250929_P_470.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1078,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No market data permissions for BATS STK",
-      "timestamp": "2025-06-24T16:08:36.047078",
+      "timestamp": "2025-06-24T16:15:44.306074",
       "symbol": "BOXX",
       "level": "warning"
     }
