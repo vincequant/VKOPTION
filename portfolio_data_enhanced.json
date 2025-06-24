@@ -1,6 +1,6 @@
 {
-  "timestamp": "2025-06-24T14:15:02.505097",
-  "last_update": "2025-06-24 14:15:02",
+  "timestamp": "2025-06-24T15:17:23.511770",
+  "last_update": "2025-06-24 15:17:23",
   "positions": [
     {
       "account": "U6129142",
@@ -22,16 +22,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 19.92,
+        "currentPrice": 19.92,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 27.063835428500003,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -18944.684799950002,
+      "current_price": 19.92,
+      "pnl": 5000.684799950001,
+      "market_value": -13944.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -55,16 +60,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 8.52,
+        "currentPrice": 8.52,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 13.7158925,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -5486.357,
+      "current_price": 8.52,
+      "pnl": 2078.3570000000004,
+      "market_value": -3408.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -80,16 +90,18 @@
       "conId": 15016090,
       "localSymbol": "HKD.JPY",
       "tradingClass": "HKD.JPY",
-      "marketPrice": 18.50580025,
-      "marketValue": -132497828.61,
-      "unrealizedPNL": 1065936.46,
-      "realizedPNL": 0.0,
-      "accountName": "U6129142",
       "market_data": {
-        "bid": 18.504,
-        "bidSize": 9090000,
-        "ask": 18.506,
-        "askSize": 24930000
+        "bid": 18.477,
+        "bidSize": 27090000,
+        "ask": 18.479,
+        "askSize": 44090000,
+        "lastSize": 0,
+        "volume": 0,
+        "high": 18.625,
+        "low": 18.475,
+        "close": 18.62,
+        "currentPrice": 18.62,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
@@ -140,15 +152,15 @@
           "date": "20250624",
           "open": 18.6175,
           "high": 18.6235,
-          "low": 18.4965,
-          "close": 18.5045,
+          "low": 18.475,
+          "close": 18.4775,
           "volume": -1,
           "average": -1.0,
           "barCount": -1
         }
       ],
-      "current_price": 0,
-      "market_value": -133563764.97636
+      "current_price": 18.62,
+      "market_value": -133315476.0
     },
     {
       "account": "U6129142",
@@ -170,16 +182,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 25.21,
+        "currentPrice": 25.21,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 22.195392499999997,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -4439.0785,
+      "current_price": 25.21,
+      "pnl": -602.9215000000008,
+      "market_value": -5042.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -203,16 +220,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 4.22,
+        "currentPrice": 4.22,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 6.9456926,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -6945.6926,
+      "current_price": 4.22,
+      "pnl": 2725.6926000000003,
+      "market_value": -4220.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -236,16 +258,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 2.37,
+        "currentPrice": 2.37,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 2.2728675999999997,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -5682.169,
+      "current_price": 2.37,
+      "pnl": -242.83100000000113,
+      "market_value": -5925.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -269,16 +296,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 11.09,
+        "currentPrice": 11.09,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 21.492892499999996,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -4298.5785,
+      "current_price": 11.09,
+      "pnl": 2080.578499999999,
+      "market_value": -2218.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -302,16 +334,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 77.4,
+        "currentPrice": 77.4,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 79.0354926,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -23710.64778,
+      "current_price": 77.4,
+      "pnl": 490.6477799999976,
+      "market_value": -23220.0,
       "expiry_formatted": "2026-09-18",
       "days_to_expiry": 451
     },
@@ -335,16 +372,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 3.35,
+        "currentPrice": 3.35,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 7.4760593335,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -4485.6356001,
+      "current_price": 3.35,
+      "pnl": 2475.6356001000004,
+      "market_value": -2010.0000000000002,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -368,16 +410,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 8.9,
+        "currentPrice": 8.9,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 16.6453926,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -8322.6963,
+      "current_price": 8.9,
+      "pnl": 3872.6963000000005,
+      "market_value": -4450.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -401,16 +448,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 3.6,
+        "currentPrice": 3.6,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 4.362892625,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -3490.3141,
+      "current_price": 3.6,
+      "pnl": 610.3140999999997,
+      "market_value": -2880.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -434,16 +486,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 4.9,
+        "currentPrice": 4.9,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 4.8228926,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -10610.363720000001,
+      "current_price": 4.9,
+      "pnl": -169.6362800000001,
+      "market_value": -10780.000000000002,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -467,16 +524,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 7.61,
+        "currentPrice": 7.61,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 7.243892600000001,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -25353.6241,
+      "current_price": 7.61,
+      "pnl": -1281.375899999999,
+      "market_value": -26635.000000000004,
       "expiry_formatted": "2025-12-19",
       "days_to_expiry": 178
     },
@@ -500,16 +562,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 0.6,
+        "currentPrice": 0.6,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 1.0011148,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -20022.296,
+      "current_price": 0.6,
+      "pnl": 8022.296000000001,
+      "market_value": -12000.0,
       "expiry_formatted": "2026-01-16",
       "days_to_expiry": 206
     },
@@ -533,16 +600,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 0.57,
+        "currentPrice": 0.57,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 2.6928176,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -13464.088000000002,
+      "current_price": 0.57,
+      "pnl": 10614.088000000002,
+      "market_value": -2849.9999999999995,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -566,16 +638,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 3.91,
+        "currentPrice": 3.91,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 39.5918917145,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -27714.324200149997,
+      "current_price": 3.91,
+      "pnl": 24977.324200149997,
+      "market_value": -2737.0,
       "expiry_formatted": "2025-07-18",
       "days_to_expiry": 24
     },
@@ -599,16 +676,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 2.99,
+        "currentPrice": 2.99,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 3.6452911665,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -4374.349399799999,
+      "current_price": 2.99,
+      "pnl": 786.3493997999996,
+      "market_value": -3588.0000000000005,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -632,16 +714,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 5.56,
+        "currentPrice": 5.56,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 6.023444115,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -19877.365579499998,
+      "current_price": 5.56,
+      "pnl": 1529.365579500002,
+      "market_value": -18348.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -665,16 +752,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 2.42,
+        "currentPrice": 2.42,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 2.272745237,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -8636.4319006,
+      "current_price": 2.42,
+      "pnl": -559.5680993999994,
+      "market_value": -9196.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -698,16 +790,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 9.27,
+        "currentPrice": 9.27,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 9.9254926,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -9925.4926,
+      "current_price": 9.27,
+      "pnl": 655.4926000000005,
+      "market_value": -9269.999999999998,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -731,16 +828,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 9.13,
+        "currentPrice": 9.13,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 12.9528925,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -5181.157,
+      "current_price": 9.13,
+      "pnl": 1529.157,
+      "market_value": -3652.0000000000005,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -764,16 +866,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 2.73,
+        "currentPrice": 2.73,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 6.5260735715,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -13704.75450015,
+      "current_price": 2.73,
+      "pnl": 7971.754500149998,
+      "market_value": -5733.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -796,62 +903,70 @@
       "underlying_symbol": "HSI",
       "hk_trading_class": "HSI",
       "market_data": {
-        "volume": 60,
-        "bid": 74.0,
-        "bidSize": 1,
-        "ask": 75.0,
-        "askSize": 7
+        "bid": 71.0,
+        "bidSize": 2,
+        "ask": 73.0,
+        "askSize": 1,
+        "last": 73.0,
+        "currentPrice": 135.0,
+        "lastSize": 1,
+        "volume": 163,
+        "high": 111.0,
+        "low": 70.0,
+        "close": 135.0,
+        "open": 111.0,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
-        "modelGreeks": {
-          "impliedVolatility": 0.22379077031196087,
-          "delta": -0.0915640757016179,
-          "optionPrice": 74.41057164824542,
-          "pvDividend": 0.0,
-          "gamma": 9.69214945734697e-05,
-          "vega": 12.92126958844392,
-          "theta": -3.8803544308079836,
-          "underlyingPrice": null
-        },
         "bidGreeks": {
-          "impliedVolatility": 0.2234609480334201,
-          "delta": -0.09198663956316222,
-          "optionPrice": 74.0,
+          "impliedVolatility": 0.22609620610028433,
+          "delta": -0.08305427059417536,
+          "optionPrice": 71.0,
           "pvDividend": 0.0,
-          "gamma": 9.758697143240982e-05,
-          "vega": 12.490958633431662,
-          "theta": -3.820813830972758,
+          "gamma": 8.897834059932794e-05,
+          "vega": 11.624871385905578,
+          "theta": -3.6038361066558444,
           "underlyingPrice": null
         },
         "askGreeks": {
-          "impliedVolatility": 0.22426285329018036,
-          "delta": -0.09273141083670255,
-          "optionPrice": 75.0,
+          "impliedVolatility": 0.22774716910898696,
+          "delta": -0.08452003726312907,
+          "optionPrice": 73.0,
           "pvDividend": 0.0,
-          "gamma": 9.782003334450996e-05,
-          "vega": 12.565721875341417,
-          "theta": -3.8575398554428686,
+          "gamma": 8.950174879192073e-05,
+          "vega": 11.778638370277097,
+          "theta": -3.6782831223888923,
           "underlyingPrice": null
         },
         "lastGreeks": {
-          "impliedVolatility": 0.22262700444606015,
-          "delta": -0.0912110238602819,
-          "optionPrice": 70.0,
+          "impliedVolatility": 0.22779245861586236,
+          "delta": -0.08456020845473167,
+          "optionPrice": 73.0,
           "pvDividend": 0.0,
-          "gamma": 9.733983957745056e-05,
-          "vega": 12.412828697011122,
-          "theta": -3.7826800430273546,
+          "gamma": 8.951585661993181e-05,
+          "vega": 11.782837647231911,
+          "theta": -3.680329336993416,
+          "underlyingPrice": null
+        },
+        "modelGreeks": {
+          "impliedVolatility": 0.226162974348026,
+          "delta": -0.08717888589357747,
+          "optionPrice": 71.08039349542378,
+          "pvDividend": 0.0,
+          "gamma": 9.225841977777117e-05,
+          "vega": 12.500154272559485,
+          "theta": -3.793194861288157,
           "underlyingPrice": null
         }
       },
       "has_options_data": true,
       "data_unavailable": true,
       "avg_cost": 169.3,
-      "current_price": 0,
+      "current_price": 135.0,
       "pnl": null,
-      "market_value": -169300.0,
+      "market_value": -135000.0,
       "expiry_formatted": "2025-07-30",
       "days_to_expiry": 36
     },
@@ -875,16 +990,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 1.76,
+        "currentPrice": 1.76,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 1.5356497845000001,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -9981.723599250001,
+      "current_price": 1.76,
+      "pnl": -1458.2764007499993,
+      "market_value": -11440.0,
       "expiry_formatted": "2025-08-15",
       "days_to_expiry": 52
     },
@@ -908,16 +1028,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 12.06,
+        "currentPrice": 12.06,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 25.8570175,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -10342.807,
+      "current_price": 12.06,
+      "pnl": 5518.807000000001,
+      "market_value": -4824.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -970,16 +1095,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 20.25,
+        "currentPrice": 20.25,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 27.922892625,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -22338.3141,
+      "current_price": 20.25,
+      "pnl": 6138.3141,
+      "market_value": -16200.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -1003,16 +1133,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 13.27,
+        "currentPrice": 13.27,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 11.495392571499998,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -8046.77480005,
+      "current_price": 13.27,
+      "pnl": -1242.2251999500008,
+      "market_value": -9289.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -1036,16 +1171,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 8.52,
+        "currentPrice": 8.52,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 8.3554926,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -8355.4926,
+      "current_price": 8.52,
+      "pnl": -164.50739999999973,
+      "market_value": -8519.999999999998,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -1069,16 +1209,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 4.29,
+        "currentPrice": 4.29,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 4.4228926,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -4422.8926,
+      "current_price": 4.29,
+      "pnl": 132.8925999999999,
+      "market_value": -4290.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -1102,16 +1247,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 1.17,
+        "currentPrice": 1.17,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 1.2969699335000002,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -9727.274501250002,
+      "current_price": 1.17,
+      "pnl": 952.2745012500022,
+      "market_value": -8775.0,
       "expiry_formatted": "2026-01-16",
       "days_to_expiry": 206
     },
@@ -1135,16 +1285,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 3.17,
+        "currentPrice": 3.17,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 2.411893,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -241.1893,
+      "current_price": 3.17,
+      "pnl": -75.81069999999998,
+      "market_value": -317.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -1168,16 +1323,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 5.99,
+        "currentPrice": 5.99,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 6.6770925835,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -8012.5111002,
+      "current_price": 5.99,
+      "pnl": 824.5111002000001,
+      "market_value": -7188.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -1201,16 +1361,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 5.82,
+        "currentPrice": 5.82,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 6.4963925835,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -7795.671100199999,
+      "current_price": 5.82,
+      "pnl": 811.6711001999992,
+      "market_value": -6984.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -1234,16 +1399,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 3.28,
+        "currentPrice": 3.28,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 3.3128926,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -3975.47112,
+      "current_price": 3.28,
+      "pnl": 39.471120000000326,
+      "market_value": -3936.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -1267,16 +1437,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 24.67,
+        "currentPrice": 24.67,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 26.0333926665,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -15620.035599899998,
+      "current_price": 24.67,
+      "pnl": 818.0355998999985,
+      "market_value": -14802.000000000002,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -1300,16 +1475,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 1.04,
+        "currentPrice": 1.04,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 2.822813857,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -1975.9696998999998,
+      "current_price": 1.04,
+      "pnl": 1247.9696998999998,
+      "market_value": -728.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -1333,16 +1513,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 1.57,
+        "currentPrice": 1.57,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 3.875384739,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -8913.3848997,
+      "current_price": 1.57,
+      "pnl": 5302.3848997000005,
+      "market_value": -3611.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -1358,11 +1543,6 @@
       "conId": 604408720,
       "localSymbol": "BOXX",
       "tradingClass": "BOXX",
-      "marketPrice": 112.5770035,
-      "marketValue": 2026386.06,
-      "unrealizedPNL": -255.88,
-      "realizedPNL": 0.0,
-      "accountName": "U6129142",
       "has_market_data": false,
       "has_pnl_data": false,
       "has_options_data": false,
@@ -1411,16 +1591,18 @@
       "conId": 15016059,
       "localSymbol": "USD.JPY",
       "tradingClass": "USD.JPY",
-      "marketPrice": 145.276001,
-      "marketValue": 238232738.79,
-      "unrealizedPNL": 2195329.86,
-      "realizedPNL": 0.0,
-      "accountName": "U6129142",
       "market_data": {
-        "bid": 145.261,
-        "bidSize": 1000000,
-        "ask": 145.263,
-        "askSize": 3600000
+        "bid": 145.048,
+        "bidSize": 1600000,
+        "ask": 145.051,
+        "askSize": 1600000,
+        "lastSize": 0,
+        "volume": 0,
+        "high": 146.195,
+        "low": 145.025,
+        "close": 146.15,
+        "currentPrice": 146.15,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
@@ -1471,15 +1653,15 @@
           "date": "20250624",
           "open": 146.111,
           "high": 146.1925,
-          "low": 145.194,
-          "close": 145.2575,
+          "low": 145.028,
+          "close": 145.047,
           "volume": -1,
           "average": -1.0,
           "barCount": -1
         }
       ],
-      "current_price": 0,
-      "market_value": 236037408.88755104
+      "current_price": 146.15,
+      "market_value": 239665977.45000002
     },
     {
       "account": "U6129142",
@@ -1501,16 +1683,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 3.35,
+        "currentPrice": 3.35,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 6.712892624999999,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -5370.3141,
+      "current_price": 3.35,
+      "pnl": 2690.3140999999996,
+      "market_value": -2680.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -1534,16 +1721,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 6.93,
+        "currentPrice": 6.93,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 6.4533926,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -16133.4815,
+      "current_price": 6.93,
+      "pnl": -1191.5184999999994,
+      "market_value": -17325.0,
       "expiry_formatted": "2025-10-17",
       "days_to_expiry": 115
     },
@@ -1567,16 +1759,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 6.95,
+        "currentPrice": 6.95,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 5.8854926,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -17656.4778,
+      "current_price": 6.95,
+      "pnl": -3193.5222000000003,
+      "market_value": -20850.0,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     },
@@ -1600,16 +1797,21 @@
         "bid": -1.0,
         "bidSize": 0,
         "ask": -1.0,
-        "askSize": 0
+        "askSize": 0,
+        "lastSize": 0,
+        "volume": 0,
+        "close": 2.07,
+        "currentPrice": 2.07,
+        "halted": 0.0
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 1.835392625,
-      "current_price": 0,
-      "pnl": 0,
-      "market_value": -2936.6282,
+      "current_price": 2.07,
+      "pnl": -375.37179999999955,
+      "market_value": -3311.9999999999995,
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87
     }
@@ -1618,7 +1820,7 @@
     "total_positions": 45,
     "options_count": 42,
     "stocks_count": 1,
-    "total_market_value": 103803701.74378985
+    "total_market_value": 107804198.79739952
   },
   "account_summary": {},
   "account_values": {
@@ -1643,12 +1845,12 @@
       "account": "U6129142"
     },
     "Cushion": {
-      "value": "0.143143",
+      "value": "0.143528",
       "currency": "",
       "account": "U6129142"
     },
     "Leverage-S": {
-      "value": "1.29",
+      "value": "1.28",
       "currency": "",
       "account": "U6129142"
     },
@@ -1668,12 +1870,12 @@
       "account": "U6129142"
     },
     "SettledCashByDate": {
-      "value": "20250624:-113499.49;20250625:-53672.3720801",
+      "value": "20250624:-113499.49;20250625:-49738.2137549",
       "currency": "",
       "account": "U6129142"
     },
     "SettledCashByDate-S": {
-      "value": "20250624:-113499.49;20250625:-53672.3720801",
+      "value": "20250624:-113499.49;20250625:-49738.2137549",
       "currency": "",
       "account": "U6129142"
     },
@@ -1683,12 +1885,12 @@
       "account": "U6129142"
     },
     "AccruedCash": {
-      "value": "4321.15",
-      "currency": "USD",
+      "value": "33868.4809264",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "AccruedCash-S": {
-      "value": "33868.59",
+      "value": "33868.48",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -1703,12 +1905,12 @@
       "account": "U6129142"
     },
     "AvailableFunds": {
-      "value": "417148.44",
+      "value": "419545.25",
       "currency": "HKD",
       "account": "U6129142"
     },
     "AvailableFunds-S": {
-      "value": "417148.44",
+      "value": "419545.25",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -1723,77 +1925,77 @@
       "account": "U6129142"
     },
     "BuyingPower": {
-      "value": "2780989.59",
+      "value": "2796968.30",
       "currency": "HKD",
       "account": "U6129142"
     },
     "EquityWithLoanValue": {
-      "value": "14338575.68",
+      "value": "14347281.07",
       "currency": "HKD",
       "account": "U6129142"
     },
     "EquityWithLoanValue-S": {
-      "value": "14338575.68",
+      "value": "14347281.07",
       "currency": "HKD",
       "account": "U6129142"
     },
     "ExcessLiquidity": {
-      "value": "2052182.40",
+      "value": "2058939.33",
       "currency": "HKD",
       "account": "U6129142"
     },
     "ExcessLiquidity-S": {
-      "value": "2052182.40",
+      "value": "2058939.33",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullAvailableFunds": {
-      "value": "417148.44",
+      "value": "419545.25",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullAvailableFunds-S": {
-      "value": "417148.44",
+      "value": "419545.25",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullExcessLiquidity": {
-      "value": "2052182.40",
+      "value": "2058939.33",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullExcessLiquidity-S": {
-      "value": "2052182.40",
+      "value": "2058939.33",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullInitMarginReq": {
-      "value": "13921427.24",
+      "value": "13927735.82",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullInitMarginReq-S": {
-      "value": "13921427.24",
+      "value": "13927735.82",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullMaintMarginReq": {
-      "value": "12286503.80",
+      "value": "12288341.73",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullMaintMarginReq-S": {
-      "value": "12286503.80",
+      "value": "12288341.73",
       "currency": "HKD",
       "account": "U6129142"
     },
     "GrossPositionValue": {
-      "value": "18437006.88",
+      "value": "18428306.51",
       "currency": "HKD",
       "account": "U6129142"
     },
     "GrossPositionValue-S": {
-      "value": "18437006.88",
+      "value": "18428306.51",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -1828,72 +2030,72 @@
       "account": "U6129142"
     },
     "InitMarginReq": {
-      "value": "13921427.24",
+      "value": "13927735.82",
       "currency": "HKD",
       "account": "U6129142"
     },
     "InitMarginReq-S": {
-      "value": "13921427.24",
+      "value": "13927735.82",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadAvailableFunds": {
-      "value": "417148.44",
+      "value": "419545.25",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadAvailableFunds-S": {
-      "value": "417148.44",
+      "value": "419545.25",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadExcessLiquidity": {
-      "value": "2052182.40",
+      "value": "2058939.33",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadExcessLiquidity-S": {
-      "value": "2052182.40",
+      "value": "2058939.33",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadInitMarginReq": {
-      "value": "13921427.24",
+      "value": "13927735.82",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadInitMarginReq-S": {
-      "value": "13921427.24",
+      "value": "13927735.82",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadMaintMarginReq": {
-      "value": "12286503.80",
+      "value": "12288341.73",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadMaintMarginReq-S": {
-      "value": "12286503.80",
+      "value": "12288341.73",
       "currency": "HKD",
       "account": "U6129142"
     },
     "MaintMarginReq": {
-      "value": "12286503.80",
+      "value": "12288341.73",
       "currency": "HKD",
       "account": "U6129142"
     },
     "MaintMarginReq-S": {
-      "value": "12286503.80",
+      "value": "12288341.73",
       "currency": "HKD",
       "account": "U6129142"
     },
     "NetLiquidation": {
-      "value": "14336567.80",
+      "value": "14345162.68",
       "currency": "HKD",
       "account": "U6129142"
     },
     "NetLiquidation-S": {
-      "value": "14336567.80",
+      "value": "14345162.68",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -1943,12 +2145,12 @@
       "account": "U6129142"
     },
     "TotalCashValue": {
-      "value": "850494.64",
+      "value": "854425.85",
       "currency": "HKD",
       "account": "U6129142"
     },
     "TotalCashValue-S": {
-      "value": "850494.64",
+      "value": "854425.85",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -1963,123 +2165,123 @@
       "account": "U6129142"
     },
     "Currency": {
-      "value": "USD",
-      "currency": "USD",
+      "value": "BASE",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "CashBalance": {
-      "value": "115190.60",
-      "currency": "USD",
+      "value": "854425.8456",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "TotalCashBalance": {
-      "value": "115190.60",
-      "currency": "USD",
+      "value": "854425.8456",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "StockMarketValue": {
-      "value": "2026386.06",
-      "currency": "USD",
+      "value": "15906968.07",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "OptionMarketValue": {
-      "value": "-297058.96",
-      "currency": "USD",
+      "value": "-2450099.72",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "FutureOptionValue": {
       "value": "0.00",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "FuturesPNL": {
-      "value": "0.00",
-      "currency": "USD",
+      "value": "63761.28",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "NetLiquidationByCurrency": {
-      "value": "1848838.8575",
-      "currency": "USD",
+      "value": "14345162.6763",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "UnrealizedPnL": {
-      "value": "109201.68",
-      "currency": "USD",
+      "value": "957911.72",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "RealizedPnL": {
       "value": "0.00",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "ExchangeRate": {
-      "value": "7.849945",
-      "currency": "USD",
+      "value": "1.00",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "FundValue": {
       "value": "0.00",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "NetDividend": {
       "value": "0.00",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "MutualFundValue": {
       "value": "0.00",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "MoneyMarketFundValue": {
       "value": "0.00",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "CorporateBondValue": {
       "value": "0.00",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "TBondValue": {
       "value": "0.00",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "TBillValue": {
       "value": "0.00",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "WarrantValue": {
       "value": "0.00",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "FxCashBalance": {
       "value": "0.00",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "AccountOrGroup": {
       "value": "VKQuant",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "RealCurrency": {
-      "value": "USD",
-      "currency": "USD",
+      "value": "BASE",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "IssuerOptionValue": {
       "value": "0.00",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     },
     "Cryptocurrency": {
       "value": "0.00",
-      "currency": "USD",
+      "currency": "BASE",
       "account": "U6129142"
     }
   },
@@ -2089,7 +2291,7 @@
       "expiry": "20250919",
       "expiry_formatted": "2025-09-19",
       "days_to_expiry": 87,
-      "total_value": -273873.14312005,
+      "total_value": -215045.0,
       "count": 32,
       "positions": [
         "MSTR",
@@ -2130,7 +2332,7 @@
       "expiry": "20260918",
       "expiry_formatted": "2026-09-18",
       "days_to_expiry": 451,
-      "total_value": -23710.64778,
+      "total_value": -23220.0,
       "count": 1,
       "positions": [
         "NFLX"
@@ -2140,7 +2342,7 @@
       "expiry": "20251219",
       "expiry_formatted": "2025-12-19",
       "days_to_expiry": 178,
-      "total_value": -25353.6241,
+      "total_value": -26635.000000000004,
       "count": 1,
       "positions": [
         "QQQ"
@@ -2150,7 +2352,7 @@
       "expiry": "20260116",
       "expiry_formatted": "2026-01-16",
       "days_to_expiry": 206,
-      "total_value": -29749.57050125,
+      "total_value": -20775.0,
       "count": 2,
       "positions": [
         "QBTS",
@@ -2161,7 +2363,7 @@
       "expiry": "20250718",
       "expiry_formatted": "2025-07-18",
       "days_to_expiry": 24,
-      "total_value": -27714.324200149997,
+      "total_value": -2737.0,
       "count": 1,
       "positions": [
         "APP"
@@ -2171,7 +2373,7 @@
       "expiry": "20250730",
       "expiry_formatted": "2025-07-30",
       "days_to_expiry": 36,
-      "total_value": -169300.0,
+      "total_value": -135000.0,
       "count": 1,
       "positions": [
         "HSI"
@@ -2181,7 +2383,7 @@
       "expiry": "20250815",
       "expiry_formatted": "2025-08-15",
       "days_to_expiry": 52,
-      "total_value": -9981.723599250001,
+      "total_value": -11440.0,
       "count": 1,
       "positions": [
         "HIMS"
@@ -2202,7 +2404,7 @@
       "expiry": "20251017",
       "expiry_formatted": "2025-10-17",
       "days_to_expiry": 115,
-      "total_value": -16133.4815,
+      "total_value": -17325.0,
       "count": 1,
       "positions": [
         "CRCL"
@@ -2442,6 +2644,14 @@
       "previousClose": 369.7,
       "timestamp": 1750708802
     },
+    "BOXX": {
+      "price": 112.58,
+      "changesPercentage": 0.02665482,
+      "dayHigh": 112.59,
+      "dayLow": 112.55,
+      "previousClose": 112.55,
+      "timestamp": 1750708800
+    },
     "COIN": {
       "price": 307.59,
       "changesPercentage": -0.25618,
@@ -2458,55 +2668,47 @@
       "reqId": 9001,
       "errorCode": 321,
       "errorString": "確認請求時出錯。:-'b2' :導致- Unified group name is invalid",
-      "timestamp": "2025-06-24T14:14:51.072344",
+      "timestamp": "2025-06-24T15:17:12.199399",
       "symbol": "Unknown",
       "level": "warning"
     },
     {
-      "reqId": 1024,
+      "reqId": 1120,
       "errorCode": 10090,
       "errorString": "Part of requested market data is not subscribed. Subscription-independent ticks are still active.延遲市場數據可用。:HSI Hang Seng Stock Index/TOP/ALL",
-      "timestamp": "2025-06-24T14:14:51.426605",
+      "timestamp": "2025-06-24T15:17:12.220996",
       "symbol": "HSI_20250730_P_22000.0",
       "level": "warning"
     },
     {
-      "reqId": 1041,
-      "errorCode": 162,
-      "errorString": "歷史市場數據服務錯誤消息:No market data permissions for BATS STK",
-      "timestamp": "2025-06-24T14:14:51.707454",
+      "reqId": 1136,
+      "errorCode": 10168,
+      "errorString": "請求的市場數據沒有訂閱。延時市場數據未啟用。",
+      "timestamp": "2025-06-24T15:17:12.230968",
       "symbol": "BOXX",
-      "level": "warning"
+      "level": "error"
     },
     {
-      "reqId": 1027,
+      "reqId": 1123,
       "errorCode": 200,
       "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T14:14:51.739786",
+      "timestamp": "2025-06-24T15:17:12.458147",
       "symbol": "1024_20250929_P_52.5",
       "level": "warning"
     },
     {
-      "reqId": 1042,
+      "reqId": 1138,
       "errorCode": 200,
       "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T14:14:51.739890",
+      "timestamp": "2025-06-24T15:17:12.556622",
       "symbol": "700_20250929_P_470.0",
       "level": "warning"
     },
     {
-      "reqId": 1040,
-      "errorCode": 10090,
-      "errorString": "Part of requested market data is not subscribed. Subscription-independent ticks are still active.BOXX BATS/TOP/BID_ASK",
-      "timestamp": "2025-06-24T14:14:52.344353",
-      "symbol": "BOXX",
-      "level": "warning"
-    },
-    {
-      "reqId": 1040,
-      "errorCode": 354,
-      "errorString": "Requested market data is not subscribed.延遲市場數據可用。:Error&BATS/STK/Top",
-      "timestamp": "2025-06-24T14:14:52.349604",
+      "reqId": 1137,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No market data permissions for BATS STK",
+      "timestamp": "2025-06-24T15:17:12.643898",
       "symbol": "BOXX",
       "level": "warning"
     }
@@ -2516,12 +2718,6 @@
       "error_code": 10090,
       "message": "需要付費訂閱市場數據",
       "error_string": "Part of requested market data is not subscribed. Subscription-independent ticks are still active.延遲市場數據可用。:HSI Hang Seng Stock Index/TOP/ALL"
-    },
-    "BOXX": {
-      "error_code": 354,
-      "message": "需要付費訂閱市場數據",
-      "error_string": "Requested market data is not subscribed.延遲市場數據可用。:Error&BATS/STK/Top"
     }
-  },
-  "underlying_prices_update": "2025-06-24 14:15:03"
+  }
 }

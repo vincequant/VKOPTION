@@ -28,6 +28,62 @@
             padding: 1rem 0;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
+        
+        /* 開關按鈕樣式 */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+        }
+        
+        input:checked + .slider {
+            background-color: #28a745;
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px #28a745;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(18px);
+        }
+        
+        .slider.round {
+            border-radius: 22px;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
 
         .nav-container {
             max-width: 1400px;
@@ -1011,6 +1067,13 @@
                     <span id="statusText">檢查中...</span>
                     <span id="updateTime"></span>
                 </div>
+                <div class="auto-update-control" style="display: flex; align-items: center; gap: 10px; margin-left: 15px;">
+                    <label class="switch" style="margin: 0;">
+                        <input type="checkbox" id="autoUpdateToggle" onchange="toggleAutoUpdate()" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <span id="autoUpdateStatus" style="font-size: 0.875rem; color: #28a745;">自動更新：開啟</span>
+                </div>
             </div>
         </div>
     </nav>
@@ -1245,6 +1308,13 @@
         let currentMainCategory = 'us-options'; // 當前主分類
         let currentCurrency = 'HKD'; // 當前貨幣，默認HKD
         
+        // 自動更新相關變量
+        let autoUpdateInterval = null;
+        let autoUpdateEnabled = true;
+        let isAutoUpdating = false;
+        const AUTO_UPDATE_INTERVAL = 30 * 60 * 1000; // 30分鐘
+        let lastAutoUpdateTime = null;
+        
         // 環境檢測
         function isCloudEnvironment() {
             return window.location.hostname.includes('vercel.app') || 
@@ -1322,6 +1392,12 @@
                     testLink.style.display = 'none';
                 }
                 
+                // 隱藏自動更新控制
+                const autoUpdateControl = document.querySelector('.auto-update-control');
+                if (autoUpdateControl) {
+                    autoUpdateControl.style.display = 'none';
+                }
+                
                 // 修改上傳雲端按鈕為刷新按鈕
                 const cloudBtn = document.getElementById('cloudUploadBtn');
                 if (cloudBtn) {
@@ -1339,6 +1415,29 @@
             // 雲端環境不需要定期檢查狀態
             if (!isCloudEnvironment()) {
                 setInterval(checkStatus, 5000);
+                
+                // 從 localStorage 讀取自動更新設置
+                const savedAutoUpdate = localStorage.getItem('autoUpdateEnabled');
+                if (savedAutoUpdate !== null) {
+                    autoUpdateEnabled = savedAutoUpdate === 'true';
+                }
+                
+                // 同步開關狀態
+                const autoUpdateToggle = document.getElementById('autoUpdateToggle');
+                if (autoUpdateToggle) {
+                    autoUpdateToggle.checked = autoUpdateEnabled;
+                }
+                
+                // 啟動自動更新（如果啟用）
+                if (autoUpdateEnabled) {
+                    setTimeout(() => {
+                        startAutoUpdate();
+                    }, 3000); // 延遲3秒後開始自動更新
+                }
+                
+                // 定期更新自動更新狀態顯示
+                setInterval(updateAutoUpdateStatus, 60000); // 每分鐘更新一次
+                updateAutoUpdateStatus(); // 立即更新一次狀態
             }
             
             // 延遲執行一次賬戶信息更新，確保 DOM 完全準備好
@@ -1412,7 +1511,14 @@
                 
                 if (result.success) {
                     showNotification(result.message, 'success');
-                    setTimeout(() => loadData(), 1000);
+                    setTimeout(() => {
+                        loadData();
+                        // 更新成功後自動上傳雲端
+                        setTimeout(() => {
+                            showNotification('正在自動上傳雲端...', 'info');
+                            uploadToCloud();
+                        }, 2000);
+                    }, 1000);
                 } else {
                     showNotification(result.message || '更新失敗', 'error');
                 }
@@ -1437,14 +1543,18 @@
                 statusText.textContent = '雲端數據';
                 
                 // 如果有數據，顯示最後更新時間
-                if (portfolioData && portfolioData.last_update) {
-                    const updateTime = document.getElementById('updateTime');
-                    if (updateTime) {
-                        const date = new Date(portfolioData.last_update);
-                        const hours = date.getHours().toString().padStart(2, '0');
-                        const minutes = date.getMinutes().toString().padStart(2, '0');
-                        updateTime.textContent = `最後更新: ${hours}:${minutes}`;
-                    }
+                // 在雲端環境優先使用 last_cloud_update，否則使用 last_update
+                const updateTimestamp = portfolioData && (portfolioData.last_cloud_update || portfolioData.last_update);
+                if (updateTimestamp) {
+                    // 在雲端環境顯示完整的日期和時間
+                    const date = new Date(updateTimestamp);
+                    const year = date.getFullYear();
+                    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                    const day = date.getDate().toString().padStart(2, '0');
+                    const hours = date.getHours().toString().padStart(2, '0');
+                    const minutes = date.getMinutes().toString().padStart(2, '0');
+                    const seconds = date.getSeconds().toString().padStart(2, '0');
+                    statusText.textContent = `雲端數據 ${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
                 }
             } else {
                 // 本地環境：檢查 TWS 連接狀態
@@ -2578,6 +2688,88 @@
                 isUpdatingPrices = false;
                 btn.innerHTML = originalHTML;
                 btn.disabled = false;
+            }
+        }
+        
+        // 自動更新功能
+        async function performAutoUpdate() {
+            if (isAutoUpdating || isCloudEnvironment()) return;
+            
+            isAutoUpdating = true;
+            lastAutoUpdateTime = new Date();
+            
+            try {
+                showNotification('開始自動更新持倉...', 'info');
+                await updateData();
+                updateAutoUpdateStatus();
+            } catch (error) {
+                console.error('自動更新失敗:', error);
+                showNotification('自動更新失敗', 'error');
+            } finally {
+                isAutoUpdating = false;
+            }
+        }
+        
+        // 啟動自動更新
+        function startAutoUpdate() {
+            if (!autoUpdateEnabled || isCloudEnvironment()) return;
+            
+            // 清除現有的定時器
+            if (autoUpdateInterval) {
+                clearInterval(autoUpdateInterval);
+            }
+            
+            // 設置新的定時器
+            autoUpdateInterval = setInterval(performAutoUpdate, AUTO_UPDATE_INTERVAL);
+            
+            // 立即執行一次更新
+            performAutoUpdate();
+        }
+        
+        // 停止自動更新
+        function stopAutoUpdate() {
+            if (autoUpdateInterval) {
+                clearInterval(autoUpdateInterval);
+                autoUpdateInterval = null;
+            }
+            updateAutoUpdateStatus();
+        }
+        
+        // 切換自動更新
+        function toggleAutoUpdate() {
+            autoUpdateEnabled = !autoUpdateEnabled;
+            
+            if (autoUpdateEnabled) {
+                startAutoUpdate();
+                showNotification('已啟用自動更新（每30分鐘）', 'success');
+            } else {
+                stopAutoUpdate();
+                showNotification('已停用自動更新', 'info');
+            }
+            
+            // 保存設置到 localStorage
+            localStorage.setItem('autoUpdateEnabled', autoUpdateEnabled);
+            updateAutoUpdateStatus();
+        }
+        
+        // 更新自動更新狀態顯示
+        function updateAutoUpdateStatus() {
+            const statusElement = document.getElementById('autoUpdateStatus');
+            if (!statusElement) return;
+            
+            if (autoUpdateEnabled && !isCloudEnvironment()) {
+                let statusText = '自動更新：開啟';
+                if (lastAutoUpdateTime) {
+                    const now = new Date();
+                    const timeSinceLastUpdate = Math.floor((now - lastAutoUpdateTime) / 60000); // 分鐘
+                    const nextUpdateIn = Math.max(0, 30 - timeSinceLastUpdate);
+                    statusText += ` (下次更新：${nextUpdateIn}分鐘後)`;
+                }
+                statusElement.textContent = statusText;
+                statusElement.style.color = '#28a745';
+            } else {
+                statusElement.textContent = '自動更新：關閉';
+                statusElement.style.color = '#6c757d';
             }
         }
         
