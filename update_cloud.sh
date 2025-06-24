@@ -6,9 +6,11 @@ echo "🔄 正在更新雲端數據..."
 # 確保在正確的目錄
 cd "$(dirname "$0")"
 
-# 檢查是否有未提交的更改
-if [[ -n $(git status -s) ]]; then
+# 檢查是否有未提交的更改（排除某些文件）
+UNSTAGED=$(git status -s | grep -v "^??" | grep -v ".env" | grep -v "ib-frontend-clean")
+if [[ -n $UNSTAGED ]]; then
     echo "⚠️  有未提交的更改，請先處理"
+    git status -s
     exit 1
 fi
 
