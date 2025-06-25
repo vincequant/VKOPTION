@@ -85,6 +85,52 @@ def update_portfolio():
         "message": "Railway 環境無法連接到 TWS。請在本地環境更新數據後上傳。"
     }), 503
 
+@app.route('/api/portfolio/upload', methods=['POST'])
+def upload_portfolio():
+    """API: 接收並保存上傳的持倉數據"""
+    try:
+        # 獲取JSON數據
+        data = request.get_json()
+        if not data:
+            return jsonify({"success": False, "error": "No data provided"}), 400
+        
+        # 驗證基本的數據結構
+        if 'portfolio_data' not in data:
+            return jsonify({"success": False, "error": "Missing portfolio_data"}), 400
+        
+        portfolio_data = data['portfolio_data']
+        
+        # 更新時間戳
+        portfolio_data['last_update'] = datetime.now().isoformat()
+        portfolio_data['upload_source'] = 'remote_upload'
+        
+        # 保存到數據文件
+        data_file = Path(CONFIG['DATA_FILE'])
+        with open(data_file, 'w', encoding='utf-8') as f:
+            json.dump(portfolio_data, f, ensure_ascii=False, indent=2)
+        
+        logger.info(f"Portfolio data uploaded successfully - {len(portfolio_data.get('positions', []))} positions")
+        
+        return jsonify({
+            "success": True,
+            "message": "Portfolio data uploaded successfully",
+            "positions_count": len(portfolio_data.get('positions', [])),
+            "timestamp": portfolio_data['last_update']
+        })
+        
+    except Exception as e:
+        logger.error(f"Error uploading portfolio data: {e}")
+        return jsonify({"success": False, "error": str(e)}), 500
+
+@app.route('/health')
+def health_check():
+    """健康檢查端點"""
+    return jsonify({
+        "status": "healthy",
+        "timestamp": datetime.now().isoformat(),
+        "environment": CONFIG['ENVIRONMENT']
+    })
+
 @app.route('/api/status')
 def get_status():
     """API: 獲取系統狀態"""
