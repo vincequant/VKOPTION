@@ -1663,7 +1663,15 @@
             
             // 獲取淨清算價值
             let netLiquidation = 0;
-            if (portfolioData.NetLiquidation) {
+            if (portfolioData.account_values && portfolioData.account_values.NetLiquidation) {
+                const netLiqValue = parseFloat(portfolioData.account_values.NetLiquidation.value);
+                // 檢查淨清算價值的貨幣，如果已經是 USD 就不需要轉換
+                if (portfolioData.account_values.NetLiquidation.currency === 'USD') {
+                    netLiquidation = netLiqValue;
+                } else {
+                    netLiquidation = netLiqValue / USD_TO_HKD;
+                }
+            } else if (portfolioData.NetLiquidation) {
                 const netLiqValue = parseFloat(portfolioData.NetLiquidation.value);
                 // 檢查淨清算價值的貨幣，如果已經是 USD 就不需要轉換
                 if (portfolioData.NetLiquidation.currency === 'USD') {
