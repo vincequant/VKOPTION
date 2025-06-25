@@ -33,4 +33,4 @@ git push
 
 echo "✅ 雲端數據更新完成！"
 echo "🌐 Railway 將在 1-2 分鐘內自動部署"
-echo "📍 訪問: https://web-production-8026.up.railway.app"
+echo "📍 訪問: https://ib-monitor.up.railway.app"

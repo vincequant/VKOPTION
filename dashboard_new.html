@@ -1976,16 +1976,24 @@
             
             // 獲取淨清算價值 - 修復數據路徑
             let netLiquidation = 0;
-            if (portfolioData.NetLiquidation) {
-                const netLiqValue = parseFloat(portfolioData.NetLiquidation.value);
+            if (portfolioData.account_values && portfolioData.account_values.NetLiquidation) {
+                const netLiqValue = parseFloat(portfolioData.account_values.NetLiquidation.value);
                 // 檢查淨清算價值的貨幣，如果已經是 USD 就不需要轉換
+                if (portfolioData.account_values.NetLiquidation.currency === 'USD') {
+                    netLiquidation = netLiqValue;
+                } else {
+                    netLiquidation = netLiqValue / USD_TO_HKD;
+                }
+            } else if (portfolioData.NetLiquidation) {
+                // 備用路徑1
+                const netLiqValue = parseFloat(portfolioData.NetLiquidation.value);
                 if (portfolioData.NetLiquidation.currency === 'USD') {
                     netLiquidation = netLiqValue;
                 } else {
                     netLiquidation = netLiqValue / USD_TO_HKD;
                 }
             } else if (portfolioData.account_summary && portfolioData.account_summary.NetLiquidation) {
-                // 備用路徑
+                // 備用路徑2
                 const netLiqValue = parseFloat(portfolioData.account_summary.NetLiquidation.value);
                 if (portfolioData.account_summary.NetLiquidation.currency === 'USD') {
                     netLiquidation = netLiqValue;
@@ -1999,11 +2007,11 @@
             let currentReturnRate = 0;
             
             // 改進的回報率計算邏輯
-            if (maxCapitalRequired > 0 && totalRealExpiryValue !== 0) {
+            if (maxCapitalRequired > 0) {
                 maxReturnRate = (totalRealExpiryValue / maxCapitalRequired) * 100;
             }
             
-            if (netLiquidation > 0 && totalRealExpiryValue !== 0) {
+            if (netLiquidation > 0) {
                 currentReturnRate = (totalRealExpiryValue / netLiquidation) * 100;
             }
             
@@ -2015,6 +2023,10 @@
             console.log('最大回報率 (maxReturnRate):', maxReturnRate.toFixed(2) + '%');
             console.log('當前回報率 (currentReturnRate):', currentReturnRate.toFixed(2) + '%');
             console.log('美股期權持倉數量:', usOptions.length);
+            console.log('數據來源檢查:');
+            console.log('- portfolioData.account_values.NetLiquidation:', portfolioData.account_values?.NetLiquidation);
+            console.log('- portfolioData.NetLiquidation:', portfolioData.NetLiquidation);
+            console.log('- portfolioData.account_summary.NetLiquidation:', portfolioData.account_summary?.NetLiquidation);
             console.log('========================');
             
             // 更新顯示（根據實際到期價值決定顏色和貨幣設置）

@@ -5,7 +5,7 @@ const nextConfig = {
   
   // 環境變量
   env: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'https://api-production-b782.up.railway.app',
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'https://ib-monitor.up.railway.app',
     NEXT_PUBLIC_APP_NAME: 'IB Portfolio Monitor',
     NEXT_PUBLIC_APP_VERSION: '1.0.0',
   },
@@ -23,7 +23,7 @@ const nextConfig = {
   
   // API 路由配置
   async rewrites() {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api-production-b782.up.railway.app';
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://ib-monitor.up.railway.app';
     return [
       {
         source: '/api/:path*',

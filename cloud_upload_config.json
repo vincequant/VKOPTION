@@ -1,5 +1,5 @@
 {
-  "api_url": "https://api-production-b782.up.railway.app/api/portfolio/upload",
+  "api_url": "https://ib-monitor.up.railway.app/api/portfolio/upload",
   "api_key": "test123",
   "account_number": "VKQUANT",
   "enabled": true
