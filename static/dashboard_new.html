@@ -109,6 +109,15 @@
             gap: 1rem;
         }
         
+        /* 隱藏雲端環境中的本地功能按鈕 */
+        .local-only {
+            display: flex;
+        }
+        
+        .cloud-environment .local-only {
+            display: none !important;
+        }
+        
         /* 雲端上傳按鈕 */
         .cloud-upload-button {
             background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
@@ -1034,17 +1043,17 @@
                 IB Portfolio Monitor
             </div>
             <div class="nav-actions">
-                <a href="/test" class="nav-link" style="background-color: #6c757d;">
+                <a href="/test" class="nav-link local-only" style="background-color: #6c757d;">
                     <i class="fas fa-flask"></i>
                     測試頁面
                 </a>
-                <button class="update-button" id="updateBtn" onclick="updateData()">
+                <button class="update-button local-only" id="updateBtn" onclick="updateData()">
                     <i class="fas fa-sync-alt"></i>
                     更新持倉
                 </button>
-                <button class="cloud-upload-button" id="cloudUploadBtn" onclick="goToCloud()">
+                <button class="cloud-upload-button local-only" id="cloudUploadBtn" onclick="goToCloud()">
                     <i class="fas fa-external-link-alt"></i>
-                    <span id="cloudUploadText">前往雲端</span>
+                    <span id="cloudUploadText">上傳雲端</span>
                 </button>
                 <div class="status-indicator">
                     <div class="status-dot" id="statusDot"></div>
@@ -1369,34 +1378,14 @@
 
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
-            // 雲端環境特殊處理
-            if (isCloudEnvironment()) {
-                // 隱藏更新持倉按鈕
-                const updateBtn = document.getElementById('updateBtn');
-                if (updateBtn) {
-                    updateBtn.style.display = 'none';
-                }
-                
-                // 隱藏測試頁面鏈接
-                const testLink = document.querySelector('a[href="/test"]');
-                if (testLink) {
-                    testLink.style.display = 'none';
-                }
+            // 檢測雲端環境並添加CSS類
+            if (isCloudDeployment()) {
+                document.body.classList.add('cloud-environment');
                 
                 // 隱藏自動更新控制
                 const autoUpdateControl = document.querySelector('.auto-update-control');
                 if (autoUpdateControl) {
                     autoUpdateControl.style.display = 'none';
-                }
-                
-                // 修改上傳雲端按鈕為刷新按鈕
-                const cloudBtn = document.getElementById('cloudUploadBtn');
-                if (cloudBtn) {
-                    cloudBtn.innerHTML = '<i class="fas fa-sync-alt"></i> <span id="cloudUploadText">刷新頁面</span>';
-                    cloudBtn.onclick = () => {
-                        // 強制刷新，繞過緩存
-                        window.location.reload(true);
-                    };
                 }
             }
             
