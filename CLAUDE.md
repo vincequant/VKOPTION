@@ -207,7 +207,7 @@ Recent updates have focused on:
 
 ## Recent Bug Fixes (2025-06-25)
 
-### Dashboard UI Improvements
+### Dashboard UI Improvements (Morning)
 1. **Maximum Capital Requirement Color Fix**
    - **Issue**: "最大資金需求" displayed in black color instead of green
    - **Fix**: Added `positive` CSS class to `stocksValueElement` in dashboard_new.html:2026
@@ -225,9 +225,38 @@ Recent updates have focused on:
    - Enhanced division by zero checks in rate calculations
    - Improved display logic for negative values
 
+### Cloud Deployment & Data Sync Fixes (Afternoon)
+4. **Railway Cloud Environment Detection**
+   - **Issue**: Local-only buttons (測試頁面/更新持倉/上傳雲端) were showing in cloud environment
+   - **Fix**: Implemented proper environment detection with CSS classes
+   - **Files Modified**: `static/dashboard_new.html`, added `.local-only` class and `.cloud-environment` detection
+   - **Result**: Buttons now properly hidden in Railway cloud environment
+
+5. **Time Display Format Improvement**
+   - **Issue**: User feedback "請不要用時間戳來顯示時間，這個太難看了" (timestamp format too ugly)
+   - **Fix**: Changed from "2025-06-25 08:47:23" to Chinese format "6月25日 下午1:47"
+   - **Files Modified**: `static/dashboard_new.html` time formatting logic
+   - **Result**: More user-friendly Chinese time display
+
+6. **Cloud Return Rate Calculation Fix**
+   - **Issue**: Cloud environment showing "當前: 0.0%" while local was working correctly
+   - **Root Cause**: NetLiquidation data path was incorrect for cloud data structure
+   - **Fix**: Updated data access to check `portfolioData.account_values.NetLiquidation` first
+   - **Files Modified**: `static/dashboard_new.html:1666-1690`
+   - **Result**: Cloud now correctly calculates and displays return rate
+
+7. **Railway Upload Endpoint Implementation**
+   - **Issue**: Missing `/api/portfolio/upload` endpoint in Railway production app
+   - **Fix**: Added complete upload endpoint in `app_production.py`
+   - **Files Modified**: `app_production.py`, added POST endpoint with JSON data handling
+   - **Result**: Successful data synchronization between local and Railway
+
 ### Technical Details
-- **NetLiquidation Data Path**: Now checks `portfolioData.NetLiquidation` first, falls back to `portfolioData.account_summary.NetLiquidation`
+- **NetLiquidation Data Path**: Priority order: `portfolioData.account_values.NetLiquidation` → `portfolioData.NetLiquidation` → `portfolioData.account_summary.NetLiquidation`
 - **Return Rate Formula**: `currentReturnRate = (totalRealExpiryValue / netLiquidation) * 100`
+- **Environment Detection**: Uses hostname and domain detection to determine local vs cloud
+- **Time Format**: Chinese format with AM/PM indicators (上午/下午)
+- **Cloud Upload**: Direct API calls to Railway with JSON payload and authentication
 - **Debugging**: Console logs show all calculation variables for troubleshooting
 
 See README.md for user-facing documentation and deployment instructions.
