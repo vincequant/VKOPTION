@@ -1301,8 +1301,8 @@
         
         // 環境檢測
         function isCloudEnvironment() {
-            return window.location.hostname.includes('vercel.app') || 
-                   (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1');
+            // 只有 Vercel 環境使用靜態文件，Railway 使用 API
+            return window.location.hostname.includes('vercel.app');
         }
 
         // 切換主分類
