@@ -1526,15 +1526,18 @@
                 // 在雲端環境優先使用 last_cloud_update，否則使用 last_update
                 const updateTimestamp = portfolioData && (portfolioData.last_cloud_update || portfolioData.last_update);
                 if (updateTimestamp) {
-                    // 在雲端環境顯示完整的日期和時間
+                    // 在雲端環境顯示中文格式的日期和時間
                     const date = new Date(updateTimestamp);
-                    const year = date.getFullYear();
-                    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-                    const day = date.getDate().toString().padStart(2, '0');
-                    const hours = date.getHours().toString().padStart(2, '0');
-                    const minutes = date.getMinutes().toString().padStart(2, '0');
-                    const seconds = date.getSeconds().toString().padStart(2, '0');
-                    statusText.textContent = `雲端數據 ${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                    const month = date.getMonth() + 1;
+                    const day = date.getDate();
+                    const hours = date.getHours();
+                    const minutes = date.getMinutes();
+                    
+                    // 判斷上午/下午
+                    const period = hours < 12 ? '上午' : '下午';
+                    const displayHours = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
+                    
+                    statusText.textContent = `雲端數據 ${month}月${day}日 ${period}${displayHours}:${minutes.toString().padStart(2, '0')}`;
                 }
             } else {
                 // 本地環境：檢查 TWS 連接狀態
@@ -2513,7 +2516,17 @@
         // 更新時間
         function updateTime() {
             if (portfolioData && portfolioData.last_update) {
-                document.getElementById('updateTime').textContent = portfolioData.last_update;
+                const date = new Date(portfolioData.last_update);
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+                const hours = date.getHours();
+                const minutes = date.getMinutes();
+                
+                // 判斷上午/下午
+                const period = hours < 12 ? '上午' : '下午';
+                const displayHours = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
+                
+                document.getElementById('updateTime').textContent = `${month}月${day}日 ${period}${displayHours}:${minutes.toString().padStart(2, '0')}`;
             }
         }
 
