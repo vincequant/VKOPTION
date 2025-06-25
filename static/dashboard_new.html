@@ -1393,7 +1393,7 @@
             checkStatus();
             
             // 雲端環境不需要定期檢查狀態
-            if (!isCloudEnvironment()) {
+            if (!isCloudDeployment()) {
                 setInterval(checkStatus, 5000);
                 
                 // 從 localStorage 讀取自動更新設置
@@ -1516,7 +1516,7 @@
             const statusDot = document.getElementById('statusDot');
             const statusText = document.getElementById('statusText');
             
-            if (isCloudEnvironment()) {
+            if (isCloudDeployment()) {
                 // 雲端環境：顯示靜態數據狀態
                 statusDot.classList.remove('disconnected');
                 statusDot.style.backgroundColor = '#17a2b8'; // 藍色表示雲端數據
@@ -2696,7 +2696,7 @@
         
         // 自動更新功能
         async function performAutoUpdate() {
-            if (isAutoUpdating || isCloudEnvironment()) return;
+            if (isAutoUpdating || isCloudDeployment()) return;
             
             isAutoUpdating = true;
             lastAutoUpdateTime = new Date();
@@ -2715,7 +2715,7 @@
         
         // 啟動自動更新
         function startAutoUpdate() {
-            if (!autoUpdateEnabled || isCloudEnvironment()) return;
+            if (!autoUpdateEnabled || isCloudDeployment()) return;
             
             // 清除現有的定時器
             if (autoUpdateInterval) {
@@ -2760,7 +2760,7 @@
             const statusElement = document.getElementById('autoUpdateStatus');
             if (!statusElement) return;
             
-            if (autoUpdateEnabled && !isCloudEnvironment()) {
+            if (autoUpdateEnabled && !isCloudDeployment()) {
                 let statusText = '自動更新：開啟';
                 if (lastAutoUpdateTime) {
                     const now = new Date();
