@@ -1,0 +1,1990 @@
+            <!-- 快速開始 -->
+            <section id="quick-start" class="content-section active">
+                <div class="content-header">
+                    <h1 class="content-title">快速開始</h1>
+                    <p class="content-subtitle">5分鐘開始使用IB TWS API</p>
+                </div>
+                <div class="content-body">
+                    <h2>概述</h2>
+                    <p>Interactive Brokers TWS API是一個強大的程式化交易接口，允許開發者自動化交易策略和投資組合管理。本指南基於我們的生產環境經驗，提供完整的開發指南。</p>
+                    
+                    <h3>系統要求</h3>
+                    <ul>
+                        <li><strong>Python 3.11+</strong> - 推薦使用最新版本</li>
+                        <li><strong>TWS Build 952.x+</strong> - 確保API兼容性</li>
+                        <li><strong>網絡連接</strong> - 穩定的互聯網連接</li>
+                        <li><strong>IB賬戶</strong> - 真實賬戶或紙交易賬戶</li>
+                    </ul>
+                    
+                    <h3>核心特性</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #667eea;">
+                            <h4 style="color: #667eea; margin-bottom: 0.5rem;"><i class="fas fa-chart-line"></i> 實時市場數據</h4>
+                            <p>獲取股票、期權、期貨的實時價格、Greeks值和歷史數據</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #28a745;">
+                            <h4 style="color: #28a745; margin-bottom: 0.5rem;"><i class="fas fa-briefcase"></i> 持倉管理</h4>
+                            <p>自動獲取持倉信息、計算盈虧和風險指標</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #ffc107;">
+                            <h4 style="color: #ffc107; margin-bottom: 0.5rem;"><i class="fas fa-robot"></i> 自動化交易</h4>
+                            <p>程序化下單、風險控制和策略執行</p>
+                        </div>
+                    </div>
+                    
+                    <h3>架構優勢</h3>
+                    <p>我們的EnhancedIBClient採用了多重繼承適配器模式，提供：</p>
+                    <ul>
+                        <li><strong>事件驅動架構</strong> - 高效處理異步回調</li>
+                        <li><strong>線程安全</strong> - 支持並發操作和實時更新</li>
+                        <li><strong>錯誤恢復</strong> - 智能重連和錯誤分類處理</li>
+                        <li><strong>數據持久化</strong> - 自動保存和緩存機制</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 安裝配置 -->
+            <section id="installation" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">安裝配置</h1>
+                    <p class="content-subtitle">環境設置和依賴安裝</p>
+                </div>
+                <div class="content-body">
+                    <h2>Python環境設置</h2>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Bash</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-bash"># 創建虛擬環境
+python3.11 -m venv ib_env
+source ib_env/bin/activate  # Linux/Mac
+# 或 ib_env\Scripts\activate  # Windows
+
+# 安裝核心依賴
+pip install ibapi flask pandas numpy requests python-dotenv
+
+# 安裝可選依賴
+pip install psutil cryptography supervisor</code></pre>
+                    </div>
+                    
+                    <h2>TWS/IB Gateway配置</h2>
+                    <ol>
+                        <li><strong>啟動TWS或IB Gateway</strong></li>
+                        <li>進入 <code>API → Settings → Enable ActiveX and Socket Clients</code></li>
+                        <li>設置Socket port (默認: 7496 for TWS, 4001 for Gateway)</li>
+                        <li>勾選 "Read-Only API"（生產環境推薦）</li>
+                        <li>設置Trusted IP addresses</li>
+                        <li>配置Master API client ID</li>
+                    </ol>
+                    
+                    <div style="background: #e7f3ff; border: 1px solid #b3d9ff; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                        <strong><i class="fas fa-info-circle"></i> 提示：</strong>
+                        首次使用建議先使用紙交易賬戶進行測試，確保所有功能正常後再連接真實賬戶。
+                    </div>
+                    
+                    <h2>環境變量配置</h2>
+                    <p>創建 <code>.env</code> 文件：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Environment</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-bash"># TWS連接設置
+TWS_HOST=127.0.0.1
+TWS_PORT=7496
+CLIENT_ID=9999
+TARGET_ACCOUNT=U1234567
+
+# Flask配置
+FLASK_ENV=development
+SECRET_KEY=your-secret-key-here
+PORT=8080
+
+# 外部API密鑰
+FMP_API_KEY=your-financial-modeling-prep-key
+
+# 監控配置
+LOG_LEVEL=INFO
+AUTO_UPDATE_INTERVAL=300</code></pre>
+                    </div>
+                    
+                    <h2>項目結構</h2>
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Project Structure</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code>ib_quantool/
+├── app.py                        # 主應用程序 (EnhancedIBClient)
+├── start.sh                      # 啟動腳本
+├── .env                          # 環境變量配置
+├── portfolio_data_enhanced.json  # 持倉數據緩存
+├── dashboard_new.html           # 主控台界面
+├── test_api_data.html          # API測試平台
+├── ib_env/                     # Python虛擬環境
+│   ├── bin/python
+│   └── lib/python3.11/
+├── cloud-frontend/             # 前端項目
+│   ├── package.json
+│   ├── src/
+│   └── dist/
+├── tests/                      # 測試文件
+│   ├── test_connection.py      # TWS連接測試
+│   ├── test_hk_options.py      # 香港期權測試
+│   ├── test_pnl_greeks.py      # 盈虧和Greeks測試
+│   ├── test_hsi_pricing.py     # HSI定價測試
+│   └── test_vxx_price.py       # VXX股價測試
+├── CLAUDE.md                   # 項目開發指南
+└── 'Claude Code IB生產指南.md'  # 詳細技術文檔</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 連接認證 -->
+            <section id="authentication" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">連接認證</h1>
+                    <p class="content-subtitle">建立與TWS的安全連接</p>
+                </div>
+                <div class="content-body">
+                    <h2>基本連接</h2>
+                    <p>EnhancedIBClient使用標準的TWS API連接流程：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">from ibapi.client import EClient
+from ibapi.wrapper import EWrapper
+import threading
+
+class EnhancedIBClient(EWrapper, EClient):
+    def __init__(self):
+        EClient.__init__(self, self)
+        
+        # 連接狀態管理
+        self.connected = False
+        self.connection_ready = threading.Event()
+        
+    def connectAck(self):
+        """連接確認回調"""
+        logger.info("Connected to TWS")
+        self.connected = True
+        
+    def nextValidId(self, orderId: int):
+        """接收有效訂單ID，標誌連接完成"""
+        logger.info(f"Next Valid Order ID: {orderId}")
+        self.connection_ready.set()
+        
+    def connect_to_tws(self):
+        """建立TWS連接"""
+        # 啟動API線程
+        api_thread = threading.Thread(target=self.run, daemon=True)
+        api_thread.start()
+        
+        # 連接到TWS
+        self.connect('127.0.0.1', 7496, clientId=9999)
+        
+        # 等待連接建立
+        if self.connection_ready.wait(timeout=10):
+            logger.info("TWS連接成功")
+            return True
+        else:
+            logger.error("TWS連接超時")
+            return False</code></pre>
+                    </div>
+                    
+                    <h2>連接參數配置</h2>
+                    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                        <thead>
+                            <tr style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                                <th style="padding: 0.75rem; text-align: left;">參數</th>
+                                <th style="padding: 0.75rem; text-align: left;">默認值</th>
+                                <th style="padding: 0.75rem; text-align: left;">說明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 0.75rem;"><code>host</code></td>
+                                <td style="padding: 0.75rem;">127.0.0.1</td>
+                                <td style="padding: 0.75rem;">TWS運行的主機地址</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 0.75rem;"><code>port</code></td>
+                                <td style="padding: 0.75rem;">7496</td>
+                                <td style="padding: 0.75rem;">TWS API端口 (Gateway: 4001)</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 0.75rem;"><code>clientId</code></td>
+                                <td style="padding: 0.75rem;">9999</td>
+                                <td style="padding: 0.75rem;">客戶端ID，避免與其他應用衝突</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                        <strong><i class="fas fa-exclamation-triangle"></i> 注意：</strong>
+                        高客戶端ID（如9999）可避免與其他IB應用程序的衝突。生產環境建議使用Read-Only API模式。
+                    </div>
+                    
+                    <h2>錯誤處理模式</h2>
+                    <table class="params-table">
+                        <thead>
+                            <tr>
+                                <th>參數</th>
+                                <th>類型</th>
+                                <th>默認值</th>
+                                <th>說明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="param-name">host</td>
+                                <td class="param-type">string</td>
+                                <td>127.0.0.1</td>
+                                <td>TWS運行的主機地址</td>
+                            </tr>
+                            <tr>
+                                <td class="param-name">port</td>
+                                <td class="param-type">integer</td>
+                                <td>7496</td>
+                                <td>TWS API端口，Gateway使用4001</td>
+                            </tr>
+                            <tr>
+                                <td class="param-name">clientId</td>
+                                <td class="param-type">integer</td>
+                                <td>9999</td>
+                                <td>客戶端ID，避免與其他應用衝突</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h2>賬戶選擇</h2>
+                    <p>支持多賬戶環境下的目標賬戶選擇：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def managedAccounts(self, accountsList: str):
+    """處理託管賬戶列表"""
+    accounts = [acc.strip() for acc in accountsList.split(',') if acc.strip()]
+    
+    # 優先使用環境變量指定的目標賬戶
+    target_account = CONFIG.get('TARGET_ACCOUNT')
+    if target_account and target_account in accounts:
+        self.account = target_account
+        logger.info(f"Using target account: {target_account[:2]}******")
+    elif accounts:
+        self.account = accounts[0]
+        logger.info(f"Using first available account: {self.account[:2]}******")
+    else:
+        logger.warning("No valid accounts found")</code></pre>
+                    </div>
+                    
+                    <h2>連接健康檢查</h2>
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def check_connection_health(self):
+    """檢查連接健康狀態"""
+    if not self.connected:
+        return False
+    
+    try:
+        # 發送心跳請求
+        self.reqCurrentTime()
+        return True
+    except Exception as e:
+        logger.error(f"Connection health check failed: {e}")
+        return False
+        
+def connectionClosed(self):
+    """連接關閉回調"""
+    logger.warning("TWS connection closed")
+    self.connected = False
+    self.connection_ready.clear()
+    
+    # 觸發重連邏輯
+    self.schedule_reconnect()</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 持倉數據API -->
+            <section id="portfolio-api" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">持倉數據API</h1>
+                    <p class="content-subtitle">獲取和管理投資組合信息</p>
+                </div>
+                <div class="content-body">
+                    <h2>API端點概覽</h2>
+                    
+                    <div class="api-endpoint">
+                        <div>
+                            <span class="endpoint-method method-get">GET</span>
+                            <span class="endpoint-url">/api/portfolio</span>
+                        </div>
+                        <div class="endpoint-description">
+                            獲取完整的持倉數據，包括期權、股票和賬戶摘要信息
+                        </div>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <div>
+                            <span class="endpoint-method method-post">POST</span>
+                            <span class="endpoint-url">/api/update</span>
+                        </div>
+                        <div class="endpoint-description">
+                            手動觸發持倉數據更新，從TWS重新獲取最新信息
+                        </div>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <div>
+                            <span class="endpoint-method method-get">GET</span>
+                            <span class="endpoint-url">/api/status</span>
+                        </div>
+                        <div class="endpoint-description">
+                            獲取系統連接狀態和健康檢查資訊
+                        </div>
+                    </div>
+                    
+                    <h2>持倉數據結構</h2>
+                    <p>系統返回的JSON數據結構包含以下主要部分：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">JSON Response</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-json">{
+  "timestamp": "2025-06-25T00:27:43.036758",
+  "last_update": "2025-06-25 00:27:43",
+  "positions": [
+    {
+      "account": "U*******",
+      "symbol": "AAPL",
+      "secType": "OPT",
+      "position": -10.0,
+      "avgCost": 992.54926,
+      "currency": "USD",
+      "strike": 150.0,
+      "right": "P",
+      "expiry": "20250919",
+      "market_data": {
+        "bid": 6.2,
+        "ask": 6.45,
+        "last": 6.25,
+        "currentPrice": 9.27,
+        "markPrice": 6.41489935
+      },
+      "options_data": {
+        "bidGreeks": {
+          "impliedVolatility": 0.6476787590722675,
+          "delta": -0.10604001578722737,
+          "gamma": 0.0017342136789592604,
+          "vega": 0.2876770259567989,
+          "theta": -0.10719722140348148,
+          "underlyingPrice": 335.5
+        }
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "pnl": 150.0,
+      "market_value": -600.0,
+      "actual_expiration_value": 750.0
+    }
+  ],
+  "summary": {
+    "net_liquidation": 14499003.32,
+    "total_cash": 203039.0,
+    "us_options_expiration_value": 3270452.0,
+    "max_capital_required": 55284671.0
+  },
+  "subscription_errors": {
+    "VXX": {
+      "error_code": 162,
+      "message": "需要BATS市場數據訂閱"
+    }
+  }
+}</code></pre>
+                    </div>
+                    
+                    <h2>TWS API持倉獲取</h2>
+                    <p>底層實現使用TWS API的持倉接口：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def position(self, account: str, contract: Contract, position: float, avgCost: float):
+    """接收持倉數據回調"""
+    # 只處理目標賬戶的持倉
+    if self.account and account != self.account:
+        return
+        
+    if position != 0:
+        symbol = contract.symbol
+        
+        # 期權需要完整標識符
+        if contract.secType == 'OPT':
+            symbol = f"{contract.symbol}_{contract.lastTradeDateOrContractMonth}_{contract.right}_{contract.strike}"
+        
+        # 存儲完整的contract對象
+        self.contracts[symbol] = contract
+        
+        # 存儲持倉信息
+        position_data = {
+            'account': account,
+            'symbol': contract.symbol,
+            'secType': contract.secType,
+            'position': position,
+            'avgCost': avgCost,
+            'currency': contract.currency or 'USD',
+            'exchange': contract.exchange or 'SMART',
+            'conId': contract.conId,
+            'localSymbol': contract.localSymbol,
+            'tradingClass': contract.tradingClass
+        }
+        
+        # 期權特定信息
+        if contract.secType == 'OPT':
+            position_data.update({
+                'strike': contract.strike,
+                'right': contract.right,
+                'expiry': contract.lastTradeDateOrContractMonth,
+                'multiplier': contract.multiplier or '100'
+            })
+        
+        self.positions[symbol] = position_data
+        logger.info(f"Received position: {symbol} {position}")
+
+def positionEnd(self):
+    """持倉數據接收完成"""
+    logger.info(f"Received {len(self.positions)} positions")
+    # 觸發市場數據訂閱
+    self.requestAdditionalData()</code></pre>
+                    </div>
+                    
+                    <h2>期權到期價值計算</h2>
+                    <p>我們的系統提供智能的期權到期價值計算，特別針對Short Put策略：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def calculate_option_expiry_value(self, position, underlying_price):
+    """計算期權實際到期價值"""
+    if position['right'] == 'P' and position['position'] < 0:  # Short Put
+        strike = position['strike']
+        avg_cost = position['avgCost']
+        position_size = abs(position['position'])
+        
+        if underlying_price > 0:
+            if underlying_price >= strike:
+                # 不會被行權，收取全部權利金
+                expiry_value = avg_cost * position_size * 100
+            else:
+                # 會被行權，計算實際損失
+                loss = (strike - underlying_price - avg_cost) * position_size * 100
+                expiry_value = -loss
+        else:
+            # 沒有底層價格，使用保守估計
+            expiry_value = avg_cost * position_size * 100
+            
+        # 計算接貨資金需求
+        capital_required = (strike - avg_cost) * position_size * 100
+        
+        return {
+            'actual_expiry_value': expiry_value,
+            'capital_required': capital_required
+        }
+    else:
+        # 其他期權類型使用市值
+        return {
+            'actual_expiry_value': abs(position.get('market_value', 0)),
+            'capital_required': 0
+        }</code></pre>
+                    </div>
+                    
+                    <h2>使用示例</h2>
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-javascript">// 獲取持倉數據
+async function fetchPortfolioData() {
+    try {
+        const response = await fetch('/api/portfolio');
+        const data = await response.json();
+        
+        console.log('持倉數據:', data);
+        console.log('總持倉數量:', data.positions.length);
+        console.log('淨清算價值:', data.summary.net_liquidation);
+        
+        return data;
+    } catch (error) {
+        console.error('獲取持倉數據失敗:', error);
+    }
+}
+
+// 手動更新持倉數據
+async function updatePortfolio() {
+    try {
+        const response = await fetch('/api/update', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            console.log('更新成功:', result.message);
+            // 更新成功後重新獲取數據
+            await fetchPortfolioData();
+        } else {
+            console.error('更新失敗:', result.message);
+        }
+    } catch (error) {
+        console.error('更新請求失敗:', error);
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 市場數據API -->
+            <section id="market-data-api" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">市場數據API</h1>
+                    <p class="content-subtitle">實時價格和期權Greeks數據</p>
+                </div>
+                <div class="content-body">
+                    <h2>市場數據訂閱機制</h2>
+                    <p>系統自動為所有持倉訂閱實時市場數據，包括價格、成交量和期權Greeks：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def subscribe_market_data(self, contract, symbol):
+    """訂閱市場數據"""
+    req_id = self.nextReqId()
+    self.map_request(req_id, symbol, 'market_data')
+    
+    # 訂閱實時數據，包括期權Greeks
+    generic_tick_list = "233"  # 包括RTVolume和期權計算
+    self.reqMktData(req_id, contract, generic_tick_list, False, False, [])
+    
+    logger.info(f"Subscribing to market data: {symbol} (reqId: {req_id})")
+
+def tickPrice(self, reqId, tickType, price, attrib):
+    """處理價格tick數據"""
+    symbol = self.get_symbol_from_reqid(reqId)
+    if not symbol:
+        return
+    
+    if symbol not in self.market_data:
+        self.market_data[symbol] = {}
+    
+    # 映射tick類型到字段名
+    tick_map = {
+        1: 'bid',           # BID
+        2: 'ask',           # ASK  
+        4: 'last',          # LAST
+        6: 'high',          # HIGH
+        7: 'low',           # LOW
+        9: 'close',         # CLOSE
+    }
+    
+    if tickType in tick_map:
+        field_name = tick_map[tickType]
+        self.market_data[symbol][field_name] = price
+        
+        # 更新當前價格
+        if tickType in [1, 2, 4]:  # bid, ask, last
+            self.market_data[symbol]['currentPrice'] = price
+            
+        logger.debug(f"Price Update - {symbol} {field_name}: {price}")</code></pre>
+                    </div>
+                    
+                    <h2>期權Greeks處理</h2>
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def tickOptionComputation(self, reqId, tickType, impliedVol, delta, optPrice, 
+                         pvDividend, gamma, vega, theta, undPrice):
+    """處理期權Greeks數據"""
+    symbol = self.get_symbol_from_reqid(reqId)
+    if not symbol:
+        return
+    
+    # 期權Greeks映射
+    greeks_map = {
+        10: 'bidGreeks',      # BID_OPTION_COMPUTATION
+        11: 'askGreeks',      # ASK_OPTION_COMPUTATION
+        12: 'lastGreeks',     # LAST_OPTION_COMPUTATION
+        13: 'modelGreeks'     # MODEL_OPTION_COMPUTATION
+    }
+    
+    if tickType in greeks_map:
+        greeks_type = greeks_map[tickType]
+        
+        greeks_data = {
+            'impliedVolatility': impliedVol if impliedVol != -1 else None,
+            'delta': delta if delta != -2 else None,
+            'optionPrice': optPrice if optPrice != -1 else None,
+            'pvDividend': pvDividend if pvDividend != -1 else None,
+            'gamma': gamma if gamma != -2 else None,
+            'vega': vega if vega != -2 else None,
+            'theta': theta if theta != -2 else None,
+            'underlyingPrice': undPrice if undPrice != -1 else None
+        }
+        
+        if 'options_data' not in self.market_data[symbol]:
+            self.market_data[symbol]['options_data'] = {}
+            
+        self.market_data[symbol]['options_data'][greeks_type] = greeks_data</code></pre>
+                    </div>
+                    
+                    <h2>歷史數據獲取</h2>
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def request_historical_data(self, contract, symbol, duration="5 D", bar_size="1 day"):
+    """請求歷史數據"""
+    req_id = self.nextReqId()
+    self.map_request(req_id, symbol, 'historical_data')
+    
+    self.reqHistoricalData(
+        req_id, contract, "", duration, bar_size, 
+        "MIDPOINT", 1, 1, False, []
+    )
+    
+def historicalData(self, reqId, bar):
+    """處理歷史數據"""
+    symbol = self.get_symbol_from_reqid(reqId)
+    if not symbol:
+        return
+    
+    # 存儲最近的收盤價
+    if bar.close > 0:
+        if symbol not in self.market_data:
+            self.market_data[symbol] = {}
+        self.market_data[symbol]['historical_close'] = bar.close</code></pre>
+                    </div>
+                    
+                    <h2>市場數據錯誤處理</h2>
+                    <p>系統智能處理各種市場數據訂閱錯誤：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def handle_market_data_error(self, reqId, errorCode, errorString):
+    """處理市場數據錯誤"""
+    
+    # 常見錯誤代碼和解決方案
+    error_solutions = {
+        162: {
+            'type': 'subscription_required',
+            'message': '需要BATS市場數據訂閱',
+            'action': 'contact_ib_or_use_delayed_data'
+        },
+        200: {
+            'type': 'contract_not_found',
+            'message': '證券定義未找到',
+            'action': 'check_contract_parameters'
+        },
+        354: {
+            'type': 'subscription_required',
+            'message': '需要付費市場數據訂閱',
+            'action': 'subscribe_to_market_data'
+        },
+        10090: {
+            'type': 'subscription_required',
+            'message': '需要付費期權數據訂閱',
+            'action': 'subscribe_to_options_data'
+        }
+    }
+    
+    symbol = self.get_symbol_from_reqid(reqId)
+    if symbol and errorCode in error_solutions:
+        error_info = error_solutions[errorCode]
+        
+        # 記錄到訂閱錯誤列表
+        self.subscription_errors[symbol] = {
+            'error_code': errorCode,
+            'message': error_info['message'],
+            'error_string': errorString,
+            'recommended_action': error_info['action']
+        }
+        
+        logger.warning(f"Market data error for {symbol}: {error_info['message']}")
+        
+        # 如果是訂閱錯誤，嘗試使用備用數據源
+        if error_info['type'] == 'subscription_required':
+            self.try_alternative_data_source(symbol)</code></pre>
+                    </div>
+                    
+                    <h2>外部數據源集成</h2>
+                    <p>當TWS市場數據不可用時，系統自動使用Financial Modeling Prep API作為備用：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def fetch_external_stock_prices(self, symbols):
+    """從FMP API獲取股票價格"""
+    if not self.fmp_api_key:
+        return {}
+    
+    try:
+        # 批量請求股票價格
+        symbols_str = ','.join(symbols)
+        url = f"https://financialmodelingprep.com/api/v3/quote/{symbols_str}"
+        params = {'apikey': self.fmp_api_key}
+        
+        response = requests.get(url, params=params, timeout=10)
+        response.raise_for_status()
+        
+        data = response.json()
+        prices = {}
+        
+        for item in data:
+            symbol = item.get('symbol')
+            price = item.get('price')
+            if symbol and price:
+                prices[symbol] = {
+                    'price': price,
+                    'change': item.get('change', 0),
+                    'changesPercentage': item.get('changesPercentage', 0),
+                    'source': 'FMP_API'
+                }
+        
+        return prices
+        
+    except Exception as e:
+        logger.error(f"Failed to fetch external prices: {e}")
+        return {}</code></pre>
+                    </div>
+                    
+                    <h2>實時數據更新示例</h2>
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-javascript">class MarketDataManager {
+    constructor() {
+        this.updateInterval = 5000; // 5秒更新一次
+        this.lastUpdate = null;
+    }
+    
+    startRealTimeUpdates() {
+        setInterval(() => {
+            this.fetchLatestMarketData();
+        }, this.updateInterval);
+    }
+    
+    async fetchLatestMarketData() {
+        try {
+            const response = await fetch('/api/portfolio');
+            const data = await response.json();
+            
+            if (data.positions) {
+                this.updateMarketDataDisplay(data.positions);
+                this.updateLastUpdateTime(data.last_update);
+            }
+        } catch (error) {
+            console.error('市場數據更新失敗:', error);
+        }
+    }
+    
+    updateMarketDataDisplay(positions) {
+        positions.forEach(position => {
+            const symbol = position.symbol;
+            const marketData = position.market_data;
+            
+            if (marketData) {
+                // 更新價格顯示
+                this.updatePriceElement(symbol, marketData.currentPrice);
+                
+                // 更新Greeks顯示（如果是期權）
+                if (position.secType === 'OPT' && position.options_data) {
+                    this.updateGreeksDisplay(symbol, position.options_data);
+                }
+            }
+        });
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- API測試 -->
+            <section id="api-testing" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">API 測試平台</h1>
+                    <p class="content-subtitle">實時測試和調試工具</p>
+                </div>
+                <div class="content-body">
+                    <h2>連接狀態</h2>
+                    <div style="background: #f8f9fa; border: 1px solid #e1e5e9; border-radius: 0.5rem; padding: 1.5rem; margin: 1rem 0;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span class="status-indicator status-loading" id="testConnectionStatus"></span>
+                                <span><strong>TWS 連接狀態:</strong> <span id="connectionStatusText">檢查中...</span></span>
+                            </div>
+                            <button class="test-button" onclick="checkConnectionStatus()">重新檢查</button>
+                        </div>
+                        <div id="connectionDetails" style="font-size: 0.875rem; color: #666;"></div>
+                    </div>
+                    
+                    <h2>API 端點測試</h2>
+                    <div class="test-container">
+                        <div class="test-panel">
+                            <h3>持倉數據</h3>
+                            <button class="test-button" onclick="testPortfolioAPI()">
+                                <i class="fas fa-briefcase"></i> 獲取持倉數據
+                            </button>
+                            <button class="test-button" onclick="testUpdateAPI()">
+                                <i class="fas fa-sync"></i> 更新持倉
+                            </button>
+                            <div class="response-area" id="portfolioResponse">點擊上方按鈕測試API...</div>
+                        </div>
+                        
+                        <div class="test-panel">
+                            <h3>系統狀態</h3>
+                            <button class="test-button" onclick="testStatusAPI()">
+                                <i class="fas fa-heartbeat"></i> 系統健康檢查
+                            </button>
+                            <button class="test-button" onclick="testAccountAPI()">
+                                <i class="fas fa-user"></i> 賬戶信息
+                            </button>
+                            <div class="response-area" id="statusResponse">點擊上方按鈕測試API...</div>
+                        </div>
+                    </div>
+                    
+                    <h2>實時數據監控</h2>
+                    <div style="background: white; border: 1px solid #e1e5e9; border-radius: 0.5rem; padding: 1.5rem; margin: 1rem 0;">
+                        <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 1rem;">
+                            <h4>市場數據流</h4>
+                            <button class="test-button" onclick="toggleRealTimeMonitoring()">
+                                <span id="monitoringToggleText">開始監控</span>
+                            </button>
+                        </div>
+                        <div class="response-area" id="realTimeData" style="height: 300px;">實時數據將在此顯示...</div>
+                    </div>
+                    
+                    <h2>測試工具</h2>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; text-align: center;">
+                            <h4><i class="fas fa-chart-line"></i> 性能測試</h4>
+                            <p style="font-size: 0.875rem; color: #666;">測試API響應時間和數據完整性</p>
+                            <button class="test-button" onclick="runPerformanceTest()">運行測試</button>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; text-align: center;">
+                            <h4><i class="fas fa-bug"></i> 錯誤模擬</h4>
+                            <p style="font-size: 0.875rem; color: #666;">模擬各種錯誤情況</p>
+                            <button class="test-button" onclick="simulateError()">模擬錯誤</button>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 0.5rem; text-align: center;">
+                            <h4><i class="fas fa-download"></i> 數據導出</h4>
+                            <p style="font-size: 0.875rem; color: #666;">導出測試數據和日誌</p>
+                            <button class="test-button" onclick="exportTestData()">導出數據</button>
+                        </div>
+                    </div>
+                    
+                    <h2>開發者控制台</h2>
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Console</span>
+                            <button class="copy-btn" onclick="clearConsole()">清除</button>
+                        </div>
+                        <div class="response-area" id="developerConsole" style="height: 200px; font-family: 'Courier New', monospace;">
+開發者控制台 - 實時API調用日誌
+============================================
+系統啟動時間: ${new Date().toLocaleString()}
+當前環境: Development
+TWS API 版本: 9.72+
+============================================
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+    </div>
+
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    
+    <script>
+        // 全局變量
+        let isMonitoring = false;
+        let monitoringInterval = null;
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 檢查連接狀態
+            checkConnectionStatus();
+            
+            // 設置搜索功能
+            setupSearch();
+            
+            // 初始化導航
+            initializeNavigation();
+            
+            // 添加控制台消息
+            addConsoleMessage('系統初始化完成');
+        });
+        
+        // 搜索功能
+        function setupSearch() {
+            const searchBox = document.getElementById('searchBox');
+            searchBox.addEventListener('input', function(e) {
+                const query = e.target.value.toLowerCase();
+                filterNavigation(query);
+            });
+        }
+        
+        function filterNavigation(query) {
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(query) || query === '') {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        // 導航功能
+        function initializeNavigation() {
+            // 默認展開所有部分
+            const sections = document.querySelectorAll('.nav-section');
+            sections.forEach(section => {
+                section.classList.remove('collapsed');
+            });
+        }
+        
+        function toggleSection(element) {
+            const section = element.parentElement;
+            section.classList.toggle('collapsed');
+        }
+        
+        function showSection(sectionId) {
+            // 隱藏所有內容區域
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // 顯示目標區域
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // 更新導航活動狀態
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const activeNavItem = document.querySelector(`[href="#${sectionId}"]`);
+            if (activeNavItem) {
+                activeNavItem.classList.add('active');
+            }
+            
+            addConsoleMessage(`切換到: ${sectionId}`);
+        }
+        
+        // 響應式側邊欄
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('show');
+        }
+        
+        // API測試功能
+        async function checkConnectionStatus() {
+            const statusIndicator = document.getElementById('testConnectionStatus');
+            const statusText = document.getElementById('connectionStatusText');
+            const detailsDiv = document.getElementById('connectionDetails');
+            
+            statusIndicator.className = 'status-indicator status-loading';
+            statusText.textContent = '檢查中...';
+            
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+                
+                if (data.tws_connected) {
+                    statusIndicator.className = 'status-indicator status-online';
+                    statusText.textContent = '已連接';
+                    detailsDiv.innerHTML = `
+                        <div>持倉數量: ${data.positions_count}</div>
+                        <div>最後更新: ${data.last_update || 'N/A'}</div>
+                        <div>服務器時間: ${new Date(data.server_time).toLocaleString()}</div>
+                    `;
+                } else {
+                    statusIndicator.className = 'status-indicator status-offline';
+                    statusText.textContent = '未連接';
+                    detailsDiv.innerHTML = '<div style="color: #dc3545;">TWS連接失敗，請檢查TWS是否運行並啟用API</div>';
+                }
+                
+                addConsoleMessage(`連接狀態檢查: ${data.tws_connected ? '成功' : '失敗'}`);
+                
+            } catch (error) {
+                statusIndicator.className = 'status-indicator status-offline';
+                statusText.textContent = '錯誤';
+                detailsDiv.innerHTML = `<div style="color: #dc3545;">檢查失敗: ${error.message}</div>`;
+                addConsoleMessage(`連接檢查錯誤: ${error.message}`);
+            }
+        }
+        
+        async function testPortfolioAPI() {
+            const responseArea = document.getElementById('portfolioResponse');
+            responseArea.textContent = '正在獲取持倉數據...';
+            
+            try {
+                const startTime = Date.now();
+                const response = await fetch('/api/portfolio');
+                const data = await response.json();
+                const duration = Date.now() - startTime;
+                
+                responseArea.textContent = `響應時間: ${duration}ms\n\n` + JSON.stringify(data, null, 2);
+                addConsoleMessage(`持倉API測試成功 (${duration}ms)`);
+                
+            } catch (error) {
+                responseArea.textContent = `錯誤: ${error.message}`;
+                addConsoleMessage(`持倉API測試失敗: ${error.message}`);
+            }
+        }
+        
+        async function testUpdateAPI() {
+            const responseArea = document.getElementById('portfolioResponse');
+            responseArea.textContent = '正在更新持倉數據...';
+            
+            try {
+                const startTime = Date.now();
+                const response = await fetch('/api/update', { method: 'POST' });
+                const data = await response.json();
+                const duration = Date.now() - startTime;
+                
+                responseArea.textContent = `響應時間: ${duration}ms\n\n` + JSON.stringify(data, null, 2);
+                addConsoleMessage(`更新API測試成功 (${duration}ms)`);
+                
+            } catch (error) {
+                responseArea.textContent = `錯誤: ${error.message}`;
+                addConsoleMessage(`更新API測試失敗: ${error.message}`);
+            }
+        }
+        
+        async function testStatusAPI() {
+            const responseArea = document.getElementById('statusResponse');
+            responseArea.textContent = '正在檢查系統狀態...';
+            
+            try {
+                const startTime = Date.now();
+                const response = await fetch('/api/status');
+                const data = await response.json();
+                const duration = Date.now() - startTime;
+                
+                responseArea.textContent = `響應時間: ${duration}ms\n\n` + JSON.stringify(data, null, 2);
+                addConsoleMessage(`狀態API測試成功 (${duration}ms)`);
+                
+            } catch (error) {
+                responseArea.textContent = `錯誤: ${error.message}`;
+                addConsoleMessage(`狀態API測試失敗: ${error.message}`);
+            }
+        }
+        
+        async function testAccountAPI() {
+            const responseArea = document.getElementById('statusResponse');
+            responseArea.textContent = '正在獲取賬戶信息...';
+            
+            try {
+                const response = await fetch('/api/portfolio');
+                const data = await response.json();
+                
+                const accountInfo = {
+                    summary: data.summary,
+                    last_update: data.last_update,
+                    positions_count: data.positions ? data.positions.length : 0
+                };
+                
+                responseArea.textContent = JSON.stringify(accountInfo, null, 2);
+                addConsoleMessage('賬戶API測試成功');
+                
+            } catch (error) {
+                responseArea.textContent = `錯誤: ${error.message}`;
+                addConsoleMessage(`賬戶API測試失敗: ${error.message}`);
+            }
+        }
+        
+        function toggleRealTimeMonitoring() {
+            const button = document.querySelector('[onclick="toggleRealTimeMonitoring()"]');
+            const toggleText = document.getElementById('monitoringToggleText');
+            const dataArea = document.getElementById('realTimeData');
+            
+            if (!isMonitoring) {
+                isMonitoring = true;
+                toggleText.textContent = '停止監控';
+                button.style.background = '#dc3545';
+                
+                // 開始監控
+                monitoringInterval = setInterval(async () => {
+                    try {
+                        const response = await fetch('/api/portfolio');
+                        const data = await response.json();
+                        
+                        const timestamp = new Date().toLocaleTimeString();
+                        const summary = `[${timestamp}] 持倉: ${data.positions?.length || 0}, 淨值: ${data.summary?.net_liquidation || 'N/A'}`;
+                        
+                        dataArea.textContent = summary + '\n' + dataArea.textContent.split('\n').slice(0, 19).join('\n');
+                        
+                    } catch (error) {
+                        const timestamp = new Date().toLocaleTimeString();
+                        const errorMsg = `[${timestamp}] 錯誤: ${error.message}`;
+                        dataArea.textContent = errorMsg + '\n' + dataArea.textContent.split('\n').slice(0, 19).join('\n');
+                    }
+                }, 2000);
+                
+                addConsoleMessage('開始實時監控');
+                
+            } else {
+                isMonitoring = false;
+                toggleText.textContent = '開始監控';
+                button.style.background = '';
+                
+                if (monitoringInterval) {
+                    clearInterval(monitoringInterval);
+                    monitoringInterval = null;
+                }
+                
+                addConsoleMessage('停止實時監控');
+            }
+        }
+        
+        async function runPerformanceTest() {
+            addConsoleMessage('開始性能測試...');
+            
+            const tests = [
+                { name: '持倉數據', url: '/api/portfolio' },
+                { name: '系統狀態', url: '/api/status' },
+            ];
+            
+            for (const test of tests) {
+                try {
+                    const startTime = Date.now();
+                    const response = await fetch(test.url);
+                    const duration = Date.now() - startTime;
+                    
+                    addConsoleMessage(`${test.name}: ${duration}ms ${response.ok ? '✓' : '✗'}`);
+                } catch (error) {
+                    addConsoleMessage(`${test.name}: 錯誤 - ${error.message}`);
+                }
+            }
+            
+            addConsoleMessage('性能測試完成');
+        }
+        
+        function simulateError() {
+            addConsoleMessage('模擬網絡錯誤...');
+            fetch('/api/nonexistent-endpoint')
+                .catch(error => {
+                    addConsoleMessage(`模擬錯誤: ${error.message}`);
+                });
+        }
+        
+        function exportTestData() {
+            const data = {
+                timestamp: new Date().toISOString(),
+                console_log: document.getElementById('developerConsole').textContent,
+                connection_status: document.getElementById('connectionStatusText').textContent
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ib-api-test-${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            addConsoleMessage('測試數據已導出');
+        }
+        
+        // 工具函數
+        function addConsoleMessage(message) {
+            const console = document.getElementById('developerConsole');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = `[${timestamp}] ${message}`;
+            
+            console.textContent = console.textContent + '\n' + logEntry;
+            console.scrollTop = console.scrollHeight;
+        }
+        
+        function clearConsole() {
+            const console = document.getElementById('developerConsole');
+            console.textContent = `開發者控制台 - 實時API調用日誌
+============================================
+系統啟動時間: ${new Date().toLocaleString()}
+當前環境: Development
+TWS API 版本: 9.72+
+============================================`;
+        }
+        
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-example').querySelector('code');
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '已複製';
+                button.style.background = '#28a745';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                }, 2000);
+            });
+        }
+        
+        // 添加更多內容部分
+        function addMoreSections() {
+            // 這裡可以動態添加更多文檔部分
+        }
+        
+        // 鍵盤快捷鍵
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'k':
+                        e.preventDefault();
+                        document.getElementById('searchBox').focus();
+                        break;
+                    case 'r':
+                        e.preventDefault();
+                        checkConnectionStatus();
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>            <!-- 市場數據API -->
+            <section id="market-data-api" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">市場數據API</h1>
+                    <p class="content-subtitle">實時市場數據獲取和訂閱</p>
+                </div>
+                <div class="content-body">
+                    <h2>訂閱機制</h2>
+                    <p>EnhancedIBClient自動為所有持倉訂閱實時市場數據：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def subscribe_market_data(self):
+    """為所有持倉訂閱市場數據"""
+    for position in self.positions.values():
+        req_id = self.next_valid_id + len(self.market_data_requests)
+        contract = self.create_contract_from_position(position)
+        
+        # 訂閱實時市場數據
+        self.reqMktData(req_id, contract, "", False, False, [])
+        self.market_data_requests[req_id] = contract.symbol
+        
+        # 訂閱期權計算數據（如果是期權）
+        if position.get('secType') == 'OPT':
+            self.reqCalculateOptionPrice(req_id, contract,
+                position.get('underlying_price', 0), 0.25, [])
+
+def tickPrice(self, reqId: int, tickType: int, price: float, attrib: TickAttrib):
+    """處理價格數據回調"""
+    symbol = self.market_data_requests.get(reqId)
+    if not symbol:
+        return
+        
+    if symbol not in self.market_data:
+        self.market_data[symbol] = {}
+    
+    # 處理不同類型的價格數據
+    if tickType == TickTypeEnum.BID:
+        self.market_data[symbol]['bid'] = price
+    elif tickType == TickTypeEnum.ASK:
+        self.market_data[symbol]['ask'] = price
+    elif tickType == TickTypeEnum.LAST:
+        self.market_data[symbol]['last'] = price
+    elif tickType == TickTypeEnum.CLOSE:
+        self.market_data[symbol]['close'] = price
+        
+def tickOptionComputation(self, reqId: int, tickType: int, tickAttrib: int,
+                         impliedVol: float, delta: float, optPrice: float,
+                         pvDividend: float, gamma: float, vega: float,
+                         theta: float, undPrice: float):
+    """處理期權Greeks計算"""
+    symbol = self.market_data_requests.get(reqId)
+    if not symbol or symbol not in self.options_data:
+        return
+        
+    greeks = {
+        'impliedVolatility': impliedVol,
+        'delta': delta,
+        'gamma': gamma,
+        'vega': vega,
+        'theta': theta,
+        'underlyingPrice': undPrice
+    }
+    
+    if tickType == TickTypeEnum.BID_OPTION_COMPUTATION:
+        self.options_data[symbol]['bidGreeks'] = greeks
+    elif tickType == TickTypeEnum.ASK_OPTION_COMPUTATION:
+        self.options_data[symbol]['askGreeks'] = greeks</code></pre>
+                    </div>
+                    
+                    <h2>數據類型映射</h2>
+                    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                        <thead>
+                            <tr style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                                <th style="padding: 0.75rem; text-align: left;">TickType</th>
+                                <th style="padding: 0.75rem; text-align: left;">描述</th>
+                                <th style="padding: 0.75rem; text-align: left;">用途</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 0.75rem;"><code>BID (1)</code></td>
+                                <td style="padding: 0.75rem;">買入價</td>
+                                <td style="padding: 0.75rem;">計算買賣價差</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 0.75rem;"><code>ASK (2)</code></td>
+                                <td style="padding: 0.75rem;">賣出價</td>
+                                <td style="padding: 0.75rem;">計算買賣價差</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 0.75rem;"><code>LAST (4)</code></td>
+                                <td style="padding: 0.75rem;">最新成交價</td>
+                                <td style="padding: 0.75rem;">當前市價參考</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 0.75rem;"><code>CLOSE (9)</code></td>
+                                <td style="padding: 0.75rem;">收盤價</td>
+                                <td style="padding: 0.75rem;">日間漲跌計算</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #dee2e6;">
+                                <td style="padding: 0.75rem;"><code>VOLUME (8)</code></td>
+                                <td style="padding: 0.75rem;">成交量</td>
+                                <td style="padding: 0.75rem;">流動性評估</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h2>第三方數據整合</h2>
+                    <p>對於無法獲取TWS數據的標的，系統整合Financial Modeling Prep API：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">@app.route('/api/stock-prices', methods=['POST'])
+def get_stock_prices():
+    """從FMP API獲取股價數據"""
+    try:
+        data = request.get_json()
+        symbols = data.get('symbols', [])
+        
+        if not symbols:
+            return jsonify({'error': 'No symbols provided'}), 400
+            
+        # 構建FMP API請求
+        symbols_str = ','.join(symbols)
+        url = f"https://financialmodelingprep.com/api/v3/quote/{symbols_str}"
+        params = {'apikey': CONFIG['FMP_API_KEY']}
+        
+        response = requests.get(url, params=params, timeout=10)
+        if response.status_code != 200:
+            return jsonify({'error': 'FMP API request failed'}), 500
+            
+        fmp_data = response.json()
+        
+        # 轉換為統一格式
+        prices = {}
+        for item in fmp_data:
+            symbol = item['symbol']
+            prices[symbol] = {
+                'price': item['price'],
+                'change': item['change'],
+                'changesPercentage': item['changesPercentage'],
+                'dayLow': item['dayLow'],
+                'dayHigh': item['dayHigh'],
+                'volume': item['volume'],
+                'timestamp': item['timestamp']
+            }
+            
+        return jsonify({'success': True, 'data': prices})
+        
+    except Exception as e:
+        logger.error(f"Error fetching stock prices: {e}")
+        return jsonify({'error': str(e)}), 500</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 賬戶API -->
+            <section id="account-api" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">賬戶API</h1>
+                    <p class="content-subtitle">賬戶信息和資金管理</p>
+                </div>
+                <div class="content-body">
+                    <h2>賬戶摘要數據</h2>
+                    <p>系統自動獲取並處理賬戶摘要信息：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def requestAccountSummary(self):
+    """請求賬戶摘要數據"""
+    # 請求關鍵賬戶數據
+    tags = "NetLiquidation,TotalCashValue,GrossPositionValue,BuyingPower"
+    self.reqAccountSummary(9001, "All", tags)
+
+def accountSummary(self, reqId: int, account: str, tag: str, 
+                  value: str, currency: str):
+    """處理賬戶摘要回調"""
+    if account not in self.account_summary:
+        self.account_summary[account] = {}
+        
+    # 轉換並存儲賬戶數據
+    try:
+        numeric_value = float(value) if value else 0.0
+        self.account_summary[account][tag] = {
+            'value': numeric_value,
+            'currency': currency,
+            'raw': value
+        }
+        
+        logger.info(f"Account {account[:2]}******: {tag} = {numeric_value} {currency}")
+        
+    except ValueError:
+        # 處理非數值型數據
+        self.account_summary[account][tag] = {
+            'value': value,
+            'currency': currency,
+            'raw': value
+        }
+
+def get_account_summary(self):
+    """獲取格式化的賬戶摘要"""
+    if not self.account or self.account not in self.account_summary:
+        return {}
+        
+    summary = self.account_summary[self.account]
+    
+    return {
+        'net_liquidation': summary.get('NetLiquidation', {}).get('value', 0),
+        'total_cash': summary.get('TotalCashValue', {}).get('value', 0),
+        'gross_position_value': summary.get('GrossPositionValue', {}).get('value', 0),
+        'buying_power': summary.get('BuyingPower', {}).get('value', 0),
+        'currency': summary.get('NetLiquidation', {}).get('currency', 'USD')
+    }</code></pre>
+                    </div>
+                    
+                    <h2>多賬戶支持</h2>
+                    <p>系統支持多賬戶環境下的自動選擇：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def managedAccounts(self, accountsList: str):
+    """處理託管賬戶列表"""
+    accounts = [acc.strip() for acc in accountsList.split(',') if acc.strip()]
+    logger.info(f"Available accounts: {len(accounts)}")
+    
+    # 隱私保護：僅顯示前兩位字符
+    for acc in accounts:
+        logger.info(f"Account: {acc[:2]}******")
+    
+    # 目標賬戶選擇邏輯
+    target_account = CONFIG.get('TARGET_ACCOUNT')
+    if target_account and target_account in accounts:
+        self.account = target_account
+        logger.info(f"Using target account: {target_account[:2]}******")
+    elif accounts:
+        self.account = accounts[0]
+        logger.info(f"Using first available account: {self.account[:2]}******")
+    else:
+        logger.warning("No valid accounts found")</code></pre>
+                    </div>
+                    
+                    <h2>資金統計計算</h2>
+                    <p>系統提供詳細的期權到期價值計算：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-javascript">function calculateOptionsExpirationValue(positions) {
+    let totalExpirationValue = 0;
+    let maxCapitalRequirement = 0;
+    
+    positions.forEach(position => {
+        if (position.secType === 'OPT') {
+            const underlyingPrice = position.underlying_price || 0;
+            const strike = position.strike || 0;
+            const quantity = Math.abs(position.position || 0);
+            const multiplier = parseInt(position.multiplier || 100);
+            
+            let expirationValue = 0;
+            
+            if (position.right === 'P') {
+                // Put期權：max(Strike - Underlying, 0)
+                expirationValue = Math.max(strike - underlyingPrice, 0);
+            } else if (position.right === 'C') {
+                // Call期權：max(Underlying - Strike, 0)
+                expirationValue = Math.max(underlyingPrice - strike, 0);
+            }
+            
+            const totalValue = expirationValue * quantity * multiplier;
+            
+            if (position.position < 0) {
+                // 空頭倉位的最大資金需求
+                if (position.right === 'P') {
+                    maxCapitalRequirement += strike * quantity * multiplier;
+                }
+                totalExpirationValue -= totalValue;
+            } else {
+                totalExpirationValue += totalValue;
+            }
+        }
+    });
+    
+    return {
+        total_expiration_value: totalExpirationValue,
+        max_capital_requirement: maxCapitalRequirement
+    };
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 訂單管理API -->
+            <section id="orders-api" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">訂單管理API</h1>
+                    <p class="content-subtitle">程序化交易和訂單執行</p>
+                </div>
+                <div class="content-body">
+                    <h2>訂單創建流程</h2>
+                    
+                    <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                        <strong><i class="fas fa-exclamation-triangle"></i> 重要提醒：</strong>
+                        當前系統配置為只讀模式。生產環境中的交易功能需要額外的安全驗證和風險控制機制。
+                    </div>
+                    
+                    <p>標準訂單創建和執行流程：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">from ibapi.order import Order
+from ibapi.contract import Contract
+
+def create_stock_order(symbol: str, action: str, quantity: int, order_type: str = "MKT"):
+    """創建股票訂單"""
+    contract = Contract()
+    contract.symbol = symbol
+    contract.secType = "STK"
+    contract.exchange = "SMART"
+    contract.currency = "USD"
+    
+    order = Order()
+    order.action = action  # "BUY" or "SELL"
+    order.totalQuantity = quantity
+    order.orderType = order_type  # "MKT", "LMT", "STP"
+    
+    return contract, order
+
+def create_option_order(symbol: str, expiry: str, strike: float, right: str,
+                       action: str, quantity: int, limit_price: float = None):
+    """創建期權訂單"""
+    contract = Contract()
+    contract.symbol = symbol
+    contract.secType = "OPT"
+    contract.exchange = "SMART"
+    contract.currency = "USD"
+    contract.lastTradeDateOrContractMonth = expiry
+    contract.strike = strike
+    contract.right = right  # "C" or "P"
+    contract.multiplier = "100"
+    
+    order = Order()
+    order.action = action
+    order.totalQuantity = quantity
+    order.orderType = "LMT" if limit_price else "MKT"
+    if limit_price:
+        order.lmtPrice = limit_price
+    
+    return contract, order
+
+def place_order(self, contract, order):
+    """下單執行"""
+    order_id = self.next_valid_id
+    self.next_valid_id += 1
+    
+    # 添加風險檢查
+    if not self.validate_order_risk(contract, order):
+        raise ValueError("Order failed risk validation")
+    
+    self.placeOrder(order_id, contract, order)
+    return order_id</code></pre>
+                    </div>
+                    
+                    <h2>訂單狀態追蹤</h2>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def orderStatus(self, orderId: int, status: str, filled: float,
+               remaining: float, avgFillPrice: float, permId: int,
+               parentId: int, lastFillPrice: float, clientId: int,
+               whyHeld: str, mktCapPrice: float):
+    """訂單狀態更新回調"""
+    self.order_status[orderId] = {
+        'status': status,
+        'filled': filled,
+        'remaining': remaining,
+        'avgFillPrice': avgFillPrice,
+        'lastFillPrice': lastFillPrice,
+        'timestamp': datetime.now().isoformat()
+    }
+    
+    logger.info(f"Order {orderId}: {status}, Filled: {filled}, Remaining: {remaining}")
+    
+    # 訂單完成後的處理
+    if status == 'Filled':
+        self.handle_order_filled(orderId)
+    elif status == 'Cancelled':
+        self.handle_order_cancelled(orderId)
+
+def execDetails(self, reqId: int, contract: Contract, execution: Execution):
+    """成交明細回調"""
+    self.executions[execution.execId] = {
+        'orderId': execution.orderId,
+        'clientId': execution.clientId,
+        'symbol': contract.symbol,
+        'secType': contract.secType,
+        'side': execution.side,
+        'shares': execution.shares,
+        'price': execution.price,
+        'time': execution.time,
+        'exchange': execution.exchange
+    }
+    
+    logger.info(f"Execution: {contract.symbol} {execution.side} "
+               f"{execution.shares} @ {execution.price}")
+
+def handle_order_filled(self, order_id: int):
+    """處理訂單完全成交"""
+    # 更新持倉數據
+    self.reqPositions()
+    
+    # 發送通知
+    self.send_order_notification(order_id, 'filled')
+    
+    # 觸發數據更新
+    self.update_portfolio_data()</code></pre>
+                    </div>
+                    
+                    <h2>風險控制機制</h2>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def validate_order_risk(self, contract: Contract, order: Order) -> bool:
+    """訂單風險驗證"""
+    try:
+        # 檢查訂單大小限制
+        if order.totalQuantity > MAX_ORDER_SIZE:
+            logger.error(f"Order size {order.totalQuantity} exceeds limit {MAX_ORDER_SIZE}")
+            return False
+        
+        # 檢查每日交易限額
+        daily_volume = self.get_daily_trading_volume()
+        order_value = self.estimate_order_value(contract, order)
+        
+        if daily_volume + order_value > DAILY_TRADING_LIMIT:
+            logger.error(f"Daily trading limit exceeded")
+            return False
+        
+        # 檢查持倉集中度
+        if self.check_position_concentration(contract, order):
+            logger.error(f"Position concentration limit exceeded")
+            return False
+        
+        # 檢查資金充足性
+        if not self.check_buying_power(contract, order):
+            logger.error(f"Insufficient buying power")
+            return False
+        
+        return True
+        
+    except Exception as e:
+        logger.error(f"Risk validation error: {e}")
+        return False
+
+def estimate_order_value(self, contract: Contract, order: Order) -> float:
+    """估算訂單價值"""
+    if order.orderType == "MKT":
+        # 市價單使用最新價格估算
+        return self.get_market_price(contract) * order.totalQuantity
+    elif order.orderType == "LMT":
+        # 限價單使用限價估算
+        return order.lmtPrice * order.totalQuantity
+    else:
+        return 0.0</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 客戶端架構 -->
+            <section id="client-wrapper" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">客戶端架構</h1>
+                    <p class="content-subtitle">EnhancedIBClient設計模式</p>
+                </div>
+                <div class="content-body">
+                    <h2>多重繼承適配器模式</h2>
+                    <p>EnhancedIBClient採用了EWrapper和EClient的多重繼承設計：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">class EnhancedIBClient(EWrapper, EClient):
+    """
+    Enhanced IB API客戶端
+    
+    使用多重繼承適配器模式，結合了EWrapper（事件處理）
+    和EClient（API通信）的功能，提供統一的接口。
+    
+    核心特性：
+    - 事件驅動架構
+    - 線程安全操作
+    - 自動重連機制
+    - 數據持久化
+    - 錯誤分類處理
+    """
+    
+    def __init__(self):
+        # 初始化父類
+        EClient.__init__(self, self)
+        
+        # 連接管理
+        self.connected = False
+        self.connection_ready = threading.Event()
+        self.account = None
+        
+        # 數據存儲
+        self.positions = {}
+        self.market_data = {}
+        self.options_data = {}
+        self.account_summary = {}
+        
+        # 請求追蹤
+        self.market_data_requests = {}
+        self.subscription_errors = {}
+        self.next_valid_id = 1
+        
+        # 線程同步
+        self.update_lock = threading.Lock()
+        self.update_complete = threading.Event()
+        self.market_data_ready = threading.Event()
+        
+        # 錯誤統計
+        self.error_counts = defaultdict(int)
+        self.last_errors = []</code></pre>
+                    </div>
+                    
+                    <h2>事件驅動架構</h2>
+                    <p>系統使用回調機制處理TWS API的異步響應：</p>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python"># 核心回調方法覆蓋
+def connectAck(self):
+    """連接確認回調"""
+    logger.info("✓ Connected to TWS successfully")
+    self.connected = True
+
+def nextValidId(self, orderId: int):
+    """接收下一個有效訂單ID"""
+    self.next_valid_id = orderId
+    logger.info(f"Next valid order ID: {orderId}")
+    self.connection_ready.set()  # 標記連接完成
+
+def position(self, account: str, contract: Contract, 
+            position: float, avgCost: float):
+    """持倉數據回調"""
+    key = f"{contract.symbol}_{contract.secType}_{contract.lastTradeDateOrContractMonth}_{contract.strike}_{contract.right}"
+    
+    self.positions[key] = {
+        'account': account,
+        'symbol': contract.symbol,
+        'secType': contract.secType,
+        'position': position,
+        'avgCost': avgCost,
+        'currency': contract.currency,
+        'exchange': contract.exchange,
+        'conId': contract.conId,
+        'localSymbol': contract.localSymbol,
+        'tradingClass': contract.tradingClass,
+        # 期權特有字段
+        'strike': contract.strike if contract.secType == 'OPT' else None,
+        'right': contract.right if contract.secType == 'OPT' else None,
+        'expiry': contract.lastTradeDateOrContractMonth if contract.secType == 'OPT' else None,
+        'multiplier': contract.multiplier if contract.secType == 'OPT' else None
+    }
+
+def positionEnd(self):
+    """持倉數據接收完成"""
+    logger.info(f"✓ Received {len(self.positions)} positions")
+    self.subscribe_market_data()
+
+def accountSummaryEnd(self, reqId: int):
+    """賬戶摘要接收完成"""
+    logger.info("✓ Account summary received")
+    
+def dataCollectionComplete(self):
+    """所有數據收集完成的延遲觸發"""
+    time.sleep(5)  # 等待市場數據
+    self.update_complete.set()
+    logger.info("✓ Data collection completed")</code></pre>
+                    </div>
+                    
+                    <h2>線程模型</h2>
+                    <p>系統採用多線程架構確保響應性和線程安全：</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #667eea;">
+                            <h4 style="color: #667eea; margin-bottom: 0.5rem;"><i class="fas fa-server"></i> 主線程</h4>
+                            <p>Flask web服務器，處理HTTP請求和響應</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #28a745;">
+                            <h4 style="color: #28a745; margin-bottom: 0.5rem;"><i class="fas fa-exchange-alt"></i> API線程</h4>
+                            <p>EClient.run()守護線程，處理TWS通信</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #ffc107;">
+                            <h4 style="color: #ffc107; margin-bottom: 0.5rem;"><i class="fas fa-sync-alt"></i> 更新線程</h4>
+                            <p>定期自動更新，後台數據同步</p>
+                        </div>
+                    </div>
+                    
+                    <div class="code-example">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                        </div>
+                        <pre><code class="language-python">def start_api_thread(self):
+    """啟動API通信線程"""
+    api_thread = threading.Thread(
+        target=self.run, 
+        daemon=True,
+        name="IBAPIThread"
+    )
+    api_thread.start()
+    logger.info("API thread started")
+
+def start_auto_update_thread(self):
+    """啟動自動更新線程"""
+    def auto_update_loop():
+        while True:
+            try:
+                time.sleep(CONFIG['AUTO_UPDATE_INTERVAL'])
+                if self.connected:
+                    logger.info("Auto-updating portfolio data...")
+                    self.update_portfolio_data_sync()
+            except Exception as e:
+                logger.error(f"Auto-update error: {e}")
+    
+    update_thread = threading.Thread(
+        target=auto_update_loop,
+        daemon=True,
+        name="AutoUpdateThread"
+    )
+    update_thread.start()
+    logger.info(f"Auto-update thread started (interval: {CONFIG['AUTO_UPDATE_INTERVAL']}s)")
+
+# 線程同步機制
+def update_portfolio_data_sync(self):
+    """線程安全的數據更新"""
+    with self.update_lock:  # 防止並發更新
+        try:
+            self.update_complete.clear()
+            
+            # 請求數據更新
+            self.reqPositions()
+            self.reqAccountSummary(9001, "All", 
+                "NetLiquidation,TotalCashValue,GrossPositionValue")
+            
+            # 等待數據收集完成
+            if self.update_complete.wait(timeout=30):
+                self.save_to_json()
+                return True
+            else:
+                logger.error("Data update timeout")
+                return False
+                
+        except Exception as e:
+            logger.error(f"Portfolio update error: {e}")
+            return False</code></pre>
+                    </div>
+                </div>
+            </section>

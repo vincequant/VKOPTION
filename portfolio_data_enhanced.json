@@ -1,7 +1,83 @@
 {
-  "timestamp": "2025-06-24T22:16:32.642306",
-  "last_update": "2025-06-24 22:16:32",
+  "timestamp": "2025-06-25T08:47:23.583159",
+  "last_update": "2025-06-25 08:47:23",
   "positions": [
+    {
+      "account": "U*******",
+      "symbol": "COIN",
+      "secType": "OPT",
+      "position": -10.0,
+      "avgCost": 992.54926,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 752500015,
+      "localSymbol": "COIN  250919P00240000",
+      "tradingClass": "COIN",
+      "strike": 240.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 9.27,
+        "currentPrice": 9.27,
+        "halted": 0.0
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "options_data": {
+        "bidGreeks": {
+          "impliedVolatility": 0.6657928585211417,
+          "delta": -0.09234454637180659,
+          "optionPrice": 5.800000190734863,
+          "pvDividend": 0.0,
+          "gamma": 0.0014760827778173742,
+          "vega": 0.29088434338476166,
+          "theta": -0.1033358991820477,
+          "underlyingPrice": 346.81
+        },
+        "askGreeks": {
+          "impliedVolatility": 0.6726739629290975,
+          "delta": -0.09410589793273494,
+          "optionPrice": 6.0,
+          "pvDividend": 0.0,
+          "gamma": 0.0014811778219171912,
+          "vega": 0.29102118288638046,
+          "theta": -0.10586091557706537,
+          "underlyingPrice": 346.81
+        },
+        "lastGreeks": {
+          "impliedVolatility": 0.6703350489975906,
+          "delta": -0.0970394244248308,
+          "optionPrice": null,
+          "pvDividend": 0.0,
+          "gamma": 0.0015302388074098167,
+          "vega": 0.2902607364028942,
+          "theta": -0.10711434588775193,
+          "underlyingPrice": 346.81
+        },
+        "modelGreeks": {
+          "impliedVolatility": 0.6723062801339673,
+          "delta": -0.09702936678188906,
+          "optionPrice": 5.9893109771301125,
+          "pvDividend": 0.0,
+          "gamma": 0.0015219859335556531,
+          "vega": 0.2908289161302031,
+          "theta": -0.10829164685607306,
+          "underlyingPrice": 344.9700012207031
+        }
+      },
+      "has_options_data": true,
+      "data_unavailable": false,
+      "avg_cost": 9.9254926,
+      "current_price": 9.27,
+      "pnl": 655.4926000000005,
+      "market_value": -9269.999999999998,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
+    },
     {
       "account": "U*******",
       "symbol": "MSTR",
@@ -19,59 +95,55 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 16.75,
-        "bidSize": 721,
-        "ask": 17.2,
-        "askSize": 22,
         "lastSize": 0,
         "volume": 0,
         "close": 19.92,
         "currentPrice": 19.92,
         "halted": 0.0,
-        "markPrice": 16.85074425
+        "markPrice": 16.55427933
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
         "bidGreeks": {
-          "impliedVolatility": 0.588788339282699,
-          "delta": -0.22973765122675002,
-          "optionPrice": 16.75,
+          "impliedVolatility": 0.5836287695652257,
+          "delta": -0.2201637473643365,
+          "optionPrice": 16.049999237060547,
           "pvDividend": 0.0,
-          "gamma": 0.002829365849287373,
-          "vega": 0.5782525815077868,
-          "theta": -0.177996248757591,
-          "underlyingPrice": 376.42
+          "gamma": 0.002779677163248149,
+          "vega": 0.5782855107638962,
+          "theta": -0.17460703557631188,
+          "underlyingPrice": 379.18
         },
         "askGreeks": {
-          "impliedVolatility": 0.5957012726551119,
-          "delta": -0.23138462205839438,
-          "optionPrice": 17.100000381469727,
+          "impliedVolatility": 0.5888261295929786,
+          "delta": -0.22150538885749238,
+          "optionPrice": 16.649999618530273,
           "pvDividend": 0.0,
-          "gamma": 0.0028065416455466353,
-          "vega": 0.5784057350854042,
-          "theta": -0.1808013912376256,
-          "underlyingPrice": 376.42
+          "gamma": 0.002763264042441927,
+          "vega": 0.5784109003570901,
+          "theta": -0.17672740797877207,
+          "underlyingPrice": 379.18
         },
         "lastGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
+          "impliedVolatility": 0.5912845310725726,
+          "delta": -0.2291079453911076,
           "optionPrice": null,
           "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 376.42
+          "gamma": 0.002817501528861055,
+          "vega": 0.5771787629623368,
+          "theta": -0.17919350708303416,
+          "underlyingPrice": 379.18
         },
         "modelGreeks": {
-          "impliedVolatility": 0.5903019398232878,
-          "delta": -0.22880460688227258,
-          "optionPrice": 16.737571001889698,
+          "impliedVolatility": 0.5859025788208754,
+          "delta": -0.2275649804511205,
+          "optionPrice": 16.43124002910027,
           "pvDividend": 0.0,
-          "gamma": 0.0028123189059384695,
-          "vega": 0.5786890226965227,
-          "theta": -0.185428345919199,
-          "underlyingPrice": 376.8989562988281
+          "gamma": 0.00283159832630512,
+          "vega": 0.577325110763315,
+          "theta": -0.18370763385332012,
+          "underlyingPrice": 376.7799987792969
         }
       },
       "has_options_data": true,
@@ -81,7 +153,42 @@
       "pnl": 5000.684799950001,
       "market_value": -13944.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
+    },
+    {
+      "account": "U*******",
+      "symbol": "SPY",
+      "secType": "OPT",
+      "position": -4.0,
+      "avgCost": 1295.28925,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 694356372,
+      "localSymbol": "SPY   250919P00565000",
+      "tradingClass": "SPY",
+      "strike": 565.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 9.13,
+        "currentPrice": 9.13,
+        "halted": 0.0,
+        "markPrice": 7.01000023
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "has_options_data": false,
+      "data_unavailable": false,
+      "avg_cost": 12.9528925,
+      "current_price": 9.13,
+      "pnl": 1529.157,
+      "market_value": -3652.0000000000005,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -100,72 +207,23 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 7.0,
-        "bidSize": 127,
-        "ask": 7.03,
-        "askSize": 85,
-        "last": 7.12,
-        "currentPrice": 8.52,
-        "lastSize": 1,
-        "volume": 105,
-        "high": 7.2,
-        "low": 6.88,
+        "lastSize": 0,
+        "volume": 0,
         "close": 8.52,
+        "currentPrice": 8.52,
         "halted": 0.0,
-        "markPrice": 7.02793694
+        "markPrice": 6.58265018
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.2494989923783594,
-          "delta": -0.18635463626382912,
-          "optionPrice": 7.0,
-          "pvDividend": 0.0,
-          "gamma": 0.004157538928691035,
-          "vega": 0.7330726948491497,
-          "theta": -0.08940449032705028,
-          "underlyingPrice": 537.32
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.24977320133788877,
-          "delta": -0.18659143812477968,
-          "optionPrice": 7.03000020980835,
-          "pvDividend": 0.0,
-          "gamma": 0.004156052216555284,
-          "vega": 0.7331772151079932,
-          "theta": -0.08957515726763156,
-          "underlyingPrice": 537.32
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.25059848078442726,
-          "delta": -0.18730095042722136,
-          "optionPrice": 7.119999885559082,
-          "pvDividend": 0.0,
-          "gamma": 0.0041515546168969025,
-          "vega": 0.7334949927458041,
-          "theta": -0.09008895943880858,
-          "underlyingPrice": 537.32
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.2497723924408419,
-          "delta": -0.18562499859757528,
-          "optionPrice": 7.0199410803321385,
-          "pvDividend": 0.0,
-          "gamma": 0.0041451444029179775,
-          "vega": 0.7314892771408932,
-          "theta": -0.09293724240623913,
-          "underlyingPrice": 537.384033203125
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 13.7158925,
       "current_price": 8.52,
       "pnl": 2078.3570000000004,
       "market_value": -3408.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -179,33 +237,23 @@
       "conId": 15016090,
       "localSymbol": "HKD.JPY",
       "tradingClass": "HKD.JPY",
-      "marketPrice": 18.439312,
-      "marketValue": -132021785.92,
-      "unrealizedPNL": 1541979.15,
+      "marketPrice": 18.47431945,
+      "marketValue": -132272432.46,
+      "unrealizedPNL": 1291332.61,
       "realizedPNL": 0.0,
       "accountName": "U6129142",
       "market_data": {
-        "bid": 18.436,
-        "bidSize": 34090000,
-        "ask": 18.438,
-        "askSize": 42090000,
-        "close": 18.4375
+        "bid": 18.475,
+        "bidSize": 45930000,
+        "ask": 18.477,
+        "askSize": 37090000,
+        "close": 18.475
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "historical_data": [
-        {
-          "date": "20250618",
-          "open": 18.506,
-          "high": 18.5285,
-          "low": 18.3865,
-          "close": 18.4885,
-          "volume": -1,
-          "average": -1.0,
-          "barCount": -1
-        },
         {
           "date": "20250619",
           "open": 18.4855,
@@ -240,1520 +288,25 @@
           "date": "20250624",
           "open": 18.6175,
           "high": 18.6235,
-          "low": 18.437,
-          "close": 18.4375,
+          "low": 18.4095,
+          "close": 18.462,
+          "volume": -1,
+          "average": -1.0,
+          "barCount": -1
+        },
+        {
+          "date": "20250625",
+          "open": 18.462,
+          "high": 18.477,
+          "low": 18.4425,
+          "close": 18.475,
           "volume": -1,
           "average": -1.0,
           "barCount": -1
         }
       ],
-      "current_price": 18.4375,
-      "market_value": -132008812.5
-    },
-    {
-      "account": "U*******",
-      "symbol": "COST",
-      "secType": "OPT",
-      "position": -2.0,
-      "avgCost": 2219.53925,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 731125491,
-      "localSymbol": "COST  250919P00970000",
-      "tradingClass": "COST",
-      "strike": 970.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 26.35,
-        "bidSize": 181,
-        "ask": 27.5,
-        "askSize": 197,
-        "lastSize": 0,
-        "volume": 0,
-        "close": 25.21,
-        "currentPrice": 25.21,
-        "halted": 0.0,
-        "markPrice": 26.81871223
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.2174451100888679,
-          "delta": -0.35970772977770604,
-          "optionPrice": 26.350000381469727,
-          "pvDividend": 1.298586891114404,
-          "gamma": 0.0036740435611634075,
-          "vega": 1.7872220864202824,
-          "theta": -0.18879648910947616,
-          "underlyingPrice": 995.66
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.2255704715554255,
-          "delta": -0.36309388275355836,
-          "optionPrice": 27.5,
-          "pvDividend": 1.298586891114404,
-          "gamma": 0.003551610232662616,
-          "vega": 1.7907839836132986,
-          "theta": -0.1976920500925664,
-          "underlyingPrice": 995.66
-        },
-        "lastGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": null,
-          "pvDividend": 1.298586891114404,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 995.66
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.2202962137420749,
-          "delta": -0.353616274857353,
-          "optionPrice": 26.80848004394128,
-          "pvDividend": 1.298586891114404,
-          "gamma": 0.003587225463177703,
-          "vega": 1.7860350831765928,
-          "theta": -0.18886999943645577,
-          "underlyingPrice": 995.84130859375
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 22.195392499999997,
-      "current_price": 25.21,
-      "pnl": -602.9215000000008,
-      "market_value": -5042.0,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
-    },
-    {
-      "account": "U*******",
-      "symbol": "AVGO",
-      "secType": "OPT",
-      "position": -10.0,
-      "avgCost": 694.56926,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 731115517,
-      "localSymbol": "AVGO  250919P00200000",
-      "tradingClass": "AVGO",
-      "strike": 200.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 3.25,
-        "bidSize": 375,
-        "ask": 3.35,
-        "askSize": 1047,
-        "last": 3.15,
-        "currentPrice": 4.22,
-        "lastSize": 2,
-        "volume": 15,
-        "high": 3.35,
-        "low": 3.1,
-        "close": 4.22,
-        "halted": 0.0,
-        "markPrice": 3.31215835
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.49438221703104274,
-          "delta": -0.09745383086687928,
-          "optionPrice": 3.25,
-          "pvDividend": 0.0,
-          "gamma": 0.002722439264946498,
-          "vega": 0.2303644991962588,
-          "theta": -0.05963452747975162,
-          "underlyingPrice": 263.12
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.498723197933642,
-          "delta": -0.0990977714443153,
-          "optionPrice": 3.3499999046325684,
-          "pvDividend": 0.0,
-          "gamma": 0.0027314361507208835,
-          "vega": 0.23058099311964497,
-          "theta": -0.06089631031084481,
-          "underlyingPrice": 263.12
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.4982132627386767,
-          "delta": -0.09890624972119796,
-          "optionPrice": 3.1500000953674316,
-          "pvDividend": 0.0,
-          "gamma": 0.0027304171676797288,
-          "vega": 0.23055557137880855,
-          "theta": -0.060748041992046434,
-          "underlyingPrice": 263.12
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.4974395362517114,
-          "delta": -0.09867429339138678,
-          "optionPrice": 3.320421148031653,
-          "pvDividend": 0.0,
-          "gamma": 0.0027299297371237608,
-          "vega": 0.2306255531567789,
-          "theta": -0.0626467717278274,
-          "underlyingPrice": 263.1207580566406
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 6.9456926,
-      "current_price": 4.22,
-      "pnl": 2725.6926000000003,
-      "market_value": -4220.0,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
-    },
-    {
-      "account": "U*******",
-      "symbol": "UBER",
-      "secType": "OPT",
-      "position": -25.0,
-      "avgCost": 227.28676,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 731132412,
-      "localSymbol": "UBER  250919P00075000",
-      "tradingClass": "UBER",
-      "strike": 75.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 1.4,
-        "bidSize": 7812,
-        "ask": 1.81,
-        "askSize": 5929,
-        "last": 1.63,
-        "currentPrice": 2.37,
-        "lastSize": 1,
-        "volume": 804,
-        "high": 2.01,
-        "low": 1.59,
-        "close": 2.37,
-        "halted": 0.0,
-        "markPrice": 1.67335272
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.4115399500714949,
-          "delta": -0.15154310874068738,
-          "optionPrice": 1.399999976158142,
-          "pvDividend": 0.0,
-          "gamma": 0.013130860359303153,
-          "vega": 0.10134541375530737,
-          "theta": -0.022622699607233822,
-          "underlyingPrice": 89.58
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.4390781703230858,
-          "delta": -0.16358620267240567,
-          "optionPrice": 1.809999942779541,
-          "pvDividend": 0.0,
-          "gamma": 0.01297708083919908,
-          "vega": 0.10235490678193093,
-          "theta": -0.025515363944557747,
-          "underlyingPrice": 89.58
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.417597971757943,
-          "delta": -0.15433433594863108,
-          "optionPrice": 1.6299999952316284,
-          "pvDividend": 0.0,
-          "gamma": 0.013103153477722606,
-          "vega": 0.10154367183564417,
-          "theta": -0.023257307684468657,
-          "underlyingPrice": 89.58
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.4229692675155481,
-          "delta": -0.1586623663471614,
-          "optionPrice": 1.6959203509148664,
-          "pvDividend": 0.0,
-          "gamma": 0.013206757236491081,
-          "vega": 0.10173691801809559,
-          "theta": -0.02298045093288481,
-          "underlyingPrice": 89.43600463867188
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 2.2728675999999997,
-      "current_price": 2.37,
-      "pnl": -242.83100000000113,
-      "market_value": -5925.0,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
-    },
-    {
-      "account": "U*******",
-      "symbol": "NFLX",
-      "secType": "OPT",
-      "position": -2.0,
-      "avgCost": 2149.28925,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 731147260,
-      "localSymbol": "NFLX  250919P00980000",
-      "tradingClass": "NFLX",
-      "strike": 980.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 9.1,
-        "bidSize": 160,
-        "ask": 9.65,
-        "askSize": 79,
-        "last": 9.53,
-        "currentPrice": 11.09,
-        "lastSize": 1,
-        "volume": 1,
-        "high": 9.53,
-        "low": 9.53,
-        "close": 11.09,
-        "halted": 0.0,
-        "markPrice": 9.64999962
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.4112331257875749,
-          "delta": -0.07345817052885262,
-          "optionPrice": 9.100000381469727,
-          "pvDividend": 0.0,
-          "gamma": 0.0005469675113799337,
-          "vega": 0.8681401455564455,
-          "theta": -0.1929762195032308,
-          "underlyingPrice": 1273.0
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.4175681869746402,
-          "delta": -0.07610330114892114,
-          "optionPrice": 9.649999618530273,
-          "pvDividend": 0.0,
-          "gamma": 0.0005536312778874847,
-          "vega": 0.8705448086921628,
-          "theta": -0.20146103538013224,
-          "underlyingPrice": 1273.0
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.4126681219635939,
-          "delta": -0.07406443942390352,
-          "optionPrice": 9.529999732971191,
-          "pvDividend": 0.0,
-          "gamma": 0.0005485336602437684,
-          "vega": 0.8685768750839085,
-          "theta": -0.19489633985478114,
-          "underlyingPrice": 1273.0
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.4175462499011233,
-          "delta": -0.07582823408592039,
-          "optionPrice": 9.648092721068023,
-          "pvDividend": 0.0,
-          "gamma": 0.0005518044565036334,
-          "vega": 0.8710247547646386,
-          "theta": -0.19676103457531724,
-          "underlyingPrice": 1273.609130859375
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 21.492892499999996,
-      "current_price": 11.09,
-      "pnl": 2080.578499999999,
-      "market_value": -2218.0,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
-    },
-    {
-      "account": "U*******",
-      "symbol": "NFLX",
-      "secType": "OPT",
-      "position": -3.0,
-      "avgCost": 7903.54926665,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 787047344,
-      "localSymbol": "NFLX  260918P01000000",
-      "tradingClass": "NFLX",
-      "strike": 1000.0,
-      "right": "P",
-      "expiry": "20260918",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 72.45,
-        "bidSize": 189,
-        "ask": 75.05,
-        "askSize": 195,
-        "lastSize": 0,
-        "volume": 0,
-        "close": 77.4,
-        "currentPrice": 77.4,
-        "halted": 0.0,
-        "markPrice": 74.15538025
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.3887979634071563,
-          "delta": -0.1941533411927343,
-          "optionPrice": 72.44999694824219,
-          "pvDividend": 0.0,
-          "gamma": 0.0005158395800501783,
-          "vega": 3.990704062756919,
-          "theta": -0.1388217128239014,
-          "underlyingPrice": 1273.0
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.3960574767908681,
-          "delta": -0.19642698024814917,
-          "optionPrice": 75.05000305175781,
-          "pvDividend": 0.0,
-          "gamma": 0.0005096666323789079,
-          "vega": 3.997725309042224,
-          "theta": -0.1425850999224645,
-          "underlyingPrice": 1273.0
-        },
-        "lastGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": null,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 1273.0
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.3935130945499083,
-          "delta": -0.1951904836313212,
-          "optionPrice": 74.06796097905116,
-          "pvDividend": 0.0,
-          "gamma": 0.0005103112390484254,
-          "vega": 3.8637003948210946,
-          "theta": -0.1390924052244884,
-          "underlyingPrice": 1273.609130859375
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 79.0354926665,
-      "current_price": 77.4,
-      "pnl": 490.6477999499998,
-      "market_value": -23220.0,
-      "expiry_formatted": "2026-09-18",
-      "days_to_expiry": 451
-    },
-    {
-      "account": "U*******",
-      "symbol": "MSFT",
-      "secType": "OPT",
-      "position": -6.0,
-      "avgCost": 747.60593335,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 695053868,
-      "localSymbol": "MSFT  250919P00410000",
-      "tradingClass": "MSFT",
-      "strike": 410.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 2.88,
-        "bidSize": 12,
-        "ask": 2.95,
-        "askSize": 17,
-        "last": 2.95,
-        "currentPrice": 3.35,
-        "lastSize": 10,
-        "volume": 77,
-        "high": 3.0,
-        "low": 2.83,
-        "close": 3.35,
-        "halted": 0.0,
-        "markPrice": 2.90016794
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.2886973129204509,
-          "delta": -0.08660952383176258,
-          "optionPrice": 2.880000114440918,
-          "pvDividend": 0.824103304273873,
-          "gamma": 0.002319721372641288,
-          "vega": 0.3962541765428518,
-          "theta": -0.05735908437313691,
-          "underlyingPrice": 487.7799987792969
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.2907318899928399,
-          "delta": -0.08785148782193924,
-          "optionPrice": 2.950000047683716,
-          "pvDividend": 0.824103304273873,
-          "gamma": 0.0023296668754181874,
-          "vega": 0.4146827633677317,
-          "theta": -0.05843913462342255,
-          "underlyingPrice": 487.7799987792969
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.29030177997725837,
-          "delta": -0.08759011029465638,
-          "optionPrice": 2.950000047683716,
-          "pvDividend": 0.824103304273873,
-          "gamma": 0.002327602908334856,
-          "vega": 0.41079684177895004,
-          "theta": -0.05821064210100231,
-          "underlyingPrice": 487.7799987792969
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.28916201400525704,
-          "delta": -0.08642190291846841,
-          "optionPrice": 2.8959801371388676,
-          "pvDividend": 0.824103304273873,
-          "gamma": 0.002311277396931616,
-          "vega": 0.39377062262304374,
-          "theta": -0.051959827596599784,
-          "underlyingPrice": 487.814453125
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 7.4760593335,
-      "current_price": 3.35,
-      "pnl": 2475.6356001000004,
-      "market_value": -2010.0000000000002,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
-    },
-    {
-      "account": "U*******",
-      "symbol": "CRWD",
-      "secType": "OPT",
-      "position": -5.0,
-      "avgCost": 1664.53926,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 718676449,
-      "localSymbol": "CRWD  250919P00390000",
-      "tradingClass": "CRWD",
-      "strike": 390.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 9.35,
-        "bidSize": 171,
-        "ask": 9.65,
-        "askSize": 76,
-        "lastSize": 0,
-        "volume": 5,
-        "high": 9.25,
-        "low": 9.25,
-        "close": 8.9,
-        "currentPrice": 8.9,
-        "halted": 0.0,
-        "markPrice": 9.59505844
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.4820450347992776,
-          "delta": -0.14343033585243,
-          "optionPrice": 9.350000381469727,
-          "pvDividend": 0.0,
-          "gamma": 0.0020008876284509113,
-          "vega": 0.5381228994889042,
-          "theta": -0.13912654002452934,
-          "underlyingPrice": 483.0
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.4876199316422767,
-          "delta": -0.14559604721185493,
-          "optionPrice": 9.649999618530273,
-          "pvDividend": 0.0,
-          "gamma": 0.001998205535932728,
-          "vega": 0.5385960742110836,
-          "theta": -0.14221890507268264,
-          "underlyingPrice": 483.0
-        },
-        "lastGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": null,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 483.0
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.48609457041389575,
-          "delta": -0.14509566136445262,
-          "optionPrice": 9.567890395846112,
-          "pvDividend": 0.0,
-          "gamma": 0.0019996757608308946,
-          "vega": 0.5386828060623028,
-          "theta": -0.1417140302803972,
-          "underlyingPrice": 482.99755859375
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 16.6453926,
-      "current_price": 8.9,
-      "pnl": 3872.6963000000005,
-      "market_value": -4450.0,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
-    },
-    {
-      "account": "U*******",
-      "symbol": "AMD",
-      "secType": "OPT",
-      "position": -8.0,
-      "avgCost": 436.2892625,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 727817814,
-      "localSymbol": "AMD   250919P00110000",
-      "tradingClass": "AMD",
-      "strike": 110.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 2.42,
-        "bidSize": 2060,
-        "ask": 2.47,
-        "askSize": 1774,
-        "last": 2.48,
-        "currentPrice": 3.6,
-        "lastSize": 1,
-        "volume": 296,
-        "high": 2.98,
-        "low": 2.44,
-        "close": 3.6,
-        "halted": 0.0,
-        "markPrice": 2.45674753
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.4814095144786065,
-          "delta": -0.13297005023959962,
-          "optionPrice": 2.4200000762939453,
-          "pvDividend": 0.0,
-          "gamma": 0.006680637814152483,
-          "vega": 0.15211652774115336,
-          "theta": -0.03771133224309417,
-          "underlyingPrice": 137.68
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.4846989443093397,
-          "delta": -0.13431559141751068,
-          "optionPrice": 2.4700000286102295,
-          "pvDividend": 0.0,
-          "gamma": 0.006679369466732175,
-          "vega": 0.15219836722594993,
-          "theta": -0.03822681188150425,
-          "underlyingPrice": 137.68
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.4810889748783324,
-          "delta": -0.13283788151551273,
-          "optionPrice": 2.4800000190734863,
-          "pvDividend": 0.0,
-          "gamma": 0.006680730280494843,
-          "vega": 0.15210797083057637,
-          "theta": -0.037661121234557345,
-          "underlyingPrice": 137.68
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.48428570505484336,
-          "delta": -0.13434764401138322,
-          "optionPrice": 2.4637173784225705,
-          "pvDividend": 0.0,
-          "gamma": 0.006688223915086338,
-          "vega": 0.1521537347347106,
-          "theta": -0.04000355283465584,
-          "underlyingPrice": 137.6456756591797
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 4.362892625,
-      "current_price": 3.6,
-      "pnl": 610.3140999999997,
-      "market_value": -2880.0,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
-    },
-    {
-      "account": "U*******",
-      "symbol": "AMD",
-      "secType": "OPT",
-      "position": -22.0,
-      "avgCost": 482.2892591,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 727817817,
-      "localSymbol": "AMD   250919P00115000",
-      "tradingClass": "AMD",
-      "strike": 115.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 3.3,
-        "bidSize": 4627,
-        "ask": 3.4,
-        "askSize": 3945,
-        "last": 3.4,
-        "currentPrice": 4.9,
-        "lastSize": 1,
-        "volume": 112,
-        "high": 4.05,
-        "low": 3.4,
-        "close": 4.9,
-        "halted": 0.0,
-        "markPrice": 3.37517357
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.47064270834684896,
-          "delta": -0.17377461104503425,
-          "optionPrice": 3.299999952316284,
-          "pvDividend": 0.0,
-          "gamma": 0.008190775757414233,
-          "vega": 0.1838659281737547,
-          "theta": -0.04383531234401583,
-          "underlyingPrice": 137.68
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.4760840693081193,
-          "delta": -0.17598651799244608,
-          "optionPrice": 3.4000000953674316,
-          "pvDividend": 0.0,
-          "gamma": 0.008156481685621216,
-          "vega": 0.1839858925457265,
-          "theta": -0.044680865678482354,
-          "underlyingPrice": 137.68
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.47295270060997685,
-          "delta": -0.1747206771973,
-          "optionPrice": 3.4000000953674316,
-          "pvDividend": 0.0,
-          "gamma": 0.008176298768735293,
-          "vega": 0.1839175809079059,
-          "theta": -0.044194211701298586,
-          "underlyingPrice": 137.68
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.4749755198128829,
-          "delta": -0.17579017321608803,
-          "optionPrice": 3.379621888455312,
-          "pvDividend": 0.0,
-          "gamma": 0.008172923271713482,
-          "vega": 0.1839253560456542,
-          "theta": -0.04718868574061963,
-          "underlyingPrice": 137.6456756591797
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 4.822892591,
-      "current_price": 4.9,
-      "pnl": -169.63629980000175,
-      "market_value": -10780.000000000002,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
-    },
-    {
-      "account": "U*******",
-      "symbol": "QQQ",
-      "secType": "OPT",
-      "position": -50.0,
-      "avgCost": 761.68526,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 781403560,
-      "localSymbol": "QQQ   251219C00600000",
-      "tradingClass": "QQQ",
-      "strike": 600.0,
-      "right": "C",
-      "expiry": "20251219",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 8.67,
-        "bidSize": 77,
-        "ask": 8.73,
-        "askSize": 149,
-        "last": 8.63,
-        "currentPrice": 7.61,
-        "lastSize": 1,
-        "volume": 18,
-        "high": 8.69,
-        "low": 8.49,
-        "close": 7.61,
-        "halted": 0.0,
-        "markPrice": 8.72809601
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.16970756008431934,
-          "delta": 0.23964559403504934,
-          "optionPrice": 8.670000076293945,
-          "pvDividend": 0.7084648347997057,
-          "gamma": 0.004892180660566306,
-          "vega": 1.204227918270723,
-          "theta": -0.06968341765189123,
-          "underlyingPrice": 537.32
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.17023309758176516,
-          "delta": 0.24047089811642197,
-          "optionPrice": 8.729999542236328,
-          "pvDividend": 0.7084648347997057,
-          "gamma": 0.004885719177899063,
-          "vega": 1.2031870838495156,
-          "theta": -0.06999895190005179,
-          "underlyingPrice": 537.32
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.1705337763358431,
-          "delta": 0.24094063303109944,
-          "optionPrice": 8.630000114440918,
-          "pvDividend": 0.7084648347997057,
-          "gamma": 0.004882019130943227,
-          "vega": 1.2025960085350516,
-          "theta": -0.07017936109297022,
-          "underlyingPrice": 537.32
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.17012323010507724,
-          "delta": 0.24447544407414326,
-          "optionPrice": 8.737461407869326,
-          "pvDividend": 0.7084648347997057,
-          "gamma": 0.004933218615119195,
-          "vega": 1.1725974481975072,
-          "theta": -0.06991126346478005,
-          "underlyingPrice": 537.384033203125
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 7.6168526,
-      "current_price": 7.61,
-      "pnl": 34.2629999999966,
-      "market_value": -38050.0,
-      "expiry_formatted": "2025-12-19",
-      "days_to_expiry": 178
-    },
-    {
-      "account": "U*******",
-      "symbol": "QBTS",
-      "secType": "OPT",
-      "position": -200.0,
-      "avgCost": 100.11148,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 778251122,
-      "localSymbol": "QBTS  260116P00006000",
-      "tradingClass": "QBTS",
-      "strike": 6.0,
-      "right": "P",
-      "expiry": "20260116",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 0.5,
-        "bidSize": 5032,
-        "ask": 0.6,
-        "askSize": 1317,
-        "last": 0.55,
-        "currentPrice": 0.6,
-        "lastSize": 5,
-        "volume": 12,
-        "high": 0.55,
-        "low": 0.55,
-        "close": 0.6,
-        "halted": 0.0,
-        "markPrice": 0.53661209
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 1.122821294736009,
-          "delta": -0.06164330882850664,
-          "optionPrice": 0.5,
-          "pvDividend": 0.0,
-          "gamma": 0.009569702673590853,
-          "vega": 0.013694267033853125,
-          "theta": -0.0036156673721656715,
-          "underlyingPrice": 15.095
-        },
-        "askGreeks": {
-          "impliedVolatility": 1.1914844176237356,
-          "delta": -0.06633120216235065,
-          "optionPrice": 0.6000000238418579,
-          "pvDividend": 0.0,
-          "gamma": 0.009570862874678763,
-          "vega": 0.01363131393125916,
-          "theta": -0.004075928079543959,
-          "underlyingPrice": 15.095
-        },
-        "lastGreeks": {
-          "impliedVolatility": 1.1546208342946824,
-          "delta": -0.06393105072403929,
-          "optionPrice": 0.550000011920929,
-          "pvDividend": 0.0,
-          "gamma": 0.00958146251333147,
-          "vega": 0.01366029778504707,
-          "theta": -0.0038296945246316604,
-          "underlyingPrice": 15.095
-        },
-        "modelGreeks": {
-          "impliedVolatility": 1.155623021658974,
-          "delta": -0.06454047995696181,
-          "optionPrice": 0.5478752306478195,
-          "pvDividend": 0.0,
-          "gamma": 0.009616293037475826,
-          "vega": 0.014557283824669698,
-          "theta": -0.003957551785124691,
-          "underlyingPrice": 15.106000900268555
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 1.0011148,
-      "current_price": 0.6,
-      "pnl": 8022.296000000001,
-      "market_value": -12000.0,
-      "expiry_formatted": "2026-01-16",
-      "days_to_expiry": 206
-    },
-    {
-      "account": "U*******",
-      "symbol": "HOOD",
-      "secType": "OPT",
-      "position": -50.0,
-      "avgCost": 269.28176,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 727600716,
-      "localSymbol": "HOOD  250919P00040000",
-      "tradingClass": "HOOD",
-      "strike": 40.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 0.32,
-        "bidSize": 255,
-        "ask": 0.46,
-        "askSize": 3269,
-        "last": 0.35,
-        "currentPrice": 0.57,
-        "lastSize": 7,
-        "volume": 17,
-        "high": 0.43,
-        "low": 0.35,
-        "close": 0.57,
-        "halted": 0.0,
-        "markPrice": 0.42767221
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.8062136304320529,
-          "delta": -0.023091668531406696,
-          "optionPrice": 0.3199999928474426,
-          "pvDividend": 0.0,
-          "gamma": 0.0017336889519229959,
-          "vega": 0.02414147427649338,
-          "theta": -0.009678142199066684,
-          "underlyingPrice": 80.21000000000001
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.864111592786918,
-          "delta": -0.029623554168874865,
-          "optionPrice": 0.46000000834465027,
-          "pvDividend": 0.0,
-          "gamma": 0.001992936726168548,
-          "vega": 0.024259154016833706,
-          "theta": -0.012786225623544294,
-          "underlyingPrice": 80.21000000000001
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.8022558531780576,
-          "delta": -0.0226073869492768,
-          "optionPrice": 0.3499999940395355,
-          "pvDividend": 0.0,
-          "gamma": 0.0017124742906792201,
-          "vega": 0.024134195804560332,
-          "theta": -0.009466104282500937,
-          "underlyingPrice": 80.21000000000001
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.8522179136733368,
-          "delta": -0.02861527924009257,
-          "optionPrice": 0.4311855193587692,
-          "pvDividend": 0.0,
-          "gamma": 0.0019647080106614096,
-          "vega": 0.024224599601007923,
-          "theta": -0.011550824993936948,
-          "underlyingPrice": 80.08118438720703
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 2.6928176,
-      "current_price": 0.57,
-      "pnl": 10614.088000000002,
-      "market_value": -2849.9999999999995,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
-    },
-    {
-      "account": "U*******",
-      "symbol": "APP",
-      "secType": "OPT",
-      "position": -7.0,
-      "avgCost": 3959.18917145,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 740595000,
-      "localSymbol": "APP   250718P00280000",
-      "tradingClass": "APP",
-      "strike": 280.0,
-      "right": "P",
-      "expiry": "20250718",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 1.75,
-        "bidSize": 109,
-        "ask": 2.15,
-        "askSize": 147,
-        "last": 2.52,
-        "currentPrice": 3.91,
-        "lastSize": 1,
-        "volume": 5,
-        "high": 2.55,
-        "low": 2.12,
-        "close": 3.91,
-        "halted": 0.0,
-        "markPrice": 1.8804704
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.6268188194660029,
-          "delta": -0.06599498776103871,
-          "optionPrice": 1.75,
-          "pvDividend": 0.0,
-          "gamma": 0.0022777076727026634,
-          "vega": 0.13370081994447314,
-          "theta": -0.14809688861455267,
-          "underlyingPrice": 351.09000000000003
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.6528566192506638,
-          "delta": -0.07388848780940371,
-          "optionPrice": 2.1500000953674316,
-          "pvDividend": 0.0,
-          "gamma": 0.002375560555323579,
-          "vega": 0.13465056402775089,
-          "theta": -0.16757915555855946,
-          "underlyingPrice": 351.09000000000003
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.6427346954641618,
-          "delta": -0.07089305967260873,
-          "optionPrice": 2.5199999809265137,
-          "pvDividend": 0.0,
-          "gamma": 0.002340233191136659,
-          "vega": 0.13455753630474487,
-          "theta": -0.15999723431084592,
-          "underlyingPrice": 351.09000000000003
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.634493892638924,
-          "delta": -0.07006574346130105,
-          "optionPrice": 1.9031016635539173,
-          "pvDividend": 0.0,
-          "gamma": 0.002354713674524626,
-          "vega": 0.1344159438758481,
-          "theta": -0.1727860122921654,
-          "underlyingPrice": 350.4447937011719
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 39.5918917145,
-      "current_price": 3.91,
-      "pnl": 24977.324200149997,
-      "market_value": -2737.0,
-      "expiry_formatted": "2025-07-18",
-      "days_to_expiry": 24
-    },
-    {
-      "account": "U*******",
-      "symbol": "BA",
-      "secType": "OPT",
-      "position": -12.0,
-      "avgCost": 364.52911665,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 699429813,
-      "localSymbol": "BA    250919P00170000",
-      "tradingClass": "BA",
-      "strike": 170.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 2.65,
-        "bidSize": 2393,
-        "ask": 2.95,
-        "askSize": 14,
-        "last": 2.75,
-        "currentPrice": 2.99,
-        "lastSize": 6,
-        "volume": 10,
-        "high": 2.75,
-        "low": 2.71,
-        "close": 2.99,
-        "halted": 0.0,
-        "markPrice": 2.95000005
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.3695769697746599,
-          "delta": -0.13859304661514205,
-          "optionPrice": 2.6500000953674316,
-          "pvDividend": 0.0,
-          "gamma": 0.006121527121658125,
-          "vega": 0.22697097737887884,
-          "theta": -0.042849186545187226,
-          "underlyingPrice": 201.61
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.37706715294559423,
-          "delta": -0.14274302355039212,
-          "optionPrice": 2.950000047683716,
-          "pvDividend": 0.0,
-          "gamma": 0.006118076089924368,
-          "vega": 0.22742936150591442,
-          "theta": -0.04460713932224732,
-          "underlyingPrice": 201.61
-        },
-        "lastGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": 2.75,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 201.61
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.3765427748699325,
-          "delta": -0.14391169582000687,
-          "optionPrice": 2.978087291770913,
-          "pvDividend": 0.0,
-          "gamma": 0.006166616113136237,
-          "vega": 0.22746146230819964,
-          "theta": -0.04569920819596973,
-          "underlyingPrice": 201.3912353515625
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 3.6452911665,
-      "current_price": 2.99,
-      "pnl": 786.3493997999996,
-      "market_value": -3588.0000000000005,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
-    },
-    {
-      "account": "U*******",
-      "symbol": "CRWV",
-      "secType": "OPT",
-      "position": -33.0,
-      "avgCost": 602.3444121,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 782385569,
-      "localSymbol": "CRWV  250919P00075000",
-      "tradingClass": "CRWV",
-      "strike": 75.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 4.4,
-        "bidSize": 6,
-        "ask": 5.25,
-        "askSize": 105,
-        "last": 4.65,
-        "currentPrice": 5.56,
-        "lastSize": 1,
-        "volume": 68,
-        "high": 4.8,
-        "low": 4.5,
-        "close": 5.56,
-        "halted": 0.0,
-        "markPrice": 5.00124025
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 1.090031517935148,
-          "delta": -0.026617397889504332,
-          "optionPrice": 4.400000095367432,
-          "pvDividend": 0.0,
-          "gamma": 0.0006437006109319816,
-          "vega": 0.0495042654258675,
-          "theta": -0.03328600196392426,
-          "underlyingPrice": 180.02
-        },
-        "askGreeks": {
-          "impliedVolatility": 1.1609082704644116,
-          "delta": -0.03238673425422162,
-          "optionPrice": 5.25,
-          "pvDividend": 0.0,
-          "gamma": 0.0007103893972815888,
-          "vega": 0.06820187555337731,
-          "theta": -0.041681138095607716,
-          "underlyingPrice": 180.02
-        },
-        "lastGreeks": {
-          "impliedVolatility": 1.1410104289331775,
-          "delta": -0.03065323272103834,
-          "optionPrice": 4.650000095367432,
-          "pvDividend": 0.0,
-          "gamma": 0.0006916512238417465,
-          "vega": 0.06823215905860747,
-          "theta": -0.03920048697008382,
-          "underlyingPrice": 180.02
-        },
-        "modelGreeks": {
-          "impliedVolatility": 1.1461556318348025,
-          "delta": -0.07921359601014209,
-          "optionPrice": 5.062031484437487,
-          "pvDividend": 0.0,
-          "gamma": 0.0013383991384533942,
-          "vega": 0.12783762999073467,
-          "theta": -0.14204387628439186,
-          "underlyingPrice": 179.29934692382812
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 6.023444121,
-      "current_price": 5.56,
-      "pnl": 1529.3655993000007,
-      "market_value": -18348.0,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
-    },
-    {
-      "account": "U*******",
-      "symbol": "IBIT",
-      "secType": "OPT",
-      "position": -38.0,
-      "avgCost": 227.2745237,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 758885431,
-      "localSymbol": "IBIT  250919P00053000",
-      "tradingClass": "IBIT",
-      "strike": 53.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 1.99,
-        "bidSize": 20,
-        "ask": 2.04,
-        "askSize": 248,
-        "last": 2.13,
-        "currentPrice": 2.42,
-        "lastSize": 1,
-        "volume": 89,
-        "high": 2.13,
-        "low": 2.09,
-        "close": 2.42,
-        "halted": 0.0,
-        "markPrice": 2.01323009
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.44352232791938934,
-          "delta": -0.2375035409933433,
-          "optionPrice": 2.0,
-          "pvDividend": 0.0,
-          "gamma": 0.024100352590016045,
-          "vega": 0.09369091578267197,
-          "theta": -0.02134414269273067,
-          "underlyingPrice": 59.9
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.44780960482404397,
-          "delta": -0.23903047788120793,
-          "optionPrice": 2.0399999618530273,
-          "pvDividend": 0.0,
-          "gamma": 0.02394502504329536,
-          "vega": 0.09373269643007287,
-          "theta": -0.021628013447752323,
-          "underlyingPrice": 59.9
-        },
-        "lastGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": 2.130000114440918,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 59.9
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.4452101715754286,
-          "delta": -0.23681687247136096,
-          "optionPrice": 2.015744746265061,
-          "pvDividend": 0.0,
-          "gamma": 0.02402297553725696,
-          "vega": 0.09335538971670498,
-          "theta": -0.021906121327037065,
-          "underlyingPrice": 59.88399887084961
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 2.272745237,
-      "current_price": 2.42,
-      "pnl": -559.5680993999994,
-      "market_value": -9196.0,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
-    },
-    {
-      "account": "U*******",
-      "symbol": "COIN",
-      "secType": "OPT",
-      "position": -10.0,
-      "avgCost": 992.54926,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 752500015,
-      "localSymbol": "COIN  250919P00240000",
-      "tradingClass": "COIN",
-      "strike": 240.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 6.85,
-        "bidSize": 292,
-        "ask": 7.1,
-        "askSize": 274,
-        "last": 6.9,
-        "currentPrice": 9.27,
-        "lastSize": 1,
-        "volume": 79,
-        "high": 7.62,
-        "low": 6.88,
-        "close": 9.27,
-        "halted": 0.0,
-        "markPrice": 7.0296731
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.6513861198985393,
-          "delta": -0.11376750566517456,
-          "optionPrice": 6.849999904632568,
-          "pvDividend": 0.0,
-          "gamma": 0.0018401141104203093,
-          "vega": 0.2955986673577877,
-          "theta": -0.11223165622412916,
-          "underlyingPrice": 331.5
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.6652017397230063,
-          "delta": -0.11729530108913352,
-          "optionPrice": 7.099999904632568,
-          "pvDividend": 0.0,
-          "gamma": 0.0018420675791709275,
-          "vega": 0.34982196839728186,
-          "theta": -0.1172133530265563,
-          "underlyingPrice": 331.5
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.6609270073557144,
-          "delta": -0.11609161935291427,
-          "optionPrice": 6.900000095367432,
-          "pvDividend": 0.0,
-          "gamma": 0.0018417357142770444,
-          "vega": 0.34973587963898556,
-          "theta": -0.11568390893308413,
-          "underlyingPrice": 331.5
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.6606319053403278,
-          "delta": -0.11461589206881463,
-          "optionPrice": 6.916480068525871,
-          "pvDividend": 0.0,
-          "gamma": 0.0018202083964482625,
-          "vega": 0.32122148029385755,
-          "theta": -0.10465736606086828,
-          "underlyingPrice": 332.33892822265625
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 9.9254926,
-      "current_price": 9.27,
-      "pnl": 655.4926000000005,
-      "market_value": -9269.999999999998,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
-    },
-    {
-      "account": "U*******",
-      "symbol": "SPY",
-      "secType": "OPT",
-      "position": -4.0,
-      "avgCost": 1295.28925,
-      "currency": "USD",
-      "exchange": "SMART",
-      "primaryExchange": "",
-      "conId": 694356372,
-      "localSymbol": "SPY   250919P00565000",
-      "tradingClass": "SPY",
-      "strike": 565.0,
-      "right": "P",
-      "expiry": "20250919",
-      "multiplier": "100",
-      "market_data": {
-        "bid": 7.58,
-        "bidSize": 126,
-        "ask": 7.73,
-        "askSize": 482,
-        "last": 7.66,
-        "currentPrice": 9.13,
-        "lastSize": 53,
-        "volume": 238,
-        "high": 7.73,
-        "low": 7.5,
-        "close": 9.13,
-        "halted": 0.0,
-        "markPrice": 7.68015957
-      },
-      "has_market_data": true,
-      "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.20717232426151075,
-          "delta": -0.21491523207547084,
-          "optionPrice": 7.619999885559082,
-          "pvDividend": 1.7272449068766929,
-          "gamma": 0.004831856322398242,
-          "vega": 0.8293542824507414,
-          "theta": -0.08655601051981338,
-          "underlyingPrice": 604.3300170898438
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.20753211688414194,
-          "delta": -0.21525115652715954,
-          "optionPrice": 7.730000019073486,
-          "pvDividend": 1.7272449068766929,
-          "gamma": 0.0048282190367177685,
-          "vega": 0.8295426260095722,
-          "theta": -0.08680869839667923,
-          "underlyingPrice": 604.3300170898438
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.20559484644733916,
-          "delta": -0.21342868969758366,
-          "optionPrice": 7.659999847412109,
-          "pvDividend": 1.7272449068766929,
-          "gamma": 0.00484775283435019,
-          "vega": 0.8285177532142454,
-          "theta": -0.08544904106760982,
-          "underlyingPrice": 604.3300170898438
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.20751507441567202,
-          "delta": -0.21276644661649172,
-          "optionPrice": 7.718578364900462,
-          "pvDividend": 1.7272449068766929,
-          "gamma": 0.004839742255524574,
-          "vega": 0.8382679962881268,
-          "theta": -0.08522958906748901,
-          "underlyingPrice": 604.1240234375
-        }
-      },
-      "has_options_data": true,
-      "data_unavailable": false,
-      "avg_cost": 12.9528925,
-      "current_price": 9.13,
-      "pnl": 1529.157,
-      "market_value": -3652.0000000000005,
-      "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "current_price": 18.475,
+      "market_value": -132277305.00000001
     },
     {
       "account": "U*******",
@@ -1772,62 +325,55 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 2.3,
-        "bidSize": 2913,
-        "ask": 2.34,
-        "askSize": 1682,
-        "last": 2.3,
-        "currentPrice": 2.73,
-        "lastSize": 2,
-        "volume": 9,
-        "high": 2.3,
-        "low": 2.21,
+        "lastSize": 0,
+        "volume": 0,
         "close": 2.73,
+        "currentPrice": 2.73,
         "halted": 0.0,
-        "markPrice": 2.29999995
+        "markPrice": 2.18000007
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
         "bidGreeks": {
-          "impliedVolatility": 0.45556216465996,
-          "delta": -0.12760030460680472,
-          "optionPrice": 2.299999952316284,
-          "pvDividend": 0.009904987309731631,
-          "gamma": 0.006446038224344237,
-          "vega": 0.1621869086249692,
-          "theta": -0.036972279082565715,
-          "underlyingPrice": 146.8300018310547
+          "impliedVolatility": 0.45858295965328744,
+          "delta": -0.12150699568837882,
+          "optionPrice": 2.180000066757202,
+          "pvDividend": 0.009905194417290873,
+          "gamma": 0.006164983694497242,
+          "vega": 0.151060432378058,
+          "theta": -0.036423912593561425,
+          "underlyingPrice": 147.89999389648438
         },
         "askGreeks": {
-          "impliedVolatility": 0.45741510847842043,
-          "delta": -0.1284367452618738,
-          "optionPrice": 2.3399999141693115,
-          "pvDividend": 0.009904987309731631,
-          "gamma": 0.00644700857646988,
-          "vega": 0.1622385022587478,
-          "theta": -0.03728199697822763,
-          "underlyingPrice": 146.8300018310547
+          "impliedVolatility": 0.46150727896117105,
+          "delta": -0.12263330211883361,
+          "optionPrice": 2.2200000286102295,
+          "pvDividend": 0.009905194417290873,
+          "gamma": 0.006168907687684453,
+          "vega": 0.1590890497408095,
+          "theta": -0.036921389469799705,
+          "underlyingPrice": 147.89999389648438
         },
         "lastGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": 2.299999952316284,
-          "pvDividend": 0.009904987309731631,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 146.8300018310547
+          "impliedVolatility": 0.4602755828635759,
+          "delta": -0.12258464292099912,
+          "optionPrice": null,
+          "pvDividend": 0.009905194417290873,
+          "gamma": 0.006185717336004803,
+          "vega": 0.15849327625026044,
+          "theta": -0.03678389304700112,
+          "underlyingPrice": 147.89999389648438
         },
         "modelGreeks": {
-          "impliedVolatility": 0.45556216465996,
-          "delta": -0.1317754397779629,
-          "optionPrice": 2.3800002155082502,
-          "pvDividend": 0.009904987309731631,
-          "gamma": 0.0066274598998886155,
-          "vega": 0.1620399897443625,
-          "theta": -0.04018844999139537,
-          "underlyingPrice": 146.5661163330078
+          "impliedVolatility": 0.45649576521689894,
+          "delta": -0.12105046897315848,
+          "optionPrice": 2.161790279825906,
+          "pvDividend": 0.009905194417290873,
+          "gamma": 0.0061875489902126395,
+          "vega": 0.14186207286915087,
+          "theta": -0.033290922069700635,
+          "underlyingPrice": 147.80999755859375
         }
       },
       "has_options_data": true,
@@ -1837,7 +383,7 @@
       "pnl": 7971.754500149998,
       "market_value": -5733.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -1858,62 +404,54 @@
       "underlying_symbol": "HSI",
       "hk_trading_class": "HSI",
       "market_data": {
-        "bid": 65.0,
-        "bidSize": 6,
-        "ask": 68.0,
-        "askSize": 3,
-        "last": 71.0,
-        "currentPrice": 74.0,
-        "lastSize": 1,
-        "volume": 1,
-        "high": 71.0,
-        "low": 71.0,
+        "lastSize": 0,
+        "volume": 0,
         "close": 76.0,
-        "open": 71.0,
+        "currentPrice": 72.0,
         "halted": 0.0,
-        "markPrice": 65.67330933
+        "markPrice": 57.87163925
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
         "bidGreeks": {
-          "impliedVolatility": 0.22363146012748306,
-          "delta": -0.08167758798227998,
-          "optionPrice": 65.0,
+          "impliedVolatility": null,
+          "delta": null,
+          "optionPrice": 55.0,
           "pvDividend": 0.0,
-          "gamma": 8.926007978861954e-05,
-          "vega": 11.424665453491782,
-          "theta": -3.5328486396093064,
+          "gamma": null,
+          "vega": null,
+          "theta": null,
           "underlyingPrice": null
         },
         "askGreeks": {
-          "impliedVolatility": 0.22622237038321663,
-          "delta": -0.08399090559938671,
-          "optionPrice": 68.0,
+          "impliedVolatility": null,
+          "delta": null,
+          "optionPrice": 60.0,
           "pvDividend": 0.0,
-          "gamma": 9.011157809223218e-05,
-          "vega": 11.667275836075685,
-          "theta": -3.6498441598725386,
+          "gamma": null,
+          "vega": null,
+          "theta": null,
           "underlyingPrice": null
         },
         "lastGreeks": {
-          "impliedVolatility": 0.22496882388935027,
-          "delta": -0.08287242904998482,
-          "optionPrice": 71.0,
+          "impliedVolatility": null,
+          "delta": null,
+          "optionPrice": null,
           "pvDividend": 0.0,
-          "gamma": 8.970524543160902e-05,
-          "vega": 11.550306213734506,
-          "theta": -3.5931484404732825,
+          "gamma": null,
+          "vega": null,
+          "theta": null,
           "underlyingPrice": null
         },
         "modelGreeks": {
-          "impliedVolatility": 0.2241141663962638,
-          "delta": -0.08226834620741728,
-          "optionPrice": 65.5541540432364,
+          "impliedVolatility": 0.2290262516012673,
+          "delta": -0.08875904397001116,
+          "optionPrice": 72.90203756035817,
           "pvDividend": 0.0,
-          "gamma": 8.932663113918206e-05,
-          "vega": 11.96453369290839,
-          "theta": -3.658916447993306,
+          "gamma": 9.315932885372085e-05,
+          "vega": 12.651345502499224,
+          "theta": -3.873151198735286,
           "underlyingPrice": null
         }
       },
@@ -1932,11 +470,46 @@
         }
       ],
       "avg_cost": 169.3,
-      "current_price": 74.0,
+      "current_price": 72.0,
       "pnl": null,
-      "market_value": -74000.0,
+      "market_value": -72000.0,
       "expiry_formatted": "2025-07-30",
-      "days_to_expiry": 36
+      "days_to_expiry": 35
+    },
+    {
+      "account": "U*******",
+      "symbol": "COST",
+      "secType": "OPT",
+      "position": -2.0,
+      "avgCost": 2219.53925,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 731125491,
+      "localSymbol": "COST  250919P00970000",
+      "tradingClass": "COST",
+      "strike": 970.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 25.21,
+        "currentPrice": 25.21,
+        "halted": 0.0,
+        "markPrice": 24.42848206
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "has_options_data": false,
+      "data_unavailable": false,
+      "avg_cost": 22.195392499999997,
+      "current_price": 25.21,
+      "pnl": -602.9215000000008,
+      "market_value": -5042.0,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -1955,62 +528,55 @@
       "expiry": "20250815",
       "multiplier": "100",
       "market_data": {
-        "bid": 1.48,
-        "bidSize": 112,
-        "ask": 1.53,
-        "askSize": 22,
-        "last": 1.5,
-        "currentPrice": 1.76,
-        "lastSize": 1,
-        "volume": 139,
-        "high": 1.75,
-        "low": 1.39,
+        "lastSize": 0,
+        "volume": 0,
         "close": 1.76,
+        "currentPrice": 1.76,
         "halted": 0.0,
-        "markPrice": 1.51878548
+        "markPrice": 1.35305083
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
         "bidGreeks": {
-          "impliedVolatility": 1.0536017725109674,
-          "delta": -0.1416987598477621,
-          "optionPrice": 1.4800000190734863,
+          "impliedVolatility": 1.0280779627210659,
+          "delta": -0.1285180481090711,
+          "optionPrice": 1.3200000524520874,
           "pvDividend": 0.0,
-          "gamma": 0.013383635124250167,
-          "vega": 0.03464399815393082,
-          "theta": -0.035438479611248144,
-          "underlyingPrice": 42.24
+          "gamma": 0.012664228608242773,
+          "vega": 0.034748711869282634,
+          "theta": -0.03298088779846691,
+          "underlyingPrice": 42.92
         },
         "askGreeks": {
-          "impliedVolatility": 1.0680241787694287,
-          "delta": -0.14366726250309672,
-          "optionPrice": 1.5299999713897705,
+          "impliedVolatility": 1.0539077341145686,
+          "delta": -0.13242539891253113,
+          "optionPrice": 1.3700000047683716,
           "pvDividend": 0.0,
-          "gamma": 0.013334344952631548,
-          "vega": 0.03464654425765179,
-          "theta": -0.03628756232972471,
-          "underlyingPrice": 42.24
+          "gamma": 0.012610242797824904,
+          "vega": 0.03474150883547189,
+          "theta": -0.034519834960392716,
+          "underlyingPrice": 42.92
         },
         "lastGreeks": {
-          "impliedVolatility": 1.0643487026337153,
-          "delta": -0.1431721643763749,
-          "optionPrice": 1.5,
+          "impliedVolatility": 1.0633411778772888,
+          "delta": -0.13350879585080588,
+          "optionPrice": null,
           "pvDividend": 0.0,
-          "gamma": 0.013347148620426231,
-          "vega": 0.03464418696494875,
-          "theta": -0.03607122126887537,
-          "underlyingPrice": 42.24
+          "gamma": 0.01255940413842727,
+          "vega": 0.034755259045237574,
+          "theta": -0.035043478872043884,
+          "underlyingPrice": 42.92
         },
         "modelGreeks": {
-          "impliedVolatility": 1.0645341201802712,
-          "delta": -0.14250269643488125,
-          "optionPrice": 1.5079007424158493,
+          "impliedVolatility": 1.047932527523669,
+          "delta": -0.13088757317810495,
+          "optionPrice": 1.3491822670506852,
           "pvDividend": 0.0,
-          "gamma": 0.013282495953432361,
-          "vega": 0.03466608255283332,
-          "theta": -0.03466342031501468,
-          "underlyingPrice": 42.29600143432617
+          "gamma": 0.012533559876869264,
+          "vega": 0.03483957802074844,
+          "theta": -0.03451035688720516,
+          "underlyingPrice": 42.99651336669922
         }
       },
       "has_options_data": true,
@@ -2020,7 +586,154 @@
       "pnl": -1458.2764007499993,
       "market_value": -11440.0,
       "expiry_formatted": "2025-08-15",
-      "days_to_expiry": 52
+      "days_to_expiry": 51
+    },
+    {
+      "account": "U*******",
+      "symbol": "AVGO",
+      "secType": "OPT",
+      "position": -10.0,
+      "avgCost": 694.56926,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 731115517,
+      "localSymbol": "AVGO  250919P00200000",
+      "tradingClass": "AVGO",
+      "strike": 200.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 4.22,
+        "currentPrice": 4.22,
+        "halted": 0.0,
+        "markPrice": 3.17098379
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "has_options_data": false,
+      "data_unavailable": false,
+      "avg_cost": 6.9456926,
+      "current_price": 4.22,
+      "pnl": 2725.6926000000003,
+      "market_value": -4220.0,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
+    },
+    {
+      "account": "U*******",
+      "symbol": "UBER",
+      "secType": "OPT",
+      "position": -25.0,
+      "avgCost": 227.28676,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 731132412,
+      "localSymbol": "UBER  250919P00075000",
+      "tradingClass": "UBER",
+      "strike": 75.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 2.37,
+        "currentPrice": 2.37,
+        "halted": 0.0,
+        "markPrice": 1.39954484
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "has_options_data": false,
+      "data_unavailable": false,
+      "avg_cost": 2.2728675999999997,
+      "current_price": 2.37,
+      "pnl": -242.83100000000113,
+      "market_value": -5925.0,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
+    },
+    {
+      "account": "U*******",
+      "symbol": "NFLX",
+      "secType": "OPT",
+      "position": -2.0,
+      "avgCost": 2149.28925,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 731147260,
+      "localSymbol": "NFLX  250919P00980000",
+      "tradingClass": "NFLX",
+      "strike": 980.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 11.09,
+        "currentPrice": 11.09,
+        "halted": 0.0,
+        "markPrice": 8.85309505
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "options_data": {
+        "bidGreeks": {
+          "impliedVolatility": 0.4090652078004202,
+          "delta": -0.0686145054396722,
+          "optionPrice": 7.050000190734863,
+          "pvDividend": 0.0,
+          "gamma": 0.0005205591171054956,
+          "vega": 0.8662269519657784,
+          "theta": -0.1837757657359881,
+          "underlyingPrice": 1279.45
+        },
+        "askGreeks": {
+          "impliedVolatility": 0.41771069016917334,
+          "delta": -0.07230933258844853,
+          "optionPrice": 9.199999809265137,
+          "pvDividend": 0.0,
+          "gamma": 0.00053058925422006,
+          "vega": 0.8687285687013286,
+          "theta": -0.19538861054283538,
+          "underlyingPrice": 1279.45
+        },
+        "lastGreeks": {
+          "impliedVolatility": 0.41337832156214654,
+          "delta": -0.07063185853957851,
+          "optionPrice": null,
+          "pvDividend": 0.0,
+          "gamma": 0.000526643406855216,
+          "vega": 0.8676058305362648,
+          "theta": -0.18981450357948165,
+          "underlyingPrice": 1279.45
+        },
+        "modelGreeks": {
+          "impliedVolatility": 0.4134688552322484,
+          "delta": -0.0708406302244286,
+          "optionPrice": 8.831706961415353,
+          "pvDividend": 0.0,
+          "gamma": 0.0005271242591797738,
+          "vega": 0.8690160064967678,
+          "theta": -0.1957038071089343,
+          "underlyingPrice": 1279.2874755859375
+        }
+      },
+      "has_options_data": true,
+      "data_unavailable": false,
+      "avg_cost": 21.492892499999996,
+      "current_price": 11.09,
+      "pnl": 2080.578499999999,
+      "market_value": -2218.0,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -2039,62 +752,55 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 10.55,
-        "bidSize": 468,
-        "ask": 10.8,
-        "askSize": 424,
-        "last": 10.7,
-        "currentPrice": 12.06,
-        "lastSize": 3,
-        "volume": 5,
-        "high": 10.7,
-        "low": 10.7,
+        "lastSize": 0,
+        "volume": 0,
         "close": 12.06,
+        "currentPrice": 12.06,
         "halted": 0.0,
-        "markPrice": 10.67681217
+        "markPrice": 9.6410799
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
         "bidGreeks": {
-          "impliedVolatility": 0.37969590176705026,
-          "delta": -0.14466072251539566,
-          "optionPrice": 10.550000190734863,
-          "pvDividend": 0.5196977265215696,
-          "gamma": 0.0017497787553455413,
-          "vega": 0.795249659887407,
-          "theta": -0.1581911622483323,
-          "underlyingPrice": 705.5499877929688
+          "impliedVolatility": 0.38074443243166173,
+          "delta": -0.13326188382840995,
+          "optionPrice": 9.550000190734863,
+          "pvDividend": 0.5197092808664427,
+          "gamma": 0.0016411218606103345,
+          "vega": 0.7946714833359145,
+          "theta": -0.1524655218975409,
+          "underlyingPrice": 712.1400146484375
         },
         "askGreeks": {
-          "impliedVolatility": 0.38221191845691393,
-          "delta": -0.14599038539241457,
-          "optionPrice": 10.800000190734863,
-          "pvDividend": 0.5196977265215696,
-          "gamma": 0.0017489708534730627,
-          "vega": 0.7957793043259844,
-          "theta": -0.16025823182338822,
-          "underlyingPrice": 705.5499877929688
+          "impliedVolatility": 0.38263404306673093,
+          "delta": -0.13430746329873855,
+          "optionPrice": 9.75,
+          "pvDividend": 0.5197092808664427,
+          "gamma": 0.0016413455238160563,
+          "vega": 0.7950872695157969,
+          "theta": -0.15402329384892385,
+          "underlyingPrice": 712.1400146484375
         },
         "lastGreeks": {
-          "impliedVolatility": 0.3830377440597811,
-          "delta": -0.14642286684116476,
-          "optionPrice": 10.699999809265137,
-          "pvDividend": 0.5196977265215696,
-          "gamma": 0.0017486777968193422,
-          "vega": 0.7959543550735972,
-          "theta": -0.16093707767067855,
-          "underlyingPrice": 705.5499877929688
+          "impliedVolatility": 0.3792919683811503,
+          "delta": -0.13243902449090683,
+          "optionPrice": null,
+          "pvDividend": 0.5197092808664427,
+          "gamma": 0.0016405532455322654,
+          "vega": 0.7944469254249142,
+          "theta": -0.15124482900443278,
+          "underlyingPrice": 712.1400146484375
         },
         "modelGreeks": {
-          "impliedVolatility": 0.3809773625224635,
-          "delta": -0.14773505693124295,
-          "optionPrice": 10.901847665754316,
-          "pvDividend": 0.5196977265215696,
-          "gamma": 0.0017734433984717983,
-          "vega": 0.7959783718571636,
-          "theta": -0.1614293849504591,
-          "underlyingPrice": 704.100830078125
+          "impliedVolatility": 0.3816895272896908,
+          "delta": -0.1325461460843445,
+          "optionPrice": 9.625013120501862,
+          "pvDividend": 0.5197092808664427,
+          "gamma": 0.001628960714404004,
+          "vega": 0.79499271620959,
+          "theta": -0.16282529770775156,
+          "underlyingPrice": 712.739990234375
         }
       },
       "has_options_data": true,
@@ -2104,7 +810,7 @@
       "pnl": 5518.807000000001,
       "market_value": -4824.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -2133,7 +839,7 @@
       "pnl": null,
       "market_value": -75778.00000049999,
       "expiry_formatted": "2025-09-29",
-      "days_to_expiry": 97
+      "days_to_expiry": 96
     },
     {
       "account": "U*******",
@@ -2152,62 +858,55 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 20.4,
-        "bidSize": 377,
-        "ask": 20.6,
-        "askSize": 13,
-        "last": 19.9,
-        "currentPrice": 20.25,
-        "lastSize": 15,
-        "volume": 33,
-        "high": 20.87,
-        "low": 19.9,
+        "lastSize": 0,
+        "volume": 0,
         "close": 20.25,
+        "currentPrice": 20.25,
         "halted": 0.0,
-        "markPrice": 20.56476021
+        "markPrice": 21.04999924
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
         "bidGreeks": {
-          "impliedVolatility": 0.6100821823253517,
-          "delta": -0.2759573287784506,
-          "optionPrice": 20.399999618530273,
+          "impliedVolatility": 0.5980842829910575,
+          "delta": -0.2936907520661174,
+          "optionPrice": 21.049999237060547,
           "pvDividend": 0.0,
-          "gamma": 0.003289187491888079,
-          "vega": 0.5455429085345926,
-          "theta": -0.18606433801990585,
-          "underlyingPrice": 345.29998779296875
+          "gamma": 0.0035213827208812327,
+          "vega": 0.5833714748450873,
+          "theta": -0.18436786079695516,
+          "underlyingPrice": 339.5
         },
         "askGreeks": {
-          "impliedVolatility": 0.6137495300607041,
-          "delta": -0.2765358704185543,
-          "optionPrice": 20.600000381469727,
+          "impliedVolatility": 0.599794866420119,
+          "delta": -0.2939439101478696,
+          "optionPrice": 21.25,
           "pvDividend": 0.0,
-          "gamma": 0.0032734967216358156,
-          "vega": 0.5459801599724479,
-          "theta": -0.18746386990859934,
-          "underlyingPrice": 345.29998779296875
+          "gamma": 0.0035124470585495325,
+          "vega": 0.5833790373351491,
+          "theta": -0.1849780595343201,
+          "underlyingPrice": 339.5
         },
         "lastGreeks": {
-          "impliedVolatility": 0.6132508209372309,
-          "delta": -0.2764577916925428,
-          "optionPrice": 19.899999618530273,
+          "impliedVolatility": 0.5991796950274414,
+          "delta": -0.2903928807774395,
+          "optionPrice": null,
           "pvDividend": 0.0,
-          "gamma": 0.0032756226416778395,
-          "vega": 0.5459183706102131,
-          "theta": -0.1872735528158202,
-          "underlyingPrice": 345.29998779296875
+          "gamma": 0.0034878915048747404,
+          "vega": 0.5840658460214243,
+          "theta": -0.18447193145690727,
+          "underlyingPrice": 339.5
         },
         "modelGreeks": {
-          "impliedVolatility": 0.6118951195499457,
-          "delta": -0.2725387623896515,
-          "optionPrice": 20.29886791771893,
+          "impliedVolatility": 0.5993929819124241,
+          "delta": -0.28875803884320256,
+          "optionPrice": 21.07650587243987,
           "pvDividend": 0.0,
-          "gamma": 0.0032465337643724167,
-          "vega": 0.5456875334247613,
-          "theta": -0.17951396709973721,
-          "underlyingPrice": 346.4273681640625
+          "gamma": 0.0034730603598179415,
+          "vega": 0.5846420933814684,
+          "theta": -0.18893848807753957,
+          "underlyingPrice": 340.8639831542969
         }
       },
       "has_options_data": true,
@@ -2217,7 +916,7 @@
       "pnl": 6138.3141,
       "market_value": -16200.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -2236,72 +935,100 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 10.3,
-        "bidSize": 1,
-        "ask": 10.5,
-        "askSize": 190,
-        "last": 10.35,
-        "currentPrice": 13.27,
-        "lastSize": 1,
-        "volume": 3,
-        "high": 10.4,
-        "low": 9.96,
+        "lastSize": 0,
+        "volume": 0,
         "close": 13.27,
+        "currentPrice": 13.27,
         "halted": 0.0,
-        "markPrice": 10.40577126
+        "markPrice": 9.68483734
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.238158265472484,
-          "delta": -0.35747156609460023,
-          "optionPrice": 10.300000190734863,
-          "pvDividend": 0.5868002936075213,
-          "gamma": 0.009429450280349791,
-          "vega": 0.627837826895389,
-          "theta": -0.07316574562948698,
-          "underlyingPrice": 350.15000000000003
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.2477147751177863,
-          "delta": -0.3610273034684665,
-          "optionPrice": 10.5,
-          "pvDividend": 0.5868002936075213,
-          "gamma": 0.00909598013745624,
-          "vega": 0.6292045763940664,
-          "theta": -0.0768478317253499,
-          "underlyingPrice": 350.15000000000003
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.23916061341838818,
-          "delta": -0.357860798384397,
-          "optionPrice": 10.350000381469727,
-          "pvDividend": 0.5868002936075213,
-          "gamma": 0.009393379555605305,
-          "vega": 0.6279465902899641,
-          "theta": -0.0735516352621641,
-          "underlyingPrice": 350.15000000000003
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.2398847705310685,
-          "delta": -0.3554035213698788,
-          "optionPrice": 10.408320982332901,
-          "pvDividend": 0.5868002936075213,
-          "gamma": 0.00934486292622049,
-          "vega": 0.6280584624778811,
-          "theta": -0.07271434101362395,
-          "underlyingPrice": 350.202392578125
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 11.495392571499998,
       "current_price": 13.27,
       "pnl": -1242.2251999500008,
       "market_value": -9289.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
+    },
+    {
+      "account": "U*******",
+      "symbol": "NFLX",
+      "secType": "OPT",
+      "position": -3.0,
+      "avgCost": 7903.54926665,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 787047344,
+      "localSymbol": "NFLX  260918P01000000",
+      "tradingClass": "NFLX",
+      "strike": 1000.0,
+      "right": "P",
+      "expiry": "20260918",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 77.4,
+        "currentPrice": 77.4,
+        "halted": 0.0,
+        "markPrice": 72.18370056
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "options_data": {
+        "bidGreeks": {
+          "impliedVolatility": 0.3881314957970893,
+          "delta": -0.1907554038994348,
+          "optionPrice": 70.94999694824219,
+          "pvDividend": 0.0,
+          "gamma": 0.0005088137360634512,
+          "vega": 3.994006716220653,
+          "theta": -0.1384351283638469,
+          "underlyingPrice": 1279.45
+        },
+        "askGreeks": {
+          "impliedVolatility": 0.39370611544708184,
+          "delta": -0.1925582914599746,
+          "optionPrice": 73.0999984741211,
+          "pvDividend": 0.0,
+          "gamma": 0.0005042049890930361,
+          "vega": 3.998948637007132,
+          "theta": -0.14133190350435246,
+          "underlyingPrice": 1279.45
+        },
+        "lastGreeks": {
+          "impliedVolatility": null,
+          "delta": null,
+          "optionPrice": null,
+          "pvDividend": 0.0,
+          "gamma": null,
+          "vega": null,
+          "theta": null,
+          "underlyingPrice": 1279.45
+        },
+        "modelGreeks": {
+          "impliedVolatility": 0.39179099354679553,
+          "delta": -0.19189178254577735,
+          "optionPrice": 72.36091805892691,
+          "pvDividend": 0.0,
+          "gamma": 0.0005047302828216321,
+          "vega": 3.864159285831704,
+          "theta": -0.1389499692599543,
+          "underlyingPrice": 1279.2874755859375
+        }
+      },
+      "has_options_data": true,
+      "data_unavailable": false,
+      "avg_cost": 79.0354926665,
+      "current_price": 77.4,
+      "pnl": 490.6477999499998,
+      "market_value": -23220.0,
+      "expiry_formatted": "2026-09-18",
+      "days_to_expiry": 450
     },
     {
       "account": "U*******",
@@ -2320,72 +1047,254 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 6.95,
-        "bidSize": 465,
-        "ask": 7.05,
-        "askSize": 1425,
-        "last": 6.8,
-        "currentPrice": 8.52,
-        "lastSize": 1,
-        "volume": 190,
-        "high": 7.35,
-        "low": 6.65,
+        "lastSize": 0,
+        "volume": 0,
         "close": 8.52,
+        "currentPrice": 8.52,
         "halted": 0.0,
-        "markPrice": 7.00566387
+        "markPrice": 6.67572975
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.3230250885483603,
-          "delta": -0.30246098974188906,
-          "optionPrice": 6.949999809265137,
-          "pvDividend": 0.0,
-          "gamma": 0.010627609734969446,
-          "vega": 0.37284567364445476,
-          "theta": -0.06000858646565831,
-          "underlyingPrice": 212.52499389648438
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.32571042187338267,
-          "delta": -0.30352834720499167,
-          "optionPrice": 7.050000190734863,
-          "pvDividend": 0.0,
-          "gamma": 0.010552977544816579,
-          "vega": 0.3729880163067403,
-          "theta": -0.06062499513177668,
-          "underlyingPrice": 212.52499389648438
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.32586650768520514,
-          "delta": -0.30358973612326795,
-          "optionPrice": 6.800000190734863,
-          "pvDividend": 0.0,
-          "gamma": 0.010548669185740772,
-          "vega": 0.3729961673021833,
-          "theta": -0.06066083036698013,
-          "underlyingPrice": 212.52499389648438
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.32438898601957433,
-          "delta": -0.30247838483453005,
-          "optionPrice": 7.000785524451764,
-          "pvDividend": 0.0,
-          "gamma": 0.010589143064994248,
-          "vega": 0.3726696508585734,
-          "theta": -0.06192108128367568,
-          "underlyingPrice": 212.52804565429688
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 8.3554926,
       "current_price": 8.52,
       "pnl": -164.50739999999973,
       "market_value": -8519.999999999998,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
+    },
+    {
+      "account": "U*******",
+      "symbol": "MSFT",
+      "secType": "OPT",
+      "position": -6.0,
+      "avgCost": 747.60593335,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 695053868,
+      "localSymbol": "MSFT  250919P00410000",
+      "tradingClass": "MSFT",
+      "strike": 410.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 3.35,
+        "currentPrice": 3.35,
+        "halted": 0.0,
+        "markPrice": 2.81940413
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "options_data": {
+        "bidGreeks": {
+          "impliedVolatility": 0.29205759003278714,
+          "delta": -0.08353967025889579,
+          "optionPrice": 2.5999999046325684,
+          "pvDividend": 0.8241161733524739,
+          "gamma": 0.0022232543190833084,
+          "vega": 0.34827231485410826,
+          "theta": -0.05691135163129571,
+          "underlyingPrice": 490.05
+        },
+        "askGreeks": {
+          "impliedVolatility": 0.2944015334939462,
+          "delta": -0.08495987881410483,
+          "optionPrice": 2.869999885559082,
+          "pvDividend": 0.8241161733524739,
+          "gamma": 0.002235100546386507,
+          "vega": 0.36993297132640723,
+          "theta": -0.05815679847772712,
+          "underlyingPrice": 490.05
+        },
+        "lastGreeks": {
+          "impliedVolatility": 0.2942294059875874,
+          "delta": -0.08473080147629466,
+          "optionPrice": null,
+          "pvDividend": 0.8241161733524739,
+          "gamma": 0.0022310493130886875,
+          "vega": 0.3665121069600694,
+          "theta": -0.05799967298636991,
+          "underlyingPrice": 490.05
+        },
+        "modelGreeks": {
+          "impliedVolatility": 0.29240471755822295,
+          "delta": -0.08289578618096739,
+          "optionPrice": 2.801837281701743,
+          "pvDividend": 0.8241161733524739,
+          "gamma": 0.0022039167139409513,
+          "vega": 0.34501239385958593,
+          "theta": -0.0524197315897732,
+          "underlyingPrice": 490.219970703125
+        }
+      },
+      "has_options_data": true,
+      "data_unavailable": false,
+      "avg_cost": 7.4760593335,
+      "current_price": 3.35,
+      "pnl": 2475.6356001000004,
+      "market_value": -2010.0000000000002,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
+    },
+    {
+      "account": "U*******",
+      "symbol": "CRWD",
+      "secType": "OPT",
+      "position": -5.0,
+      "avgCost": 1664.53926,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 718676449,
+      "localSymbol": "CRWD  250919P00390000",
+      "tradingClass": "CRWD",
+      "strike": 390.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 8.9,
+        "currentPrice": 8.9,
+        "halted": 0.0,
+        "markPrice": 8.78164101
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "options_data": {
+        "bidGreeks": {
+          "impliedVolatility": 0.4766833539066315,
+          "delta": -0.13584473429153746,
+          "optionPrice": 8.649999618530273,
+          "pvDividend": 0.0,
+          "gamma": 0.0019457385271831366,
+          "vega": 0.5368384454722079,
+          "theta": -0.13379958037283962,
+          "underlyingPrice": 485.49
+        },
+        "askGreeks": {
+          "impliedVolatility": 0.4832013340848987,
+          "delta": -0.1384969744232978,
+          "optionPrice": 9.0,
+          "pvDividend": 0.0,
+          "gamma": 0.0019442822862034395,
+          "vega": 0.5374177239374873,
+          "theta": -0.13742537262609922,
+          "underlyingPrice": 485.49
+        },
+        "lastGreeks": {
+          "impliedVolatility": 0.4802752077925871,
+          "delta": -0.13753710212543196,
+          "optionPrice": null,
+          "pvDividend": 0.0,
+          "gamma": 0.0019472798525188466,
+          "vega": 0.537167687446173,
+          "theta": -0.13589268481571623,
+          "underlyingPrice": 485.49
+        },
+        "modelGreeks": {
+          "impliedVolatility": 0.47952601800857814,
+          "delta": -0.13706657124522603,
+          "optionPrice": 8.802601523889695,
+          "pvDividend": 0.0,
+          "gamma": 0.0019436838932652464,
+          "vega": 0.537372519988331,
+          "theta": -0.14002064244725965,
+          "underlyingPrice": 485.503173828125
+        }
+      },
+      "has_options_data": true,
+      "data_unavailable": false,
+      "avg_cost": 16.6453926,
+      "current_price": 8.9,
+      "pnl": 3872.6963000000005,
+      "market_value": -4450.0,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
+    },
+    {
+      "account": "U*******",
+      "symbol": "AMD",
+      "secType": "OPT",
+      "position": -8.0,
+      "avgCost": 436.2892625,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 727817814,
+      "localSymbol": "AMD   250919P00110000",
+      "tradingClass": "AMD",
+      "strike": 110.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 3.6,
+        "currentPrice": 3.6,
+        "halted": 0.0,
+        "markPrice": 2.32999992
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "options_data": {
+        "bidGreeks": {
+          "impliedVolatility": 0.4815863610869278,
+          "delta": -0.11765146849313608,
+          "optionPrice": 2.2799999713897705,
+          "pvDividend": 0.0,
+          "gamma": 0.006053089422259569,
+          "vega": 0.12580331997795868,
+          "theta": -0.035459285224827594,
+          "underlyingPrice": 139.99
+        },
+        "askGreeks": {
+          "impliedVolatility": 0.4848820566746085,
+          "delta": -0.11884500169481081,
+          "optionPrice": 2.3299999237060547,
+          "pvDividend": 0.0,
+          "gamma": 0.00605819495749229,
+          "vega": 0.12847839877560663,
+          "theta": -0.03598430638431198,
+          "underlyingPrice": 139.99
+        },
+        "lastGreeks": {
+          "impliedVolatility": 0.4827653251142831,
+          "delta": -0.1276412574456503,
+          "optionPrice": null,
+          "pvDividend": 0.0,
+          "gamma": 0.006463538131286977,
+          "vega": 0.15205346706815304,
+          "theta": -0.03716928504473545,
+          "underlyingPrice": 139.99
+        },
+        "modelGreeks": {
+          "impliedVolatility": 0.4848820566746085,
+          "delta": -0.1294648953823621,
+          "optionPrice": 2.359999600696591,
+          "pvDividend": 0.0,
+          "gamma": 0.006498084639210677,
+          "vega": 0.1518850851439506,
+          "theta": -0.04008251952222697,
+          "underlyingPrice": 138.3037872314453
+        }
+      },
+      "has_options_data": true,
+      "data_unavailable": false,
+      "avg_cost": 4.362892625,
+      "current_price": 3.6,
+      "pnl": 610.3140999999997,
+      "market_value": -2880.0,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -2404,62 +1313,55 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 3.7,
-        "bidSize": 2014,
-        "ask": 3.75,
-        "askSize": 6085,
-        "last": 3.85,
-        "currentPrice": 4.29,
-        "lastSize": 10,
-        "volume": 77,
-        "high": 3.92,
-        "low": 3.52,
+        "lastSize": 0,
+        "volume": 0,
         "close": 4.29,
+        "currentPrice": 4.29,
         "halted": 0.0,
-        "markPrice": 3.70000005
+        "markPrice": 3.5
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
         "bidGreeks": {
-          "impliedVolatility": 0.43497264558107995,
-          "delta": -0.192595915820784,
-          "optionPrice": 3.700000047683716,
-          "pvDividend": 0.009904987309731631,
-          "gamma": 0.008842894849930937,
-          "vega": 0.19913838536483475,
-          "theta": -0.04555346122737934,
-          "underlyingPrice": 146.8300018310547
+          "impliedVolatility": 0.4370036357265144,
+          "delta": -0.18360868670305378,
+          "optionPrice": 3.5,
+          "pvDividend": 0.009905194417290873,
+          "gamma": 0.008510820858984986,
+          "vega": 0.19899530310079205,
+          "theta": -0.04501208388670826,
+          "underlyingPrice": 147.89999389648438
         },
         "askGreeks": {
-          "impliedVolatility": 0.4399853582852986,
-          "delta": -0.19467537420482697,
-          "optionPrice": 3.75,
-          "pvDividend": 0.009904987309731631,
-          "gamma": 0.008798852706794104,
-          "vega": 0.19929007812012145,
-          "theta": -0.04639854539939447,
-          "underlyingPrice": 146.8300018310547
+          "impliedVolatility": 0.44200243180589327,
+          "delta": -0.1857605433522879,
+          "optionPrice": 3.549999952316284,
+          "pvDividend": 0.009905194417290873,
+          "gamma": 0.008472494054325102,
+          "vega": 0.1991340867215059,
+          "theta": -0.045858348249213664,
+          "underlyingPrice": 147.89999389648438
         },
         "lastGreeks": {
-          "impliedVolatility": 0.4371150582092637,
-          "delta": -0.1934911843095128,
-          "optionPrice": 3.8499999046325684,
-          "pvDividend": 0.009904987309731631,
-          "gamma": 0.0088241122991019,
-          "vega": 0.19920527875366512,
-          "theta": -0.045914554748362216,
-          "underlyingPrice": 146.8300018310547
+          "impliedVolatility": 0.4385759895989522,
+          "delta": -0.18492661826561974,
+          "optionPrice": null,
+          "pvDividend": 0.009905194417290873,
+          "gamma": 0.008519313266100751,
+          "vega": 0.19903769334836774,
+          "theta": -0.045338304897182824,
+          "underlyingPrice": 147.89999389648438
         },
         "modelGreeks": {
-          "impliedVolatility": 0.43587701756808567,
-          "delta": -0.19856733763619985,
-          "optionPrice": 3.818036181405237,
-          "pvDividend": 0.009904987309731631,
-          "gamma": 0.009054471310140297,
-          "vega": 0.19958809332194072,
-          "theta": -0.046940322268244294,
-          "underlyingPrice": 146.5661163330078
+          "impliedVolatility": 0.4353573627489255,
+          "delta": -0.1834212377820749,
+          "optionPrice": 3.467083657946893,
+          "pvDividend": 0.009905194417290873,
+          "gamma": 0.00856605983599324,
+          "vega": 0.20007492989289188,
+          "theta": -0.04890142021879651,
+          "underlyingPrice": 147.80999755859375
         }
       },
       "has_options_data": true,
@@ -2469,7 +1371,7 @@
       "pnl": 132.8925999999999,
       "market_value": -4290.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -2488,72 +1390,23 @@
       "expiry": "20260116",
       "multiplier": "100",
       "market_data": {
-        "bid": 1.05,
-        "bidSize": 4486,
-        "ask": 1.2,
-        "askSize": 1796,
-        "last": 1.1,
-        "currentPrice": 1.17,
-        "lastSize": 46,
-        "volume": 80,
-        "high": 1.1,
-        "low": 1.1,
+        "lastSize": 0,
+        "volume": 0,
         "close": 1.17,
+        "currentPrice": 1.17,
         "halted": 0.0,
-        "markPrice": 1.08999074
+        "markPrice": 1.09330893
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 1.099445415855714,
-          "delta": -0.1136554240409794,
-          "optionPrice": 1.0499999523162842,
-          "pvDividend": 0.0,
-          "gamma": 0.015529390576302989,
-          "vega": 0.022974230382708516,
-          "theta": -0.005562871359691705,
-          "underlyingPrice": 15.095
-        },
-        "askGreeks": {
-          "impliedVolatility": 1.1679770194064645,
-          "delta": -0.11789339604876038,
-          "optionPrice": 1.2000000476837158,
-          "pvDividend": 0.0,
-          "gamma": 0.014970239915141044,
-          "vega": 0.02277852234508404,
-          "theta": -0.0060576699211766175,
-          "underlyingPrice": 15.095
-        },
-        "lastGreeks": {
-          "impliedVolatility": 1.1233639821997912,
-          "delta": -0.11526872372534781,
-          "optionPrice": 1.100000023841858,
-          "pvDividend": 0.0,
-          "gamma": 0.015335836596889996,
-          "vega": 0.022910041575477935,
-          "theta": -0.00573692030461813,
-          "underlyingPrice": 15.095
-        },
-        "modelGreeks": {
-          "impliedVolatility": 1.1198807954100416,
-          "delta": -0.1157846651756531,
-          "optionPrice": 1.0948529165081735,
-          "pvDividend": 0.0,
-          "gamma": 0.015370669640961282,
-          "vega": 0.021909612956889202,
-          "theta": -0.005722832435605341,
-          "underlyingPrice": 15.106000900268555
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 1.2969699335000002,
       "current_price": 1.17,
       "pnl": 952.2745012500022,
       "market_value": -8775.0,
       "expiry_formatted": "2026-01-16",
-      "days_to_expiry": 206
+      "days_to_expiry": 205
     },
     {
       "account": "U*******",
@@ -2572,72 +1425,23 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 1.69,
-        "bidSize": 1,
-        "ask": 3.75,
-        "askSize": 15,
-        "last": 2.2,
-        "currentPrice": 3.17,
-        "lastSize": 3,
-        "volume": 9,
-        "high": 2.25,
-        "low": 2.16,
+        "lastSize": 0,
+        "volume": 0,
         "close": 3.17,
+        "currentPrice": 3.17,
         "halted": 0.0,
-        "markPrice": 2.2527771
+        "markPrice": 2.35126686
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.9798428177086761,
-          "delta": 0.16405555069671315,
-          "optionPrice": 1.690000057220459,
-          "pvDividend": 0.0,
-          "gamma": 0.01039043078890547,
-          "vega": 0.05566011061530962,
-          "theta": -0.034704198744701015,
-          "underlyingPrice": 49.79
-        },
-        "askGreeks": {
-          "impliedVolatility": 1.267411826150465,
-          "delta": 0.26430400772682044,
-          "optionPrice": 3.75,
-          "pvDividend": 0.0,
-          "gamma": 0.010610425507150358,
-          "vega": 0.08399872246802342,
-          "theta": -0.05914702452352804,
-          "underlyingPrice": 49.79
-        },
-        "lastGreeks": {
-          "impliedVolatility": 1.0552004583278398,
-          "delta": 0.19190637270456185,
-          "optionPrice": 2.200000047683716,
-          "pvDividend": 0.0,
-          "gamma": 0.010635127615744512,
-          "vega": 0.070248191296304,
-          "theta": -0.04116642922263052,
-          "underlyingPrice": 49.79
-        },
-        "modelGreeks": {
-          "impliedVolatility": 1.0641525507731255,
-          "delta": 0.19529408226136,
-          "optionPrice": 2.2507153454657263,
-          "pvDividend": 0.0,
-          "gamma": 0.010653217248676385,
-          "vega": 0.0701745436829837,
-          "theta": -0.04384196841417376,
-          "underlyingPrice": 49.794002532958984
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 2.411893,
       "current_price": 3.17,
       "pnl": -75.81069999999998,
       "market_value": -317.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -2656,62 +1460,55 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 5.19,
-        "bidSize": 283,
-        "ask": 5.24,
-        "askSize": 499,
-        "last": 5.3,
-        "currentPrice": 5.99,
-        "lastSize": 1,
-        "volume": 10,
-        "high": 5.42,
-        "low": 5.24,
+        "lastSize": 0,
+        "volume": 0,
         "close": 5.99,
+        "currentPrice": 5.99,
         "halted": 0.0,
-        "markPrice": 5.22472239
+        "markPrice": 4.78148222
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
         "bidGreeks": {
-          "impliedVolatility": 0.2275307448663593,
-          "delta": -0.3170124841236673,
-          "optionPrice": 5.190000057220459,
-          "pvDividend": 0.5698163853668783,
-          "gamma": 0.015248328704384154,
-          "vega": 0.37488370609959,
-          "theta": -0.04015895181638138,
-          "underlyingPrice": 213.29
+          "impliedVolatility": 0.22693188903421946,
+          "delta": -0.2982623296536473,
+          "optionPrice": 4.769999980926514,
+          "pvDividend": 0.5698290539907627,
+          "gamma": 0.014863804087383945,
+          "vega": 0.37323326398606405,
+          "theta": -0.039715633761948324,
+          "underlyingPrice": 214.48000000000002
         },
         "askGreeks": {
-          "impliedVolatility": 0.2288652199046296,
-          "delta": -0.31778042895794,
-          "optionPrice": 5.239999771118164,
-          "pvDividend": 0.5698163853668783,
-          "gamma": 0.015173565277523391,
-          "vega": 0.3750218082102972,
-          "theta": -0.04046618045618032,
-          "underlyingPrice": 213.29
+          "impliedVolatility": 0.2282711435246745,
+          "delta": -0.2991404150977378,
+          "optionPrice": 4.829999923706055,
+          "pvDividend": 0.5698290539907627,
+          "gamma": 0.014793085145968835,
+          "vega": 0.3733921712087884,
+          "theta": -0.04002405377219743,
+          "underlyingPrice": 214.48000000000002
         },
         "lastGreeks": {
-          "impliedVolatility": 0.22852531778706994,
-          "delta": -0.3175857834197126,
-          "optionPrice": 5.300000190734863,
-          "pvDividend": 0.5698163853668783,
-          "gamma": 0.015192544650638537,
-          "vega": 0.3749868166459427,
-          "theta": -0.040387914156113085,
-          "underlyingPrice": 213.29
+          "impliedVolatility": 0.22620564732135487,
+          "delta": -0.29901663197222356,
+          "optionPrice": null,
+          "pvDividend": 0.5698290539907627,
+          "gamma": 0.014930963904933842,
+          "vega": 0.37323782599056354,
+          "theta": -0.03957200066179711,
+          "underlyingPrice": 214.48000000000002
         },
         "modelGreeks": {
-          "impliedVolatility": 0.22852509823528802,
-          "delta": -0.32094402999278865,
-          "optionPrice": 5.267254627103194,
-          "pvDividend": 0.5698163853668783,
-          "gamma": 0.015234170422563179,
-          "vega": 0.37522363721008567,
-          "theta": -0.040997700385569935,
-          "underlyingPrice": 213.15399169921875
+          "impliedVolatility": 0.2270324965407831,
+          "delta": -0.29925894138395764,
+          "optionPrice": 4.750161209093226,
+          "pvDividend": 0.5698290539907627,
+          "gamma": 0.014864190089576844,
+          "vega": 0.3737768982155236,
+          "theta": -0.04112354961708142,
+          "underlyingPrice": 214.39559936523438
         }
       },
       "has_options_data": true,
@@ -2721,7 +1518,84 @@
       "pnl": 824.5111002000001,
       "market_value": -7188.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
+    },
+    {
+      "account": "U*******",
+      "symbol": "AMD",
+      "secType": "OPT",
+      "position": -22.0,
+      "avgCost": 482.2892591,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 727817817,
+      "localSymbol": "AMD   250919P00115000",
+      "tradingClass": "AMD",
+      "strike": 115.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 4.9,
+        "currentPrice": 4.9,
+        "halted": 0.0,
+        "markPrice": 3.20000005
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "options_data": {
+        "bidGreeks": {
+          "impliedVolatility": 0.4704411057594817,
+          "delta": -0.15559336408195049,
+          "optionPrice": 3.1500000953674316,
+          "pvDividend": 0.0,
+          "gamma": 0.007500494346698281,
+          "vega": 0.15751362501334398,
+          "theta": -0.04159818814724232,
+          "underlyingPrice": 139.99
+        },
+        "askGreeks": {
+          "impliedVolatility": 0.4761035998236314,
+          "delta": -0.1577506457717027,
+          "optionPrice": 3.200000047683716,
+          "pvDividend": 0.0,
+          "gamma": 0.00748276388651978,
+          "vega": 0.15768979389650006,
+          "theta": -0.042522985213995904,
+          "underlyingPrice": 139.99
+        },
+        "lastGreeks": {
+          "impliedVolatility": 0.47665803924271277,
+          "delta": -0.16912908069692564,
+          "optionPrice": null,
+          "pvDividend": 0.0,
+          "gamma": 0.007932986134324388,
+          "vega": 0.1839023211564732,
+          "theta": -0.04414123075220043,
+          "underlyingPrice": 139.99
+        },
+        "modelGreeks": {
+          "impliedVolatility": 0.475443547759929,
+          "delta": -0.1697526553331949,
+          "optionPrice": 3.237884251424549,
+          "pvDividend": 0.0,
+          "gamma": 0.007974595818828652,
+          "vega": 0.18367526945878376,
+          "theta": -0.04728118474345333,
+          "underlyingPrice": 138.3037872314453
+        }
+      },
+      "has_options_data": true,
+      "data_unavailable": false,
+      "avg_cost": 4.822892591,
+      "current_price": 4.9,
+      "pnl": -169.63629980000175,
+      "market_value": -10780.000000000002,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -2740,72 +1614,23 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 4.5,
-        "bidSize": 342,
-        "ask": 4.6,
-        "askSize": 153,
-        "last": 4.64,
-        "currentPrice": 5.82,
-        "lastSize": 1,
-        "volume": 7,
-        "high": 4.64,
-        "low": 4.43,
+        "lastSize": 0,
+        "volume": 0,
         "close": 5.82,
+        "currentPrice": 5.82,
         "halted": 0.0,
-        "markPrice": 4.57023907
+        "markPrice": 4.36093426
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.4787944247779572,
-          "delta": -0.13087429885937954,
-          "optionPrice": 4.5,
-          "pvDividend": 0.0,
-          "gamma": 0.0034783170975225433,
-          "vega": 0.29035386276662933,
-          "theta": -0.07094010294124188,
-          "underlyingPrice": 263.12
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.48223881771247684,
-          "delta": -0.1323055801838683,
-          "optionPrice": 4.599999904632568,
-          "pvDividend": 0.0,
-          "gamma": 0.0034781006589523133,
-          "vega": 0.2905192824008278,
-          "theta": -0.07197039222062226,
-          "underlyingPrice": 263.12
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.47662844454648495,
-          "delta": -0.12996262650015966,
-          "optionPrice": 4.639999866485596,
-          "pvDividend": 0.0,
-          "gamma": 0.003478264789338847,
-          "vega": 0.2902485932297685,
-          "theta": -0.07029246597330857,
-          "underlyingPrice": 263.12
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.4807532576502246,
-          "delta": -0.1317647095845665,
-          "optionPrice": 4.5568638564032025,
-          "pvDividend": 0.0,
-          "gamma": 0.0034793837266911083,
-          "vega": 0.29057119661711184,
-          "theta": -0.07596149759623572,
-          "underlyingPrice": 263.1207580566406
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 6.4963925835,
       "current_price": 5.82,
       "pnl": 811.6711001999992,
       "market_value": -6984.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -2824,72 +1649,58 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 2.97,
-        "bidSize": 1308,
-        "ask": 3.05,
-        "askSize": 2279,
-        "last": 2.99,
-        "currentPrice": 3.28,
-        "lastSize": 1,
-        "volume": 80,
-        "high": 3.35,
-        "low": 2.99,
+        "lastSize": 0,
+        "volume": 0,
         "close": 3.28,
+        "currentPrice": 3.28,
         "halted": 0.0,
-        "markPrice": 2.9964776
+        "markPrice": 2.81736469
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.6904447549715481,
-          "delta": -0.11130835066728934,
-          "optionPrice": 2.9700000286102295,
-          "pvDividend": 0.0,
-          "gamma": 0.0040133127293327546,
-          "vega": 0.12132373615994396,
-          "theta": -0.04993953413724342,
-          "underlyingPrice": 141.08
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.6970479261725715,
-          "delta": -0.1127781995541145,
-          "optionPrice": 3.049999952316284,
-          "pvDividend": 0.0,
-          "gamma": 0.004015877273872593,
-          "vega": 0.13069088225955783,
-          "theta": -0.05094267073318918,
-          "underlyingPrice": 141.08
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.6919884542324166,
-          "delta": -0.11165480878497473,
-          "optionPrice": 2.990000009536743,
-          "pvDividend": 0.0,
-          "gamma": 0.004013984559645699,
-          "vega": 0.12156969693572206,
-          "theta": -0.050173972435745944,
-          "underlyingPrice": 141.08
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.6928228750672475,
-          "delta": -0.11132231716335192,
-          "optionPrice": 2.998781489445561,
-          "pvDividend": 0.0,
-          "gamma": 0.003995505042099089,
-          "vega": 0.12143663607797484,
-          "theta": -0.04612280564351812,
-          "underlyingPrice": 141.2320098876953
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 3.3128925835,
       "current_price": 3.28,
       "pnl": 39.471100200000286,
       "market_value": -3936.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
+    },
+    {
+      "account": "U*******",
+      "symbol": "QQQ",
+      "secType": "OPT",
+      "position": -50.0,
+      "avgCost": 761.68526,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 781403560,
+      "localSymbol": "QQQ   251219C00600000",
+      "tradingClass": "QQQ",
+      "strike": 600.0,
+      "right": "C",
+      "expiry": "20251219",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 7.61,
+        "currentPrice": 7.61,
+        "halted": 0.0,
+        "markPrice": 9.25
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "has_options_data": false,
+      "data_unavailable": false,
+      "avg_cost": 7.6168526,
+      "current_price": 7.61,
+      "pnl": 34.2629999999966,
+      "market_value": -38050.0,
+      "expiry_formatted": "2025-12-19",
+      "days_to_expiry": 177
     },
     {
       "account": "U*******",
@@ -2908,71 +1719,23 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 20.0,
-        "bidSize": 339,
-        "ask": 21.4,
-        "askSize": 282,
         "lastSize": 0,
-        "volume": 10,
-        "high": 21.89,
-        "low": 21.89,
+        "volume": 0,
         "close": 24.67,
         "currentPrice": 24.67,
         "halted": 0.0,
-        "markPrice": 20.71019363
+        "markPrice": 20.39681053
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.7230501780962675,
-          "delta": -0.22875801092618406,
-          "optionPrice": 20.0,
-          "pvDividend": 0.0,
-          "gamma": 0.002458483162538266,
-          "vega": 0.5311966901498621,
-          "theta": -0.20508160748205734,
-          "underlyingPrice": 351.09000000000003
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.7494212614854935,
-          "delta": -0.23294863346089648,
-          "optionPrice": 21.399999618530273,
-          "pvDividend": 0.0,
-          "gamma": 0.0023946772806666297,
-          "vega": 0.5311708831363724,
-          "theta": -0.2148228601739769,
-          "underlyingPrice": 351.09000000000003
-        },
-        "lastGreeks": {
-          "impliedVolatility": null,
-          "delta": null,
-          "optionPrice": null,
-          "pvDividend": 0.0,
-          "gamma": null,
-          "vega": null,
-          "theta": null,
-          "underlyingPrice": 351.09000000000003
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.7378067423152468,
-          "delta": -0.232804807865966,
-          "optionPrice": 20.7834102843905,
-          "pvDividend": 0.0,
-          "gamma": 0.0024361903426767064,
-          "vega": 0.5308778953936368,
-          "theta": -0.21428455374080713,
-          "underlyingPrice": 350.4447937011719
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 26.0333926665,
       "current_price": 24.67,
       "pnl": 818.0355998999985,
       "market_value": -14802.000000000002,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -2991,62 +1754,55 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 1.41,
-        "bidSize": 1557,
-        "ask": 1.44,
-        "askSize": 86,
-        "last": 1.56,
-        "currentPrice": 1.04,
-        "lastSize": 1,
-        "volume": 171,
-        "high": 1.56,
-        "low": 1.47,
+        "lastSize": 0,
+        "volume": 0,
         "close": 1.04,
+        "currentPrice": 1.04,
         "halted": 0.0,
-        "markPrice": 1.42709577
+        "markPrice": 1.25654685
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "options_data": {
         "bidGreeks": {
-          "impliedVolatility": 0.16561477431924787,
-          "delta": -0.11438164537673726,
-          "optionPrice": 1.409999966621399,
+          "impliedVolatility": 0.1642834426600707,
+          "delta": -0.09760641703587625,
+          "optionPrice": 1.2300000190734863,
           "pvDividend": 0.0,
-          "gamma": 0.007977571586988417,
-          "vega": 0.2915961655347281,
-          "theta": -0.023452186627809693,
-          "underlyingPrice": 304.76
+          "gamma": 0.007120673699840499,
+          "vega": 0.2700606163103114,
+          "theta": -0.021014447344285193,
+          "underlyingPrice": 306.73
         },
         "askGreeks": {
-          "impliedVolatility": 0.16671255023148024,
-          "delta": -0.11575394079505473,
-          "optionPrice": 1.440000057220459,
+          "impliedVolatility": 0.16539868060709237,
+          "delta": -0.09908421985678245,
+          "optionPrice": 1.2599999904632568,
           "pvDividend": 0.0,
-          "gamma": 0.007996029931295149,
-          "vega": 0.2984560896862436,
-          "theta": -0.02383360456266067,
-          "underlyingPrice": 304.76
+          "gamma": 0.0071496275237321535,
+          "vega": 0.2707259717568531,
+          "theta": -0.021395704056115444,
+          "underlyingPrice": 306.73
         },
         "lastGreeks": {
-          "impliedVolatility": 0.16785743468325562,
-          "delta": -0.11717524532796159,
-          "optionPrice": 1.559999942779541,
+          "impliedVolatility": 0.1618081045597578,
+          "delta": -0.09862507754688381,
+          "optionPrice": null,
           "pvDividend": 0.0,
-          "gamma": 0.008014312846155591,
-          "vega": 0.3054925574253067,
-          "theta": -0.024232708627219202,
-          "underlyingPrice": 304.76
+          "gamma": 0.0072990427428998965,
+          "vega": 0.2696986424028056,
+          "theta": -0.020752290265706755,
+          "underlyingPrice": 306.73
         },
         "modelGreeks": {
-          "impliedVolatility": 0.16614151673262362,
-          "delta": -0.11552452676108975,
-          "optionPrice": 1.4343879139545042,
+          "impliedVolatility": 0.16526505452235885,
+          "delta": -0.10291588671518366,
+          "optionPrice": 1.2440363542290542,
           "pvDividend": 0.0,
-          "gamma": 0.008010414039659948,
-          "vega": 0.2967356969724131,
-          "theta": -0.0221651220259933,
-          "underlyingPrice": 304.7239990234375
+          "gamma": 0.007380671315101044,
+          "vega": 0.27219154213791885,
+          "theta": -0.02202865318835734,
+          "underlyingPrice": 306.1499938964844
         }
       },
       "has_options_data": true,
@@ -3056,7 +1812,7 @@
       "pnl": 1247.9696998999998,
       "market_value": -728.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -3075,96 +1831,112 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 1.42,
-        "bidSize": 1,
-        "ask": 1.45,
-        "askSize": 105,
-        "last": 1.5,
-        "currentPrice": 1.57,
-        "lastSize": 1,
-        "volume": 23,
-        "high": 1.52,
-        "low": 1.48,
+        "lastSize": 0,
+        "volume": 0,
         "close": 1.57,
+        "currentPrice": 1.57,
         "halted": 0.0,
-        "markPrice": 1.43640184
+        "markPrice": 1.32479441
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.7526683508725944,
-          "delta": -0.05568941446293286,
-          "optionPrice": 1.4199999570846558,
-          "pvDividend": 0.0,
-          "gamma": 0.002175107109434873,
-          "vega": 0.08633373537632294,
-          "theta": -0.03250067524653329,
-          "underlyingPrice": 141.08
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.7572982225483575,
-          "delta": -0.05662265621654791,
-          "optionPrice": 1.4500000476837158,
-          "pvDividend": 0.0,
-          "gamma": 0.002188928485757473,
-          "vega": 0.08636121770316141,
-          "theta": -0.03311147815888574,
-          "underlyingPrice": 141.08
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.7543990519345029,
-          "delta": -0.05603978955395995,
-          "optionPrice": 1.5,
-          "pvDividend": 0.0,
-          "gamma": 0.0021803338773699497,
-          "vega": 0.08634271672657334,
-          "theta": -0.03272899199326628,
-          "underlyingPrice": 141.08
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.7537676478556719,
-          "delta": -0.055577859500946326,
-          "optionPrice": 1.4294959986169808,
-          "pvDividend": 0.0,
-          "gamma": 0.0021662739459135704,
-          "vega": 0.08641403389975855,
-          "theta": -0.036399870661032674,
-          "underlyingPrice": 141.2320098876953
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 3.875384739,
       "current_price": 1.57,
       "pnl": 5302.3848997000005,
       "market_value": -3611.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
       "symbol": "BOXX",
       "secType": "STK",
-      "position": 18000.0,
-      "avgCost": 112.5912193,
+      "position": 19000.0,
+      "avgCost": 112.5927752,
       "currency": "USD",
       "exchange": "BATS",
       "primaryExchange": "",
       "conId": 604408720,
       "localSymbol": "BOXX",
       "tradingClass": "BOXX",
-      "marketPrice": 112.6139984,
-      "marketValue": 2027051.97,
-      "unrealizedPNL": 410.02,
-      "realizedPNL": 0.0,
-      "accountName": "U6129142",
       "has_market_data": false,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "current_price": 0,
-      "market_value": 2026641.9474000002
+      "market_value": 2139262.7288
+    },
+    {
+      "account": "U*******",
+      "symbol": "QBTS",
+      "secType": "OPT",
+      "position": -200.0,
+      "avgCost": 100.11148,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 778251122,
+      "localSymbol": "QBTS  260116P00006000",
+      "tradingClass": "QBTS",
+      "strike": 6.0,
+      "right": "P",
+      "expiry": "20260116",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 0.6,
+        "currentPrice": 0.6,
+        "halted": 0.0,
+        "markPrice": 0.53355074
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "has_options_data": false,
+      "data_unavailable": false,
+      "avg_cost": 1.0011148,
+      "current_price": 0.6,
+      "pnl": 8022.296000000001,
+      "market_value": -12000.0,
+      "expiry_formatted": "2026-01-16",
+      "days_to_expiry": 205
+    },
+    {
+      "account": "U*******",
+      "symbol": "HOOD",
+      "secType": "OPT",
+      "position": -50.0,
+      "avgCost": 269.28176,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 727600716,
+      "localSymbol": "HOOD  250919P00040000",
+      "tradingClass": "HOOD",
+      "strike": 40.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 0.57,
+        "currentPrice": 0.57,
+        "halted": 0.0,
+        "markPrice": 0.31999999
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "has_options_data": false,
+      "data_unavailable": false,
+      "avg_cost": 2.6928176,
+      "current_price": 0.57,
+      "pnl": 10614.088000000002,
+      "market_value": -2849.9999999999995,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -3193,7 +1965,42 @@
       "pnl": null,
       "market_value": -44989.6,
       "expiry_formatted": "2025-09-29",
-      "days_to_expiry": 97
+      "days_to_expiry": 96
+    },
+    {
+      "account": "U*******",
+      "symbol": "APP",
+      "secType": "OPT",
+      "position": -7.0,
+      "avgCost": 3959.18917145,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 740595000,
+      "localSymbol": "APP   250718P00280000",
+      "tradingClass": "APP",
+      "strike": 280.0,
+      "right": "P",
+      "expiry": "20250718",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 3.91,
+        "currentPrice": 3.91,
+        "halted": 0.0,
+        "markPrice": 1.89999998
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "has_options_data": false,
+      "data_unavailable": false,
+      "avg_cost": 39.5918917145,
+      "current_price": 3.91,
+      "pnl": 24977.324200149997,
+      "market_value": -2737.0,
+      "expiry_formatted": "2025-07-18",
+      "days_to_expiry": 23
     },
     {
       "account": "U*******",
@@ -3207,34 +2014,23 @@
       "conId": 15016059,
       "localSymbol": "USD.JPY",
       "tradingClass": "USD.JPY",
-      "marketPrice": 144.7440338,
-      "marketValue": 237360385.52,
-      "unrealizedPNL": 1322976.59,
+      "marketPrice": 145.02249145,
+      "marketValue": 237817017.9,
+      "unrealizedPNL": 1779608.98,
       "realizedPNL": 0.0,
       "accountName": "U6129142",
       "market_data": {
-        "low": 144.725,
-        "bid": 144.729,
+        "bid": 145.037,
         "bidSize": 1000000,
-        "ask": 144.73,
-        "askSize": 1000000,
-        "close": 144.7345
+        "ask": 145.04,
+        "askSize": 2600000,
+        "close": 145.026
       },
       "has_market_data": true,
       "has_pnl_data": false,
       "has_options_data": false,
       "data_unavailable": false,
       "historical_data": [
-        {
-          "date": "20250618",
-          "open": 145.266,
-          "high": 145.444,
-          "low": 144.3295,
-          "close": 145.143,
-          "volume": -1,
-          "average": -1.0,
-          "barCount": -1
-        },
         {
           "date": "20250619",
           "open": 145.0925,
@@ -3269,15 +2065,60 @@
           "date": "20250624",
           "open": 146.111,
           "high": 146.1925,
-          "low": 144.7305,
-          "close": 144.7345,
+          "low": 144.513,
+          "close": 144.9405,
+          "volume": -1,
+          "average": -1.0,
+          "barCount": -1
+        },
+        {
+          "date": "20250625",
+          "open": 144.913,
+          "high": 145.045,
+          "low": 144.7715,
+          "close": 145.026,
           "volume": -1,
           "average": -1.0,
           "barCount": -1
         }
       ],
-      "current_price": 144.7345,
-      "market_value": 237344751.3735
+      "current_price": 145.026,
+      "market_value": 237822771.43800002
+    },
+    {
+      "account": "U*******",
+      "symbol": "BA",
+      "secType": "OPT",
+      "position": -12.0,
+      "avgCost": 364.52911665,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 699429813,
+      "localSymbol": "BA    250919P00170000",
+      "tradingClass": "BA",
+      "strike": 170.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 2.99,
+        "currentPrice": 2.99,
+        "halted": 0.0,
+        "markPrice": 2.85597754
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "has_options_data": false,
+      "data_unavailable": false,
+      "avg_cost": 3.6452911665,
+      "current_price": 2.99,
+      "pnl": 786.3493997999996,
+      "market_value": -3588.0000000000005,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -3296,72 +2137,23 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 2.81,
-        "bidSize": 201,
-        "ask": 2.95,
-        "askSize": 288,
-        "last": 2.85,
-        "currentPrice": 3.35,
-        "lastSize": 2,
-        "volume": 2,
-        "high": 2.85,
-        "low": 2.85,
+        "lastSize": 0,
+        "volume": 0,
         "close": 3.35,
+        "currentPrice": 3.35,
         "halted": 0.0,
-        "markPrice": 2.87350941
+        "markPrice": 2.87205338
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.2805170416796212,
-          "delta": -0.13669198037671856,
-          "optionPrice": 2.809999942779541,
-          "pvDividend": 1.3984781904308965,
-          "gamma": 0.005781957144599344,
-          "vega": 0.31566150295040263,
-          "theta": -0.04369484662150793,
-          "underlyingPrice": 280.78000000000003
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.28305506345179826,
-          "delta": -0.13867985333143698,
-          "optionPrice": 2.950000047683716,
-          "pvDividend": 1.3984781904308965,
-          "gamma": 0.005784390317407921,
-          "vega": 0.31609715317659015,
-          "theta": -0.04452339024719562,
-          "underlyingPrice": 280.78000000000003
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.2811643549004664,
-          "delta": -0.13720236159534818,
-          "optionPrice": 2.8499999046325684,
-          "pvDividend": 1.3984781904308965,
-          "gamma": 0.005782674354007719,
-          "vega": 0.3157741788586024,
-          "theta": -0.04390603970912353,
-          "underlyingPrice": 280.78000000000003
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.2824277470162699,
-          "delta": -0.13795337332127,
-          "optionPrice": 2.8702169957736956,
-          "pvDividend": 1.3984781904308965,
-          "gamma": 0.005775550355761711,
-          "vega": 0.31619740928257967,
-          "theta": -0.04670363539814337,
-          "underlyingPrice": 280.8140563964844
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 6.712892624999999,
       "current_price": 3.35,
       "pnl": 2690.3140999999996,
       "market_value": -2680.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -3380,72 +2172,23 @@
       "expiry": "20251017",
       "multiplier": "100",
       "market_data": {
-        "bid": 6.8,
-        "bidSize": 307,
-        "ask": 7.6,
-        "askSize": 35,
-        "last": 6.8,
-        "currentPrice": 6.93,
-        "lastSize": 1,
-        "volume": 28,
-        "high": 7.8,
-        "low": 6.8,
+        "lastSize": 0,
+        "volume": 0,
         "close": 6.93,
+        "currentPrice": 6.93,
         "halted": 0.0,
-        "markPrice": 7.01214457
+        "markPrice": 6.87726593
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 1.3261227253887569,
-          "delta": -0.05309765378206247,
-          "optionPrice": 6.800000190734863,
-          "pvDividend": 0.0,
-          "gamma": 0.0005863343643204832,
-          "vega": 0.13796649327881205,
-          "theta": -0.08536346208513905,
-          "underlyingPrice": 248.66
-        },
-        "askGreeks": {
-          "impliedVolatility": 1.3722013336894132,
-          "delta": -0.056292422052826814,
-          "optionPrice": 7.599999904632568,
-          "pvDividend": 0.0,
-          "gamma": 0.0005933051680770524,
-          "vega": 0.17453222357083664,
-          "theta": -0.09251516636850454,
-          "underlyingPrice": 248.66
-        },
-        "lastGreeks": {
-          "impliedVolatility": 1.348799319491455,
-          "delta": -0.0545387212021353,
-          "optionPrice": 6.800000190734863,
-          "pvDividend": 0.0,
-          "gamma": 0.000589770693969565,
-          "vega": 0.16837923228086193,
-          "theta": -0.08884691870658881,
-          "underlyingPrice": 248.66
-        },
-        "modelGreeks": {
-          "impliedVolatility": 1.339248102352014,
-          "delta": -0.06098504972408823,
-          "optionPrice": 6.995978935071733,
-          "pvDividend": 0.0,
-          "gamma": 0.0006337821090438849,
-          "vega": 0.17711491773328802,
-          "theta": -0.09494106226465426,
-          "underlyingPrice": 249.4227752685547
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 6.4533926,
       "current_price": 6.93,
       "pnl": -1191.5184999999994,
       "market_value": -17325.0,
       "expiry_formatted": "2025-10-17",
-      "days_to_expiry": 115
+      "days_to_expiry": 114
     },
     {
       "account": "U*******",
@@ -3464,72 +2207,93 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 6.55,
-        "bidSize": 866,
-        "ask": 6.75,
-        "askSize": 544,
-        "last": 6.65,
-        "currentPrice": 6.95,
-        "lastSize": 1,
-        "volume": 174,
-        "high": 7.0,
-        "low": 6.2,
+        "lastSize": 0,
+        "volume": 0,
         "close": 6.95,
+        "currentPrice": 6.95,
         "halted": 0.0,
-        "markPrice": 6.68505192
+        "markPrice": 6.30960178
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.9847477608853833,
-          "delta": -0.3555679740804306,
-          "optionPrice": 6.550000190734863,
-          "pvDividend": 0.0,
-          "gamma": 0.018490922247563206,
-          "vega": 0.07711208208757814,
-          "theta": -0.04127623088370394,
-          "underlyingPrice": 42.24
-        },
-        "askGreeks": {
-          "impliedVolatility": 1.0041916495521956,
-          "delta": -0.3547351833869148,
-          "optionPrice": 6.75,
-          "pvDividend": 0.0,
-          "gamma": 0.018114792023525207,
-          "vega": 0.0770297819453365,
-          "theta": -0.0420866396820026,
-          "underlyingPrice": 42.24
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.9935151581838721,
-          "delta": -0.35519691057302094,
-          "optionPrice": 6.650000095367432,
-          "pvDividend": 0.0,
-          "gamma": 0.018319571588572947,
-          "vega": 0.07707523159297036,
-          "theta": -0.04164199630224354,
-          "underlyingPrice": 42.24
-        },
-        "modelGreeks": {
-          "impliedVolatility": 1.000055719263186,
-          "delta": -0.35394920520384787,
-          "optionPrice": 6.668106578088253,
-          "pvDividend": 0.0,
-          "gamma": 0.018150249907171394,
-          "vega": 0.07710010836883274,
-          "theta": -0.04213812952068352,
-          "underlyingPrice": 42.29600143432617
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 5.8854926,
       "current_price": 6.95,
       "pnl": -3193.5222000000003,
       "market_value": -20850.0,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
+    },
+    {
+      "account": "U*******",
+      "symbol": "CRWV",
+      "secType": "OPT",
+      "position": -33.0,
+      "avgCost": 602.3444121,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 782385569,
+      "localSymbol": "CRWV  250919P00075000",
+      "tradingClass": "CRWV",
+      "strike": 75.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 5.56,
+        "currentPrice": 5.56,
+        "halted": 0.0,
+        "markPrice": 5.13847399
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "has_options_data": false,
+      "data_unavailable": false,
+      "avg_cost": 6.023444121,
+      "current_price": 5.56,
+      "pnl": 1529.3655993000007,
+      "market_value": -18348.0,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
+    },
+    {
+      "account": "U*******",
+      "symbol": "IBIT",
+      "secType": "OPT",
+      "position": -38.0,
+      "avgCost": 227.2745237,
+      "currency": "USD",
+      "exchange": "SMART",
+      "primaryExchange": "",
+      "conId": 758885431,
+      "localSymbol": "IBIT  250919P00053000",
+      "tradingClass": "IBIT",
+      "strike": 53.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "lastSize": 0,
+        "volume": 0,
+        "close": 2.42,
+        "currentPrice": 2.42,
+        "halted": 0.0,
+        "markPrice": 2.04665542
+      },
+      "has_market_data": true,
+      "has_pnl_data": false,
+      "has_options_data": false,
+      "data_unavailable": false,
+      "avg_cost": 2.272745237,
+      "current_price": 2.42,
+      "pnl": -559.5680993999994,
+      "market_value": -9196.0,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 86
     },
     {
       "account": "U*******",
@@ -3548,79 +2312,30 @@
       "expiry": "20250919",
       "multiplier": "100",
       "market_data": {
-        "bid": 1.67,
-        "bidSize": 505,
-        "ask": 1.76,
-        "askSize": 595,
-        "last": 1.85,
-        "currentPrice": 2.07,
-        "lastSize": 1,
-        "volume": 1,
-        "high": 1.85,
-        "low": 1.85,
+        "lastSize": 0,
+        "volume": 0,
         "close": 2.07,
+        "currentPrice": 2.07,
         "halted": 0.0,
-        "markPrice": 1.73644292
+        "markPrice": 1.56003463
       },
       "has_market_data": true,
       "has_pnl_data": false,
-      "options_data": {
-        "bidGreeks": {
-          "impliedVolatility": 0.4385856037987363,
-          "delta": -0.0753816009689916,
-          "optionPrice": 1.6699999570846558,
-          "pvDividend": 0.4990341801837969,
-          "gamma": 0.003160860912216409,
-          "vega": 0.14338602970106384,
-          "theta": -0.034860315369647614,
-          "underlyingPrice": 211.19
-        },
-        "askGreeks": {
-          "impliedVolatility": 0.44488126676337153,
-          "delta": -0.07779037883366806,
-          "optionPrice": 1.7599999904632568,
-          "pvDividend": 0.4990341801837969,
-          "gamma": 0.0031936514053992906,
-          "vega": 0.1437831496303772,
-          "theta": -0.03625247359308743,
-          "underlyingPrice": 211.19
-        },
-        "lastGreeks": {
-          "impliedVolatility": 0.453456815052646,
-          "delta": -0.08096777803509621,
-          "optionPrice": 1.850000023841858,
-          "pvDividend": 0.4990341801837969,
-          "gamma": 0.0032337508983440273,
-          "vega": 0.14437585750713788,
-          "theta": -0.03815512848089666,
-          "underlyingPrice": 211.19
-        },
-        "modelGreeks": {
-          "impliedVolatility": 0.44326512051751366,
-          "delta": -0.07712581236848418,
-          "optionPrice": 1.7368786349441776,
-          "pvDividend": 0.4990341801837969,
-          "gamma": 0.003185639910010589,
-          "vega": 0.14339632665152902,
-          "theta": -0.03434531614717207,
-          "underlyingPrice": 211.14503479003906
-        }
-      },
-      "has_options_data": true,
+      "has_options_data": false,
       "data_unavailable": false,
       "avg_cost": 1.835392625,
       "current_price": 2.07,
       "pnl": -375.37179999999955,
       "market_value": -3311.9999999999995,
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87
+      "days_to_expiry": 86
     }
   ],
   "summary": {
     "total_positions": 45,
     "options_count": 42,
     "stocks_count": 1,
-    "total_market_value": 106839221.22089949
+    "total_market_value": 107163369.5667995
   },
   "account_summary": {},
   "account_values": {
@@ -3645,17 +2360,27 @@
       "account": "U6129142"
     },
     "Cushion": {
-      "value": "0.128396",
+      "value": "0.12169",
+      "currency": "",
+      "account": "U6129142"
+    },
+    "ExposureFeeTime": {
+      "value": "1750798913",
+      "currency": "",
+      "account": "U6129142"
+    },
+    "ExposureTime": {
+      "value": "1750798913",
       "currency": "",
       "account": "U6129142"
     },
     "Leverage-S": {
-      "value": "1.28",
+      "value": "1.33",
       "currency": "",
       "account": "U6129142"
     },
     "LookAheadNextChange": {
-      "value": "1750795200",
+      "value": "1750815000",
       "currency": "",
       "account": "U6129142"
     },
@@ -3670,12 +2395,12 @@
       "account": "U6129142"
     },
     "SettledCashByDate": {
-      "value": "20250624:-113499.49;20250625:-52406.34272218;20250626:-44689.74421143",
+      "value": "20250624:115183.4569275;20250625:15300.4569275",
       "currency": "",
       "account": "U6129142"
     },
     "SettledCashByDate-S": {
-      "value": "20250624:-113499.49;20250625:-52406.34272218;20250626:-44689.74421143",
+      "value": "20250624:115183.4569275;20250625:15300.4569275",
       "currency": "",
       "account": "U6129142"
     },
@@ -3690,7 +2415,7 @@
       "account": "U6129142"
     },
     "AccruedCash-S": {
-      "value": "33868.71",
+      "value": "33868.61",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -3705,12 +2430,12 @@
       "account": "U6129142"
     },
     "AvailableFunds": {
-      "value": "162380.02",
+      "value": "22009.33",
       "currency": "HKD",
       "account": "U6129142"
     },
     "AvailableFunds-S": {
-      "value": "162380.02",
+      "value": "22009.33",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -3725,77 +2450,82 @@
       "account": "U6129142"
     },
     "BuyingPower": {
-      "value": "1082533.47",
+      "value": "146728.89",
       "currency": "HKD",
       "account": "U6129142"
     },
     "EquityWithLoanValue": {
-      "value": "14437785.21",
+      "value": "14489776.00",
       "currency": "HKD",
       "account": "U6129142"
     },
     "EquityWithLoanValue-S": {
-      "value": "14437785.21",
+      "value": "14489776.00",
       "currency": "HKD",
       "account": "U6129142"
     },
     "ExcessLiquidity": {
-      "value": "1853527.02",
+      "value": "1763071.74",
       "currency": "HKD",
       "account": "U6129142"
     },
     "ExcessLiquidity-S": {
-      "value": "1853527.02",
+      "value": "1763071.74",
+      "currency": "HKD",
+      "account": "U6129142"
+    },
+    "ExposureFee": {
+      "value": "-58.07",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullAvailableFunds": {
-      "value": "162380.02",
+      "value": "22009.33",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullAvailableFunds-S": {
-      "value": "162380.02",
+      "value": "22009.33",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullExcessLiquidity": {
-      "value": "1853527.02",
+      "value": "1763071.74",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullExcessLiquidity-S": {
-      "value": "1853527.02",
+      "value": "1763071.74",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullInitMarginReq": {
-      "value": "14275405.18",
+      "value": "14467766.68",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullInitMarginReq-S": {
-      "value": "14275405.18",
+      "value": "14467766.68",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullMaintMarginReq": {
-      "value": "12584258.19",
+      "value": "12726945.27",
       "currency": "HKD",
       "account": "U6129142"
     },
     "FullMaintMarginReq-S": {
-      "value": "12584258.19",
+      "value": "12726945.27",
       "currency": "HKD",
       "account": "U6129142"
     },
     "GrossPositionValue": {
-      "value": "18448056.59",
+      "value": "19281484.57",
       "currency": "HKD",
       "account": "U6129142"
     },
     "GrossPositionValue-S": {
-      "value": "18448056.59",
+      "value": "19281484.57",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -3830,72 +2560,72 @@
       "account": "U6129142"
     },
     "InitMarginReq": {
-      "value": "14275405.18",
+      "value": "14467766.68",
       "currency": "HKD",
       "account": "U6129142"
     },
     "InitMarginReq-S": {
-      "value": "14275405.18",
+      "value": "14467766.68",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadAvailableFunds": {
-      "value": "162380.02",
+      "value": "22009.33",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadAvailableFunds-S": {
-      "value": "162380.02",
+      "value": "22009.33",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadExcessLiquidity": {
-      "value": "1853527.02",
+      "value": "1763071.74",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadExcessLiquidity-S": {
-      "value": "1853527.02",
+      "value": "1763071.74",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadInitMarginReq": {
-      "value": "14275405.18",
+      "value": "14467766.68",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadInitMarginReq-S": {
-      "value": "14275405.18",
+      "value": "14467766.68",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadMaintMarginReq": {
-      "value": "12584258.19",
+      "value": "12726945.27",
       "currency": "HKD",
       "account": "U6129142"
     },
     "LookAheadMaintMarginReq-S": {
-      "value": "12584258.19",
+      "value": "12726945.27",
       "currency": "HKD",
       "account": "U6129142"
     },
     "MaintMarginReq": {
-      "value": "12584258.19",
+      "value": "12726945.27",
       "currency": "HKD",
       "account": "U6129142"
     },
     "MaintMarginReq-S": {
-      "value": "12584258.19",
+      "value": "12726945.27",
       "currency": "HKD",
       "account": "U6129142"
     },
     "NetLiquidation": {
-      "value": "14436021.32",
+      "value": "14488175.26",
       "currency": "HKD",
       "account": "U6129142"
     },
     "NetLiquidation-S": {
-      "value": "14436021.32",
+      "value": "14488175.26",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -3945,12 +2675,12 @@
       "account": "U6129142"
     },
     "TotalCashValue": {
-      "value": "959415.50",
+      "value": "83605.64",
       "currency": "HKD",
       "account": "U6129142"
     },
     "TotalCashValue-S": {
-      "value": "959415.50",
+      "value": "83605.64",
       "currency": "HKD",
       "account": "U6129142"
     },
@@ -3970,22 +2700,22 @@
       "account": "U6129142"
     },
     "CashBalance": {
-      "value": "127921.2389",
+      "value": "15300.4569",
       "currency": "USD",
       "account": "U6129142"
     },
     "TotalCashBalance": {
-      "value": "127921.2389",
+      "value": "15300.4569",
       "currency": "USD",
       "account": "U6129142"
     },
     "StockMarketValue": {
-      "value": "2027051.97",
+      "value": "2139778.89",
       "currency": "USD",
       "account": "U6129142"
     },
     "OptionMarketValue": {
-      "value": "-299452.97",
+      "value": "-293962.24",
       "currency": "USD",
       "account": "U6129142"
     },
@@ -4000,12 +2730,12 @@
       "account": "U6129142"
     },
     "NetLiquidationByCurrency": {
-      "value": "1859841.3945",
+      "value": "1865438.2616",
       "currency": "USD",
       "account": "U6129142"
     },
     "UnrealizedPnL": {
-      "value": "120204.21",
+      "value": "125801.08",
       "currency": "USD",
       "account": "U6129142"
     },
@@ -4015,7 +2745,7 @@
       "account": "U6129142"
     },
     "ExchangeRate": {
-      "value": "7.8499723",
+      "value": "7.8499498",
       "currency": "USD",
       "account": "U6129142"
     },
@@ -4090,90 +2820,49 @@
     {
       "expiry": "20250919",
       "expiry_formatted": "2025-09-19",
-      "days_to_expiry": 87,
+      "days_to_expiry": 86,
       "total_value": -215045.0,
       "count": 32,
       "positions": [
+        "COIN",
         "MSTR",
+        "SPY",
         "QQQ",
+        "NVDA",
         "COST",
         "AVGO",
         "UBER",
         "NFLX",
-        "MSFT",
-        "CRWD",
-        "AMD",
-        "AMD",
-        "HOOD",
-        "BA",
-        "CRWV",
-        "IBIT",
-        "COIN",
-        "SPY",
-        "NVDA",
         "META",
         "TSLA",
         "V",
         "AMZN",
+        "MSFT",
+        "CRWD",
+        "AMD",
         "NVDA",
         "VXX",
         "IWM",
+        "AMD",
         "AVGO",
         "PLTR",
         "APP",
         "GLD",
         "PLTR",
+        "HOOD",
+        "BA",
         "JPM",
         "HIMS",
+        "CRWV",
+        "IBIT",
         "ORCL"
-      ]
-    },
-    {
-      "expiry": "20260918",
-      "expiry_formatted": "2026-09-18",
-      "days_to_expiry": 451,
-      "total_value": -23220.0,
-      "count": 1,
-      "positions": [
-        "NFLX"
-      ]
-    },
-    {
-      "expiry": "20251219",
-      "expiry_formatted": "2025-12-19",
-      "days_to_expiry": 178,
-      "total_value": -38050.0,
-      "count": 1,
-      "positions": [
-        "QQQ"
-      ]
-    },
-    {
-      "expiry": "20260116",
-      "expiry_formatted": "2026-01-16",
-      "days_to_expiry": 206,
-      "total_value": -20775.0,
-      "count": 2,
-      "positions": [
-        "QBTS",
-        "QBTS"
-      ]
-    },
-    {
-      "expiry": "20250718",
-      "expiry_formatted": "2025-07-18",
-      "days_to_expiry": 24,
-      "total_value": -2737.0,
-      "count": 1,
-      "positions": [
-        "APP"
       ]
     },
     {
       "expiry": "20250730",
       "expiry_formatted": "2025-07-30",
-      "days_to_expiry": 36,
-      "total_value": -74000.0,
+      "days_to_expiry": 35,
+      "total_value": -72000.0,
       "count": 1,
       "positions": [
         "HSI"
@@ -4182,7 +2871,7 @@
     {
       "expiry": "20250815",
       "expiry_formatted": "2025-08-15",
-      "days_to_expiry": 52,
+      "days_to_expiry": 51,
       "total_value": -11440.0,
       "count": 1,
       "positions": [
@@ -4192,7 +2881,7 @@
     {
       "expiry": "20250929",
       "expiry_formatted": "2025-09-29",
-      "days_to_expiry": 97,
+      "days_to_expiry": 96,
       "total_value": -120767.60000049998,
       "count": 2,
       "positions": [
@@ -4201,9 +2890,50 @@
       ]
     },
     {
+      "expiry": "20260918",
+      "expiry_formatted": "2026-09-18",
+      "days_to_expiry": 450,
+      "total_value": -23220.0,
+      "count": 1,
+      "positions": [
+        "NFLX"
+      ]
+    },
+    {
+      "expiry": "20260116",
+      "expiry_formatted": "2026-01-16",
+      "days_to_expiry": 205,
+      "total_value": -20775.0,
+      "count": 2,
+      "positions": [
+        "QBTS",
+        "QBTS"
+      ]
+    },
+    {
+      "expiry": "20251219",
+      "expiry_formatted": "2025-12-19",
+      "days_to_expiry": 177,
+      "total_value": -38050.0,
+      "count": 1,
+      "positions": [
+        "QQQ"
+      ]
+    },
+    {
+      "expiry": "20250718",
+      "expiry_formatted": "2025-07-18",
+      "days_to_expiry": 23,
+      "total_value": -2737.0,
+      "count": 1,
+      "positions": [
+        "APP"
+      ]
+    },
+    {
       "expiry": "20251017",
       "expiry_formatted": "2025-10-17",
-      "days_to_expiry": 115,
+      "days_to_expiry": 114,
       "total_value": -17325.0,
       "count": 1,
       "positions": [
@@ -4211,182 +2941,419 @@
       ]
     }
   ],
-  "underlying_prices": {},
+  "underlying_prices": {
+    "GLD": {
+      "price": 306.19,
+      "changesPercentage": -1.57194,
+      "dayHigh": 306.34,
+      "dayLow": 303.54,
+      "previousClose": 311.08,
+      "timestamp": 1750795200
+    },
+    "CRWV": {
+      "price": 172.62,
+      "changesPercentage": -0.61032,
+      "dayHigh": 183.98,
+      "dayLow": 171.2301,
+      "previousClose": 173.68,
+      "timestamp": 1750795202
+    },
+    "COST": {
+      "price": 1001.92,
+      "changesPercentage": -0.25486,
+      "dayHigh": 1005.835,
+      "dayLow": 992.065,
+      "previousClose": 1004.48,
+      "timestamp": 1750795201
+    },
+    "PLTR": {
+      "price": 143.23,
+      "changesPercentage": 2.36564,
+      "dayHigh": 143.65,
+      "dayLow": 137.8,
+      "previousClose": 139.92,
+      "timestamp": 1750795200
+    },
+    "AMD": {
+      "price": 138.43,
+      "changesPercentage": 6.82976,
+      "dayHigh": 138.75,
+      "dayLow": 132.93,
+      "previousClose": 129.58,
+      "timestamp": 1750795200
+    },
+    "IWM": {
+      "price": 214.47,
+      "changesPercentage": 1.27497,
+      "dayHigh": 214.93,
+      "dayLow": 212.36,
+      "previousClose": 211.77,
+      "timestamp": 1750795200
+    },
+    "NVDA": {
+      "price": 147.9,
+      "changesPercentage": 2.58722,
+      "dayHigh": 147.96,
+      "dayLow": 145.5,
+      "previousClose": 144.17,
+      "timestamp": 1750795200
+    },
+    "HOOD": {
+      "price": 82.01,
+      "changesPercentage": 7.41323,
+      "dayHigh": 82.2602,
+      "dayLow": 76.83,
+      "previousClose": 76.35,
+      "timestamp": 1750795201
+    },
+    "QBTS": {
+      "price": 14.97,
+      "changesPercentage": 0.2008,
+      "dayHigh": 15.36,
+      "dayLow": 14.7,
+      "previousClose": 14.94,
+      "timestamp": 1750795202
+    },
+    "UBER": {
+      "price": 91.65,
+      "changesPercentage": 7.51994,
+      "dayHigh": 92.478,
+      "dayLow": 87.91,
+      "previousClose": 85.24,
+      "timestamp": 1750795202
+    },
+    "AMZN": {
+      "price": 212.77,
+      "changesPercentage": 2.06265,
+      "dayHigh": 214.34,
+      "dayLow": 211.045,
+      "previousClose": 208.47,
+      "timestamp": 1750795201
+    },
+    "TSLA": {
+      "price": 340.47,
+      "changesPercentage": -2.35459,
+      "dayHigh": 356.2599,
+      "dayLow": 340.47,
+      "previousClose": 348.68,
+      "timestamp": 1750795200
+    },
+    "ORCL": {
+      "price": 215.27,
+      "changesPercentage": 3.97508,
+      "dayHigh": 216.365,
+      "dayLow": 208.55,
+      "previousClose": 207.04,
+      "timestamp": 1750795202
+    },
+    "NFLX": {
+      "price": 1279.11,
+      "changesPercentage": 2.03982,
+      "dayHigh": 1282.58,
+      "dayLow": 1255.35,
+      "previousClose": 1253.54,
+      "timestamp": 1750795200
+    },
+    "CRWD": {
+      "price": 485.38,
+      "changesPercentage": -1.30742,
+      "dayHigh": 493.4459,
+      "dayLow": 481.12,
+      "previousClose": 491.81,
+      "timestamp": 1750795201
+    },
+    "MSFT": {
+      "price": 490.11,
+      "changesPercentage": 0.84568,
+      "dayHigh": 491.849,
+      "dayLow": 486.795,
+      "previousClose": 486,
+      "timestamp": 1750795202
+    },
+    "AVGO": {
+      "price": 263.77,
+      "changesPercentage": 3.94058,
+      "dayHigh": 265.87,
+      "dayLow": 258.79,
+      "previousClose": 253.77,
+      "timestamp": 1750795201
+    },
+    "META": {
+      "price": 712.2,
+      "changesPercentage": 1.95697,
+      "dayHigh": 713.145,
+      "dayLow": 702.11,
+      "previousClose": 698.53,
+      "timestamp": 1750795201
+    },
+    "MSTR": {
+      "price": 377.02,
+      "changesPercentage": 2.67988,
+      "dayHigh": 384.3559,
+      "dayLow": 371,
+      "previousClose": 367.18,
+      "timestamp": 1750795201
+    },
+    "SPY": {
+      "price": 606.78,
+      "changesPercentage": 1.10472,
+      "dayHigh": 607.79,
+      "dayLow": 603.41,
+      "previousClose": 600.15,
+      "timestamp": 1750795200
+    },
+    "IBIT": {
+      "price": 60.06,
+      "changesPercentage": 2.36918,
+      "dayHigh": 60.466,
+      "dayLow": 59.555,
+      "previousClose": 58.67,
+      "timestamp": 1750795202
+    },
+    "BOXX": {
+      "price": 112.61,
+      "changesPercentage": 0.02664772,
+      "dayHigh": 112.62,
+      "dayLow": 112.59,
+      "previousClose": 112.58,
+      "timestamp": 1750795200
+    },
+    "V": {
+      "price": 351.63,
+      "changesPercentage": 2.29236,
+      "dayHigh": 354.56,
+      "dayLow": 347.92,
+      "previousClose": 343.75,
+      "timestamp": 1750795202
+    },
+    "QQQ": {
+      "price": 539.78,
+      "changesPercentage": 1.5292,
+      "dayHigh": 540.695,
+      "dayLow": 536.272,
+      "previousClose": 531.65,
+      "timestamp": 1750795200
+    },
+    "VXX": {
+      "price": 49.15,
+      "changesPercentage": -6.89525,
+      "dayHigh": 50.0896,
+      "dayLow": 49.13,
+      "previousClose": 52.79,
+      "timestamp": 1750795200
+    },
+    "COIN": {
+      "price": 344.82,
+      "changesPercentage": 12.10377,
+      "dayHigh": 348.96,
+      "dayLow": 311.9672,
+      "previousClose": 307.59,
+      "timestamp": 1750795200
+    },
+    "BA": {
+      "price": 200.94,
+      "changesPercentage": -0.1838,
+      "dayHigh": 203.4,
+      "dayLow": 200.18,
+      "previousClose": 201.31,
+      "timestamp": 1750795202
+    },
+    "APP": {
+      "price": 349.48,
+      "changesPercentage": 4.19797,
+      "dayHigh": 352.39,
+      "dayLow": 341.93,
+      "previousClose": 335.4,
+      "timestamp": 1750795201
+    },
+    "JPM": {
+      "price": 281.26,
+      "changesPercentage": 1.0745,
+      "dayHigh": 282.72,
+      "dayLow": 279.52,
+      "previousClose": 278.27,
+      "timestamp": 1750795202
+    },
+    "CRCL": {
+      "price": 222.65,
+      "changesPercentage": -15.48681,
+      "dayHigh": 265,
+      "dayLow": 218.6,
+      "previousClose": 263.45,
+      "timestamp": 1750795202
+    },
+    "HIMS": {
+      "price": 42.95,
+      "changesPercentage": 2.31062,
+      "dayHigh": 44.3828,
+      "dayLow": 41.84,
+      "previousClose": 41.98,
+      "timestamp": 1750795202
+    }
+  },
   "source": "ib_api_enhanced",
   "status": "updated",
   "errors": [
     {
+      "reqId": 1056,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-25T08:47:12.268376",
+      "symbol": "PLTR_20250919_P_100.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1058,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-25T08:47:12.269179",
+      "symbol": "QQQ_20251219_C_600.0",
+      "level": "warning"
+    },
+    {
       "reqId": 1060,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T22:16:21.457578",
-      "symbol": "NVDA_20250919_P_126.0",
+      "timestamp": "2025-06-25T08:47:12.270609",
+      "symbol": "APP_20250919_P_290.0",
       "level": "warning"
     },
     {
       "reqId": 1062,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T22:16:21.457791",
-      "symbol": "QBTS_20260116_P_8.0",
+      "timestamp": "2025-06-25T08:47:12.271007",
+      "symbol": "GLD_20250919_P_280.0",
       "level": "warning"
     },
     {
       "reqId": 1064,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T22:16:21.458126",
-      "symbol": "VXX_20250919_C_90.0",
-      "level": "warning"
-    },
-    {
-      "reqId": 1066,
-      "errorCode": 162,
-      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T22:16:21.458458",
-      "symbol": "IWM_20250919_P_205.0",
+      "timestamp": "2025-06-25T08:47:12.271239",
+      "symbol": "PLTR_20250919_P_85.0",
       "level": "warning"
     },
     {
       "reqId": 1068,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T22:16:21.458606",
-      "symbol": "AVGO_20250919_P_210.0",
+      "timestamp": "2025-06-25T08:47:12.272319",
+      "symbol": "QBTS_20260116_P_6.0",
       "level": "warning"
     },
     {
       "reqId": 1070,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T22:16:21.458797",
-      "symbol": "PLTR_20250919_P_100.0",
-      "level": "warning"
-    },
-    {
-      "reqId": 1072,
-      "errorCode": 162,
-      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T22:16:21.459128",
-      "symbol": "APP_20250919_P_290.0",
+      "timestamp": "2025-06-25T08:47:12.272510",
+      "symbol": "HOOD_20250919_P_40.0",
       "level": "warning"
     },
     {
       "reqId": 1074,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T22:16:21.459279",
-      "symbol": "GLD_20250919_P_280.0",
+      "timestamp": "2025-06-25T08:47:12.273058",
+      "symbol": "APP_20250718_P_280.0",
       "level": "warning"
     },
     {
-      "reqId": 1076,
+      "reqId": 1078,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T22:16:21.459427",
-      "symbol": "PLTR_20250919_P_85.0",
+      "timestamp": "2025-06-25T08:47:12.273553",
+      "symbol": "BA_20250919_P_170.0",
       "level": "warning"
     },
     {
-      "reqId": 1077,
-      "errorCode": 10090,
-      "errorString": "Part of requested market data is not subscribed. Subscription-independent ticks are still active.BOXX BATS/TOP/BID_ASK",
-      "timestamp": "2025-06-24T22:16:21.557405",
-      "symbol": "BOXX",
+      "reqId": 1080,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-25T08:47:12.455542",
+      "symbol": "JPM_20250919_P_245.0",
       "level": "warning"
     },
     {
-      "reqId": 1077,
-      "errorCode": 354,
-      "errorString": "Requested market data is not subscribed.延遲市場數據可用。:Error&BATS/STK/Top",
-      "timestamp": "2025-06-24T22:16:21.558366",
-      "symbol": "BOXX",
+      "reqId": 1082,
+      "errorCode": 162,
+      "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
+      "timestamp": "2025-06-25T08:47:12.455903",
+      "symbol": "CRCL_20251017_P_100.0",
       "level": "warning"
     },
     {
       "reqId": 1084,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T22:16:21.635575",
-      "symbol": "JPM_20250919_P_245.0",
+      "timestamp": "2025-06-25T08:47:12.456195",
+      "symbol": "HIMS_20250919_P_40.0",
       "level": "warning"
     },
     {
       "reqId": 1086,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T22:16:21.636202",
-      "symbol": "CRCL_20251017_P_100.0",
+      "timestamp": "2025-06-25T08:47:12.459852",
+      "symbol": "CRWV_20250919_P_75.0",
       "level": "warning"
     },
     {
       "reqId": 1088,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T22:16:21.636403",
-      "symbol": "HIMS_20250919_P_40.0",
+      "timestamp": "2025-06-25T08:47:12.460108",
+      "symbol": "IBIT_20250919_P_53.0",
       "level": "warning"
     },
     {
       "reqId": 1090,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No data of type EODChart is available for the exchange 'BEST' and the security type 'Option' and '1 d' and '1 day'",
-      "timestamp": "2025-06-24T22:16:21.636750",
+      "timestamp": "2025-06-25T08:47:12.460361",
       "symbol": "ORCL_20250919_P_160.0",
       "level": "warning"
     },
     {
-      "reqId": 1051,
-      "errorCode": 200,
-      "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T22:16:21.636958",
-      "symbol": "1024_20250929_P_52.5",
-      "level": "warning"
-    },
-    {
-      "reqId": 1052,
-      "errorCode": 200,
-      "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T22:16:21.636997",
-      "symbol": "1024_20250929_P_52.5",
-      "level": "warning"
-    },
-    {
-      "reqId": 1079,
-      "errorCode": 200,
-      "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T22:16:21.721944",
-      "symbol": "700_20250929_P_470.0",
-      "level": "warning"
-    },
-    {
-      "reqId": 1080,
-      "errorCode": 200,
-      "errorString": "未找到此請求的證券定義",
-      "timestamp": "2025-06-24T22:16:21.828990",
-      "symbol": "700_20250929_P_470.0",
-      "level": "warning"
-    },
-    {
-      "reqId": 1078,
+      "reqId": 1066,
       "errorCode": 162,
       "errorString": "歷史市場數據服務錯誤消息:No market data permissions for BATS STK",
-      "timestamp": "2025-06-24T22:16:22.223531",
+      "timestamp": "2025-06-25T08:47:12.530467",
       "symbol": "BOXX",
+      "level": "warning"
+    },
+    {
+      "reqId": 1027,
+      "errorCode": 200,
+      "errorString": "未找到此請求的證券定義",
+      "timestamp": "2025-06-25T08:47:12.661838",
+      "symbol": "1024_20250929_P_52.5",
+      "level": "warning"
+    },
+    {
+      "reqId": 1028,
+      "errorCode": 200,
+      "errorString": "未找到此請求的證券定義",
+      "timestamp": "2025-06-25T08:47:12.661924",
+      "symbol": "1024_20250929_P_52.5",
+      "level": "warning"
+    },
+    {
+      "reqId": 1071,
+      "errorCode": 200,
+      "errorString": "未找到此請求的證券定義",
+      "timestamp": "2025-06-25T08:47:12.846069",
+      "symbol": "700_20250929_P_470.0",
+      "level": "warning"
+    },
+    {
+      "reqId": 1072,
+      "errorCode": 200,
+      "errorString": "未找到此請求的證券定義",
+      "timestamp": "2025-06-25T08:47:12.846225",
+      "symbol": "700_20250929_P_470.0",
       "level": "warning"
     }
   ],
-  "subscription_errors": {
-    "HSI_20250730_P_22000.0": {
-      "error_code": 10090,
-      "message": "需要付費訂閱市場數據",
-      "error_string": "Part of requested market data is not subscribed. Subscription-independent ticks are still active.延遲市場數據可用。:HSI Hang Seng Stock Index/TOP/ALL"
-    },
-    "BOXX": {
-      "error_code": 354,
-      "message": "需要付費訂閱市場數據",
-      "error_string": "Requested market data is not subscribed.延遲市場數據可用。:Error&BATS/STK/Top"
-    }
-  },
-  "underlying_prices_update": "2025-06-24 22:16:34"
+  "subscription_errors": {}
 }

@@ -1,0 +1,41 @@
+{
+  "timestamp": "2025-06-24T16:52:50.692809",
+  "last_update": "2025-06-24 16:52:50",
+  "positions": [
+    {
+      "account": "DEMO123",
+      "symbol": "QQQ",
+      "secType": "OPT",
+      "position": -1.0,
+      "avgCost": 500.0,
+      "currency": "USD",
+      "localSymbol": "QQQ   250919P00490000",
+      "strike": 490.0,
+      "right": "P",
+      "expiry": "20250919",
+      "multiplier": "100",
+      "market_data": {
+        "bid": 15.50,
+        "ask": 15.75
+      },
+      "avg_cost": 5.0,
+      "current_price": 15.625,
+      "pnl": -1062.5,
+      "market_value": -1562.5,
+      "expiry_formatted": "2025-09-19",
+      "days_to_expiry": 87
+    }
+  ],
+  "summary": {
+    "total_positions": 1,
+    "total_market_value": -1562.5,
+    "total_options": 1,
+    "total_stocks": 0
+  },
+  "underlying_prices": {
+    "QQQ": {
+      "price": 495.50,
+      "changesPercentage": 0.5
+    }
+  }
+}
